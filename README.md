@@ -13,6 +13,7 @@ will be responsible if your system breaks.
   - scrot (for lock.sh script)
   - imagemagick (for lock.sh script)
   - x11-xkb-utils
+  - xclip
   - compton
   - sysstat (for cpu_usage script in i3blocks)
   - acpi (for battery script in i3blocks)
