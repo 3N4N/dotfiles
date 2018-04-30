@@ -1,0 +1,24 @@
+[user]
+  email = enanajmain16@gmail.com
+  name = enan
+[core]
+  # recommended SHA minimum length  https://lkml.org/lkml/2013/9/30/365
+  abbrev = 12
+  # Enable parallel index preload for some operations (diff, status).
+  preloadindex = true
+  # improve performance (requires msysgit 1.9.4+)
+  fscache = true
+  pager = less -+$LESS -R
+[alias]
+  ls  = log --all --graph --pretty=format:'%C(yellow)%h%C(red)%d%Creset %s %C(green)%cr %Cresetby %C(white)%an' --abbrev-commit --date=relative --decorate=short
+  ll = log --graph --stat --decorate=short --source -p
+  b  = branch -vv
+  ba = branch -avv
+  br = branch
+  st  = status -sb
+  co = checkout
+  cp = cherry-pick
+  cl = clone
+  ci = commit
+  diff = diff --word-diff
+  dc = diff --cached
