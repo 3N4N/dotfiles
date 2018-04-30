@@ -1,0 +1,130 @@
+!------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+! first two color-window were a013191c
+! a6 = 65% amount of black needed over white for white to be a 7 contrast score
+! b3 = 70%
+! 80 = 50%
+rofi.line-margin: 15
+rofi.fullscreen: true
+rofi.color-enabled: true
+rofi.color-window: argb:DA222222, argb:DA222222, argb:00222222
+rofi.color-normal: argb:00000000, #e8e8e8, argb:00000000, argb:00000000, #e29a49
+rofi.color-urgent: argb:00000000, #f43753, argb:00000000, argb:00000000, #e29a49
+rofi.color-active: argb:00000000, #49bbfb, argb:00000000, argb:00000000, #e29a49
+rofi.font: Source code pro for powerline 12
+rofi.eh: 1
+rofi.separator-style: solid
+rofi.hide-scrollbar: true
+rofi.width: 50
+rofi.padding: 200
+rofi.bw: 0
+rofi.auto-select: false
+rofi.fuzzy: true
+rofi.scroll-method: 1
+
+!-------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
+Xft.autohint:   0
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+
+!-------------------------------------------------------------------------------
+! URxvt settings
+!-------------------------------------------------------------------------------
+URxvt.modifier: mod1
+URxvt*loginShell: true
+URxvt.borderless: true
+URxvt*dynamicColors: on
+URxvt.geometry: 90x20
+URxvt.internalBorder: 3
+URxvt.lineSpace: 1
+URxvt.loginShell: true
+URxvt.saveLines: 0
+URxvt*termName: xterm-256color
+URxvt.transparent: false
+URxvt.visualBell: false
+
+! disable ctrl+shift binding
+URxvt.iso14755:             false
+URxvt.iso14755_52:          false
+
+! Disable Perl extension
+! If you do not use the Perl extension features, you can improve the security
+! and speed by disabling Perl extensions completely.
+URxvt.perl-ext:
+URxvt.perl-ext-common:
+
+
+!! Fonts
+URxvt.font: xft:Source Code Pro for Powerline:size=9
+URxvt*boldFont: xft:Source code pro bold for powerline:size=9
+URxvt.allow_bold:           false
+URxvt*boldMode:             true
+! Fix font space
+URxvt*letterSpace:          -1
+
+! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+
+! Cursor
+URxvt.cursorBlink:          false
+URxvt.cursorUnderline:      false
+
+! Pointer
+URxvt.pointerBlank:         false
+
+! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+! title      Nord XResources                                    +
+! project    nord-xresources                                    +
+! version    0.1.0                                              +
+! repository https://github.com/arcticicestudio/nord-xresources +
+! author     Arctic Ice Studio                                  +
+! email      development@arcticicestudio.com                    +
+! copyright  Copyright (C) 2016                                 +
+! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading: 35
+*fadeColor: nord3
+
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
