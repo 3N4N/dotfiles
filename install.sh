@@ -28,8 +28,8 @@ ln -s $DIR/compton.conf $HOME/.config
 rm -rf $HOME/.config/ranger
 ln -s $DIR/ranger $RANGERDIR
 
-rm -rf $HOME/.bashrc $HOME/.zshrc $HOME/.Xresources $HOME/.tmux.conf $HOME/.gitconfig
-ln -s $DIR/.bashrc $DIR/.zshrc $DIR/.Xresources $DIR/.tmux.conf $DIR/.gitconfig $HOME/
+rm -rf $HOME/.zshrc $HOME/.Xresources $HOME/.tmux.conf $HOME/.gitconfig
+ln -s $DIR/.zshrc $DIR/.Xresources $DIR/.tmux.conf $DIR/.gitconfig $HOME/
 
 rm -rf $HOME/.gitconfig
 ln -s $DIR/.gitconfig $HOME/
