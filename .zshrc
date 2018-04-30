@@ -42,9 +42,10 @@ alias refresh='source ~/.zshrc'
 alias screenfetch='screenfetch -t'
 alias i3lock='sh ~/Git-repos/dotFiles/lock.sh'
 alias emacs='emacs -nw'
-alias vim='nvim'
-alias py=python2
-alias python=python3
+alias v='nvim'
+alias py2=python2
+alias py3=python3
+alias t='sh ~/Git-repos/dotFiles/tmux.sh'
 
 # zsh prompt with git info
 git_branch() {
