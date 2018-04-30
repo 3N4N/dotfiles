@@ -8,20 +8,14 @@ will be responsible if your system breaks.
 ## Requirements
 
   - [st-term](https://st.suckless.org) or [st-scroll_mouse](https://github.com/enanajmain/st-scroll_mouse)
-  - w3m-img(for Debian) or w3m (for Arch)
+  - w3m-img(for Debian) or w3m (for Arch) (for preview_images in ranger)
   - [base16-shell](https://github.com/chriskempson/base16-shell)
   - scrot (for lock.sh script)
   - imagemagick (for lock.sh script)
   - x11-xkb-utils
   - compton
-  - dunst
-  - i3
-  - i3blocks
   - sysstat (for cpu_usage script in i3blocks)
   - acpi (for battery script in i3blocks)
-  - [neovim](https://neovim.io)
-  - [ranger](https://ranger.github.io/)
-  - [tmux](https://github.com/tmux/tmux/wiki)
 
 ### Install
 
