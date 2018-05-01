@@ -124,6 +124,8 @@ let mapleader=" "
 
 inoremap jj <Esc>
 nnoremap Y y$
+nnoremap gUiw mzgUiw`z
+nnoremap guiw mzguiw`z
 nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>tm :call ToggleMouse()<CR>
 nnoremap <leader>ts :call ToggleSpell()<CR>
