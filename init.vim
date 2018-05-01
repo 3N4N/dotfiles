@@ -74,6 +74,7 @@ set updatetime=1000
 set conceallevel=0
 set showbreak=↳
 set nowrap
+set path=**
 set listchars=tab:>-,nbsp:%,trail:·
 set fillchars+=vert:│
 set list
@@ -114,9 +115,12 @@ au TermOpen * setlocal nonumber norelativenumber
 " ---- Completion ----------------------
 
 set wildmode=full
-set wildignore=*.o,*.obj,*~
-set wildignore=*.bmp,*.gif,*ico,*.jpg,*.png
-set wildignore=*.swp,*.tmp
+set wildignore+=*.o,*.obj,*~
+set wildignore+=*.swp,*.tmp
+set wildignore+=*.mp3,*.mp4,*mkv
+set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
+set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
+set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " ---- Key Mapping ---------------------
 
