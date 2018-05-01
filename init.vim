@@ -174,22 +174,22 @@ set termguicolors
 colo onedark
 
 hi Normal       gui=NONE guibg=NONE
-hi Folded       gui=NONE guibg=NONE     guifg=gray
-hi LineNr       gui=NONE guibg=NONE     guifg=gray
-hi CursorLineNr gui=NONE guibg=NONE     guifg=white
-hi StatusLine   gui=NONE guibg=darkgray guifg=black
-hi StatusLineNC gui=NONE guibg=gray     guifg=black
-hi TabLineFill  gui=NONE guibg=gray     guifg=black
-hi TabLine      gui=NONE guibg=gray     guifg=black
-hi TabLineSel   gui=NONE guibg=darkgray guifg=black
-hi WildMenu     gui=NONE guibg=gray     guifg=black
-hi ColorColumn  gui=NONE guibg=#33373f  guifg=NONE
-hi Visual       gui=NONE guibg=#3e4452  guifg=NONE
-hi Whitespace   gui=NONE guibg=NONE     guifg=gray
-hi EndOfBuffer  gui=NONE guibg=NONE     guifg=gray
-hi VertSplit    gui=NONE guibg=NONE     guifg=gray
-hi ModeMsg      gui=NONE guibg=NONE     guifg=lightgreen
-hi WarningMsg   gui=NONE guibg=NONE     guifg=#E53935
+hi Folded       gui=NONE guibg=NONE      guifg=gray
+hi LineNr       gui=NONE guibg=NONE      guifg=gray
+hi CursorLineNr gui=NONE guibg=NONE      guifg=white
+hi StatusLine   gui=NONE guibg=gray      guifg=black
+hi StatusLineNC gui=NONE guibg=gray      guifg=black
+hi TabLineFill  gui=NONE guibg=gray      guifg=black
+hi TabLine      gui=NONE guibg=gray      guifg=black
+hi TabLineSel   gui=NONE guibg=lightgray guifg=black
+hi WildMenu     gui=NONE guibg=lightgray guifg=black
+hi ColorColumn  gui=NONE guibg=#33373f   guifg=NONE
+hi Visual       gui=NONE guibg=#3e4452   guifg=NONE
+hi Whitespace   gui=NONE guibg=NONE      guifg=gray
+hi EndOfBuffer  gui=NONE guibg=NONE      guifg=gray
+hi VertSplit    gui=NONE guibg=NONE      guifg=gray
+hi ModeMsg      gui=NONE guibg=NONE      guifg=lightgreen
+hi WarningMsg   gui=NONE guibg=NONE      guifg=#E53935
 
 let g:lisp_rainbow = 1
 if &bg == "dark"
