@@ -68,12 +68,13 @@ set number
 set relativenumber
 set nocursorline
 set linebreak
-set colorcolumn=81
+set colorcolumn=0
 set updatetime=1000
 set conceallevel=0
 set showbreak=↳
 set nowrap
 set listchars=tab:>-,nbsp:%,trail:·
+set fillchars+=vert:│
 set list
 set encoding=utf-8
 set signcolumn=yes
@@ -185,7 +186,7 @@ hi ColorColumn  gui=NONE guibg=#33373f  guifg=NONE
 hi Visual       gui=NONE guibg=#3e4452  guifg=NONE
 hi Whitespace   gui=NONE guibg=NONE     guifg=gray
 hi EndOfBuffer  gui=NONE guibg=NONE     guifg=gray
-hi VertSplit    gui=NONE guibg=gray     guifg=gray
+hi VertSplit    gui=NONE guibg=NONE     guifg=gray
 hi ModeMsg      gui=NONE guibg=NONE     guifg=lightgreen
 hi WarningMsg   gui=NONE guibg=NONE     guifg=#E53935
 
