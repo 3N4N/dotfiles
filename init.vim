@@ -249,7 +249,6 @@ let g:netrw_liststyle=3
 let g:netrw_sort_by='time'
 let g:netrw_sort_direction='reverse'
 let g:netrw_winsize=30
-let loaded_netrwPlugin = 1
 
 " ---- Nerd Tree -----------------------
 
