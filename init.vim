@@ -130,10 +130,10 @@ inoremap jj <Esc>
 nnoremap Y y$
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
+nnoremap <C-w>z :call zoom#toggle()<CR>
 nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>tm :call ToggleMouse()<CR>
 nnoremap <leader>ts :call ToggleSpell()<CR>
-nnoremap <leader>tz :call zoom#toggle()<CR>
 nnoremap <leader>tt :term<CR>
 nnoremap <leader>tn :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
