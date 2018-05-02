@@ -81,4 +81,5 @@ git_prompt() {
   fi
 }
 
-PROMPT='%F{blue}[%n@%m] %F{magenta}%c%F{yellow}$(git_prompt) %F{blue}» %{$reset_color%}'
+PROMPT='%F{blue}[%n@%m] %F{magenta}%c%F{yellow}$(git_prompt)
+%F{green}❯ %{$reset_color%}'
