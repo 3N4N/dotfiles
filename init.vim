@@ -169,7 +169,7 @@ set smartcase
 " ---- Folding -------------------------
 
 set foldmethod=indent
-set foldlevel=1
+set foldlevel=10
 set foldcolumn=0
 
 " ---- Colorscheme ---------------------
@@ -214,6 +214,10 @@ endif
 " ---- Tabline ----------------------
 
 function! MyTabLine()
+  let gitBranch = ''
+  if fugitive#head() != ''
+    let gitBranch = '  ' . fugitive#head()
+  endif
   let s = ''
   for i in range(tabpagenr('$'))
     let tabnr = i + 1 " range() starts at 0
@@ -228,7 +232,7 @@ function! MyTabLine()
     let bufmodified = getbufvar(bufnr, "&mod")
     if bufmodified | let s .= '[+] ' | endif
   endfor
-  let s .= '%#TabLineFill#'
+  let s .= '%#TabLineFill#%=%999X' . gitBranch . ' '
   return s
 endfunction
 set showtabline=2
@@ -238,12 +242,12 @@ set tabline=%!MyTabLine()
 "
 
 set laststatus=2
-set statusline=\ %t
+set statusline=\ %f
 set statusline+=%{&readonly?'\ ':!&modifiable?'\ ':''}\ 
-set statusline+=%{fugitive#head()!=''?'\ \ '.fugitive#head().'\ ':''}
 set statusline+=%{&modified?'\ \ [+]':''}
 set statusline+=%=
 set statusline+=\ %{&filetype!=#''?&filetype:'none'}
+set statusline+=%{&paste?'\ \ \ paste':''}
 set statusline+=\ %6(\ %p%%\ %)
 
 " ---- Netrw ---------------------------
