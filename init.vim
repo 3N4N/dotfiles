@@ -132,14 +132,14 @@ nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
 nnoremap <C-w>z :call zoom#toggle()<CR>
 nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
-nnoremap <leader>tm :call ToggleMouse()<CR>
-nnoremap <leader>ts :call ToggleSpell()<CR>
+nnoremap <silent> <leader>tm :call ToggleMouse()<CR>
+nnoremap <silent> <leader>ts :call ToggleSpell()<CR>
 nnoremap <leader>tt :term<CR>
 nnoremap <leader>tn :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fl :Buffers<CR>
 nnoremap <leader>fc :Commands<CR>
-nnoremap <F12> :call StripTrailingWhitespaces()<CR>
+nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-N><C-w>h
@@ -241,9 +241,21 @@ set tabline=%!MyTabLine()
 " ---- Statusline ----------------------
 "
 
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? '': printf(
+    \   ' %d  %d',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
 set laststatus=2
 set statusline=\ %f
 set statusline+=%{&readonly?'\ ':!&modifiable?'\ ':''}\ 
+set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
 set statusline+=%{&modified?'\ \ [+]':''}
 set statusline+=%=
 set statusline+=\ %{&filetype!=#''?&filetype:'none'}
