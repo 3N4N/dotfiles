@@ -23,6 +23,8 @@ if [ $? != 0 ]; then
     tmux send-keys -t "$session_name" 'cmus' C-m
   fi
 
+  tmux new-window -t "$session_name"
+  tmux rename-window -t "$session_name" vi
   tmux next-window
 fi
 
