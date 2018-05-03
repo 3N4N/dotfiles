@@ -57,15 +57,15 @@ git_status() {
   # ! unstaged changes are present
   # ? untracked files are present
   # $ changes have been stashed
-  # ^ local commits need to be pushed to the remote
+  # ↑ local commits need to be pushed to the remote
   local state="$(git status --porcelain 2>/dev/null)"
-  local output=''
+  local output='['
   [[ -n $(egrep '^[MADRC]' <<<"$state") ]] && output="$output+"
   [[ -n $(egrep '^.[MD]' <<<"$state") ]] && output="$output!"
   [[ -n $(egrep '^\?\?' <<<"$state") ]] && output="$output?"
   [[ -n $(git stash list) ]] && output="$output$"
-  [[ -n $(git log --branches --not --remotes) ]] && output="$output^"
-  [[ -n $output ]] && output="$output"
+  [[ -n $(git log --branches --not --remotes) ]] && output="$output↑"
+  [[ -n $output ]] && output="$output]"
   echo $output
 }
 
@@ -77,9 +77,13 @@ git_prompt() {
   if [[ -n $branch ]]; then
     local state=$(git_status)
     # Now output the actual code to insert the branch and status
-    echo -e " $branch$state"
+    if [ $state = '[]' ]; then
+      echo -e " $branch"
+    else
+    echo -e " $branch %F{red}$state"
+    fi
   fi
 }
 
 PROMPT='%F{blue}[%n@%m] %F{magenta}%c%F{yellow}$(git_prompt)
-%F{green}❯ %{$reset_color%}'
+%(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}'
