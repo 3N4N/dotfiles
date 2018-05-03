@@ -59,6 +59,11 @@ function! StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
+function! Tree()
+  echo system("tree -Fa -I \".git\" > /tmp/tree.txt")
+  exec "normal! :35vs /tmp/tree.txt\<CR>"
+endfunction
+
 " ---- General Config ------------------
 
 set secure
@@ -75,7 +80,7 @@ set conceallevel=0
 set showbreak=↳
 set nowrap
 set path=**
-set listchars=tab:>-,nbsp:%,trail:·
+set listchars=tab:>-,trail:·
 set fillchars+=vert:│
 set list
 set encoding=utf-8
@@ -135,13 +140,14 @@ nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>tm :call ToggleMouse()<CR>
 nnoremap <silent> <leader>ts :call ToggleSpell()<CR>
 nnoremap <leader>tt :term<CR>
+nnoremap <leader>tf :call Tree()<CR>
 nnoremap <leader>tn :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fl :Buffers<CR>
 nnoremap <leader>fc :Commands<CR>
 nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
 
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-N>
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
@@ -266,11 +272,14 @@ set statusline+=\ %6(\ %p%%\ %)
 
 let g:netrw_altv=1
 let g:netrw_banner=0
-let g:netrw_browse_split=4
-let g:netrw_liststyle=3
-let g:netrw_sort_by='time'
-let g:netrw_sort_direction='reverse'
-let g:netrw_winsize=30
+let g:netrw_browse_split=0
+let g:netrw_liststyle=4
+let g:netrw_sort_by='name'
+let g:netrw_sort_direction='normal'
+let g:netrw_winsize=25
+let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
+let g:netrw_hide = 1
+let g:netrw_cursor=0
 
 " ---- Nerd Tree -----------------------
 
@@ -281,10 +290,11 @@ let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '.class$']
 let g:NERDTreeWinSize=30
 let NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '⮞'
+let g:NERDTreeDirArrowCollapsible = '⮟'
 let g:NERDTreeHighlightCursorline = 0
-let NERDTreeStatusline = " NerdTree"
+let g:NERDTreeStatusline = " NerdTree"
+let g:NERDTreeRespectWildIgnore = 1
 
 " ---- Ultisnips -----------------------
 
