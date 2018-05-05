@@ -1,130 +1,194 @@
+!!____  ___
+!!\   \/  /______   ____   __________  __ _________   ____  ____   ______
+!! \     /\_  __ \_/ __ \ /  ___/  _ \|  |  \_  __ \_/ ___\/ __ \ /  ___/
+!!  /     \ |  | \/\  ___/ \___ (  <_> )  |  /|  | \/\  \__\  ___/ \___ \
+!! /___/\  \|__|    \___  >____  >____/|____/ |__|    \___  >___  >____  >
+!!       \_/            \/     \/                         \/    \/     \/
+
+
 !------------------------------------------------------------------------------
-! ROFI Color theme
-! ------------------------------------------------------------------------------
-! first two color-window were a013191c
-! a6 = 65% amount of black needed over white for white to be a 7 contrast score
-! b3 = 70%
-! 80 = 50%
-rofi.line-margin: 15
-rofi.fullscreen: true
-rofi.color-enabled: true
-rofi.color-window: argb:DA222222, argb:DA222222, argb:00222222
-rofi.color-normal: argb:00000000, #e8e8e8, argb:00000000, argb:00000000, #e29a49
-rofi.color-urgent: argb:00000000, #f43753, argb:00000000, argb:00000000, #e29a49
-rofi.color-active: argb:00000000, #49bbfb, argb:00000000, argb:00000000, #e29a49
-rofi.font: Source code pro for powerline 12
-rofi.eh: 1
-rofi.separator-style: solid
-rofi.hide-scrollbar: true
-rofi.width: 50
-rofi.padding: 200
-rofi.bw: 0
-rofi.auto-select: false
-rofi.fuzzy: true
-rofi.scroll-method: 1
+! ROFI
+!------------------------------------------------------------------------------
 
-!-------------------------------------------------------------------------------
-! Xft settings
-!-------------------------------------------------------------------------------
-Xft.autohint:   0
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
-
-!-------------------------------------------------------------------------------
-! URxvt settings
-!-------------------------------------------------------------------------------
-URxvt.modifier: mod1
-URxvt*loginShell: true
-URxvt.borderless: true
-URxvt*dynamicColors: on
-URxvt.geometry: 90x20
-URxvt.internalBorder: 3
-URxvt.lineSpace: 1
-URxvt.loginShell: true
-URxvt.saveLines: 0
-URxvt*termName: xterm-256color
-URxvt.transparent: false
-URxvt.visualBell: false
-
-! disable ctrl+shift binding
-URxvt.iso14755:             false
-URxvt.iso14755_52:          false
-
-! Disable Perl extension
-! If you do not use the Perl extension features, you can improve the security
-! and speed by disabling Perl extensions completely.
-URxvt.perl-ext:
-URxvt.perl-ext-common:
-
-
-!! Fonts
-URxvt.font: xft:Source Code Pro for Powerline:size=9
-URxvt*boldFont: xft:Source code pro bold for powerline:size=9
-URxvt.allow_bold:           false
-URxvt*boldMode:             true
-! Fix font space
-URxvt*letterSpace:          -1
-
-! Scrollbar
-URxvt.scrollStyle:          rxvt
-URxvt.scrollBar:            false
-
-! Cursor
-URxvt.cursorBlink:          false
-URxvt.cursorUnderline:      false
-
-! Pointer
-URxvt.pointerBlank:         false
-
-! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-! title      Nord XResources                                    +
-! project    nord-xresources                                    +
-! version    0.1.0                                              +
-! repository https://github.com/arcticicestudio/nord-xresources +
-! author     Arctic Ice Studio                                  +
-! email      development@arcticicestudio.com                    +
-! copyright  Copyright (C) 2016                                 +
-! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#define nord0 #2E3440
-#define nord1 #3B4252
-#define nord2 #434C5E
-#define nord3 #4C566A
-#define nord4 #D8DEE9
-#define nord5 #E5E9F0
-#define nord6 #ECEFF4
-#define nord7 #8FBCBB
-#define nord8 #88C0D0
-#define nord9 #81A1C1
-#define nord10 #5E81AC
-#define nord11 #BF616A
-#define nord12 #D08770
-#define nord13 #EBCB8B
-#define nord14 #A3BE8C
-#define nord15 #B48EAD
-
-*.foreground:   nord4
-*.background:   nord0
-*.cursorColor:  nord4
-*fading: 35
-*fadeColor: nord3
-
-*.color0: nord1
-*.color1: nord11
-*.color2: nord14
-*.color3: nord13
-*.color4: nord9
-*.color5: nord15
-*.color6: nord8
-*.color7: nord5
-*.color8: nord3
-*.color9: nord11
-*.color10: nord14
-*.color11: nord13
-*.color12: nord9
-*.color13: nord15
-*.color14: nord7
-*.color15: nord6
+! Enabled modi
+rofi.modi:                           window,run
+! Window opacity
+rofi.opacity:                        100
+! Window width
+rofi.width:                          50
+! Number of lines
+rofi.lines:                          15
+! Number of columns
+rofi.columns:                        1
+! Font to use
+rofi.font:                           Source code pro for powerline 12
+! Foreground color
+rofi.fg:                             #002B36
+! Background color
+rofi.bg:                             #FDF6E3
+! Foreground color for active row
+rofi.fg-active:                      #268BD2
+! Foreground color for urgent row
+rofi.fg-urgent:                      #DC322F
+! Foreground color for highlighted active row
+rofi.hlfg-active:                    #FDF6E3
+! Foreground color for highlighted urgent row
+rofi.hlfg-urgent:                    #FDF6E3
+! Background color for active row
+rofi.bg-active:                      #FDF6E3
+! Background color for urgent row
+rofi.bg-urgent:                      #FDF6E3
+! Background color for highlighted active row
+rofi.hlbg-active:                    #268BD2
+! Background color for highlighted urgent row
+rofi.hlbg-urgent:                    #DC322F
+! Background color for alternating row
+rofi.bgalt:                          #FDF6E3
+! Foreground color for highlighted row
+rofi.hlfg:                           #EEE8D5
+! Background color for highlighted row
+rofi.hlbg:                           #586E75
+! Border color
+rofi.bc:                             #002B36
+! Use extended color scheme
+rofi.color-enabled:                  true
+! Color scheme for normal row
+rofi.color-normal:                   argb:00000000, #e8e8e8, argb:00000000, argb:00000000, #e29a49
+! Color scheme for urgent row
+rofi.color-urgent:                   argb:00000000, #f43753, argb:00000000, argb:00000000, #e29a49
+! Color scheme for active row
+rofi.color-active:                   argb:00000000, #49bbfb, argb:00000000, argb:00000000, #e29a49
+! Color scheme window
+rofi.color-window:                   argb:DA222222, argb:DA222222, argb:00222222
+! Border width
+rofi.bw:                             0
+! Location on screen
+rofi.location:                       0
+! Padding
+rofi.padding:                        200
+! Y-offset relative to location
+rofi.yoffset:                        0
+! X-offset relative to location
+rofi.xoffset:                        0
+! Always show number of lines
+rofi.fixed-num-lines:                false
+! Terminal to use
+rofi.terminal:                       rofi-sensible-terminal
+! Ssh client to use
+rofi.ssh-client:                     ssh
+! Ssh command to execute
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+! Run command to execute
+rofi.run-command:                    {cmd}
+! Command to get extra run targets
+rofi.run-list-command:
+! Run command to execute that runs in shell
+rofi.run-shell-command:              {terminal} -e {cmd}
+! Disable history in run/ssh
+rofi.disable-history:                true
+! Use levenshtein sorting
+rofi.levenshtein-sort:               false
+! Set case-sensitivity
+rofi.case-sensitive:                 false
+! Enable sidebar-mode
+rofi.sidebar-mode:                   false
+! Set lazy filter limit
+rofi.lazy-filter-limit:              15000
+! Row height (in chars)
+rofi.eh:                             1
+! Enable auto select mode
+rofi.auto-select:                    false
+! Parse hosts file for ssh mode
+rofi.parse-hosts:                    false
+! Parse known_hosts file for ssh mode
+rofi.parse-known-hosts:              true
+! Set the modi to combine in combi mode
+rofi.combi-modi:                     window,run
+! Do a more fuzzy matching
+rofi.fuzzy:                          true
+! Use glob matching
+rofi.glob:                           false
+! Tokenize input string
+rofi.tokenize:                       true
+! Monitor id to show on
+rofi.m:                              -1
+! Margin between rows
+rofi.line-margin:                    15
+! Pre-set filter
+rofi.filter:
+! Separator style (none, dash, solid)
+rofi.separator-style:                solid
+! Hide scroll-bar
+rofi.hide-scrollbar:                 true
+! Show markup
+rofi.markup-rows:                    false
+! Fullscreen
+rofi.fullscreen:                     true
+! Fake transparency
+rofi.fake-transparency:              false
+! DPI
+rofi.dpi:                            -1
+! Pidfile location
+rofi.pid:                            /run/user/1000/rofi.pid
+! Keybinding
+rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
+! Keybinding
+rofi.kb-secondary-paste:             Control+v,Insert
+! Keybinding
+rofi.kb-clear-line:                  Control+u
+! Keybinding
+rofi.kb-move-front:                  Control+a
+! Keybinding
+rofi.kb-move-end:                    Control+e
+! Keybinding
+rofi.kb-move-word-back:              Alt+b
+! Keybinding
+rofi.kb-move-word-forward:           Alt+f
+! Keybinding
+rofi.kb-move-char-back:              Left,Control+b
+! Keybinding
+rofi.kb-move-char-forward:           Right,Control+f
+! Keybinding
+rofi.kb-remove-word-back:            Control+Alt+h
+! Keybinding
+rofi.kb-remove-word-forward:         Control+Alt+d
+! Keybinding
+rofi.kb-remove-char-forward:         Delete,Control+d
+! Keybinding
+rofi.kb-remove-char-back:            BackSpace,Control+h
+! Keybinding
+rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
+! Keybinding
+rofi.kb-accept-custom:               Control+Return
+! Keybinding
+rofi.kb-accept-entry-continue:       Shift+Return
+! Keybinding
+rofi.kb-mode-next:                   Shift+Right,Control+Tab
+! Keybinding
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab
+! Keybinding
+rofi.kb-toggle-case-sensitivity:     grave,dead_grave
+! Keybinding
+rofi.kb-delete-entry:                Shift+Delete
+! Keybinding
+rofi.kb-row-left:                    Control+Page_Up
+! Keybinding
+rofi.kb-row-right:                   Control+Page_Down
+! Keybinding
+rofi.kb-row-up:                      Up,Control+p,Shift+Tab
+! Keybinding
+rofi.kb-row-down:                    Down,Control+n
+! Keybinding
+rofi.kb-row-tab:                     Tab
+! Keybinding
+rofi.kb-page-prev:                   Page_Up
+! Keybinding
+rofi.kb-page-next:                   Page_Down
+! Keybinding
+rofi.kb-row-first:                   Home,KP_Home
+! Keybinding
+rofi.kb-row-last:                    End,KP_End
+! Keybinding
+rofi.kb-row-select:                  Control+space
+! Keybinding
+rofi.kb-cancel:                      Control+g

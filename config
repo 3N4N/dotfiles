@@ -28,7 +28,7 @@ focus_follows_mouse no
 
 # frequently used
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+d exec --no-startup-id dmenu_run -b -i
+bindsym $mod+d exec --no-startup-id rofi -show run -disable-history
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id sh ~/Git-repos/dotFiles/lock.sh
 # system commands
@@ -164,4 +164,3 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play
 bindsym XF86AudioPause exec --no-startup-id playerctl pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-
