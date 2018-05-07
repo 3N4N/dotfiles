@@ -124,8 +124,6 @@ nnoremap <leader>r :so $MYVIMRC<CR>
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<CR>
 nnoremap <silent> <leader>ts :call ToggleSpell()<CR>
 nnoremap <leader>tt :term<CR>
-nnoremap <leader>tf :call Tree()<CR>
-nnoremap <leader>tn :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fl :Buffers<CR>
