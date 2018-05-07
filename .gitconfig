@@ -9,8 +9,9 @@
   # improve performance (requires msysgit 1.9.4+)
   fscache = true
   pager = less -+$LESS -R
+  editor = nvim
 [alias]
-  ls  = log --all --graph --pretty=format:'%C(yellow)%h%C(red)%d%Creset %s %C(green)%cr %Cresetby %C(white)%an' --abbrev-commit --date=relative --decorate=short
+  ls  = log --all --graph --pretty=format:'%C(yellow)%h%Creset %s %C(green)%cr %Cresetby %C(white)%an%C(red)%d' --abbrev-commit --date=relative --decorate=short
   ll = log --graph --stat --decorate=short --source -p
   b  = branch -vv
   ba = branch -avv
