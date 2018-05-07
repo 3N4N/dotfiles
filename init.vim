@@ -23,24 +23,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'dhruvasagar/vim-zoom'
 
 call plug#end()
 
 " ---- Functions -----------------------
-
-function! ToggleMouse()
-  if &mouse == 'a'
-    set mouse=
-  else
-    set mouse=a
-  endif
-endfunction
 
 function! ToggleSpell()
   if &spell
@@ -57,11 +47,6 @@ function! StripTrailingWhitespaces()
   %s/\s\+$//e
   let @/=_s
   call cursor(l, c)
-endfunction
-
-function! Tree()
-  echo system("tree -Fa -I \".git\" > /tmp/tree.txt")
-  exec "normal! :35vs /tmp/tree.txt\<CR>"
 endfunction
 
 " ---- General Config ------------------
@@ -88,7 +73,6 @@ set signcolumn=yes
 
 " ---- Clipboard -----------------------
 
-" install xclip and xfce4-clipman
 let g:clipboard = {
       \   'name': 'xclip-xfce4-clipman',
       \   'copy': {
@@ -120,7 +104,7 @@ au TermOpen * setlocal nonumber norelativenumber
 " ---- Completion ----------------------
 
 set wildmode=full
-set wildignore+=*.o,*.obj,*~
+set wildignore=*.o,*.obj,*~
 set wildignore+=*.swp,*.tmp
 set wildignore+=*.mp3,*.mp4,*mkv
 set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
@@ -135,14 +119,15 @@ inoremap jj <Esc>
 nnoremap Y y$
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
-nnoremap <C-w>z :call zoom#toggle()<CR>
-nnoremap <leader>r :so ~/.config/nvim/init.vim<CR>
-nnoremap <silent> <leader>tm :call ToggleMouse()<CR>
+nnoremap <C-w>z :tab split<CR>
+nnoremap <leader>r :so $MYVIMRC<CR>
+nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<CR>
 nnoremap <silent> <leader>ts :call ToggleSpell()<CR>
 nnoremap <leader>tt :term<CR>
 nnoremap <leader>tf :call Tree()<CR>
 nnoremap <leader>tn :NERDTreeToggle<CR>
 nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fl :Buffers<CR>
 nnoremap <leader>fc :Commands<CR>
 nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
@@ -202,6 +187,7 @@ hi EndOfBuffer  gui=NONE guibg=NONE      guifg=gray
 hi VertSplit    gui=NONE guibg=NONE      guifg=gray
 hi ModeMsg      gui=NONE guibg=NONE      guifg=lightgreen
 hi WarningMsg   gui=NONE guibg=NONE      guifg=#E53935
+hi MatchParen   gui=NONE guibg=NONE      guifg=lightred
 
 let g:lisp_rainbow = 1
 if &bg == "dark"
@@ -259,7 +245,7 @@ function! LinterStatus() abort
 endfunction
 
 set laststatus=2
-set statusline=\ %f
+set statusline=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
 set statusline+=%{&readonly?'\ ':!&modifiable?'\ ':''}\ 
 set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
 set statusline+=%{&modified?'\ \ [+]':''}
@@ -273,28 +259,13 @@ set statusline+=\ %6(\ %p%%\ %)
 let g:netrw_altv=1
 let g:netrw_banner=0
 let g:netrw_browse_split=0
-let g:netrw_liststyle=4
+let g:netrw_liststyle=0
 let g:netrw_sort_by='name'
 let g:netrw_sort_direction='normal'
 let g:netrw_winsize=25
 let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_hide = 1
 let g:netrw_cursor=0
-
-" ---- Nerd Tree -----------------------
-
-let NERDTreeMinimalUI=1
-let g:NERDTreeWinPos = "left"
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', '.class$']
-let g:NERDTreeWinSize=30
-let NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '⮞'
-let g:NERDTreeDirArrowCollapsible = '⮟'
-let g:NERDTreeHighlightCursorline = 0
-let g:NERDTreeStatusline = " NerdTree"
-let g:NERDTreeRespectWildIgnore = 1
 
 " ---- Ultisnips -----------------------
 
@@ -305,6 +276,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir='~/.vim/bundle/vim-snippets/UltiSnips/'
 
 " ---- Gitgutter -----------------------
+
 set updatetime=250
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'
