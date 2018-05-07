@@ -206,10 +206,6 @@ endif
 " ---- Tabline ----------------------
 
 function! MyTabLine()
-  let gitBranch = ''
-  if fugitive#head() != ''
-    let gitBranch = '  ' . fugitive#head()
-  endif
   let s = ''
   for i in range(tabpagenr('$'))
     let tabnr = i + 1 " range() starts at 0
@@ -224,10 +220,10 @@ function! MyTabLine()
     let bufmodified = getbufvar(bufnr, "&mod")
     if bufmodified | let s .= '[+] ' | endif
   endfor
-  let s .= '%#TabLineFill#%=%999X' . gitBranch . ' '
+  let s .= '%#TabLineFill#%=%999X'.' Tabs '
   return s
 endfunction
-set showtabline=2
+set showtabline=1
 set tabline=%!MyTabLine()
 
 " ---- Statusline ----------------------
@@ -245,13 +241,15 @@ function! LinterStatus() abort
 endfunction
 
 set laststatus=2
-set statusline=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-set statusline+=%{&readonly?'\ ':!&modifiable?'\ ':''}\ 
-set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
+set statusline=%{&paste?'\ \ paste\ ':''}
+set statusline+=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+set statusline+=%{&readonly?'\ \ ':!&modifiable?'\ \ ':''}\ 
+set statusline+=%{fugitive#head()!=#''?'\ \ '.fugitive#head().'\ ':''}
+set statusline+=%=
 set statusline+=%{&modified?'\ \ [+]':''}
 set statusline+=%=
-set statusline+=\ %{&filetype!=#''?&filetype:'none'}
-set statusline+=%{&paste?'\ \ \ paste':''}
+set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
+set statusline+=%<\ %{&filetype!=#''?&filetype:'none'}
 set statusline+=\ %6(\ %p%%\ %)
 
 " ---- Netrw ---------------------------
