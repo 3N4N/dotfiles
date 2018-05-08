@@ -37,8 +37,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # splitting
-bindsym $mod+b split h
-bindsym $mod+v split v
+bindsym $mod+v split h
+bindsym $mod+b split v
 
 # layouts
 bindsym $mod+s layout stacking
