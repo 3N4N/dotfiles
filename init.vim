@@ -113,29 +113,45 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " ---- Key Mapping ---------------------
 
+" map leader
 let mapleader=" "
 
+" general
 inoremap jj <Esc>
 nnoremap Y y$
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
-nnoremap <C-w>z :tab split<CR>
 nnoremap <leader>r :so $MYVIMRC<CR>
+nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
+
+" window management
+nnoremap <C-w>z :tab split<CR>
+nnoremap <C-w>b <C-w>s
+
+" toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<CR>
 nnoremap <silent> <leader>ts :call ToggleSpell()<CR>
 nnoremap <leader>tt :term<CR>
+
+" fzf
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fl :Buffers<CR>
 nnoremap <leader>fc :Commands<CR>
-nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
 
+" fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+" terminal window navigation
 tnoremap <Esc> <C-\><C-N>
 tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 
+" no arrow keys
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
 nnoremap <left>  <nop>
