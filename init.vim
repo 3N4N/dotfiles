@@ -127,6 +127,7 @@ nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
 " window management
 nnoremap <C-w>z :tab split<CR>
 nnoremap <C-w>b <C-w>s
+nnoremap <C-w>p :pclose<CR>
 
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<CR>
@@ -139,10 +140,14 @@ nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fl :Buffers<CR>
 nnoremap <leader>fc :Commands<CR>
 
-" fugitive
+" git
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>hs :GitGutterStageHunk<CR>
+nnoremap <leader>hu :GitGutterUndoHunk<CR>
+nnoremap <leader>hp :GitGutterPreviewHunk<CR>
 
 " terminal window navigation
 tnoremap <Esc> <C-\><C-N>
