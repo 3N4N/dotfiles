@@ -117,44 +117,44 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 let mapleader=" "
 
 " general
-inoremap jj <Esc>
+inoremap jj <esc>
 nnoremap Y y$
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
-nnoremap <leader>r :so $MYVIMRC<CR>
-nnoremap <silent> <F12> :call StripTrailingWhitespaces()<CR>
+nnoremap <leader>r :so $MYVIMRC<cr>
+nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
 
 " window management
-nnoremap <C-w>z :tab split<CR>
-nnoremap <C-w>b <C-w>s
-nnoremap <C-w>p :pclose<CR>
+nnoremap <c-w>z :tab split<cr>
+nnoremap <c-w>b <c-w>s
+nnoremap <c-w>p :pclose<cr>
 
 " toggle
-nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<CR>
-nnoremap <silent> <leader>ts :call ToggleSpell()<CR>
-nnoremap <leader>tt :term<CR>
+nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
+nnoremap <silent> <leader>ts :call ToggleSpell()<cr>
+nnoremap <leader>tt :term<cr>
 
 " fzf
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :GFiles<CR>
-nnoremap <leader>fl :Buffers<CR>
-nnoremap <leader>fc :Commands<CR>
+nnoremap <leader>ff :Files<cr>
+nnoremap <leader>fg :GFiles<cr>
+nnoremap <leader>fl :Buffers<cr>
+nnoremap <leader>fc :Commands<cr>
 
 " git
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>hs :GitGutterStageHunk<CR>
-nnoremap <leader>hu :GitGutterUndoHunk<CR>
-nnoremap <leader>hp :GitGutterPreviewHunk<CR>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>hs :GitGutterStageHunk<cr>
+nnoremap <leader>hu :GitGutterUndoHunk<cr>
+nnoremap <leader>hp :GitGutterPreviewHunk<cr>
 
 " terminal window navigation
-tnoremap <Esc> <C-\><C-N>
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
+tnoremap <esc> <c-\><c-n>
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
 
 " no arrow keys
 nnoremap <up>    <nop>
