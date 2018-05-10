@@ -145,6 +145,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>hs :GitGutterStageHunk<cr>
 nnoremap <leader>hu :GitGutterUndoHunk<cr>
 nnoremap <leader>hp :GitGutterPreviewHunk<cr>
