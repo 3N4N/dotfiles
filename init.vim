@@ -32,14 +32,6 @@ call plug#end()
 
 " ---- Functions -----------------------
 
-function! ToggleSpell()
-  if &spell
-    set nospell
-  else
-    setlocal spell! spelllang=en_us
-  endif
-endfunction
-
 function! StripTrailingWhitespaces()
   let _s=@/
   let l = line(".")
@@ -49,7 +41,7 @@ function! StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
-" ---- General Config ------------------
+" ---- General ------------------
 
 set secure
 set showmode
@@ -70,6 +62,7 @@ set fillchars+=vert:│
 set list
 set encoding=utf-8
 set signcolumn=yes
+set spelllang=en_us
 
 " ---- Clipboard -----------------------
 
@@ -131,7 +124,7 @@ nnoremap <c-w>p :pclose<cr>
 
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
-nnoremap <silent> <leader>ts :call ToggleSpell()<cr>
+nnoremap <silent> <leader>ts :setlocal spell!<cr>
 nnoremap <leader>tt :term<cr>
 
 " fzf
