@@ -80,10 +80,10 @@ git_prompt() {
     if [ $state = '[]' ]; then
       echo -e " $branch"
     else
-    echo -e " $branch %F{red}$state"
+    echo -e " $branch %{$fg_bold[red]%}$state"
     fi
   fi
 }
 
-PROMPT='%F{blue}[%n@%m] %F{magenta}%c%F{yellow}$(git_prompt)
+PROMPT='%{$fg[blue]%}[%n@%m] %{$fg[magenta]%}%c%{$fg[yellow]%}$(git_prompt)
 %(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}'
