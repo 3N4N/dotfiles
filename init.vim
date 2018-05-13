@@ -91,8 +91,15 @@ set expandtab
 
 " ---- Autocommand ---------------------
 
-au FileType make setlocal noexpandtab
-au TermOpen * setlocal nonumber norelativenumber
+augroup custom_term
+  au!
+  au TermOpen * setlocal nonumber norelativenumber
+augroup END
+
+augroup filetype_make
+  au!
+  au FileType make setlocal noexpandtab
+augroup END
 
 " ---- Completion ----------------------
 
