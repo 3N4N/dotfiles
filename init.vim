@@ -150,6 +150,12 @@ tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
 tnoremap <c-l> <c-\><c-n><c-w>l
 
+" vim-surround
+let g:surround_no_mappings=1
+nmap <leader>sd  <Plug>Dsurround
+nmap <leader>sc  <Plug>Csurround
+xmap <leader>ss  <Plug>VSurround
+
 " no arrow keys
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
