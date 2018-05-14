@@ -49,7 +49,6 @@ set number
 set relativenumber
 set nocursorline
 set linebreak
-set mouse=a
 set colorcolumn=0
 set updatetime=1000
 set conceallevel=0
