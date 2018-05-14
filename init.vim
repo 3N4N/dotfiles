@@ -42,7 +42,7 @@ endfunction
 
 " ---- General ------------------
 
-set secure
+"set secure
 set showmode
 set noswapfile
 set number
