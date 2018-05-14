@@ -176,12 +176,6 @@ set nohlsearch
 set ignorecase
 set smartcase
 
-" ---- Folding -------------------------
-
-set foldmethod=indent
-set foldlevel=10
-set foldcolumn=0
-
 " ---- Colorscheme ---------------------
 
 syntax on
