@@ -94,11 +94,6 @@ augroup custom_term
   au TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-augroup filetype_make
-  au!
-  au FileType make setlocal noexpandtab
-augroup END
-
 " ---- Completion ----------------------
 
 set wildmode=full
