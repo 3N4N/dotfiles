@@ -21,8 +21,6 @@ set $mod Mod4
 floating_modifier $mod
 font pango:Source code pro for powerline 9
 focus_follows_mouse no
-#gaps outer 10
-#gaps inner 8
 
 # key bindings
 
@@ -121,7 +119,7 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 
 bar {
     Position top
-    font pango:Source code pro for powerline medium 9
+    font pango:Source code pro for powerline 9
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
         background $bg-color
@@ -139,8 +137,6 @@ exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
-#default_border pixel 1
-#default_floating_border normal
 new_window pixel 1
 
 # Pulse Audio controls
