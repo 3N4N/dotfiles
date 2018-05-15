@@ -55,7 +55,7 @@ set conceallevel=0
 set showbreak=↳
 set nowrap
 set path=**
-set listchars=tab:>-,trail:·
+set listchars=eol:¬,tab:▸·,trail:▫,nbsp:_,extends:»,precedes:«
 set fillchars+=vert:│
 set list
 set encoding=utf-8
