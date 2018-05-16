@@ -119,8 +119,9 @@ nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
 
 " window management
 nnoremap <c-w>z :tab split<cr>
-nnoremap <c-w>b <c-w>s
 nnoremap <c-w>p :pclose<cr>
+nnoremap <c-w>b <c-w>s
+nnoremap <c-w>s <nop>
 
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
