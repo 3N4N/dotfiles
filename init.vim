@@ -200,7 +200,7 @@ hi Whitespace   gui=NONE guibg=NONE      guifg=gray
 hi EndOfBuffer  gui=NONE guibg=NONE      guifg=gray
 hi VertSplit    gui=NONE guibg=NONE      guifg=gray
 hi ModeMsg      gui=NONE guibg=NONE      guifg=lightgreen
-hi WarningMsg   gui=NONE guibg=NONE      guifg=#E53935
+hi WarningMsg   gui=NONE guibg=NONE      guifg=#ed6365
 hi MatchParen   gui=NONE guibg=NONE      guifg=lightred
 
 let g:lisp_rainbow = 1
