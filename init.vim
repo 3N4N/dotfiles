@@ -297,6 +297,10 @@ let g:gitgutter_sign_removed='┃'
 let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
 
+hi GitGutterAdd       gui=NONE    guibg=NONE    guifg=lightgreen
+hi GitGutterChange    gui=NONE    guibg=NONE    guifg=yellow
+hi GitGutterDelete    gui=NONE    guibg=NONE    guifg=#df5f5f
+
 " ---- Ale Linter ----------------------
 
 let g:ale_sign_column_always = 1
