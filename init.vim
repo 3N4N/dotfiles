@@ -56,7 +56,7 @@ set conceallevel=0
 set showbreak=↳
 set nowrap
 set path=**
-set listchars=eol:¬,tab:▸·,trail:▫,nbsp:_,extends:»,precedes:«
+set listchars=eol:¬,tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
 set fillchars+=vert:│
 set list
 set encoding=utf-8
@@ -182,30 +182,31 @@ set smartcase
 
 syntax on
 set background=dark
-set termguicolors
-colo onedark
+colo default
 
-hi DiffAdd      gui=NONE guibg=#98C379   guifg=black
-hi DiffDelete   gui=NONE guibg=#E06C75   guifg=black
-hi DiffChange   gui=NONE guibg=#E5C07B   guifg=black
-hi DiffText     gui=NONE guibg=#61AFEF   guifg=black
-hi Normal       gui=NONE guibg=NONE      guifg=NONE
-hi Folded       gui=NONE guibg=NONE      guifg=gray
-hi LineNr       gui=NONE guibg=NONE      guifg=gray
-hi CursorLineNr gui=NONE guibg=NONE      guifg=white
-hi StatusLine   gui=NONE guibg=gray      guifg=black
-hi StatusLineNC gui=NONE guibg=gray      guifg=black
-hi TabLineFill  gui=NONE guibg=gray      guifg=black
-hi TabLine      gui=NONE guibg=gray      guifg=black
-hi TabLineSel   gui=NONE guibg=lightgray guifg=black
-hi WildMenu     gui=NONE guibg=lightgray guifg=black
-hi ColorColumn  gui=NONE guibg=#33373f   guifg=NONE
-hi Visual       gui=NONE guibg=#3e4452   guifg=NONE
-hi Whitespace   gui=NONE guibg=NONE      guifg=gray
-hi EndOfBuffer  gui=NONE guibg=NONE      guifg=gray
-hi VertSplit    gui=NONE guibg=NONE      guifg=gray
-hi ModeMsg      gui=NONE guibg=NONE      guifg=lightgreen
-hi MatchParen   gui=NONE guibg=NONE      guifg=lightred
+hi Comment      cterm=none ctermbg=none       ctermfg=darkgray    gui=none guibg=none      guifg=#5c6370
+hi DiffAdd      cterm=none ctermbg=green      ctermfg=black       gui=none guibg=#98C379   guifg=black
+hi DiffDelete   cterm=none ctermbg=red        ctermfg=black       gui=none guibg=#E06C75   guifg=black
+hi DiffChange   cterm=none ctermbg=yellow     ctermfg=black       gui=none guibg=#E5C07B   guifg=black
+hi DiffText     cterm=none ctermbg=blue       ctermfg=black       gui=none guibg=#61AFEF   guifg=black
+hi Normal       cterm=none ctermbg=none       ctermfg=none        gui=none guibg=none      guifg=none
+hi Folded       cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
+hi LineNr       cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
+hi CursorLineNr cterm=none ctermbg=none       ctermfg=yellow      gui=none guibg=none      guifg=white
+hi StatusLine   cterm=none ctermbg=253        ctermfg=232         gui=none guibg=gray      guifg=black
+hi StatusLine   cterm=none ctermbg=253        ctermfg=232         gui=none guibg=gray      guifg=black
+hi Visual       cterm=none ctermbg=blue       ctermfg=black       gui=none guibg=#3e4452   guifg=none
+hi ColorColumn  cterm=none ctermbg=red        ctermfg=none        gui=none guibg=#33373f   guifg=none
+hi TabLineFill  cterm=none ctermbg=253        ctermfg=black       gui=none guibg=gray      guifg=black
+hi TabLine      cterm=none ctermbg=253        ctermfg=black       gui=none guibg=gray      guifg=black
+hi TabLineSel   cterm=none ctermbg=darkblue   ctermfg=black       gui=none guibg=lightgray guifg=black
+hi WildMenu     cterm=none ctermbg=darkblue   ctermfg=232         gui=none guibg=lightgray guifg=black
+hi NonText      cterm=none ctermbg=none       ctermfg=238         gui=none guibg=none      guifg=gray
+hi Whitespace   cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
+hi EndOfBuffer  cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
+hi VertSplit    cterm=none ctermbg=none       ctermfg=darkgray    gui=none guibg=none      guifg=gray
+hi ModeMsg      cterm=none ctermbg=none       ctermfg=lightgreen  gui=none guibg=none      guifg=lightgreen
+hi MatchParen   cterm=none ctermbg=none       ctermfg=lightblue   gui=none guibg=none      guifg=lightred
 
 let g:lisp_rainbow = 1
 if &bg == "dark"
@@ -307,9 +308,10 @@ let g:gitgutter_sign_removed='┃'
 let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
 
-hi GitGutterAdd       gui=NONE    guibg=NONE    guifg=lightgreen
-hi GitGutterChange    gui=NONE    guibg=NONE    guifg=yellow
-hi GitGutterDelete    gui=NONE    guibg=NONE    guifg=#df5f5f
+
+hi GitGutterAdd       cterm=NONE    ctermbg=NONE    ctermfg=lightgreen  gui=NONE    guibg=NONE    guifg=lightgreen
+hi GitGutterChange    cterm=NONE    ctermbg=NONE    ctermfg=yellow      gui=NONE    guibg=NONE    guifg=yellow
+hi GitGutterDelete    cterm=NONE    ctermbg=NONE    ctermfg=red         gui=NONE    guibg=NONE    guifg=#df5f5f
 
 " ---- Ale Linter ----------------------
 
@@ -323,9 +325,12 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 8
-exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
-      \' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      \' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
-exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
-      \' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      \' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red'
+exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow'
+
+"exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
+      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
+      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+"exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
+      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
+      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
