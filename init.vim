@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'joshdick/onedark.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
@@ -265,6 +266,12 @@ set statusline+=%=
 set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
 set statusline+=%<\ %{&filetype!=#''?&filetype:'none'}
 set statusline+=\ %6(\ %p%%\ %)
+
+" ---- Easy Align ----------------------
+
+xmap ga <Plug>(EasyAlign)
+
+nmap ga <Plug>(EasyAlign)
 
 " ---- Netrw ---------------------------
 
