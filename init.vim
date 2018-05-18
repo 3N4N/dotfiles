@@ -205,7 +205,7 @@ hi NonText      cterm=none ctermbg=none       ctermfg=238         gui=none guibg
 hi Whitespace   cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
 hi EndOfBuffer  cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
 hi VertSplit    cterm=none ctermbg=none       ctermfg=darkgray    gui=none guibg=none      guifg=gray
-hi ModeMsg      cterm=none ctermbg=none       ctermfg=lightgreen  gui=none guibg=none      guifg=lightgreen
+hi ModeMsg      cterm=none ctermbg=none       ctermfg=green       gui=none guibg=none      guifg=lightgreen
 hi MatchParen   cterm=none ctermbg=none       ctermfg=lightblue   gui=none guibg=none      guifg=lightred
 
 let g:lisp_rainbow = 1
