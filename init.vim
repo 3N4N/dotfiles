@@ -16,8 +16,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'joshdick/onedark.vim'
-Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
@@ -39,6 +37,34 @@ function! StripTrailingWhitespaces()
   %s/\s\+$//e
   let @/=_s
   call cursor(l, c)
+endfunction
+
+function! MyHighlights() abort
+  hi Comment      cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=#5c6370
+  hi DiffAdd      cterm=NONE ctermbg=green      ctermfg=black       gui=NONE guibg=#98C379   guifg=black
+  hi DiffDelete   cterm=NONE ctermbg=red        ctermfg=black       gui=NONE guibg=#E06C75   guifg=black
+  hi DiffChange   cterm=NONE ctermbg=yellow     ctermfg=black       gui=NONE guibg=#E5C07B   guifg=black
+  hi DiffText     cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#61AFEF   guifg=black
+  hi Normal       cterm=NONE ctermbg=NONE       ctermfg=NONE        gui=NONE guibg=NONE      guifg=NONE
+  hi Folded       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+  hi LineNr       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+  hi CursorLineNr cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=white
+  hi StatusLine   cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=gray      guifg=black
+  hi StatusLineNC cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=lightgray guifg=black
+  hi Visual       cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#3e4452   guifg=NONE
+  hi ColorColumn  cterm=NONE ctermbg=red        ctermfg=NONE        gui=NONE guibg=#33373f   guifg=NONE
+  hi TabLineFill  cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
+  hi TabLine      cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
+  hi TabLineSel   cterm=NONE ctermbg=darkblue   ctermfg=black       gui=NONE guibg=lightgray guifg=black
+  hi WildMenu     cterm=NONE ctermbg=darkblue   ctermfg=232         gui=NONE guibg=lightgray guifg=black
+  hi NonText      cterm=NONE ctermbg=NONE       ctermfg=238         gui=NONE guibg=NONE      guifg=gray
+  hi Whitespace   cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+  hi EndOfBuffer  cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+  hi VertSplit    cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=gray
+  hi ModeMsg      cterm=NONE ctermbg=NONE       ctermfg=green       gui=NONE guibg=NONE      guifg=lightgreen
+  hi MatchParen   cterm=NONE ctermbg=NONE       ctermfg=lightblue   gui=NONE guibg=NONE      guifg=lightblue
+  hi WarningMsg   cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=lightred
+  hi ErrorMsg     cterm=NONE ctermbg=NONE       ctermfg=red         gui=NONE guibg=NONE      guifg=lightred
 endfunction
 
 " ---- General ------------------
@@ -91,8 +117,13 @@ set expandtab
 " ---- Autocommand ---------------------
 
 augroup custom_term
-  au!
-  au TermOpen * setlocal nonumber norelativenumber
+  autocmd!
+  autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
+augroup MyColors
+  autocmd!
+  autocmd ColorScheme * call MyHighlights()
 augroup END
 
 " ---- Completion ----------------------
@@ -183,32 +214,6 @@ set smartcase
 syntax on
 set background=dark
 colo default
-
-hi Comment      cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=#5c6370
-hi DiffAdd      cterm=NONE ctermbg=green      ctermfg=black       gui=NONE guibg=#98C379   guifg=black
-hi DiffDelete   cterm=NONE ctermbg=red        ctermfg=black       gui=NONE guibg=#E06C75   guifg=black
-hi DiffChange   cterm=NONE ctermbg=yellow     ctermfg=black       gui=NONE guibg=#E5C07B   guifg=black
-hi DiffText     cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#61AFEF   guifg=black
-hi Normal       cterm=NONE ctermbg=NONE       ctermfg=NONE        gui=NONE guibg=NONE      guifg=NONE
-hi Folded       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-hi LineNr       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-hi CursorLineNr cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=white
-hi StatusLine   cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=gray      guifg=black
-hi StatusLineNC cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=lightgray guifg=black
-hi Visual       cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#3e4452   guifg=NONE
-hi ColorColumn  cterm=NONE ctermbg=red        ctermfg=NONE        gui=NONE guibg=#33373f   guifg=NONE
-hi TabLineFill  cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
-hi TabLine      cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
-hi TabLineSel   cterm=NONE ctermbg=darkblue   ctermfg=black       gui=NONE guibg=lightgray guifg=black
-hi WildMenu     cterm=NONE ctermbg=darkblue   ctermfg=232         gui=NONE guibg=lightgray guifg=black
-hi NonText      cterm=NONE ctermbg=NONE       ctermfg=238         gui=NONE guibg=NONE      guifg=gray
-hi Whitespace   cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-hi EndOfBuffer  cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-hi VertSplit    cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=gray
-hi ModeMsg      cterm=NONE ctermbg=NONE       ctermfg=green       gui=NONE guibg=NONE      guifg=lightgreen
-hi MatchParen   cterm=NONE ctermbg=NONE       ctermfg=lightblue   gui=NONE guibg=NONE      guifg=lightblue
-hi WarningMsg   cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=lightred
-hi ErrorMsg     cterm=NONE ctermbg=NONE       ctermfg=red         gui=NONE guibg=NONE      guifg=lightred
 
 let g:lisp_rainbow = 1
 if &bg == "dark"
@@ -327,12 +332,10 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 8
-exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red'
-exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow'
 
-"exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
-      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
-"exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
-      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
+      \' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
+      \' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
+      \' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
+      \' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
