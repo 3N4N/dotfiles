@@ -185,7 +185,11 @@ set background=dark
 set termguicolors
 colo onedark
 
-hi Normal       gui=NONE guibg=NONE
+hi DiffAdd      gui=NONE guibg=#98C379   guifg=black
+hi DiffDelete   gui=NONE guibg=#E06C75   guifg=black
+hi DiffChange   gui=NONE guibg=#E5C07B   guifg=black
+hi DiffText     gui=NONE guibg=#61AFEF   guifg=black
+hi Normal       gui=NONE guibg=NONE      guifg=NONE
 hi Folded       gui=NONE guibg=NONE      guifg=gray
 hi LineNr       gui=NONE guibg=NONE      guifg=gray
 hi CursorLineNr gui=NONE guibg=NONE      guifg=white
@@ -201,7 +205,6 @@ hi Whitespace   gui=NONE guibg=NONE      guifg=gray
 hi EndOfBuffer  gui=NONE guibg=NONE      guifg=gray
 hi VertSplit    gui=NONE guibg=NONE      guifg=gray
 hi ModeMsg      gui=NONE guibg=NONE      guifg=lightgreen
-hi WarningMsg   gui=NONE guibg=NONE      guifg=#ed6365
 hi MatchParen   gui=NONE guibg=NONE      guifg=lightred
 
 let g:lisp_rainbow = 1
