@@ -184,29 +184,31 @@ syntax on
 set background=dark
 colo default
 
-hi Comment      cterm=none ctermbg=none       ctermfg=darkgray    gui=none guibg=none      guifg=#5c6370
-hi DiffAdd      cterm=none ctermbg=green      ctermfg=black       gui=none guibg=#98C379   guifg=black
-hi DiffDelete   cterm=none ctermbg=red        ctermfg=black       gui=none guibg=#E06C75   guifg=black
-hi DiffChange   cterm=none ctermbg=yellow     ctermfg=black       gui=none guibg=#E5C07B   guifg=black
-hi DiffText     cterm=none ctermbg=blue       ctermfg=black       gui=none guibg=#61AFEF   guifg=black
-hi Normal       cterm=none ctermbg=none       ctermfg=none        gui=none guibg=none      guifg=none
-hi Folded       cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
-hi LineNr       cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
-hi CursorLineNr cterm=none ctermbg=none       ctermfg=yellow      gui=none guibg=none      guifg=white
-hi StatusLine   cterm=none ctermbg=253        ctermfg=232         gui=none guibg=gray      guifg=black
-hi StatusLine   cterm=none ctermbg=253        ctermfg=232         gui=none guibg=gray      guifg=black
-hi Visual       cterm=none ctermbg=blue       ctermfg=black       gui=none guibg=#3e4452   guifg=none
-hi ColorColumn  cterm=none ctermbg=red        ctermfg=none        gui=none guibg=#33373f   guifg=none
-hi TabLineFill  cterm=none ctermbg=253        ctermfg=black       gui=none guibg=gray      guifg=black
-hi TabLine      cterm=none ctermbg=253        ctermfg=black       gui=none guibg=gray      guifg=black
-hi TabLineSel   cterm=none ctermbg=darkblue   ctermfg=black       gui=none guibg=lightgray guifg=black
-hi WildMenu     cterm=none ctermbg=darkblue   ctermfg=232         gui=none guibg=lightgray guifg=black
-hi NonText      cterm=none ctermbg=none       ctermfg=238         gui=none guibg=none      guifg=gray
-hi Whitespace   cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
-hi EndOfBuffer  cterm=none ctermbg=none       ctermfg=gray        gui=none guibg=none      guifg=gray
-hi VertSplit    cterm=none ctermbg=none       ctermfg=darkgray    gui=none guibg=none      guifg=gray
-hi ModeMsg      cterm=none ctermbg=none       ctermfg=green       gui=none guibg=none      guifg=lightgreen
-hi MatchParen   cterm=none ctermbg=none       ctermfg=lightblue   gui=none guibg=none      guifg=lightred
+hi Comment      cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=#5c6370
+hi DiffAdd      cterm=NONE ctermbg=green      ctermfg=black       gui=NONE guibg=#98C379   guifg=black
+hi DiffDelete   cterm=NONE ctermbg=red        ctermfg=black       gui=NONE guibg=#E06C75   guifg=black
+hi DiffChange   cterm=NONE ctermbg=yellow     ctermfg=black       gui=NONE guibg=#E5C07B   guifg=black
+hi DiffText     cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#61AFEF   guifg=black
+hi Normal       cterm=NONE ctermbg=NONE       ctermfg=NONE        gui=NONE guibg=NONE      guifg=NONE
+hi Folded       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+hi LineNr       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+hi CursorLineNr cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=white
+hi StatusLine   cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=gray      guifg=black
+hi StatusLineNC cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=lightgray guifg=black
+hi Visual       cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#3e4452   guifg=NONE
+hi ColorColumn  cterm=NONE ctermbg=red        ctermfg=NONE        gui=NONE guibg=#33373f   guifg=NONE
+hi TabLineFill  cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
+hi TabLine      cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
+hi TabLineSel   cterm=NONE ctermbg=darkblue   ctermfg=black       gui=NONE guibg=lightgray guifg=black
+hi WildMenu     cterm=NONE ctermbg=darkblue   ctermfg=232         gui=NONE guibg=lightgray guifg=black
+hi NonText      cterm=NONE ctermbg=NONE       ctermfg=238         gui=NONE guibg=NONE      guifg=gray
+hi Whitespace   cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+hi EndOfBuffer  cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
+hi VertSplit    cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=gray
+hi ModeMsg      cterm=NONE ctermbg=NONE       ctermfg=green       gui=NONE guibg=NONE      guifg=lightgreen
+hi MatchParen   cterm=NONE ctermbg=NONE       ctermfg=lightblue   gui=NONE guibg=NONE      guifg=lightblue
+hi WarningMsg   cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=lightred
+hi ErrorMsg     cterm=NONE ctermbg=NONE       ctermfg=red         gui=NONE guibg=NONE      guifg=lightred
 
 let g:lisp_rainbow = 1
 if &bg == "dark"
