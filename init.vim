@@ -270,19 +270,13 @@ set laststatus=2
 set statusline=%{&paste?'\ \ paste\ ':''}
 set statusline+=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
 set statusline+=%{&readonly?'\ \ ':!&modifiable?'\ \ ':''}\ 
-set statusline+=%{fugitive#head()!=#''?'\ \ '.fugitive#head().'\ ':''}
+set statusline+=%{exists('g:loaded_fugitive')?(fugitive#head()!=#''?'\ \ '.fugitive#head().'\ ':''):''}
 set statusline+=%=
 set statusline+=%{&modified?'\ \ [+]':''}
 set statusline+=%=
 set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
 set statusline+=%<\ %{&filetype!=#''?&filetype:'none'}
 set statusline+=\ %6(\ %p%%\ %)
-
-" ---- Easy Align ----------------------
-
-xmap ga <Plug>(EasyAlign)
-
-nmap ga <Plug>(EasyAlign)
 
 " ---- Netrw ---------------------------
 
