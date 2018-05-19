@@ -276,7 +276,7 @@ set statusline+=%{exists('g:loaded_fugitive')?(fugitive#head()!=#''?'\ \ '.fu
 set statusline+=%=
 set statusline+=%{&modified?'\ \ [+]':''}
 set statusline+=%=
-set statusline+=%{LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''}
+set statusline+=%{exists('g:loaded_ale')?(LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''):''}
 set statusline+=%<\ %{&filetype!=#''?&filetype:'none'}
 set statusline+=\ %6(\ %p%%\ %)
 
