@@ -146,6 +146,7 @@ inoremap jj <esc>
 nnoremap Y y$
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
+nnoremap / /\v
 nnoremap <leader>r :so $MYVIMRC<cr>
 nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
 
@@ -158,6 +159,7 @@ nnoremap <c-w>s <nop>
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<cr>
+nnoremap <leader>th :set hlsearch!<cr>
 nnoremap <leader>tt :term<cr>
 
 " fzf
@@ -310,7 +312,7 @@ let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
 
 
-hi GitGutterAdd       cterm=NONE    ctermbg=NONE    ctermfg=lightgreen  gui=NONE    guibg=NONE    guifg=lightgreen
+hi GitGutterAdd       cterm=NONE    ctermbg=NONE    ctermfg=green       gui=NONE    guibg=NONE    guifg=lightgreen
 hi GitGutterChange    cterm=NONE    ctermbg=NONE    ctermfg=yellow      gui=NONE    guibg=NONE    guifg=yellow
 hi GitGutterDelete    cterm=NONE    ctermbg=NONE    ctermfg=red         gui=NONE    guibg=NONE    guifg=#df5f5f
 
