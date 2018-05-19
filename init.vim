@@ -332,10 +332,12 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 8
+exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red guibg=none ctermbg=none'
+exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow guibg=none ctermbg=none'
 
-exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
-      \' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      \' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
-exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
-      \' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      \' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+"exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
+      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
+      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+"exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
+      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
+      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
