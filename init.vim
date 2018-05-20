@@ -15,6 +15,7 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'enanajmain/vim-fault'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -39,34 +40,6 @@ function! StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
-function! MyHighlights() abort
-  hi Comment      cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=#5c6370
-  hi DiffAdd      cterm=NONE ctermbg=green      ctermfg=black       gui=NONE guibg=#98C379   guifg=black
-  hi DiffDelete   cterm=NONE ctermbg=red        ctermfg=black       gui=NONE guibg=#E06C75   guifg=black
-  hi DiffChange   cterm=NONE ctermbg=yellow     ctermfg=black       gui=NONE guibg=#E5C07B   guifg=black
-  hi DiffText     cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#61AFEF   guifg=black
-  hi Normal       cterm=NONE ctermbg=NONE       ctermfg=NONE        gui=NONE guibg=NONE      guifg=NONE
-  hi Folded       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-  hi LineNr       cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-  hi CursorLineNr cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=white
-  hi StatusLine   cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=gray      guifg=black
-  hi StatusLineNC cterm=NONE ctermbg=253        ctermfg=232         gui=NONE guibg=lightgray guifg=black
-  hi Visual       cterm=NONE ctermbg=blue       ctermfg=black       gui=NONE guibg=#3e4452   guifg=NONE
-  hi ColorColumn  cterm=NONE ctermbg=red        ctermfg=NONE        gui=NONE guibg=#33373f   guifg=NONE
-  hi TabLineFill  cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
-  hi TabLine      cterm=NONE ctermbg=253        ctermfg=black       gui=NONE guibg=gray      guifg=black
-  hi TabLineSel   cterm=NONE ctermbg=darkblue   ctermfg=black       gui=NONE guibg=lightgray guifg=black
-  hi WildMenu     cterm=NONE ctermbg=darkblue   ctermfg=232         gui=NONE guibg=lightgray guifg=black
-  hi NonText      cterm=NONE ctermbg=NONE       ctermfg=238         gui=NONE guibg=NONE      guifg=gray
-  hi Whitespace   cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-  hi EndOfBuffer  cterm=NONE ctermbg=NONE       ctermfg=gray        gui=NONE guibg=NONE      guifg=gray
-  hi VertSplit    cterm=NONE ctermbg=NONE       ctermfg=darkgray    gui=NONE guibg=NONE      guifg=gray
-  hi ModeMsg      cterm=NONE ctermbg=NONE       ctermfg=green       gui=NONE guibg=NONE      guifg=lightgreen
-  hi MatchParen   cterm=NONE ctermbg=NONE       ctermfg=lightblue   gui=NONE guibg=NONE      guifg=lightblue
-  hi WarningMsg   cterm=NONE ctermbg=NONE       ctermfg=yellow      gui=NONE guibg=NONE      guifg=lightred
-  hi ErrorMsg     cterm=NONE ctermbg=NONE       ctermfg=red         gui=NONE guibg=NONE      guifg=lightred
-endfunction
-
 " ---- General ------------------
 
 "set secure
@@ -82,7 +55,7 @@ set conceallevel=0
 set showbreak=↳
 set nowrap
 set path=**
-set listchars=eol:¬,tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
+set listchars=tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
 set fillchars+=vert:│
 set list
 set encoding=utf-8
@@ -119,11 +92,6 @@ set expandtab
 augroup custom_term
   autocmd!
   autocmd TermOpen * setlocal nonumber norelativenumber
-augroup END
-
-augroup MyColors
-  autocmd!
-  autocmd ColorScheme * call MyHighlights()
 augroup END
 
 " ---- Completion ----------------------
@@ -214,22 +182,8 @@ set smartcase
 " ---- Colorscheme ---------------------
 
 syntax on
-set background=dark
-colo default
-
+colo fault
 let g:lisp_rainbow = 1
-if &bg == "dark"
-  hi def hlLevel0 ctermfg=red         guifg=springgreen1
-  hi def hlLevel1 ctermfg=yellow      guifg=yellow1
-  hi def hlLevel2 ctermfg=green       guifg=orange1
-  hi def hlLevel3 ctermfg=cyan        guifg=greenyellow
-  hi def hlLevel4 ctermfg=magenta     guifg=cyan1
-  hi def hlLevel5 ctermfg=red         guifg=springgreen1
-  hi def hlLevel6 ctermfg=yellow      guifg=yellow1
-  hi def hlLevel7 ctermfg=green       guifg=orange1
-  hi def hlLevel8 ctermfg=cyan        guifg=greenyellow
-  hi def hlLevel9 ctermfg=magenta     guifg=cyan1
-endif
 
 " ---- Tabline ----------------------
 
