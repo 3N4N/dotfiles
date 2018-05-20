@@ -124,6 +124,11 @@ nnoremap <c-w>p :pclose<cr>
 nnoremap <c-w>b <c-w>s
 nnoremap <c-w>s <nop>
 
+noremap <silent> <s-left> :vertical resize -3<CR>
+noremap <silent> <s-right> :vertical resize +3<CR>
+noremap <silent> <s-down> :resize -3<CR>
+noremap <silent> <s-up> :resize +3<CR>
+
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<cr>
