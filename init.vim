@@ -40,6 +40,17 @@ function! StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
+function! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '': printf(
+        \   ' %d  %d',
+        \   all_non_errors,
+        \   all_errors
+        \)
+endfunction
+
 " ---- General ------------------
 
 "set secure
@@ -115,7 +126,7 @@ nnoremap Y y$
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
 nnoremap / /\v
-nnoremap <leader>r :so $MYVIMRC<cr>
+nnoremap <silent> <leader>r :so $MYVIMRC<cr>
 nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
 
 " window management
@@ -132,24 +143,24 @@ noremap <silent> <s-up> :resize +3<CR>
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<cr>
-nnoremap <leader>th :set hlsearch!<cr>
-nnoremap <leader>tt :term<cr>
+nnoremap <silent> <leader>th :set hlsearch!<cr>
+nnoremap <silent> <leader>tt :term<cr>
 
 " fzf
-nnoremap <leader>ff :Files<cr>
-nnoremap <leader>fg :GFiles<cr>
-nnoremap <leader>fl :Buffers<cr>
-nnoremap <leader>fc :Commands<cr>
+nnoremap <silent> <leader>ff :Files<cr>
+nnoremap <silent> <leader>fg :GFiles<cr>
+nnoremap <silent> <leader>fl :Buffers<cr>
+nnoremap <silent> <leader>fc :Commands<cr>
 
 " git
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gw :Gwrite<cr>
-nnoremap <leader>gr :Gread<cr>
-nnoremap <leader>hs :GitGutterStageHunk<cr>
-nnoremap <leader>hu :GitGutterUndoHunk<cr>
-nnoremap <leader>hp :GitGutterPreviewHunk<cr>
+nnoremap <silent> <leader>gs :Gstatus<cr>
+nnoremap <silent> <leader>gc :Gcommit<cr>
+nnoremap <silent> <leader>gd :Gdiff<cr>
+nnoremap <silent> <leader>gw :Gwrite<cr>
+nnoremap <silent> <leader>gr :Gread<cr>
+nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
+nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
+nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
 
 " terminal window navigation
 tnoremap <esc> <c-\><c-n>
@@ -216,17 +227,6 @@ set tabline=%!MyTabLine()
 " ---- Statusline ----------------------
 "
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? '': printf(
-    \   ' %d  %d',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
 set laststatus=2
 set statusline=%{&paste?'\ \ paste\ ':''}
 set statusline+=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
@@ -270,7 +270,6 @@ let g:gitgutter_sign_removed='┃'
 let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
 
-
 hi GitGutterAdd       cterm=NONE    ctermbg=NONE    ctermfg=green       gui=NONE    guibg=NONE    guifg=lightgreen
 hi GitGutterChange    cterm=NONE    ctermbg=NONE    ctermfg=yellow      gui=NONE    guibg=NONE    guifg=yellow
 hi GitGutterDelete    cterm=NONE    ctermbg=NONE    ctermfg=red         gui=NONE    guibg=NONE    guifg=#df5f5f
@@ -289,10 +288,3 @@ let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 8
 exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red guibg=none ctermbg=none'
 exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow guibg=none ctermbg=none'
-
-"exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red' .
-      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
-"exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow' .
-      "\' guibg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui') .
-      "\' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
