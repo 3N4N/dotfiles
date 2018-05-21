@@ -53,6 +53,8 @@ set noswapfile
 set number
 set relativenumber
 set nocursorline
+set splitbelow
+set splitright
 set linebreak
 set colorcolumn=0
 set updatetime=1000
@@ -137,8 +139,10 @@ noremap <silent> <s-up> :resize +3<CR>
 " toggle
 nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<cr>
-nnoremap <silent> <leader>th :set hlsearch!<cr>
-nnoremap <silent> <leader>tt :term<cr>
+nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
+nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
+nnoremap <silent> <leader>tp :set paste!<cr>
+nnoremap <silent> <leader>tt :10split<bar>:term<cr>
 
 " fzf
 nnoremap <silent> <leader>ff :Files<cr>
@@ -152,6 +156,7 @@ nnoremap <silent> <leader>gc :Gcommit<cr>
 nnoremap <silent> <leader>gd :Gdiff<cr>
 nnoremap <silent> <leader>gw :Gwrite<cr>
 nnoremap <silent> <leader>gr :Gread<cr>
+nnoremap <silent> <leader>gb :Gblame<cr>
 nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
 nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
 nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
