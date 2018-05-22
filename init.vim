@@ -25,7 +25,17 @@ call plug#end()
 
 " ---- Functions -----------------------
 
-function! StripTrailingWhitespaces()
+function! ToggleMouse() abort
+  if &mouse==#""
+    set mouse=n
+    echo "mouse on"
+  else
+    set mouse=
+    echo "mouse off"
+  endif
+endfunction
+
+function! StripTrailingWhitespaces() abort
   let _s=@/
   let l = line(".")
   let c = col(".")
@@ -48,26 +58,28 @@ endfunction
 " ---- General ------------------
 
 "set secure
-set showmode
-set noswapfile
-set number
-set relativenumber
-set nocursorline
-set splitbelow
-set splitright
-set linebreak
 set colorcolumn=0
-set updatetime=1000
+set completeopt=longest,menuone
 set conceallevel=0
-set showbreak=↳
-set nowrap
-set path=**
-set listchars=tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
-set fillchars+=vert:│
-set list
 set encoding=utf-8
+set fillchars+=vert:│
+set linebreak
+set list
+set listchars=tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
+set nocursorline
+set noswapfile
+set nowrap
+set number relativenumber
+set path=**
+set showbreak=↳
+set showmode
 set signcolumn=yes
 set spelllang=en_us
+set splitbelow
+set splitright
+set synmaxcol=200
+set updatetime=1000
+set virtualedit+=block
 
 " ---- Clipboard -----------------------
 
@@ -119,11 +131,20 @@ let mapleader=" "
 " general
 inoremap jj <esc>
 nnoremap Y y$
+nnoremap U <c-r>
+nnoremap J m0J`0
 nnoremap gUiw mzgUiw`z
 nnoremap guiw mzguiw`z
-nnoremap / /\v
+nnoremap G Gzz
+nnoremap g; g;zz
+nnoremap g, g,zz
 nnoremap <silent> <leader>r :so $MYVIMRC<cr>
 nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
+
+" very magic mode
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
 
 " window management
 nnoremap <c-w>z :tab split<cr>
@@ -137,18 +158,19 @@ noremap <silent> <s-down> :resize -3<CR>
 noremap <silent> <s-up> :resize +3<CR>
 
 " toggle
-nnoremap <silent> <leader>tm :let &mouse=strlen(&mouse)?'':'a'<cr>
-nnoremap <silent> <leader>ts :setlocal spell!<cr>
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
-nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
+nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
+nnoremap <silent> <leader>ts :setlocal spell!<cr>
 nnoremap <silent> <leader>tt :10split<bar>:term<cr>
+nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
 
 " fzf
 nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fg :GFiles<cr>
 nnoremap <silent> <leader>fl :Buffers<cr>
 nnoremap <silent> <leader>fc :Commands<cr>
+nnoremap <silent> <leader>fa :Ag<cr>
 
 " git
 nnoremap <silent> <leader>gs :Gstatus<cr>
@@ -170,8 +192,8 @@ tnoremap <c-l> <c-\><c-n><c-w>l
 
 " vim-surround
 let g:surround_no_mappings=1
-nmap <leader>sd  <Plug>Dsurround
 nmap <leader>sc  <Plug>Csurround
+nmap <leader>sd  <Plug>Dsurround
 xmap <leader>ss  <Plug>VSurround
 
 " no arrow keys
