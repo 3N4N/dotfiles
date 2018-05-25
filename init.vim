@@ -55,7 +55,7 @@ function! LinterStatus() abort
         \)
 endfunction
 
-" ---- General ------------------
+" ---- General -------------------------
 
 "set secure
 set colorcolumn=0
@@ -233,7 +233,7 @@ syntax on
 colo fault
 let g:lisp_rainbow = 1
 
-" ---- Tabline ----------------------
+" ---- Tabline -------------------------
 
 function! MyTabLine()
   let s = ''
