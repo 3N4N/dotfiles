@@ -299,11 +299,11 @@ set tabline=%!MyTabLine()
 
 set laststatus=2
 set statusline=%{&paste?'\ \ paste\ ':''}
-set statusline+=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-set statusline+=%{&readonly?'\ \ ':!&modifiable?'\ \ ':''}\ 
+set statusline+=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}\ 
 set statusline+=%{exists('g:loaded_fugitive')?(fugitive#head()!=#''?'\ \ '.fugitive#head().'\ ':''):''}
 set statusline+=%=
-set statusline+=%{&modified?'\ \ [+]':''}
+set statusline+=%{&readonly?'':!&modifiable?'':''}
+set statusline+=%{&modified?'[+]':''}
 set statusline+=%=
 set statusline+=%{exists('g:loaded_ale')?(LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''):''}
 set statusline+=%<\ %{&filetype!=#''?&filetype:'none'}
