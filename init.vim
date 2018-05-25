@@ -56,6 +56,16 @@ function! LinterStatus() abort
         \)
 endfunction
 
+" search with visual mode
+function! VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+xnoremap # :<C-u>call VSetSearch()<CR>??<CR><c-o>
+xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
+
 " ---- General -------------------------
 
 "set secure
