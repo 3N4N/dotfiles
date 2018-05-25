@@ -169,15 +169,32 @@ vnoremap / /\v
 nnoremap ? ?\v
 
 " window management
-nnoremap <c-w>z :tab split<cr>
-nnoremap <c-w>p :pclose<cr>
-nnoremap <c-w>b <c-w>s
-nnoremap <c-w>s <nop>
+nnoremap <leader>wz :tab split<cr>
+nnoremap <leader>wp :pclose<cr>
+nnoremap <leader>wb <c-w>s
+nnoremap <leader>wv <c-w>v
+nnoremap <leader>wo <c-w>o
+nnoremap <leader>wc <c-w>c
 
-noremap <silent> <s-left> :vertical resize -3<CR>
-noremap <silent> <s-right> :vertical resize +3<CR>
-noremap <silent> <s-down> :resize -3<CR>
-noremap <silent> <s-up> :resize +3<CR>
+nnoremap <leader>wh <c-w>H
+nnoremap <leader>wj <c-w>J
+nnoremap <leader>wk <c-w>K
+nnoremap <leader>wl <c-w>L
+
+nnoremap <c-w>s <nop>
+nnoremap <c-w>v <nop>
+nnoremap <c-w>o <nop>
+nnoremap <c-w>c <nop>
+nnoremap <c-w>H <nop>
+nnoremap <c-w>J <nop>
+nnoremap <c-w>K <nop>
+nnoremap <c-w>L <nop>
+
+" split resize
+nnoremap <silent> <s-left> :vertical resize -3<CR>
+nnoremap <silent> <s-right> :vertical resize +3<CR>
+nnoremap <silent> <s-down> :resize -3<CR>
+nnoremap <silent> <s-up> :resize +3<CR>
 
 " toggle
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
