@@ -76,29 +76,32 @@ xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
 
 " ---- General -------------------------
 
-"set secure
-set colorcolumn=0
-set completeopt=longest,menuone
-set conceallevel=0
-set encoding=utf-8
-set fillchars+=vert:│
-set linebreak
+set colorcolumn=0         " colorize a column to show long lines
+set conceallevel=0        " don't conceal anything
+set fillchars+=vert:│     " use unicode icon for vertical split
+set nocursorline          " cursorline slows down vim
+set noruler               " ruler removes column position from ctrl-g
+set noswapfile            " don't use swap files
+set number relativenumber " show hybrid line numbers
+set path=**               " fuzzy find
+set shortmess=filmnxrtToO " shorten some messages
+set signcolumn=yes        " always show sign column
+set synmaxcol=200         " don't highlight after 200 columns
+set updatetime=1000       " update after each 1s
+set spelllang=en_us       " set language for spell checking
+set splitbelow            " always split below
+set splitright            " always split right
+set showmode
+set virtualedit+=block
+
+" show useful visual icons
 set list
 set listchars=tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
-set nocursorline
-set noswapfile
+
+" wrap lines visually
 set nowrap
-set number relativenumber
-set path=**
+set linebreak
 set showbreak=↳
-set showmode
-set signcolumn=yes
-set spelllang=en_us
-set splitbelow
-set splitright
-set synmaxcol=200
-set updatetime=1000
-set virtualedit+=block
 
 " ---- Clipboard -----------------------
 
