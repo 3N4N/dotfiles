@@ -340,10 +340,6 @@ let g:gitgutter_sign_removed='┃'
 let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
 
-hi GitGutterAdd       cterm=NONE    ctermbg=NONE    ctermfg=green       gui=NONE    guibg=NONE    guifg=lightgreen
-hi GitGutterChange    cterm=NONE    ctermbg=NONE    ctermfg=yellow      gui=NONE    guibg=NONE    guifg=yellow
-hi GitGutterDelete    cterm=NONE    ctermbg=NONE    ctermfg=red         gui=NONE    guibg=NONE    guifg=#df5f5f
-
 " ---- Ale Linter ----------------------
 
 let g:ale_sign_column_always = 1
