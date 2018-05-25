@@ -44,6 +44,7 @@ function! StripTrailingWhitespaces() abort
   let @/=_s
   call cursor(l, c)
 endfunction
+nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
 
 function! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
@@ -150,22 +151,22 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 " map leader
 let mapleader=" "
 
+" reload vimrc
+nnoremap <silent> <leader>r :so $MYVIMRC<cr>
+
 " general
 inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
 nnoremap J m0J`0
-nnoremap gUiw mzgUiw`z
-nnoremap guiw mzguiw`z
-nnoremap G Gzz
-nnoremap g; g;zz
-nnoremap g, g,zz
-nnoremap <silent> <leader>r :so $MYVIMRC<cr>
-nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
+
+" don't move cursor while changing case
+nnoremap gUiw m0gUiw`0
+nnoremap guiw m0guiw`0
 
 " very magic mode
 nnoremap / /\v
-vnoremap / /\v
+xnoremap / /\v
 nnoremap ? ?\v
 
 " window management
@@ -200,7 +201,7 @@ nnoremap <silent> <s-up> :resize +3<CR>
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
 nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
-nnoremap <silent> <leader>ts :setlocal spell!<cr>
+nnoremap <silent> <leader>ts :setlocal spell!<bar>setlocal spell?<cr>
 nnoremap <silent> <leader>tt :10split<bar>:term<cr>
 nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
 
