@@ -10,6 +10,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'enanajmain/vim-fault'
+Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -196,8 +197,9 @@ nmap <leader>sc  <Plug>Csurround
 nmap <leader>sd  <Plug>Dsurround
 xmap <leader>ss  <Plug>VSurround
 
-" no arrow keys
-nnoremap <up>    <nop>
+" easy-align
+xmap ga <Plug>(EasyAlign)
+
 nnoremap <down>  <nop>
 nnoremap <left>  <nop>
 nnoremap <right> <nop>
