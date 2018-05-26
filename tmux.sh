@@ -17,14 +17,6 @@ if [ $? != 0 ]; then
   tmux rename-window -t "$session_name" files
   tmux send-keys -t "$session_name" 'ranger' C-m
 
-  if ! pgrep -x "cmus" > /dev/null; then
-    tmux new-window -t "$session_name"
-    tmux rename-window -t "$session_name" music
-    tmux send-keys -t "$session_name" 'cmus' C-m
-  fi
-
-  tmux new-window -t "$session_name"
-  tmux rename-window -t "$session_name" vi
   tmux next-window
 fi
 
