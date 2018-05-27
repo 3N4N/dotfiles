@@ -79,7 +79,7 @@ xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
 
 set colorcolumn=0         " colorize a column to show long lines
 set conceallevel=0        " don't conceal anything
-set fillchars+=vert:│     " use unicode icon for vertical split
+set fillchars=vert:│     " use unicode icon for vertical split
 set nocursorline          " cursorline slows down vim
 set noruler               " ruler removes column position from ctrl-g
 set noswapfile            " don't use swap files
