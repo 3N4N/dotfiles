@@ -36,6 +36,42 @@ function! ToggleMouse() abort
   endif
 endfunction
 
+function! Stats() abort
+  let l:f = ''
+  if expand('%:~:.')!=''
+    let l:f = '"'.expand('%:~:.').'"'
+  else
+    let l:f = '[No Name]'
+  endif
+  let l:ft = ''
+  if &filetype!=''
+    let l:ft = ' -- ['.&filetype.']'
+  else
+    let l:ft = ' -- [none]'
+  endif
+  let l:l = ' -- Ln:'.line(".")
+  let l:c = ' -- Col:'.col(".")
+  let l:t = line('$')
+  let l:m = ''
+  let l:r = ''
+  if &modified
+    let l:m = ' -- [+]'
+  endif
+  if &readonly || !&modifiable
+    let l:r = ' -- [RO]'
+  endif
+  if l:m!=#'' && l:r!=#''
+    let l:m = ' -- [RO] [+]'
+    let l:r = ''
+  endif
+  let l:g = ''
+  if exists('g:loaded_fugitive') && fugitive#head()!=#''
+    let l:g = ' @ '.fugitive#head()
+  endif
+  return l:f.l:g.l:ft.l:m.l:r.l:l.'/'.l:t.l:c
+endfunction
+nnoremap <c-g> :echo Stats()<cr>
+
 function! StripTrailingWhitespaces() abort
   let _s=@/
   let l = line(".")
