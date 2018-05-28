@@ -158,7 +158,7 @@ nnoremap <silent> <leader>r :so $MYVIMRC<cr>
 inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
-nnoremap J m0J`0
+nnoremap Q m0J`0
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -197,6 +197,16 @@ nnoremap <c-w>H <nop>
 nnoremap <c-w>J <nop>
 nnoremap <c-w>K <nop>
 nnoremap <c-w>L <nop>
+
+" better movement
+nnoremap H ^
+nnoremap L g_
+nnoremap J L
+nnoremap K H
+xnoremap H ^
+xnoremap L g_
+xnoremap J L
+xnoremap K H
 
 " split resize
 nnoremap <silent> <s-left> :vertical resize -3<CR>
