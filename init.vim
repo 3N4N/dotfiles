@@ -172,20 +172,27 @@ nnoremap ? ?\v
 " window management
 nnoremap <leader>wz :tab split<cr>
 nnoremap <leader>wp :pclose<cr>
+
 nnoremap <leader>wb <c-w>s
 nnoremap <leader>wv <c-w>v
 nnoremap <leader>wo <c-w>o
 nnoremap <leader>wc <c-w>c
+nnoremap <c-w>s <nop>
+nnoremap <c-w>v <nop>
+nnoremap <c-w>o <nop>
+nnoremap <c-w>c <nop>
+
+nnoremap <leader>w= <c-w>=
+nnoremap <leader>w_ <c-w>_
+nnoremap <leader>w<bar> <c-w><bar>
+nnoremap <c-w>= <nop>
+nnoremap <c-w>_ <nop>
+nnoremap <c-w><bar> <nop>
 
 nnoremap <leader>wh <c-w>H
 nnoremap <leader>wj <c-w>J
 nnoremap <leader>wk <c-w>K
 nnoremap <leader>wl <c-w>L
-
-nnoremap <c-w>s <nop>
-nnoremap <c-w>v <nop>
-nnoremap <c-w>o <nop>
-nnoremap <c-w>c <nop>
 nnoremap <c-w>H <nop>
 nnoremap <c-w>J <nop>
 nnoremap <c-w>K <nop>
