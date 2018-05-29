@@ -6,7 +6,7 @@
 ;;; Introduction
 
 (setq user-full-name "Nafid Ajmain Enan")
-(setq user-mail-address "3nanajmain@gmail.com")
+(setq user-mail-address "3nan.ajmain@gmail.com")
 
 ;;; emacs package
 
