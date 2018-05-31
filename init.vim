@@ -279,11 +279,11 @@ nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
 nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
 
 " terminal window navigation
-tnoremap <c-g> <c-\><c-n>
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <esc> <c-\><c-n>
+tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
+tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
+tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
+tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
 
 " vim-surround
 let g:surround_no_mappings=1
