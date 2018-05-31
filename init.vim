@@ -68,7 +68,8 @@ function! Stats() abort
   if exists('g:loaded_fugitive') && fugitive#head()!=#''
     let l:g = ' @ '.fugitive#head()
   endif
-  return l:f.l:g.l:ft.l:m.l:r.l:l.'/'.l:t.l:c
+  let l:p = ' -- '.line('.')*100/line('$').'%'
+  return l:f.l:g.l:ft.l:m.l:r.l:p.l:l.'/'.l:t.l:c
 endfunction
 nnoremap <c-g> :echo Stats()<cr>
 
@@ -133,12 +134,16 @@ set virtualedit+=block
 
 " show useful visual icons
 set list
-set listchars=tab:>-,trail:▫,nbsp:_,extends:»,precedes:«
+set listchars=tab:▸\ ,trail:▫,nbsp:_,extends:»,precedes:«
 
 " wrap lines visually
 set nowrap
 set linebreak
 set showbreak=↳
+
+set notimeout
+set ttimeout
+set ttimeoutlen=50
 
 " ---- Clipboard -----------------------
 
@@ -195,7 +200,7 @@ inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
 nnoremap Q m0J`0
-cnoremap <c-g> <esc>
+cnoremap <c-g> <c-c>
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -355,15 +360,14 @@ set tabline=%!MyTabLine()
 
 set laststatus=2
 set statusline=%{&paste?'\ \ paste\ ':''}
-set statusline+=\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}\ 
-set statusline+=%{exists('g:loaded_fugitive')?(fugitive#head()!=#''?'\ \ '.fugitive#head().'\ ':''):''}
-set statusline+=%=
-set statusline+=%{&readonly?'':!&modifiable?'':''}
-set statusline+=%{&modified?'[+]':''}
-set statusline+=%=
-set statusline+=%{exists('g:loaded_ale')?(LinterStatus()!=#''?'\ '.LinterStatus().'\ ':''):''}
-set statusline+=%<\ %{&filetype!=#''?&filetype:'none'}
-set statusline+=\ %6(\ %p%%\ %)
+      \%{exists('g:loaded_fugitive')?
+      \(fugitive#head()!=#''?'\ \ \ '.fugitive#head().'\ ':''):''}
+      \\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+      \%{&readonly?'\ \ ':!&modifiable?'\ \ ':''}
+      \%{&modified?'\ \ [+]':''}
+      \%=
+      \%<\ %{&filetype!=#''?&filetype:'none'}
+      \\ \ %5(%p%%\ %)
 
 " ---- Netrw ---------------------------
 
@@ -383,7 +387,7 @@ let g:netrw_cursor=0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir = "~/Git-repos/vim-snippets"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/Git-repos/vim-snippets']
 
