@@ -1,25 +1,26 @@
 [user]
-  email = 3nan.ajmain@gmail.com
-  name = enan
+  email        = 3nan.ajmain@gmail.com
+  name         = Enan Ajmain
 [core]
   # recommended SHA minimum length  https://lkml.org/lkml/2013/9/30/365
-  abbrev = 12
+  abbrev       = 12
   # Enable parallel index preload for some operations (diff, status).
   preloadindex = true
   # improve performance (requires msysgit 1.9.4+)
-  fscache = true
-  pager = less -+$LESS -R
-  editor = nvim
+  fscache      = true
+  pager        = less -+$LESS -R
+  editor       = nvim
 [alias]
-  ls  = log --all --graph --pretty=format:'%C(yellow)%h%Creset %s %C(green)%cr %Cresetby %C(white)%an%C(red)%d' --abbrev-commit --date=relative --decorate=short
-  ll = log --graph --stat --decorate=short --source -p
-  b  = branch -vv
-  ba = branch -avv
-  br = branch
-  st  = status -sb
-  co = checkout
-  cp = cherry-pick
-  cl = clone
-  ci = commit
-  diff = diff --word-diff
-  dc = diff --cached
+  ls           = log --all --graph --pretty=format:'%C(yellow)%h%Creset %s\
+  %C(green)%cr %Creset %C(white)%an %C(red)%d' --abbrev-commit --date=relative --decorate=short
+  ll           = log --graph --stat --decorate=short --source -p
+  br           = branch -vv
+  ba           = branch -avv
+  b            = branch
+  st           = status -sb
+  co           = checkout
+  cp           = cherry-pick
+  cl           = clone
+  ci           = commit
+  diff         = diff --word-diff
+  dc           = diff --cached

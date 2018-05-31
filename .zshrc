@@ -7,27 +7,32 @@
 
 # install oh-my-zsh
 [ ! -d ~/.oh-my-zsh ] && git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 # install zsh-autosuggestion
 autosuggestions="/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [ ! -f "$autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 [ -f "$autosuggestions" ] && source "/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# oh-my-zsh config
+## oh-my-zsh config
+
+# general
 export ZSH=/home/enan/.oh-my-zsh
 ZSH_THEME=""
-DISABLE_LS_COLORS="true"
-DISABLE_AUTO_TITLE="true"
 export UPDATE_ZSH_DAYS=13
 source $ZSH/oh-my-zsh.sh
 plugins=( git )
 
+# key bindings
 bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
 
-# Personal customization
+## Personal customization
+
+# base16 colors
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+# add ~/Executables/bin to path
 executables="/home/enan/Executables/bin"
 [ -d "$executables" ] && [[ ":$PATH:" != *$executables* ]] && export PATH=$executables:${PATH}
 
@@ -35,8 +40,10 @@ executables="/home/enan/Executables/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 100% '
 
-zstyle ':completion:*' list-colors # don't show colors in tab-completion
+# don't show colors in tab-completion
+zstyle ':completion:*' list-colors
 
+# aliases
 alias ls='ls -CF --color=none'
 alias ll='ls -AlF'
 alias la='ls -AF'
@@ -44,7 +51,7 @@ alias refresh='source ~/.zshrc'
 alias screenfetch='screenfetch -t'
 alias i3lock='sh ~/Git-repos/dotFiles/lock.sh'
 alias emacs='emacs -nw'
-alias v='nvim'
+alias vi='nvim'
 alias py2=python2
 alias py3=python3
 alias t='sh ~/Git-repos/dotFiles/tmux.sh'
