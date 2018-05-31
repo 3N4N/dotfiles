@@ -35,6 +35,8 @@ executables="/home/enan/Executables/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 100% '
 
+zstyle ':completion:*' list-colors # don't show colors in tab-completion
+
 alias ls='ls -CF --color=none'
 alias ll='ls -AlF'
 alias la='ls -AF'
