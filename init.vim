@@ -195,6 +195,7 @@ inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
 nnoremap Q m0J`0
+cnoremap <c-g> <esc>
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -208,6 +209,7 @@ nnoremap ? ?\v
 " window management
 nnoremap <leader>wz :tab split<cr>
 nnoremap <leader>wp :pclose<cr>
+nnoremap <leader>wa :b#<cr>
 
 nnoremap <leader>wb <c-w>s
 nnoremap <leader>wv <c-w>v
@@ -277,7 +279,7 @@ nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
 nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
 
 " terminal window navigation
-tnoremap <esc> <c-\><c-n>
+tnoremap <c-g> <c-\><c-n>
 tnoremap <c-h> <c-\><c-n><c-w>h
 tnoremap <c-j> <c-\><c-n><c-w>j
 tnoremap <c-k> <c-\><c-n><c-w>k
