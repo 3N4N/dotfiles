@@ -18,6 +18,8 @@ autosuggestions="/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # general
 export ZSH=/home/enan/.oh-my-zsh
 ZSH_THEME=""
+export DISABLE_LS_COLORS="true"
+export DISABLE_AUTO_TITLE="true"
 export UPDATE_ZSH_DAYS=13
 source $ZSH/oh-my-zsh.sh
 plugins=( git )
