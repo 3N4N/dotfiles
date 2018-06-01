@@ -347,7 +347,7 @@ function! MyTabLine()
     let s .= ' ' . tabnr . ' '
     let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
     let bufmodified = getbufvar(bufnr, "&mod")
-    if bufmodified | let s .= '[+] ' | endif
+    if bufmodified | let s .= '✚ ' | endif
   endfor
   let s .= '%#TabLineFill#%=%999X'.' Tabs '
   return s
@@ -356,18 +356,17 @@ set showtabline=1
 set tabline=%!MyTabLine()
 
 " ---- Statusline ----------------------
-"
+"
 
 set laststatus=2
 set statusline=%{&paste?'\ \ paste\ ':''}
-      \%{exists('g:loaded_fugitive')?
-      \(fugitive#head()!=#''?'\ \ \ '.fugitive#head().'\ ':''):''}
+      \\ %{&filetype!=#''?&filetype:'none'}\ 
       \\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
       \%{&readonly?'\ \ ':!&modifiable?'\ \ ':''}
-      \%{&modified?'\ \ [+]':''}
+      \%{&modified?'\ \ ✚':''}
       \%=
-      \%<\ %{&filetype!=#''?&filetype:'none'}
-      \\ \ %5(%p%%\ %)
+      \%<\ %l/%L\ :\ %4(%c\ %)
+      \%6(%p%%\ %)
 
 " ---- Netrw ---------------------------
 
