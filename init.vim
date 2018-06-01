@@ -19,8 +19,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -73,7 +71,7 @@ function! Stats() abort
 endfunction
 nnoremap <c-g> :echo Stats()<cr>
 
-function! StripTrailingWhitespaces() abort
+function! StripTrailing() abort
   let _s=@/
   let l = line(".")
   let c = col(".")
@@ -81,26 +79,6 @@ function! StripTrailingWhitespaces() abort
   let @/=_s
   call cursor(l, c)
 endfunction
-nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
-
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '': printf(
-        \   ' %d  %d',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
-
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-nnoremap <silent> <C-S-P> :call SynStack()<CR>
 
 " search with visual mode
 function! VSetSearch()
@@ -290,12 +268,6 @@ tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
 tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
 tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
 
-" vim-surround
-let g:surround_no_mappings=1
-nmap <leader>sc  <Plug>Csurround
-nmap <leader>sd  <Plug>Dsurround
-xmap <leader>ss  <Plug>VSurround
-
 " easy-align
 xmap ga <Plug>(EasyAlign)
 
@@ -398,18 +370,3 @@ let g:gitgutter_sign_modified='┃'
 let g:gitgutter_sign_removed='┃'
 let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
-
-" ---- Ale Linter ----------------------
-
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_highlights = 0
-let g:ale_sign_warning = ''
-let g:ale_sign_error = ''
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_list_window_size = 8
-exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red guibg=none ctermbg=none'
-exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow guibg=none ctermbg=none'
