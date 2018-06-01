@@ -19,7 +19,7 @@ set $text-color          #b8babc
 
 set $mod Mod4
 floating_modifier $mod
-font pango:Dejavu sans mono for powerline 9
+font pango:Hack 9
 focus_follows_mouse no
 
 # key bindings
@@ -119,7 +119,7 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 
 bar {
     Position top
-    font pango:Dejavu sans mono for powerline 9
+    font pango:Hack 9
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
         background $bg-color
