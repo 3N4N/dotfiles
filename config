@@ -25,7 +25,7 @@ focus_follows_mouse no
 # key bindings
 
 # frequently used
-bindsym $mod+Return exec --no-startup-id st
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
 bindsym $mod+d exec --no-startup-id dmenu_run -b
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id sh ~/Git-repos/dotFiles/lock.sh
