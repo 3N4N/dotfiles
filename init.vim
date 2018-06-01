@@ -229,6 +229,36 @@ xnoremap L g_
 xnoremap J L
 xnoremap K H
 
+" cycle argument files
+nnoremap [a :prev<cr>
+nnoremap ]a :next<cr>
+nnoremap [A :first<cr>
+nnoremap ]A :last<cr>
+
+" cycle buffers
+nnoremap [b :bprev<cr>
+nnoremap ]b :bnext<cr>
+nnoremap [B :bfirst<cr>
+nnoremap ]B :blast<cr>
+
+" cycle location list
+nnoremap [l :lprev<cr>
+nnoremap ]l :lnext<cr>
+nnoremap [L :lfirst<cr>
+nnoremap ]L :llast<cr>
+
+" cycle quickfix list
+nnoremap [q :cprev<cr>
+nnoremap ]q :cnext<cr>
+nnoremap [Q :cfirst<cr>
+nnoremap ]Q :clast<cr>
+
+" cycle taglist
+nnoremap [t :tprev<cr>
+nnoremap ]t :tnext<cr>
+nnoremap [T :tfirst<cr>
+nnoremap ]T :tlast<cr>
+
 " split resize
 nnoremap <silent> <s-left> :vertical resize -3<CR>
 nnoremap <silent> <s-right> :vertical resize +3<CR>
