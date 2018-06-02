@@ -94,12 +94,11 @@ xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
 
 set colorcolumn=0         " colorize a column to show long lines
 set conceallevel=0        " don't conceal anything
-set fillchars=vert:│     " use unicode icon for vertical split
+set fillchars=vert:│      " use unicode icon for vertical split
 set nocursorline          " cursorline slows down vim
 set noruler               " ruler removes column position from ctrl-g
 set noswapfile            " don't use swap files
 set number relativenumber " show hybrid line numbers
-set path=**               " fuzzy find
 set shortmess=filmnxrtToO " shorten some messages
 set signcolumn=yes        " always show sign column
 set synmaxcol=200         " don't highlight after 200 columns
@@ -155,8 +154,10 @@ augroup custom_term
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-" ---- Completion ----------------------
+" ---- Wildmenu ------------------------
 
+set wildmenu
+set wildignorecase
 set wildmode=full
 set wildignore=*.o,*.obj,*~
 set wildignore+=*.swp,*.tmp
@@ -178,7 +179,6 @@ inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
 nnoremap Q m0J`0
-cnoremap <c-g> <c-c>
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -193,6 +193,7 @@ nnoremap ? ?\v
 nnoremap <leader>wz :tab split<cr>
 nnoremap <leader>wp :pclose<cr>
 nnoremap <leader>wa :b#<cr>
+nnoremap <leader>wl :ls<cr>:b<space>
 
 nnoremap <leader>wb <c-w>s
 nnoremap <leader>wv <c-w>v
@@ -210,10 +211,10 @@ nnoremap <c-w>= <nop>
 nnoremap <c-w>_ <nop>
 nnoremap <c-w><bar> <nop>
 
-nnoremap <leader>wh <c-w>H
-nnoremap <leader>wj <c-w>J
-nnoremap <leader>wk <c-w>K
-nnoremap <leader>wl <c-w>L
+nnoremap <leader>wH <c-w>H
+nnoremap <leader>wJ <c-w>J
+nnoremap <leader>wK <c-w>K
+nnoremap <leader>wL <c-w>L
 nnoremap <c-w>H <nop>
 nnoremap <c-w>J <nop>
 nnoremap <c-w>K <nop>
