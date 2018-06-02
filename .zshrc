@@ -49,6 +49,7 @@ zstyle ':completion:*' list-colors
 alias ls='ls -CF --color=none'
 alias ll='ls -AlF'
 alias la='ls -AF'
+alias tree='tree -F'
 alias refresh='source ~/.zshrc'
 alias screenfetch='screenfetch -t'
 alias i3lock='sh ~/Git-repos/dotFiles/lock.sh'
@@ -91,7 +92,7 @@ git_prompt() {
     if [ $state = '[]' ]; then
       echo -e " $branch"
     else
-    echo -e " $branch %{$fg_bold[red]%}$state"
+    echo -e " $branch %{$fg[red]%}$state"
     fi
   fi
 }
