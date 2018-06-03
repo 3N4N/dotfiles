@@ -34,6 +34,7 @@ function! ToggleMouse() abort
   endif
 endfunction
 
+" customize the status report of <c-g>
 function! Stats() abort
   let l:f = ''
   if expand('%:~:.')!=''
@@ -71,6 +72,7 @@ function! Stats() abort
 endfunction
 nnoremap <c-g> :echo Stats()<cr>
 
+" strip the trailing whitespaces
 function! StripTrailing() abort
   let _s=@/
   let l = line(".")
@@ -79,6 +81,7 @@ function! StripTrailing() abort
   let @/=_s
   call cursor(l, c)
 endfunction
+nnoremap <silent> <leader>as :call StripTrailing()<cr>
 
 " search with visual mode
 function! VSetSearch()
@@ -89,6 +92,15 @@ function! VSetSearch()
 endfunction
 xnoremap # :<C-u>call VSetSearch()<CR>??<CR><c-o>
 xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
+
+" show syntax highlighting groups for word under cursor
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nnoremap <C-S-P> :call <SID>SynStack()<CR>
 
 " ---- General -------------------------
 
@@ -271,7 +283,7 @@ nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
 nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<bar>setlocal spell?<cr>
-nnoremap <silent> <leader>tt :10split<bar>:term<cr>
+nnoremap <silent> <leader>tt :term<cr>i<c-\><c-n>i
 nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
 
 " fzf

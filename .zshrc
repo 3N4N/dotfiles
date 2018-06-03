@@ -6,12 +6,15 @@
 #
 
 # install oh-my-zsh
-[ ! -d ~/.oh-my-zsh ] && git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+[ ! -d ~/.oh-my-zsh ] && \
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 # install zsh-autosuggestion
 autosuggestions="/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ ! -f "$autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
-[ -f "$autosuggestions" ] && source "/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ ! -f "$autosuggestions" ] && \
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+[ -f "$autosuggestions" ] && \
+source "/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 ## oh-my-zsh config
 
@@ -32,11 +35,13 @@ bindkey '^N' down-line-or-beginning-search
 
 # base16 colors
 BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && \
+eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # add ~/Executables/bin to path
 executables="/home/enan/Executables/bin"
-[ -d "$executables" ] && [[ ":$PATH:" != *$executables* ]] && export PATH=$executables:${PATH}
+[ -d "$executables" ] && [[ ":$PATH:" != *$executables* ]] && \
+export PATH=$executables:${PATH}
 
 # FZF settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
