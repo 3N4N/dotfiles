@@ -99,6 +99,5 @@ git_prompt() {
 }
 
 # zsh prompt
-autoload -U colors && colors # requires zsh > 4.3.11
-PS1="%{$fg[blue]%}[%n@%m] %{$fg[magenta]%}%c %{$fg[yellow]%}$(git_prompt)
-%(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}"
+PROMPT='%{$fg[blue]%}[%n@%m] %{$fg[magenta]%}%c %{$fg[yellow]%}$(git_prompt)
+%(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}'
