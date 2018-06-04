@@ -31,12 +31,7 @@ plugins=( git )
 bindkey '^P' up-line-or-beginning-search
 bindkey '^N' down-line-or-beginning-search
 
-## Personal customization
-
-# base16 colors
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && \
-eval "$($BASE16_SHELL/profile_helper.sh)"
+## personal customization
 
 # add ~/Executables/bin to path
 executables="/home/enan/Executables/bin"
@@ -63,6 +58,7 @@ alias vi='nvim'
 alias py2=python2
 alias py3=python3
 alias t='sh ~/projects/dotFiles/tmux.sh'
+alias now='date "+%F %T"'
 
 # zsh prompt with git info
 git_branch() {
@@ -97,10 +93,12 @@ git_prompt() {
     if [ $state = '[]' ]; then
       echo -e " $branch"
     else
-    echo -e " $branch %{$fg[red]%}$state"
+    echo -e "$branch %{$fg[red]%}$state"
     fi
   fi
 }
 
-PROMPT='%{$fg[blue]%}[%n@%m] %{$fg[magenta]%}%c%{$fg[yellow]%}$(git_prompt)
-%(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}'
+# zsh prompt
+autoload -U colors && colors # requires zsh > 4.3.11
+PS1="%{$fg[blue]%}[%n@%m] %{$fg[magenta]%}%c %{$fg[yellow]%}$(git_prompt)
+%(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}"

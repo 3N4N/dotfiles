@@ -201,36 +201,16 @@ nnoremap / /\v
 xnoremap / /\v
 nnoremap ? ?\v
 
-" window management
+" better window management
 nnoremap <leader>wz :tab split<cr>
 nnoremap <leader>wp :pclose<cr>
 nnoremap <leader>wa :b#<cr>
 nnoremap <leader>wl :ls<cr>:b<space>
 
+nnoremap <leader>w <c-w>
 nnoremap <leader>wb <c-w>s
-nnoremap <leader>wv <c-w>v
-nnoremap <leader>wo <c-w>o
-nnoremap <leader>wc <c-w>c
-nnoremap <c-w>s <nop>
-nnoremap <c-w>v <nop>
-nnoremap <c-w>o <nop>
-nnoremap <c-w>c <nop>
-
-nnoremap <leader>w= <c-w>=
-nnoremap <leader>w_ <c-w>_
-nnoremap <leader>w<bar> <c-w><bar>
-nnoremap <c-w>= <nop>
-nnoremap <c-w>_ <nop>
-nnoremap <c-w><bar> <nop>
-
-nnoremap <leader>wH <c-w>H
-nnoremap <leader>wJ <c-w>J
-nnoremap <leader>wK <c-w>K
-nnoremap <leader>wL <c-w>L
-nnoremap <c-w>H <nop>
-nnoremap <c-w>J <nop>
-nnoremap <c-w>K <nop>
-nnoremap <c-w>L <nop>
+nnoremap <leader>ws <nop>
+nnoremap <c-w> <nop>
 
 " better movement
 nnoremap H ^
