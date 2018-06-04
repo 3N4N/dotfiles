@@ -402,8 +402,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetsDir = "~/Git-repos/vim-snippets"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/Git-repos/vim-snippets']
+let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
 
 " ---- Gitgutter -----------------------
 

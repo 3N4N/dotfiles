@@ -20,8 +20,8 @@ will be responsible if your system breaks.
 
 ### Install
 
-    rm -rf ~/Git-repos/dotFiles
-    git clone https://www.github.com/enanajmain/dotFiles ~/Git-repos
-    cd ~/Git-repos/dotFiles/
+    rm -rf ~/projects/dotFiles
+    git clone https://www.github.com/enanajmain/dotFiles ~/projects
+    cd ~/projects/dotFiles
     sh install.sh
     cd -

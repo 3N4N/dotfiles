@@ -57,12 +57,12 @@ alias la='ls -AF'
 alias tree='tree -F'
 alias refresh='source ~/.zshrc'
 alias screenfetch='screenfetch -t'
-alias i3lock='sh ~/Git-repos/dotFiles/lock.sh'
+alias i3lock='sh ~/projects/dotFiles/lock.sh'
 alias emacs='emacs -nw'
 alias vi='nvim'
 alias py2=python2
 alias py3=python3
-alias t='sh ~/Git-repos/dotFiles/tmux.sh'
+alias t='sh ~/projects/dotFiles/tmux.sh'
 
 # zsh prompt with git info
 git_branch() {
