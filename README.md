@@ -5,23 +5,30 @@ some code, copy and paste in your own config. The install script is only for my
 use. If you want to use the install script at least check thoroughly. Only you
 will be responsible if your system breaks.
 
+## Screenshot
+![screenshot](screenshot.png "screenshot")
+
 ## Requirements
 
-  - [st-term](https://st.suckless.org) or [st-scroll_mouse](https://github.com/enanajmain/st-scroll_mouse)
-  - w3m-img(for Debian) or w3m (for Arch) (for preview_images in ranger)
-  - [base16-shell](https://github.com/chriskempson/base16-shell)
-  - scrot (for lock.sh script)
-  - imagemagick (for lock.sh script)
-  - x11-xkb-utils
-  - xclip
-  - compton
-  - sysstat (for cpu_usage script in i3blocks)
-  - acpi (for battery script in i3blocks)
+  * [ranger file manager](https://ranger.github.io/)
+  * w3m-img(for Debian) or w3m (for Arch) (for preview\_images in ranger)
+  * scrot (for lock.sh script)
+  * imagemagick (for lock.sh script)
+  * x11-xkb-utils
+  * [nvim](https://neovim.io/)
+  * [tmux](https://github.com/tmux/tmux/wiki)
+  * cmus
+  * xclip (for system clipboard integration in nvim)
+  * i3wm or i3-gaps
+  * i3blocks
+  * compton
+  * sysstat (for cpu\_usage script in i3blocks)
+  * acpi (for battery script in i3blocks)
 
 ### Install
 
-    rm -rf ~/Git-repos/dotFiles
-    git clone https://www.github.com/enanajmain/dotFiles ~/Git-repos
-    cd ~/Git-repos/dotFiles/
+    rm -rf ~/projects/dotFiles
+    git clone https://www.github.com/enanajmain/dotFiles ~/projects
+    cd ~/projects/dotFiles
     sh install.sh
     cd -

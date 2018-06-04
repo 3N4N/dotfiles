@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/Git-repos/dotFiles
+DIR=$HOME/projects/dotFiles
 EMACSDIR=$HOME/.emacs.d
 VIMDIR=$HOME/.config/nvim
 I3DIR=$HOME/.config/i3
@@ -28,11 +28,8 @@ ln -s $DIR/compton.conf $HOME/.config
 rm -rf $HOME/.config/ranger
 ln -s $DIR/ranger $RANGERDIR
 
-rm -rf $HOME/.zshrc $HOME/.Xresources $HOME/.tmux.conf $HOME/.gitconfig
-ln -s $DIR/.zshrc $DIR/.Xresources $DIR/.tmux.conf $DIR/.gitconfig $HOME/
-
-rm -rf $HOME/.gitconfig
-ln -s $DIR/.gitconfig $HOME/
+rm -rf $HOME/.zshrc $HOME/.tmux.conf $HOME/.gitconfig
+ln -s $DIR/.zshrc $DIR/.tmux.conf $DIR/.gitconfig $HOME/
 
 mkdir -p $CMUSDIR
 rm -rf $CMUSDIR/cmus.theme

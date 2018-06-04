@@ -19,8 +19,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -36,6 +34,7 @@ function! ToggleMouse() abort
   endif
 endfunction
 
+" customize the status report of <c-g>
 function! Stats() abort
   let l:f = ''
   if expand('%:~:.')!=''
@@ -73,7 +72,8 @@ function! Stats() abort
 endfunction
 nnoremap <c-g> :echo Stats()<cr>
 
-function! StripTrailingWhitespaces() abort
+" strip the trailing whitespaces
+function! StripTrailing() abort
   let _s=@/
   let l = line(".")
   let c = col(".")
@@ -81,26 +81,7 @@ function! StripTrailingWhitespaces() abort
   let @/=_s
   call cursor(l, c)
 endfunction
-nnoremap <silent> <f12> :call StripTrailingWhitespaces()<cr>
-
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '': printf(
-        \   ' %d  %d',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
-
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-nnoremap <silent> <C-S-P> :call SynStack()<CR>
+nnoremap <silent> <leader>as :call StripTrailing()<cr>
 
 " search with visual mode
 function! VSetSearch()
@@ -112,16 +93,24 @@ endfunction
 xnoremap # :<C-u>call VSetSearch()<CR>??<CR><c-o>
 xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
 
+" show syntax highlighting groups for word under cursor
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nnoremap <C-S-P> :call <SID>SynStack()<CR>
+
 " ---- General -------------------------
 
 set colorcolumn=0         " colorize a column to show long lines
 set conceallevel=0        " don't conceal anything
-set fillchars=vert:│     " use unicode icon for vertical split
+set fillchars=vert:│      " use unicode icon for vertical split
 set nocursorline          " cursorline slows down vim
 set noruler               " ruler removes column position from ctrl-g
 set noswapfile            " don't use swap files
 set number relativenumber " show hybrid line numbers
-set path=**               " fuzzy find
 set shortmess=filmnxrtToO " shorten some messages
 set signcolumn=yes        " always show sign column
 set synmaxcol=200         " don't highlight after 200 columns
@@ -177,8 +166,10 @@ augroup custom_term
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-" ---- Completion ----------------------
+" ---- Wildmenu ------------------------
 
+set wildmenu
+set wildignorecase
 set wildmode=full
 set wildignore=*.o,*.obj,*~
 set wildignore+=*.swp,*.tmp
@@ -200,7 +191,6 @@ inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
 nnoremap Q m0J`0
-cnoremap <c-g> <c-c>
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -211,35 +201,16 @@ nnoremap / /\v
 xnoremap / /\v
 nnoremap ? ?\v
 
-" window management
+" better window management
 nnoremap <leader>wz :tab split<cr>
 nnoremap <leader>wp :pclose<cr>
 nnoremap <leader>wa :b#<cr>
+nnoremap <leader>wl :ls<cr>:b<space>
 
+nnoremap <leader>w <c-w>
 nnoremap <leader>wb <c-w>s
-nnoremap <leader>wv <c-w>v
-nnoremap <leader>wo <c-w>o
-nnoremap <leader>wc <c-w>c
-nnoremap <c-w>s <nop>
-nnoremap <c-w>v <nop>
-nnoremap <c-w>o <nop>
-nnoremap <c-w>c <nop>
-
-nnoremap <leader>w= <c-w>=
-nnoremap <leader>w_ <c-w>_
-nnoremap <leader>w<bar> <c-w><bar>
-nnoremap <c-w>= <nop>
-nnoremap <c-w>_ <nop>
-nnoremap <c-w><bar> <nop>
-
-nnoremap <leader>wh <c-w>H
-nnoremap <leader>wj <c-w>J
-nnoremap <leader>wk <c-w>K
-nnoremap <leader>wl <c-w>L
-nnoremap <c-w>H <nop>
-nnoremap <c-w>J <nop>
-nnoremap <c-w>K <nop>
-nnoremap <c-w>L <nop>
+nnoremap <leader>ws <nop>
+nnoremap <c-w> <nop>
 
 " better movement
 nnoremap H ^
@@ -250,6 +221,36 @@ xnoremap H ^
 xnoremap L g_
 xnoremap J L
 xnoremap K H
+
+" cycle argument files
+nnoremap [a :prev<cr>
+nnoremap ]a :next<cr>
+nnoremap [A :first<cr>
+nnoremap ]A :last<cr>
+
+" cycle buffers
+nnoremap [b :bprev<cr>
+nnoremap ]b :bnext<cr>
+nnoremap [B :bfirst<cr>
+nnoremap ]B :blast<cr>
+
+" cycle location list
+nnoremap [l :lprev<cr>
+nnoremap ]l :lnext<cr>
+nnoremap [L :lfirst<cr>
+nnoremap ]L :llast<cr>
+
+" cycle quickfix list
+nnoremap [q :cprev<cr>
+nnoremap ]q :cnext<cr>
+nnoremap [Q :cfirst<cr>
+nnoremap ]Q :clast<cr>
+
+" cycle taglist
+nnoremap [t :tprev<cr>
+nnoremap ]t :tnext<cr>
+nnoremap [T :tfirst<cr>
+nnoremap ]T :tlast<cr>
 
 " split resize
 nnoremap <silent> <s-left> :vertical resize -3<CR>
@@ -262,7 +263,7 @@ nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
 nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<bar>setlocal spell?<cr>
-nnoremap <silent> <leader>tt :10split<bar>:term<cr>
+nnoremap <silent> <leader>tt :term<cr>i<c-\><c-n>i
 nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
 
 " fzf
@@ -289,12 +290,6 @@ tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
 tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
 tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
 tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
-
-" vim-surround
-let g:surround_no_mappings=1
-nmap <leader>sc  <Plug>Csurround
-nmap <leader>sd  <Plug>Dsurround
-xmap <leader>ss  <Plug>VSurround
 
 " easy-align
 xmap ga <Plug>(EasyAlign)
@@ -387,8 +382,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetsDir = "~/Git-repos/vim-snippets"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/Git-repos/vim-snippets']
+let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
 
 " ---- Gitgutter -----------------------
 
@@ -398,18 +393,3 @@ let g:gitgutter_sign_modified='┃'
 let g:gitgutter_sign_removed='┃'
 let g:gitgutter_sign_removed_first_line='┃'
 let g:gitgutter_sign_modified_removed='┃'
-
-" ---- Ale Linter ----------------------
-
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_highlights = 0
-let g:ale_sign_warning = ''
-let g:ale_sign_error = ''
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_list_window_size = 8
-exec 'hi ALEErrorSign guifg=#EC5f67 ctermfg=red guibg=none ctermbg=none'
-exec 'hi ALEWarningSign guifg=yellow ctermfg=yellow guibg=none ctermbg=none'
