@@ -34,44 +34,6 @@ function! ToggleMouse() abort
   endif
 endfunction
 
-" customize the status report of <c-g>
-function! Stats() abort
-  let l:f = ''
-  if expand('%:~:.')!=''
-    let l:f = '"'.expand('%:~:.').'"'
-  else
-    let l:f = '[No Name]'
-  endif
-  let l:ft = ''
-  if &filetype!=''
-    let l:ft = ' -- ['.&filetype.']'
-  else
-    let l:ft = ' -- [none]'
-  endif
-  let l:l = ' -- Ln:'.line(".")
-  let l:c = ' -- Col:'.col(".")
-  let l:t = line('$')
-  let l:m = ''
-  let l:r = ''
-  if &modified
-    let l:m = ' -- [+]'
-  endif
-  if &readonly || !&modifiable
-    let l:r = ' -- [RO]'
-  endif
-  if l:m!=#'' && l:r!=#''
-    let l:m = ' -- [RO] [+]'
-    let l:r = ''
-  endif
-  let l:g = ''
-  if exists('g:loaded_fugitive') && fugitive#head()!=#''
-    let l:g = ' @ '.fugitive#head()
-  endif
-  let l:p = ' -- '.line('.')*100/line('$').'%'
-  return l:f.l:g.l:ft.l:m.l:r.l:p.l:l.'/'.l:t.l:c
-endfunction
-nnoremap <c-g> :echo Stats()<cr>
-
 " strip the trailing whitespaces
 function! StripTrailing() abort
   let _s=@/
@@ -82,25 +44,6 @@ function! StripTrailing() abort
   call cursor(l, c)
 endfunction
 nnoremap <silent> <leader>as :call StripTrailing()<cr>
-
-" search with visual mode
-function! VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
-endfunction
-xnoremap # :<C-u>call VSetSearch()<CR>??<CR><c-o>
-xnoremap * :<C-u>call VSetSearch()<CR>//<CR><c-o>
-
-" show syntax highlighting groups for word under cursor
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-nnoremap <C-S-P> :call <SID>SynStack()<CR>
 
 " ---- General -------------------------
 
@@ -130,6 +73,7 @@ set nowrap
 set linebreak
 set showbreak=↳
 
+set lazyredraw
 set notimeout
 set ttimeout
 set ttimeoutlen=50
@@ -221,6 +165,10 @@ xnoremap H ^
 xnoremap L g_
 xnoremap J L
 xnoremap K H
+onoremap H ^
+onoremap L g_
+onoremap J L
+onoremap K H
 
 " cycle argument files
 nnoremap [a :prev<cr>
@@ -261,7 +209,7 @@ nnoremap <silent> <s-up> :resize +3<CR>
 " toggle
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
 nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
-nnoremap <silent> <leader>tp :set paste!<cr>
+nnoremap <silent> <leader>tp :set paste!<bar>set paste?<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<bar>setlocal spell?<cr>
 nnoremap <silent> <leader>tt :term<cr>i<c-\><c-n>i
 nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
@@ -327,41 +275,16 @@ syntax on
 colo fault
 let g:lisp_rainbow = 1
 
-" ---- Tabline -------------------------
-
-function! MyTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    let tabnr = i + 1 " range() starts at 0
-    let winnr = tabpagewinnr(tabnr)
-    let buflist = tabpagebuflist(tabnr)
-    let bufnr = buflist[winnr - 1]
-    let bufname = fnamemodify(bufname(bufnr), ':t')
-    let s .= '%' . tabnr . 'T'
-    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= ' ' . tabnr . ' '
-    let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
-    let bufmodified = getbufvar(bufnr, "&mod")
-    if bufmodified | let s .= '✚ ' | endif
-  endfor
-  let s .= '%#TabLineFill#%=%999X'.' Tabs '
-  return s
-endfunction
-set showtabline=1
-set tabline=%!MyTabLine()
-
 " ---- Statusline ----------------------
-"
 
 set laststatus=2
-set statusline=%{&paste?'\ \ paste\ ':''}
-      \\ %{&filetype!=#''?&filetype:'none'}\ 
+set statusline=
+      \\ %{&filetype!=#''?&filetype:'none'}
+      \\ %{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
       \\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-      \%{&readonly?'\ \ ':!&modifiable?'\ \ ':''}
-      \%{&modified?'\ \ ✚':''}
       \%=
-      \%<\ %l/%L\ :\ %4(%c\ %)
-      \%6(%p%%\ %)
+      \%<\ C%v%3(%)L%l/%L%2(%)
+      \%6(%p%%\ %)
 
 " ---- Netrw ---------------------------
 

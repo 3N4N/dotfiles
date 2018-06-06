@@ -25,7 +25,7 @@ export DISABLE_LS_COLORS="true"
 export DISABLE_AUTO_TITLE="true"
 export UPDATE_ZSH_DAYS=13
 source $ZSH/oh-my-zsh.sh
-plugins=( git )
+plugins=( )
 
 # key bindings
 bindkey '^P' up-line-or-beginning-search
@@ -62,9 +62,9 @@ alias now='date "+%F %T"'
 
 # zsh prompt with git info
 git_branch() {
-  git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+  git branch --no-color 2>/dev/null | \
+  sed -e '/^[^*]/d' -e 's/* \(\|(HEAD detached \)\([^)]*\)\(\|)\)/\2/'
 }
-
 git_status() {
   # + changes are staged and ready to commit
   # ! unstaged changes are present
@@ -72,32 +72,26 @@ git_status() {
   # $ changes have been stashed
   # ↑ local commits need to be pushed to the remote
   local state="$(git status --porcelain 2>/dev/null)"
-  local output='['
+  local output=''
   [[ -n $(egrep '^[MADRC]' <<<"$state") ]] && output="$output+"
   [[ -n $(egrep '^.[MD]' <<<"$state") ]] && output="$output!"
   [[ -n $(egrep '^\?\?' <<<"$state") ]] && output="$output?"
   [[ -n $(git stash list) ]] && output="$output$"
   [[ -n $(git log --branches --not --remotes) ]] && output="$output↑"
-  [[ -n $output ]] && output="$output]"
   echo $output
 }
-
 git_prompt() {
-  # First, get the branch name...
   local branch=$(git_branch)
-  # Empty output? Then we're not in a Git repository, so bypass the rest
-  # of the function, producing no output
   if [[ -n $branch ]]; then
     local state=$(git_status)
-    # Now output the actual code to insert the branch and status
-    if [ $state = '[]' ]; then
-      echo -e " $branch"
+    if [[ -n $state ]]; then
+      echo -e " %{%F{yellow}%} $branch %{%F{red}%}[$state]"
     else
-    echo -e "$branch %{$fg[red]%}$state"
+      echo -e " %{%F{yellow}%} $branch"
     fi
   fi
 }
 
 # zsh prompt
-PROMPT='%{$fg[blue]%}[%n@%m] %{$fg[magenta]%}%c %{$fg[yellow]%}$(git_prompt)
-%(?:%{$fg[green]%}❯ :%{$fg[red]%}❯ )%{$reset_color%}'
+setopt PROMPT_SUBST
+PROMPT='%{%F{blue}%}%~$(git_prompt) %{%f%}%% '
