@@ -7,25 +7,31 @@
 
 # install oh-my-zsh
 [ ! -d ~/.oh-my-zsh ] && \
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 # install zsh-autosuggestion
-autosuggestions="/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ ! -f "$autosuggestions" ] && \
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-[ -f "$autosuggestions" ] && \
-source "/home/enan/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] && \
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions \
+  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 ## oh-my-zsh config
 
 # general
-export ZSH=/home/enan/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME=""
-export DISABLE_LS_COLORS="true"
-export DISABLE_AUTO_TITLE="true"
+CASE_SENSITIVE="false"
+HYPHEN_INSENSITIVE="true"
+DISABLE_AUTO_UPDATE="false"
 export UPDATE_ZSH_DAYS=13
+DISABLE_LS_COLORS="true"
+DISABLE_AUTO_TITLE="true"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+plugins=(
+  zsh-autosuggestions
+)
 source $ZSH/oh-my-zsh.sh
-plugins=( )
 
 # key bindings
 bindkey '^P' up-line-or-beginning-search
@@ -34,7 +40,7 @@ bindkey '^N' down-line-or-beginning-search
 ## personal customization
 
 # add ~/Executables/bin to path
-executables="/home/enan/Executables/bin"
+executables="~/Executables/bin"
 [ -d "$executables" ] && [[ ":$PATH:" != *$executables* ]] && \
 export PATH=$executables:${PATH}
 
@@ -58,7 +64,8 @@ alias vi='nvim'
 alias py2=python2
 alias py3=python3
 alias t='sh ~/projects/dotFiles/tmux.sh'
-alias now='date "+%F %T"'
+alias now="echo -n 'date: '; echo $(date "+%A, %B %d");\
+  echo -n 'time: '; echo $(date "+%H:%M")"
 
 # zsh prompt with git info
 git_branch() {
@@ -85,13 +92,14 @@ git_prompt() {
   if [[ -n $branch ]]; then
     local state=$(git_status)
     if [[ -n $state ]]; then
-      echo -e " %{%F{yellow}%} $branch %{%F{red}%}[$state]"
+      echo -e "%{%F{yellow}%} $branch %{%F{red}%}[$state]"
     else
-      echo -e " %{%F{yellow}%} $branch"
+      echo -e "%{%F{yellow}%} $branch"
     fi
   fi
 }
 
 # zsh prompt
 setopt PROMPT_SUBST
-PROMPT='%{%F{blue}%}%~$(git_prompt) %{%f%}%% '
+PROMPT='%{%F{red}%}[%n%{%f%}@%{%F{red}%}%m]%{%F{blue}%}%c%{%f%}%% '
+RPS1='$(git_prompt)'

@@ -42,7 +42,7 @@
     (progn
       (set-frame-size (selected-frame) 91 41)
       (set-frame-position (selected-frame) 700 0)
-      (set-frame-font "Source code pro for powerline 9")))
+      (set-frame-font "Hack 9")))
 
 (defvar my-term-shell "/bin/bash")
 (defadvice ansi-term (before force-bash)

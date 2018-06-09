@@ -47,7 +47,7 @@ nnoremap <silent> <leader>as :call StripTrailing()<cr>
 
 " ---- General -------------------------
 
-set colorcolumn=0         " colorize a column to show long lines
+set colorcolumn=81        " colorize a column to show long lines
 set conceallevel=0        " don't conceal anything
 set fillchars=vert:│      " use unicode icon for vertical split
 set nocursorline          " cursorline slows down vim
@@ -134,7 +134,6 @@ nnoremap <silent> <leader>r :so $MYVIMRC<cr>
 inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
-nnoremap Q m0J`0
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -155,20 +154,6 @@ nnoremap <leader>w <c-w>
 nnoremap <leader>wb <c-w>s
 nnoremap <leader>ws <nop>
 nnoremap <c-w> <nop>
-
-" better movement
-nnoremap H ^
-nnoremap L g_
-nnoremap J L
-nnoremap K H
-xnoremap H ^
-xnoremap L g_
-xnoremap J L
-xnoremap K H
-onoremap H ^
-onoremap L g_
-onoremap J L
-onoremap K H
 
 " cycle argument files
 nnoremap [a :prev<cr>
