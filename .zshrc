@@ -101,5 +101,5 @@ git_prompt() {
 
 # zsh prompt
 setopt PROMPT_SUBST
-PROMPT='%{%F{red}%}[%n%{%f%}@%{%F{red}%}%m]%{%F{blue}%}%c%{%f%}%% '
-RPS1='$(git_prompt)'
+PROMPT='%{%F{blue}%}${PWD/#$HOME/~} $(git_prompt)
+%{%f%}%% '

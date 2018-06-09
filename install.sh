@@ -28,8 +28,8 @@ ln -s $DIR/compton.conf $HOME/.config
 rm -rf $HOME/.config/ranger
 ln -s $DIR/ranger $RANGERDIR
 
-rm -rf $HOME/.zshrc $HOME/.tmux.conf $HOME/.gitconfig
-ln -s $DIR/.zshrc $DIR/.tmux.conf $DIR/.gitconfig $HOME/
+rm -rf $HOME/.zshrc $HOME/.bashrc $HOME/.tmux.conf $HOME/.gitconfig
+ln -s $DIR/.zshrc $DIR/.bashrc $DIR/.tmux.conf $DIR/.gitconfig $HOME/
 
 mkdir -p $CMUSDIR
 rm -rf $CMUSDIR/cmus.theme
