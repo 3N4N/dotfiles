@@ -17,7 +17,7 @@ HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 shopt -s cmdhist # store one command per line in history
 PROMPT_COMMAND='history -a' # append history file after each command
-PROMPT_DIRTRIM=3 # truncate long paths to ".../foo/bar/baz"
+PROMPT_DIRTRIM=4 # truncate long paths to ".../foo/bar/baz"
 
 shopt -s checkwinsize # update $LINES and $COLUMNS after each command.
 shopt -s globstar &> /dev/null # (bash 4+) enable recursive glob
@@ -45,6 +45,10 @@ export FZF_DEFAULT_OPTS='--height 100%'
 alias ls='ls -CF --color=none'
 alias ll='ls -AlF'
 alias la='ls -AF'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias ag='ag --color-match "31;40"'
 alias tree='tree -F'
 alias refresh='source ~/.bashrc'
 alias screenfetch='screenfetch -t'
@@ -58,4 +62,4 @@ alias now="echo -n 'date: '; echo $(date "+%A, %B %d");\
   echo -n 'time: '; echo $(date "+%H:%M")"
 
 # bash prompt
-PS1='\[\033[00;34m\]\w\[\033[00m\]\n\$ '
+PS1='\[\033[00;34m\]\u\[\033[00m\]@\[\033[00;34m\]\h\[\033[00m\]:\[\033[00;33m\]\w\[\033[00m\]\n\$ '

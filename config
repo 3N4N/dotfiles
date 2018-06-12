@@ -134,7 +134,7 @@ bar {
 }
 
 # start programs at startup
-exec_always --no-startup-id feh --bg-scale $HOME/.local/share/backgrounds/bat_wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale $HOME/.local/share/backgrounds/batman_bat.png
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
