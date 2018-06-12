@@ -73,7 +73,7 @@ set nowrap
 set linebreak
 set showbreak=↳
 
-set lazyredraw
+set nolazyredraw
 set notimeout
 set ttimeout
 set ttimeoutlen=50
@@ -185,12 +185,6 @@ nnoremap ]t :tnext<cr>
 nnoremap [T :tfirst<cr>
 nnoremap ]T :tlast<cr>
 
-" split resize
-nnoremap <silent> <s-left> :vertical resize -3<CR>
-nnoremap <silent> <s-right> :vertical resize +3<CR>
-nnoremap <silent> <s-down> :resize -3<CR>
-nnoremap <silent> <s-up> :resize +3<CR>
-
 " toggle
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
 nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
@@ -257,6 +251,7 @@ set smartcase
 " ---- Colorscheme ---------------------
 
 syntax on
+set termguicolors
 colo fault
 let g:lisp_rainbow = 1
 
