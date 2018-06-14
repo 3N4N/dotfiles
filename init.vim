@@ -18,21 +18,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
 " ---- Functions -----------------------
-
-function! ToggleMouse() abort
-  if &mouse==#""
-    set mouse=n
-    echo "mouse on"
-  else
-    set mouse=
-    echo "mouse off"
-  endif
-endfunction
 
 " strip the trailing whitespaces
 function! StripTrailing() abort
@@ -43,7 +32,7 @@ function! StripTrailing() abort
   let @/=_s
   call cursor(l, c)
 endfunction
-nnoremap <silent> <leader>as :call StripTrailing()<cr>
+nnoremap <silent> gs :call StripTrailing()<cr>
 
 " ---- General -------------------------
 
@@ -125,7 +114,7 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 " ---- Key Mapping ---------------------
 
 " map leader
-let mapleader=" "
+let mapleader = "\<Space>"
 
 " reload vimrc
 nnoremap <silent> <leader>r :so $MYVIMRC<cr>
@@ -134,6 +123,7 @@ nnoremap <silent> <leader>r :so $MYVIMRC<cr>
 inoremap jj <esc>
 nnoremap Y y$
 nnoremap U <c-r>
+nnoremap gb :ls<cr>:b<space>
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -145,14 +135,11 @@ xnoremap / /\v
 nnoremap ? ?\v
 
 " better window management
-nnoremap <leader>wz :tab split<cr>
-nnoremap <leader>wp :pclose<cr>
+nnoremap <leader>wt :tab split<cr>
 nnoremap <leader>wa :b#<cr>
-nnoremap <leader>wl :ls<cr>:b<space>
-
-nnoremap <leader>w <c-w>
 nnoremap <leader>wb <c-w>s
 nnoremap <leader>ws <nop>
+nnoremap <leader>w <c-w>
 nnoremap <c-w> <nop>
 
 " cycle argument files
@@ -187,11 +174,11 @@ nnoremap ]T :tlast<cr>
 
 " toggle
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
-nnoremap <silent> <leader>tm :call ToggleMouse()<cr>
 nnoremap <silent> <leader>tp :set paste!<bar>set paste?<cr>
 nnoremap <silent> <leader>ts :setlocal spell!<bar>setlocal spell?<cr>
-nnoremap <silent> <leader>tt :term<cr>i<c-\><c-n>i
 nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
+nnoremap <silent> <leader>tm :let &mouse=(&mouse==#""?"a":"")<bar>
+      \echo "mouse ".(&mouse==#""?"off":"on")<cr>
 
 " fzf
 nnoremap <silent> <leader>ff :Files<cr>
