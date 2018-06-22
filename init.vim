@@ -252,6 +252,11 @@ endfor
 set ignorecase
 set smartcase
 
+" use ag over grep
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
 " ---- Colorscheme ---------------------
 
 syntax on
@@ -269,6 +274,7 @@ set statusline=
       \%=
       \%<\ C%v%3(%)L%l/%L%2(%)
       \%6(%p%%\ %)
+
 
 " ---- Netrw ---------------------------
 
