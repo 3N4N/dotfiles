@@ -10,29 +10,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'enanajmain/vim-fault'
-Plug 'junegunn/vim-easy-align'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
-
-" ---- Functions -----------------------
-
-" strip the trailing whitespaces
-function! StripTrailing() abort
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  let @/=_s
-  call cursor(l, c)
-endfunction
-nnoremap <silent> gs :call StripTrailing()<cr>
 
 " ---- General -------------------------
 
@@ -40,18 +22,19 @@ set colorcolumn=81        " colorize a column to show long lines
 set conceallevel=0        " don't conceal anything
 set fillchars=vert:│      " use unicode icon for vertical split
 set nocursorline          " cursorline slows down vim
+set nolazyredraw          " redraw screen
 set noruler               " ruler removes column position from ctrl-g
 set noswapfile            " don't use swap files
 set number relativenumber " show hybrid line numbers
 set shortmess=filmnxrtToO " shorten some messages
+set showmode              " show current mode at the bottom
 set signcolumn=yes        " always show sign column
-set synmaxcol=200         " don't highlight after 200 columns
-set updatetime=1000       " update after each 1s
 set spelllang=en_us       " set language for spell checking
 set splitbelow            " always split below
 set splitright            " always split right
-set showmode
-set virtualedit+=block
+set synmaxcol=200         " don't highlight after 200 columns
+set updatetime=250        " update after each 0.25s
+set virtualedit=block     " select empty spaces in visual-block mode
 
 " show useful visual icons
 set list
@@ -62,7 +45,7 @@ set nowrap
 set linebreak
 set showbreak=↳
 
-set nolazyredraw
+" keymap timeout settings
 set notimeout
 set ttimeout
 set ttimeoutlen=50
@@ -119,11 +102,29 @@ let mapleader = "\<Space>"
 " reload vimrc
 nnoremap <silent> <leader>r :so $MYVIMRC<cr>
 
-" general
+" escape with double tapping j in insert mode
 inoremap jj <esc>
+
+" sensible yank til last character
 nnoremap Y y$
+
+" undo with <S-u>
 nnoremap U <c-r>
+
+" goto buffer
 nnoremap gb :ls<cr>:b<space>
+
+" strip trailing whitespaces
+nnoremap <silent> gs :let _w=winsaveview() <bar>
+      \:let _s=@/ <bar>
+      \:%s/\s\+$//e <bar>
+      \:let @/=_s<bar>
+      \:unlet _s <bar>
+      \:call winrestview(_w) <bar>
+      \:unlet _w <cr>
+
+" don't move cursor while joining lines
+nnoremap J m0J`0
 
 " don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
@@ -180,13 +181,6 @@ nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
 nnoremap <silent> <leader>tm :let &mouse=(&mouse==#""?"a":"")<bar>
       \echo "mouse ".(&mouse==#""?"off":"on")<cr>
 
-" fzf
-nnoremap <silent> <leader>ff :Files<cr>
-nnoremap <silent> <leader>fg :GFiles<cr>
-nnoremap <silent> <leader>fl :Buffers<cr>
-nnoremap <silent> <leader>fc :Commands<cr>
-nnoremap <silent> <leader>fa :Ag<cr>
-
 " git
 nnoremap <silent> <leader>gs :Gstatus<cr>
 nnoremap <silent> <leader>gc :Gcommit<cr>
@@ -198,15 +192,39 @@ nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
 nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
 nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
 
-" terminal window navigation
-tnoremap <esc> <c-\><c-n>
-tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
-tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
-tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
-tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
+" Navigate seamlessly between vim and tmux
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    silent! execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      call system("tmux select-pane -" . a:tmuxdir)
+      redraw!
+    endif
+  endfunction
 
-" easy-align
-xmap ga <Plug>(EasyAlign)
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+  tnoremap <silent> <c-h> <c-\><c-n>:call TmuxOrSplitSwitch('h', 'L')<cr>
+  tnoremap <silent> <c-j> <c-\><c-n>:call TmuxOrSplitSwitch('j', 'D')<cr>
+  tnoremap <silent> <c-k> <c-\><c-n>:call TmuxOrSplitSwitch('k', 'U')<cr>
+  tnoremap <silent> <c-l> <c-\><c-n>:call TmuxOrSplitSwitch('l', 'R')<cr>
+else
+  nnoremap <c-h> <c-w>h
+  nnoremap <c-j> <c-w>j
+  nnoremap <c-k> <c-w>k
+  nnoremap <c-l> <c-w>l
+  tnoremap <c-h> <c-\><c-n><c-w>h
+  tnoremap <c-j> <c-\><c-n><c-w>j
+  tnoremap <c-k> <c-\><c-n><c-w>k
+  tnoremap <c-l> <c-\><c-n><c-w>l
+endif
 
 " disable arrow keys
 noremap <up>    <nop>
@@ -231,7 +249,6 @@ endfor
 
 " ---- Search --------------------------
 
-set nohlsearch
 set ignorecase
 set smartcase
 
@@ -277,7 +294,6 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
 
 " ---- Gitgutter -----------------------
 
-set updatetime=250
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'
 let g:gitgutter_sign_removed='┃'
