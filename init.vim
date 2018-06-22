@@ -275,6 +275,27 @@ set statusline=
       \%<\ C%v%3(%)L%l/%L%2(%)
       \%6(%p%%\ %)
 
+" ------Tabline-------------------------
+
+function! MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tabnr = i + 1
+    let winnr = tabpagewinnr(tabnr)
+    let buflist = tabpagebuflist(tabnr)
+    let bufnr = buflist[winnr - 1]
+    let bufname = fnamemodify(bufname(bufnr), ':t')
+    let s .= '%' . tabnr . 'T'
+    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tabnr
+    let s .= empty(bufname) ? ' [No Name]' : ' ' . bufname
+    let s .= ' '
+  endfor
+  let s .= '%#TabLineFill#'
+  return s
+endfunction
+set showtabline=1
+set tabline=%!MyTabLine()
 
 " ---- Netrw ---------------------------
 
