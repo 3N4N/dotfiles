@@ -143,35 +143,14 @@ nnoremap <leader>ws <nop>
 nnoremap <leader>w <c-w>
 nnoremap <c-w> <nop>
 
-" cycle argument files
-nnoremap [a :prev<cr>
-nnoremap ]a :next<cr>
-nnoremap [A :first<cr>
-nnoremap ]A :last<cr>
-
-" cycle buffers
-nnoremap [b :bprev<cr>
-nnoremap ]b :bnext<cr>
-nnoremap [B :bfirst<cr>
-nnoremap ]B :blast<cr>
-
-" cycle location list
-nnoremap [l :lprev<cr>
-nnoremap ]l :lnext<cr>
-nnoremap [L :lfirst<cr>
-nnoremap ]L :llast<cr>
-
-" cycle quickfix list
-nnoremap [q :cprev<cr>
-nnoremap ]q :cnext<cr>
-nnoremap [Q :cfirst<cr>
-nnoremap ]Q :clast<cr>
-
-" cycle taglist
-nnoremap [t :tprev<cr>
-nnoremap ]t :tnext<cr>
-nnoremap [T :tfirst<cr>
-nnoremap ]T :tlast<cr>
+" handy bracket mappings
+let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
+for [key, value] in items(s:pairs)
+  execute 'nnoremap <silent> [' . key . ' :' . value . 'prev<cr>'
+  execute 'nnoremap <silent> ]' . key . ' :' . value . 'next<cr>'
+  execute 'nnoremap <silent> [' . toupper(key) . ' :' . value . 'first<cr>'
+  execute 'nnoremap <silent> ]' . toupper(key) . ' :' . value . 'last<cr>'
+endfor
 
 " toggle
 nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
@@ -199,7 +178,6 @@ if exists('$TMUX')
     silent! execute "wincmd " . a:wincmd
     if previous_winnr == winnr()
       call system("tmux select-pane -" . a:tmuxdir)
-      redraw!
     endif
   endfunction
 
@@ -207,36 +185,31 @@ if exists('$TMUX')
   let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
   let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-  tnoremap <silent> <c-h> <c-\><c-n>:call TmuxOrSplitSwitch('h', 'L')<cr>
-  tnoremap <silent> <c-j> <c-\><c-n>:call TmuxOrSplitSwitch('j', 'D')<cr>
-  tnoremap <silent> <c-k> <c-\><c-n>:call TmuxOrSplitSwitch('k', 'U')<cr>
-  tnoremap <silent> <c-l> <c-\><c-n>:call TmuxOrSplitSwitch('l', 'R')<cr>
+  let s:directions = { 'h':'L', 'j':'D', 'k':'U', 'l':'R' }
+  for [key, value] in items(s:directions)
+    execute "nnoremap <silent> <c-".key."> :call TmuxOrSplitSwitch('".key."','".value."')<cr>"
+    execute "tnoremap <silent> <c-".key."> <c-\\><c-n>:call TmuxOrSplitSwitch('".key."','".value."')<cr>"
+  endfor
 else
-  nnoremap <c-h> <c-w>h
-  nnoremap <c-j> <c-w>j
-  nnoremap <c-k> <c-w>k
-  nnoremap <c-l> <c-w>l
-  tnoremap <c-h> <c-\><c-n><c-w>h
-  tnoremap <c-j> <c-\><c-n><c-w>j
-  tnoremap <c-k> <c-\><c-n><c-w>k
-  tnoremap <c-l> <c-\><c-n><c-w>l
+  let s:directions = [ 'h', 'j', 'k', 'l']
+  for item in s:directions
+    execute 'nnoremap <silent> <c-'.item.'> <c-w>'.item
+    execute 'tnoremap <silent> <c-'.item.'> <c-\><c-n><c-w>'.item
+  endfor
 endif
+tnoremap <esc> <c-\><c-n>
 
 " disable arrow keys
-noremap <up>    <nop>
-noremap <down>  <nop>
-noremap <left>  <nop>
-noremap <right> <nop>
+noremap  <up>    <nop>
+noremap  <down>  <nop>
+noremap  <left>  <nop>
+noremap  <right> <nop>
 inoremap <up>    <nop>
 inoremap <down>  <nop>
 inoremap <left>  <nop>
 inoremap <right> <nop>
 
-" ---- text objects --------------------
+" ---- Text Objects --------------------
 
 let s:separators = exists('g:loaded_targets') ? [ '`', '%']
       \ : [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
@@ -275,7 +248,7 @@ set statusline=
       \%<\ C%v%3(%)L%l/%L%2(%)
       \%6(%p%%\ %)
 
-" ------Tabline-------------------------
+" ---- Tabline -------------------------
 
 function! MyTabLine()
   let s = ''
