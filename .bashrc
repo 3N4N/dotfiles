@@ -32,11 +32,6 @@ bind '"\C-n": history-search-forward'
 
 ## Personal customization
 
-# add ~/Executables/bin to path
-executables="~/Executables/bin"
-[ -d "$executables" ] && [[ ":$PATH:" != *$executables* ]] && \
-export PATH=$executables:${PATH}
-
 # FZF settings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--height 100%'

@@ -39,11 +39,6 @@ bindkey '^N' down-line-or-beginning-search
 
 ## personal customization
 
-# add ~/Executables/bin to path
-executables="~/Executables/bin"
-[ -d "$executables" ] && [[ ":$PATH:" != *$executables* ]] && \
-export PATH=$executables:${PATH}
-
 # FZF settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 100% '
