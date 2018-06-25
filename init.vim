@@ -145,11 +145,11 @@ nnoremap <c-w> <nop>
 
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
-for [key, value] in items(s:pairs)
-  execute 'nnoremap <silent> [' . key . ' :' . value . 'prev<cr>'
-  execute 'nnoremap <silent> ]' . key . ' :' . value . 'next<cr>'
-  execute 'nnoremap <silent> [' . toupper(key) . ' :' . value . 'first<cr>'
-  execute 'nnoremap <silent> ]' . toupper(key) . ' :' . value . 'last<cr>'
+for [s:key, s:value] in items(s:pairs)
+  execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<cr>'
+  execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<cr>'
+  execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<cr>'
+  execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<cr>'
 endfor
 
 " toggle
@@ -185,17 +185,23 @@ if exists('$TMUX')
   let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
   let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  let s:directions = { 'h':'L', 'j':'D', 'k':'U', 'l':'R' }
-  for [key, value] in items(s:directions)
-    execute "nnoremap <silent> <c-".key."> :call TmuxOrSplitSwitch('".key."','".value."')<cr>"
-    execute "tnoremap <silent> <c-".key."> <c-\\><c-n>:call TmuxOrSplitSwitch('".key."','".value."')<cr>"
-  endfor
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+  tnoremap <silent> <c-h> <c-\><c-n>:call TmuxOrSplitSwitch('h', 'L')<cr>
+  tnoremap <silent> <c-j> <c-\><c-n>:call TmuxOrSplitSwitch('j', 'D')<cr>
+  tnoremap <silent> <c-k> <c-\><c-n>:call TmuxOrSplitSwitch('k', 'U')<cr>
+  tnoremap <silent> <c-l> <c-\><c-n>:call TmuxOrSplitSwitch('l', 'R')<cr>
 else
-  let s:directions = [ 'h', 'j', 'k', 'l']
-  for item in s:directions
-    execute 'nnoremap <silent> <c-'.item.'> <c-w>'.item
-    execute 'tnoremap <silent> <c-'.item.'> <c-\><c-n><c-w>'.item
-  endfor
+  nnoremap <c-h> <c-w>h
+  nnoremap <c-j> <c-w>j
+  nnoremap <c-k> <c-w>k
+  nnoremap <c-l> <c-w>l
+  tnoremap <c-h> <c-\><c-n><c-w>h
+  tnoremap <c-j> <c-\><c-n><c-w>j
+  tnoremap <c-k> <c-\><c-n><c-w>k
+  tnoremap <c-l> <c-\><c-n><c-w>l
 endif
 tnoremap <esc> <c-\><c-n>
 
@@ -213,11 +219,11 @@ inoremap <right> <nop>
 
 let s:separators = exists('g:loaded_targets') ? [ '`', '%']
       \ : [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
-for char in s:separators
-  execute 'xnoremap i' . char . ' :<c-u>normal! T' . char . 'vt' . char . '<cr>'
-  execute 'onoremap i' . char . ' :normal vi' . char . '<cr>'
-  execute 'xnoremap a' . char . ' :<c-u>normal! F' . char . 'vf' . char . '<cr>'
-  execute 'onoremap a' . char . ' :normal va' . char . '<cr>'
+for s:char in s:separators
+  execute 'xnoremap i'.s:char.' :<c-u>normal! T'.s:char.'vt'.s:char.'<cr>'
+  execute 'onoremap i'.s:char.' :normal vi'.s:char.'<cr>'
+  execute 'xnoremap a'.s:char.' :<c-u>normal! F'.s:char.'vf'.s:char.'<cr>'
+  execute 'onoremap a'.s:char.' :normal va'.s:char.'<cr>'
 endfor
 
 " ---- Search --------------------------
@@ -234,7 +240,7 @@ endif
 
 syntax on
 set termguicolors
-colo fault
+colorscheme fault
 let g:lisp_rainbow = 1
 
 " ---- Statusline ----------------------
