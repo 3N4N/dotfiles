@@ -22,8 +22,9 @@ PROMPT_DIRTRIM=4 # truncate long paths to ".../foo/bar/baz"
 shopt -s checkwinsize # update $LINES and $COLUMNS after each command.
 shopt -s globstar &> /dev/null # (bash 4+) enable recursive glob
 
-bind 'set show-all-if-ambiguous on'
+bind 'set show-all-if-unmodified'
 bind 'set completion-ignore-case on'
+bind 'set mark-symlinked-directories on'
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
