@@ -6,6 +6,7 @@
 #
 
 
+
 ## bash specific settings
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
@@ -14,48 +15,68 @@ HISTSIZE=20000
 HISTFILESIZE=20000
 HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd'
 HISTTIMEFORMAT='%F %T '
-shopt -s histappend
-shopt -s cmdhist # store one command per line in history
-PROMPT_COMMAND='history -a' # append history file after each command
-PROMPT_DIRTRIM=4 # truncate long paths to ".../foo/bar/baz"
+shopt -s histappend             # don't overwrite previous history
+shopt -s cmdhist                # store one command per line in history
+PROMPT_COMMAND='history -a'     # append history file after each command
+PROMPT_DIRTRIM=4                # truncate long paths to ".../foo/bar/baz"
 
-shopt -s checkwinsize # update $LINES and $COLUMNS after each command.
-shopt -s globstar &> /dev/null # (bash 4+) enable recursive glob
+shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
+shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
 
 bind 'set show-all-if-unmodified'
 bind 'set completion-ignore-case on'
 bind 'set mark-symlinked-directories on'
 
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+# bind c-p and c-n keys for history navigation
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
-
-## Personal customization
 
 # FZF settings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--height 100%'
 
-# aliases
-alias ls='ls -CF --color=none'
-alias ll='ls -AlF'
-alias la='ls -AF'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias ag='ag --color-match "31;40"'
-alias tree='tree -F'
-alias refresh='source ~/.bashrc'
-alias screenfetch='screenfetch -t'
-alias i3lock='sh ~/projects/dotFiles/lock.sh'
-alias emacs='emacs -nw'
-alias vi='nvim'
-alias py2=python2
-alias py3=python3
-alias t='sh ~/projects/dotFiles/tmux.sh'
+
+
+## aliases
+
+# useful ls aliases
+alias ls="ls -hF1 --group-directories-first"
+alias la="ls -A"
+alias lh="la -d .[^.]*"
+alias ld="la -d --indicator-style=none */ .[^.]*/"
+alias lsl="ls -l"
+alias lal="la -l"
+alias lhl="lh -l"
+alias ldl="ld -l"
+
+# show colors in grep and ag
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias ag="ag --color-match \"31;40\""
+
+# shorthand for python executables
+alias py2="python2"
+alias py3="python3"
+
+# miscellaneous
+alias tree="tree -F"                          # append indicators after filename
+alias reload="source ~/.bashrc"               # reload bashrc
+alias screenfetch="screenfetch -t"            # wrap output of screenfetch
+alias i3lock="sh ~/projects/dotFiles/lock.sh" # use custom script to lock screen
+alias emacs="emacs -nw"                       # use terminal emacs in terminal
+alias vi="nvim"                               # old habits die hard
+alias t="sh ~/projects/dotFiles/tmux.sh"      # run tmux start script
+alias ip="curl icanhazip.com"                 # get public ip address
+alias weather="curl wttr.in/dhaka"            # get weather report
+
+# elaborate digital clock
 alias now="echo -n 'date: '; echo $(date "+%A, %B %d");\
   echo -n 'time: '; echo $(date "+%H:%M")"
 
-# bash prompt
-PS1='\[\033[00;34m\]\u\[\033[00m\]@\[\033[00;34m\]\h\[\033[00m\]:\[\033[00;33m\]\w\[\033[00m\]\n\$ '
+
+
+## bash prompt
+
+PS1='\[\033[00;34m\]\u\[\033[00m\]@\[\033[00;34m\]\h\[\033[00m\]:\
+\[\033[00;33m\]\w\[\033[00m\]\n\$ '
