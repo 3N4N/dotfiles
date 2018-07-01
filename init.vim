@@ -35,15 +35,18 @@ set splitright            " always split right
 set synmaxcol=200         " don't highlight after 200 columns
 set updatetime=250        " update after each 0.25s
 set virtualedit=block     " select empty spaces in visual-block mode
+set cpo-=aA               " :read and :write <file> shouldn't set #
+set backspace=indent,eol,start
 
 " show useful visual icons
 set list
-set listchars=tab:▸\ ,trail:▫,nbsp:_,extends:»,precedes:«
+set listchars=tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
 
 " wrap lines visually
-set nowrap
-set linebreak
-set showbreak=↳
+set nowrap                " don't wrap long lines
+set breakindent           " continue wrapped lines visually indented
+set linebreak             " break at 'breakat' rather than last character
+set showbreak=↪           " show ↪ before wrapped lines
 
 " keymap timeout settings
 set notimeout
@@ -68,12 +71,24 @@ let g:clipboard = {
 " ---- Indentation ---------------------
 
 set cinoptions=g0,l1,i0
-set smarttab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
+
+" ---- Tab settings --------------------
+
+set tabstop=2         " number of spaces that a <Tab> in the file counts for
+set softtabstop=2     " number of spaces a <Tab> accounts for while editing
+set shiftwidth=2      " number of spaces to use for each step of (auto)indent
+set smarttab          " use 'shiftwidth' when press <Tab> in front of a line
+set shiftround        " round indent to multiple of 'shiftwidth'
+set expandtab         " use spaces instead of tabs
+
+command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
+      \ . <args> . " softtabstop=" . <args> . " expandtab" |
+      \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
+      \ . " -> ".(&expandtab ? "spaces" : "tabs")
+command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth="
+      \ . <args> . " softtabstop=" . <args> . " noexpandtab" |
+      \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
+      \ . " -> ".(&expandtab ? "spaces" : "tabs")
 
 " ---- Autocommand ---------------------
 
@@ -116,6 +131,12 @@ nnoremap U <C-r>
 
 " goto buffer
 nnoremap gb :ls<CR>:b<Space>
+
+" visually select inner line
+xnoremap il g_o^
+
+" visually select whole buffer
+xnoremap aa VGo1G
 
 " strip trailing whitespaces
 nnoremap <silent> gs :let _w=winsaveview() <Bar>
