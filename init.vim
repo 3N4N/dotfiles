@@ -116,6 +116,21 @@ augroup custom_term
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
+augroup gitcommit
+  autocmd!
+  autocmd FileType gitcommit setlocal colorcolumn=72
+  autocmd FileType gitcommit setlocal spell
+augroup END
+
+augroup quickfix
+  autocmd!
+  autocmd FileType qf setlocal number norelativenumber colorcolumn=0
+  autocmd BufWinEnter quickfix setlocal statusline=%t
+        \\ %{exists('w:quickfix_title')?w:quickfix_title:''}%=%l/%L
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+
 " ---- Wildmenu ------------------------
 
 set wildmenu
