@@ -100,28 +100,31 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 let mapleader = "\<Space>"
 
 " reload vimrc
-nnoremap <silent> <leader>r :so $MYVIMRC<cr>
+nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
+
+" take a break
+inoremap <C-u> <C-g>u<C-u>
 
 " escape with double tapping j in insert mode
-inoremap jj <esc>
+inoremap jj <Esc>
 
 " sensible yank til last character
 nnoremap Y y$
 
 " undo with <S-u>
-nnoremap U <c-r>
+nnoremap U <C-r>
 
 " goto buffer
-nnoremap gb :ls<cr>:b<space>
+nnoremap gb :ls<CR>:b<Space>
 
 " strip trailing whitespaces
-nnoremap <silent> gs :let _w=winsaveview() <bar>
-      \:let _s=@/ <bar>
-      \:%s/\s\+$//e <bar>
-      \:let @/=_s<bar>
-      \:unlet _s <bar>
-      \:call winrestview(_w) <bar>
-      \:unlet _w <cr>
+nnoremap <silent> gs :let _w=winsaveview() <Bar>
+      \:let _s=@/ <Bar>
+      \:%s/\s\+$//e <Bar>
+      \:let @/=_s<Bar>
+      \:unlet _s <Bar>
+      \:call winrestview(_w) <Bar>
+      \:unlet _w <CR>
 
 " don't move cursor while joining lines
 nnoremap J m0J`0
@@ -130,46 +133,41 @@ nnoremap J m0J`0
 nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
-" very magic mode
-nnoremap / /\v
-xnoremap / /\v
-nnoremap ? ?\v
-
 " better window management
-nnoremap <leader>wt :tab split<cr>
-nnoremap <leader>wa :b#<cr>
-nnoremap <leader>wb <c-w>s
-nnoremap <leader>ws <nop>
-nnoremap <leader>w <c-w>
-nnoremap <c-w> <nop>
+nnoremap <Leader>wt :tab split<CR>
+nnoremap <Leader>wa :b#<CR>
+nnoremap <Leader>wb <C-w>s
+nnoremap <Leader>ws <Nop>
+nnoremap <Leader>w <C-w>
+nnoremap <C-w> <Nop>
 
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
 for [s:key, s:value] in items(s:pairs)
-  execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<cr>'
-  execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<cr>'
-  execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<cr>'
-  execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<cr>'
+  execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
+  execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
+  execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
+  execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
 endfor
 
 " toggle
-nnoremap <silent> <leader>th :set hlsearch!<bar>set hlsearch?<cr>
-nnoremap <silent> <leader>tp :set paste!<bar>set paste?<cr>
-nnoremap <silent> <leader>ts :setlocal spell!<bar>setlocal spell?<cr>
-nnoremap <silent> <leader>tw :set wrap!<bar>set wrap?<cr>
-nnoremap <silent> <leader>tm :let &mouse=(&mouse==#""?"a":"")<bar>
-      \echo "mouse ".(&mouse==#""?"off":"on")<cr>
+nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
+nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
+nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
+nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
+nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
+      \echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
 " git
-nnoremap <silent> <leader>gs :Gstatus<cr>
-nnoremap <silent> <leader>gc :Gcommit<cr>
-nnoremap <silent> <leader>gd :Gdiff<cr>
-nnoremap <silent> <leader>gw :Gwrite<cr>
-nnoremap <silent> <leader>gr :Gread<cr>
-nnoremap <silent> <leader>gb :Gblame<cr>
-nnoremap <silent> <leader>hs :GitGutterStageHunk<cr>
-nnoremap <silent> <leader>hu :GitGutterUndoHunk<cr>
-nnoremap <silent> <leader>hp :GitGutterPreviewHunk<cr>
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gc :Gcommit<CR>
+nnoremap <silent> <Leader>gd :Gdiff<CR>
+nnoremap <silent> <Leader>gw :Gwrite<CR>
+nnoremap <silent> <Leader>gr :Gread<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>hs :GitGutterStageHunk<CR>
+nnoremap <silent> <Leader>hu :GitGutterUndoHunk<CR>
+nnoremap <silent> <Leader>hp :GitGutterPreviewHunk<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
@@ -181,49 +179,44 @@ if exists('$TMUX')
     endif
   endfunction
 
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let previous_title = substitute(system("tmux display-message -p
+        \ '#{pane_title}'"), '\n', '', '')
   let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
   let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-  tnoremap <silent> <c-h> <c-\><c-n>:call TmuxOrSplitSwitch('h', 'L')<cr>
-  tnoremap <silent> <c-j> <c-\><c-n>:call TmuxOrSplitSwitch('j', 'D')<cr>
-  tnoremap <silent> <c-k> <c-\><c-n>:call TmuxOrSplitSwitch('k', 'U')<cr>
-  tnoremap <silent> <c-l> <c-\><c-n>:call TmuxOrSplitSwitch('l', 'R')<cr>
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
+  tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
+  tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
+  tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
+  tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
 else
-  nnoremap <c-h> <c-w>h
-  nnoremap <c-j> <c-w>j
-  nnoremap <c-k> <c-w>k
-  nnoremap <c-l> <c-w>l
-  tnoremap <c-h> <c-\><c-n><c-w>h
-  tnoremap <c-j> <c-\><c-n><c-w>j
-  tnoremap <c-k> <c-\><c-n><c-w>k
-  tnoremap <c-l> <c-\><c-n><c-w>l
+  nnoremap <C-h> <C-w>h
+  nnoremap <C-j> <C-w>j
+  nnoremap <C-k> <C-w>k
+  nnoremap <C-l> <C-w>l
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
 endif
-tnoremap <esc> <c-\><c-n>
+tnoremap <Esc> <C-\><C-n>
 
 " disable arrow keys
-noremap  <up>    <nop>
-noremap  <down>  <nop>
-noremap  <left>  <nop>
-noremap  <right> <nop>
-inoremap <up>    <nop>
-inoremap <down>  <nop>
-inoremap <left>  <nop>
-inoremap <right> <nop>
+noremap  <Up>    <Nop>
+noremap  <Down>  <Nop>
+noremap  <Left>  <Nop>
+noremap  <Right> <Nop>
 
 " ---- Text Objects --------------------
 
-let s:separators = exists('g:loaded_targets') ? [ '`', '%']
-      \ : [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
-for s:char in s:separators
-  execute 'xnoremap i'.s:char.' :<c-u>normal! T'.s:char.'vt'.s:char.'<cr>'
-  execute 'onoremap i'.s:char.' :normal vi'.s:char.'<cr>'
-  execute 'xnoremap a'.s:char.' :<c-u>normal! F'.s:char.'vf'.s:char.'<cr>'
-  execute 'onoremap a'.s:char.' :normal va'.s:char.'<cr>'
+for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
+  execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
+  execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
+  execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
+  execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
 endfor
 
 " ---- Search --------------------------
@@ -247,12 +240,10 @@ let g:lisp_rainbow = 1
 
 set laststatus=2
 set statusline=
-      \\ %{&filetype!=#''?&filetype:'none'}
+      \%{&filetype!=#''?&filetype:'none'}
       \\ %{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
       \\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-      \%=
-      \%<\ C%v%3(%)L%l/%L%2(%)
-      \%6(%p%%\ %)
+      \%=%<\ %-14(%l,%v%)\ %4(%p%%%)
 
 " ---- Tabline -------------------------
 
@@ -291,9 +282,9 @@ let g:netrw_cursor=0
 
 " ---- Ultisnips -----------------------
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-f>"
+let g:UltiSnipsJumpBackwardTrigger="<C-j>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
