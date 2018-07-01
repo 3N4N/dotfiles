@@ -90,6 +90,25 @@ command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth="
       \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
       \ . " -> ".(&expandtab ? "spaces" : "tabs")
 
+" ---- Functions -----------------------
+
+" redirect the output of a Vim or external command into a scratch buffer
+function! Redir(cmd)
+  if a:cmd =~ '^!'
+    execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
+  else
+    redir => output
+    execute a:cmd
+    redir END
+  endif
+  tabnew
+  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+  call setline(1, split(output, "\n"))
+  put! = a:cmd
+  put = '----'
+endfunction
+command! -nargs=1 Redir silent call Redir(<f-args>)
+
 " ---- Autocommand ---------------------
 
 augroup custom_term
@@ -139,13 +158,15 @@ xnoremap il g_o^
 xnoremap aa VGo1G
 
 " strip trailing whitespaces
-nnoremap <silent> gs :let _w=winsaveview() <Bar>
-      \:let _s=@/ <Bar>
-      \:%s/\s\+$//e <Bar>
-      \:let @/=_s<Bar>
-      \:unlet _s <Bar>
-      \:call winrestview(_w) <Bar>
-      \:unlet _w <CR>
+nnoremap <silent> gs :StripTrailingWhiteSpaces<CR>
+command! -nargs=0 StripTrailingWhiteSpaces
+      \ let _w=winsaveview() <Bar>
+      \ let _s=@/ |
+      \ %s/\s\+$//e |
+      \ let @/=_s|
+      \ unlet _s |
+      \ call winrestview(_w) |
+      \ unlet _w
 
 " don't move cursor while joining lines
 nnoremap J m0J`0
