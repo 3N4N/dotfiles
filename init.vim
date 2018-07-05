@@ -320,8 +320,7 @@ function! MyTabLine()
     let s .= '%' . tabnr . 'T'
     let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
     let s .= ' ' . tabnr
-    let s .= empty(bufname) ? ' [No Name]' : ' ' . bufname
-    let s .= ' '
+    let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
   endfor
   let s .= '%#TabLineFill#'
   return s
@@ -345,8 +344,8 @@ let g:netrw_cursor=0
 " ---- Ultisnips -----------------------
 
 let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-f>"
-let g:UltiSnipsJumpBackwardTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsJumpBackwardTrigger="<C-h>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
