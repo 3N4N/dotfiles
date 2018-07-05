@@ -166,12 +166,6 @@ nnoremap U <C-r>
 " goto buffer
 nnoremap gb :ls<CR>:b<Space>
 
-" visually select inner line
-xnoremap il g_o^
-
-" visually select whole buffer
-xnoremap aa VGo1G
-
 " strip trailing whitespaces
 nnoremap <silent> gs :StripTrailingWhiteSpaces<CR>
 command! -nargs=0 StripTrailingWhiteSpaces
@@ -269,12 +263,23 @@ noremap  <Right> <Nop>
 
 " ---- Text Objects --------------------
 
+" simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
   execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
   execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
   execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
   execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
 endfor
+
+" line text-objects
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o0
+onoremap al :normal val<CR>
+
+" buffer text-objects
+xnoremap aa GoggV
+onoremap aa :normal vaa<CR>
 
 " ---- Search --------------------------
 
