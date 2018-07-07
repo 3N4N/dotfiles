@@ -41,42 +41,48 @@ export FZF_DEFAULT_OPTS='--height 100% '
 zstyle ':completion:*' list-colors
 
 
+
 ## aliases
 
 # useful ls aliases
-alias ls="ls -hF1 --group-directories-first"
-alias la="ls -A"
-alias lh="la -d .[^.]*"
-alias ld="la -d --indicator-style=none */ .[^.]*/"
-alias lsl="ls -l"
-alias lal="la -l"
-alias lhl="lh -l"
-alias ldl="ld -l"
+alias ls='ls -hF1 --group-directories-first'
+alias la='ls -A'
+alias lh='la -d .[^.]*'
+alias ld='la -d --indicator-style=none */ .[^.]*/'
+alias lsl='ls -l --time-style=+'
+alias lal='la -l --time-style=+'
+alias lhl='lh -l --time-style=+'
+alias ldl='ld -l --time-style=+'
 
 # show colors in grep and ag
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias ag="ag --color-match \"31;40\""
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias ag='ag --color-match "31;40"'
 
 # shorthand for python executables
-alias py2="python2"
-alias py3="python3"
+alias py2='python2'
+alias py3='python3'
 
 # miscellaneous
-alias tree="tree -F"                          # append indicators after filename
-alias reload="source ~/.zshrc"                # reload.zshrc
-alias screenfetch="screenfetch -t"            # wrap output of screenfetch
-alias i3lock="sh ~/projects/dotFiles/lock.sh" # use custom script to lock screen
-alias emacs="emacs -nw"                       # use terminal emacs in terminal
-alias vi="nvim"                               # old habits die hard
-alias t="sh ~/projects/dotFiles/tmux.sh"      # run tmux start script
-alias ip="curl icanhazip.com"                 # get public ip address
-alias weather="curl wttr.in/dhaka"            # get weather report
+alias tree='tree -nF --dirsfirst'             # append indicators after filename
+alias reload='source ~/.bashrc'               # reload bashrc
+alias screenfetch='screenfetch -t'            # wrap output of screenfetch
+alias i3lock='sh ~/projects/dotFiles/lock.sh' # use custom script to lock screen
+alias emacs='emacs -nw'                       # use terminal emacs in terminal
+alias vi='nvim'                               # old habits die hard
+alias vimdiff='nvim -d'                       # used in .gitconfig
+alias t='sh ~/projects/dotFiles/tmux.sh'      # run tmux start script
+alias ip='curl icanhazip.com'                 # get public ip address
+alias weather='curl wttr.in/dhaka'            # get weather report
 
 # elaborate digital clock
-alias now="echo -n 'date: '; echo $(date "+%A, %B %d");\
-  echo -n 'time: '; echo $(date "+%H:%M")"
+now() {
+  echo -n 'date: '
+  date "+%A, %B %d"
+  echo -n 'time: '
+  date "+%H:%M"
+}
 
 
 
