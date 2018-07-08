@@ -6,6 +6,7 @@ VIMDIR=$HOME/.config/nvim
 I3DIR=$HOME/.config/i3
 RANGERDIR=$HOME/.config/ranger
 CMUSDIR=$HOME/.cmus
+FONTDIR=$HOME/.fonts
 
 mkdir -p $VIMDIR
 rm $VIMDIR/init.vim
@@ -34,3 +35,8 @@ ln -s $DIR/.zshrc $DIR/.bashrc $DIR/.tmux.conf $DIR/.gitconfig $HOME/
 mkdir -p $CMUSDIR
 rm -rf $CMUSDIR/cmus.theme
 ln -s $DIR/cmus.theme $CMUSDIR/cmus.theme
+
+mkdir -p $FONTDIR
+rm $FONTDIR/* -rf
+cp fonts/*.ttf fonts/*.otf $HOME/.fonts
+fc-cache -f
