@@ -90,59 +90,6 @@ command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth="
       \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
       \ . " -> ".(&expandtab ? "spaces" : "tabs")
 
-" ---- Functions -----------------------
-
-" redirect the output of a Vim or external command into a scratch buffer
-function! Redir(cmd)
-  if a:cmd =~ '^!'
-    execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
-  else
-    redir => output
-    execute a:cmd
-    redir END
-  endif
-  tabnew
-  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-  call setline(1, split(output, "\n"))
-  put! = a:cmd
-  put = '----'
-endfunction
-command! -nargs=1 Redir silent call Redir(<f-args>)
-
-" ---- Autocommand ---------------------
-
-augroup custom_term
-  autocmd!
-  autocmd TermOpen * setlocal nonumber norelativenumber
-augroup END
-
-augroup gitcommit
-  autocmd!
-  autocmd FileType gitcommit setlocal colorcolumn=72
-  autocmd FileType gitcommit setlocal spell
-augroup END
-
-augroup quickfix
-  autocmd!
-  autocmd FileType qf setlocal number norelativenumber colorcolumn=0
-  autocmd BufWinEnter quickfix setlocal statusline=%t
-        \\ %{exists('w:quickfix_title')?w:quickfix_title:''}%=%l/%L
-  autocmd QuickFixCmdPost [^l]* nested cwindow
-  autocmd QuickFixCmdPost    l* nested lwindow
-augroup END
-
-" ---- Wildmenu ------------------------
-
-set wildmenu
-set wildignorecase
-set wildmode=full
-set wildignore=*.o,*.obj,*~
-set wildignore+=*.swp,*.tmp
-set wildignore+=*.mp3,*.mp4,*mkv
-set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
-set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
-set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
-
 " ---- Key Mapping ---------------------
 
 " map leader
@@ -260,6 +207,59 @@ noremap  <Up>    <Nop>
 noremap  <Down>  <Nop>
 noremap  <Left>  <Nop>
 noremap  <Right> <Nop>
+
+" ---- Functions -----------------------
+
+" redirect the output of a Vim or external command into a scratch buffer
+function! Redir(cmd)
+  if a:cmd =~ '^!'
+    execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
+  else
+    redir => output
+    execute a:cmd
+    redir END
+  endif
+  tabnew
+  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+  call setline(1, split(output, "\n"))
+  put! = a:cmd
+  put = '----'
+endfunction
+command! -nargs=1 Redir silent call Redir(<f-args>)
+
+" ---- Autocommand ---------------------
+
+augroup custom_term
+  autocmd!
+  autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
+augroup gitcommit
+  autocmd!
+  autocmd FileType gitcommit setlocal colorcolumn=72
+  autocmd FileType gitcommit setlocal spell
+augroup END
+
+augroup quickfix
+  autocmd!
+  autocmd FileType qf setlocal number norelativenumber colorcolumn=0
+  autocmd BufWinEnter quickfix setlocal statusline=%t
+        \\ %{exists('w:quickfix_title')?w:quickfix_title:''}%=%l/%L
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+
+" ---- Wildmenu ------------------------
+
+set wildmenu
+set wildignorecase
+set wildmode=full
+set wildignore=*.o,*.obj,*~
+set wildignore+=*.swp,*.tmp
+set wildignore+=*.mp3,*.mp4,*mkv
+set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
+set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
+set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " ---- Text Objects --------------------
 
