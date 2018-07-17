@@ -1,13 +1,10 @@
-#    _               _
-#   | |__   __ _ ___| |__
-#   | '_ \ / _` / __| '_ \
-#   | |_) | (_| \__ \ | | |
-#   |_.__/ \__,_|___/_| |_|
-#
+#  _               _
+# | |__   __ _ ___| |__
+# | '_ \ / _` / __| '_ \
+# | |_) | (_| \__ \ | | |
+# |_.__/ \__,_|___/_| |_|
 
-
-
-## bash specific settings
+# -- bash specific settings ----------------------------------------------------
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
@@ -31,9 +28,7 @@ bind 'set mark-symlinked-directories on'
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
-
-
-## aliases
+# -- aliases -------------------------------------------------------------------
 
 # useful ls aliases
 alias ls='ls -hF1 --group-directories-first'
@@ -75,9 +70,7 @@ now() {
   date "+%H:%M"
 }
 
-
-
-## bash prompt
+# -- bash prompt ---------------------------------------------------------------
 
 PS1='\[\033[00;34m\]\u\[\033[00m\]@\[\033[00;34m\]\h\[\033[00m\]:\
 \[\033[00;33m\]\w\[\033[00m\]\n\$ '

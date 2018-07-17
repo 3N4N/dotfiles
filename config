@@ -6,7 +6,6 @@
 #                                |___/
 
 # set color variables
-set $transparent         #00000000
 set $indicator           #a4a8ad
 set $bg-color            #2f343f
 set $active-bg-color     #545c6d
@@ -15,7 +14,7 @@ set $focused-ws-color    #b8babc
 set $inactive-ws-color   #2f343f
 set $text-color          #b8babc
 
-# general settings
+# -- general settings ----------------------------------------------------------
 
 set $mod Mod4
 floating_modifier $mod
@@ -24,7 +23,7 @@ focus_follows_mouse no
 #gaps outer 10
 #gaps inner 8
 
-# key bindings
+# -- key bindings --------------------------------------------------------------
 
 # frequently used
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
@@ -112,7 +111,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# window colors
+# -- window colors -------------------------------------------------------------
 #                       border             background         text                   indicator
 client.focused          $active-bg-color   $active-bg-color   $text-color            $indicator
 client.unfocused        $bg-color          $bg-color          $text-color            $indicator
@@ -133,7 +132,7 @@ bar {
     }
 }
 
-# start programs at startup
+# -- startup programs ----------------------------------------------------------
 exec_always --no-startup-id feh --bg-scale $HOME/.local/share/backgrounds/batman_bat.png
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
@@ -155,8 +154,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q sset Master,0 1- un
 bindsym XF86AudioMute exec --no-startup-id "amixer -q sset Headphone,0 toggle"
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play

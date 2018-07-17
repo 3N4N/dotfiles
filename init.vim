@@ -1,11 +1,9 @@
-"             _
 "  _ ____   _(_)_ __ ___
 " | '_ \ \ / / | '_ ` _ \
 " | | | \ V /| | | | | | |
 " |_| |_|\_/ |_|_| |_| |_|
-"
 
-" ---- Vim Plug ------------------------
+" -- Vim Plug ------------------------------------------------------------------
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -22,7 +20,7 @@ Plug 'SirVer/ultisnips'
 
 call plug#end()
 
-" ---- General -------------------------
+" -- General -------------------------------------------------------------------
 
 set colorcolumn=81        " colorize a column to show long lines
 set conceallevel=0        " don't conceal anything
@@ -59,7 +57,7 @@ set notimeout
 set ttimeout
 set ttimeoutlen=50
 
-" ---- Clipboard -----------------------
+" -- Clipboard -----------------------------------------------------------------
 
 let g:clipboard = {
       \   'name': 'xclip-xfce4-clipman',
@@ -74,11 +72,11 @@ let g:clipboard = {
       \   'cache_enabled': 1,
       \ }
 
-" ---- Indentation ---------------------
+" -- Indentation ---------------------------------------------------------------
 
 set cinoptions=g0,l1,i0
 
-" ---- Tab settings --------------------
+" -- Tab settings --------------------------------------------------------------
 
 set tabstop=2         " number of spaces that a <Tab> in the file counts for
 set softtabstop=2     " number of spaces a <Tab> accounts for while editing
@@ -96,7 +94,7 @@ command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth="
       \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
       \ . " -> ".(&expandtab ? "spaces" : "tabs")
 
-" ---- Key Mapping ---------------------
+" -- Key Mapping ---------------------------------------------------------------
 
 " map leader
 let mapleader = "\<Space>"
@@ -160,7 +158,7 @@ nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
 nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
-      \echo "mouse ".(&mouse==#""?"off":"on")<CR>
+      \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
 " git
 nnoremap <silent> <Leader>gs :Gstatus<CR>
@@ -214,7 +212,7 @@ noremap  <Down>  <Nop>
 noremap  <Left>  <Nop>
 noremap  <Right> <Nop>
 
-" ---- Functions -----------------------
+" -- Functions -----------------------------------------------------------------
 
 " redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd)
@@ -233,7 +231,7 @@ function! Redir(cmd)
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
-" ---- Autocommand ---------------------
+" -- Autocommand ---------------------------------------------------------------
 
 augroup custom_term
   autocmd!
@@ -255,7 +253,7 @@ augroup quickfix
   autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
 
-" ---- Wildmenu ------------------------
+" -- Wildmenu ------------------------------------------------------------------
 
 set wildmenu
 set wildignorecase
@@ -267,7 +265,7 @@ set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
 set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
-" ---- Text Objects --------------------
+" -- Text Objects --------------------------------------------------------------
 
 " simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
@@ -287,7 +285,7 @@ onoremap al :normal val<CR>
 xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
-" ---- Search --------------------------
+" -- Search --------------------------------------------------------------------
 
 set ignorecase
 set smartcase
@@ -297,14 +295,14 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" ---- Colorscheme ---------------------
+" -- Colorscheme ---------------------------------------------------------------
 
 syntax on
 set termguicolors
 colorscheme fault
 let g:lisp_rainbow = 1
 
-" ---- Statusline ----------------------
+" -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
 set statusline=
@@ -313,7 +311,7 @@ set statusline=
       \\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
       \%=%<\ %-14(%l,%v%)\ %4(%p%%%)
 
-" ---- Tabline -------------------------
+" -- Tabline -------------------------------------------------------------------
 
 function! MyTabLine()
   let s = ''
@@ -334,7 +332,7 @@ endfunction
 set showtabline=1
 set tabline=%!MyTabLine()
 
-" ---- Netrw ---------------------------
+" -- Netrw ---------------------------------------------------------------------
 
 let g:netrw_altv=1
 let g:netrw_banner=0
@@ -347,7 +345,7 @@ let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_hide = 1
 let g:netrw_cursor=0
 
-" ---- Ultisnips -----------------------
+" -- Ultisnips -----------------------------------------------------------------
 
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-l>"
@@ -356,7 +354,7 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
 
-" ---- Gitgutter -----------------------
+" -- Gitgutter -----------------------------------------------------------------
 
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'
