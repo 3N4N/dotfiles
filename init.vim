@@ -15,7 +15,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'enanajmain/vim-fault'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 
 call plug#end()
@@ -32,7 +31,7 @@ set noswapfile            " don't use swap files
 set number relativenumber " show hybrid line numbers
 set shortmess=filmnxrtToO " shorten some messages
 set showmode              " show current mode at the bottom
-set signcolumn=yes        " always show sign column
+set signcolumn=auto       " show gutter only when there is a sign to display
 set spelllang=en_us       " set language for spell checking
 set splitbelow            " always split below
 set splitright            " always split right
@@ -167,9 +166,6 @@ nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gw :Gwrite<CR>
 nnoremap <silent> <Leader>gr :Gread<CR>
 nnoremap <silent> <Leader>gb :Gblame<CR>
-nnoremap <silent> <Leader>hs :GitGutterStageHunk<CR>
-nnoremap <silent> <Leader>hu :GitGutterUndoHunk<CR>
-nnoremap <silent> <Leader>hp :GitGutterPreviewHunk<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
@@ -353,11 +349,3 @@ let g:UltiSnipsJumpBackwardTrigger="<C-h>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
-
-" -- Gitgutter -----------------------------------------------------------------
-
-let g:gitgutter_sign_added='┃'
-let g:gitgutter_sign_modified='┃'
-let g:gitgutter_sign_removed='┃'
-let g:gitgutter_sign_removed_first_line='┃'
-let g:gitgutter_sign_modified_removed='┃'
