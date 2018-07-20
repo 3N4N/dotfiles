@@ -303,8 +303,9 @@ let g:lisp_rainbow = 1
 set laststatus=2
 set statusline=
       \%{&filetype!=#''?&filetype:'none'}
-      \\ %{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
-      \\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+      \\ \ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
+      \:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
+      \\ \ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
       \%=%<\ %-14(%l,%v%)\ %4(%p%%%)
 
 " -- Tabline -------------------------------------------------------------------
