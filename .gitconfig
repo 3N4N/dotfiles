@@ -20,16 +20,17 @@
 [push]
   default = current
 [alias]
-  ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset%ad | %s %C(green)%an%C(red)%d'
+  ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
   ll = log --stat --source -p
   b = branch
   ba = branch -avv
   br = branch -vv
   st = status -sb
   sh = stash
+  sa = stash save --include-untracked
   co = checkout
   cp = cherry-pick
   cl = clone
   ct = commit
-  diff = diff --word-diff
-  dc = diff --cached
+  dw = diff --word-diff
+  ds = diff --staged
