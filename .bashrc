@@ -19,6 +19,7 @@ PROMPT_DIRTRIM=4                # truncate long paths to ".../foo/bar/baz"
 
 shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
+shopt -s extglob                # enable extended globbing
 
 bind 'set show-all-if-unmodified'
 bind 'set completion-ignore-case on'
