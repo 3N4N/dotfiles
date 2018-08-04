@@ -6,6 +6,11 @@
 
 # -- bash specific settings ----------------------------------------------------
 
+# do not continue if we are not in a bash shell
+[ -z "$BASH_VERSION" ] && return
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
 HISTSIZE=20000

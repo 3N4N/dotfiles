@@ -27,8 +27,8 @@ ln -s $DIR/scripts $I3DIR
 rm -f $HOME/.config/compton.conf
 ln -s $DIR/compton.conf $HOME/.config
 
-rm -f $HOME/.zshrc $HOME/.bashrc $HOME/.tmux.conf $HOME/.gitconfig
-ln -s $DIR/.zshrc $DIR/.bashrc $DIR/.tmux.conf $DIR/.gitconfig $HOME/
+rm -f $HOME/.profile $HOME/.bash_profile $HOME/.bashrc $HOME/.tmux.conf $HOME/.gitconfig
+ln -s $DIR/.profile $DIR/.bash_profile $DIR/.bashrc $DIR/.tmux.conf $DIR/.gitconfig $HOME/
 
 mkdir -p $CMUSDIR
 rm -f $CMUSDIR/cmus.theme
