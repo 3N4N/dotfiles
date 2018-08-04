@@ -21,11 +21,12 @@ will be responsible if your system breaks.
   * xclip (for system clipboard integration in nvim)
   * i3wm or i3-gaps
   * i3blocks
+  * feh
   * compton
   * sysstat (for cpu\_usage script in i3blocks)
   * acpi (for battery script in i3blocks)
 
-### Install
+## Install
 
     rm -rf ~/projects/dotFiles
     git clone https://www.github.com/enanajmain/dotFiles ~/projects
