@@ -5,11 +5,13 @@
 #
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
+# edited by Enan Ajmain <3nan.ajmain@gmail.com>
+#
 # This script is meant to use with i3blocks. It parses the output of the "acpi"
 # command (often provided by a package of the same name) to read the status of
 # the battery, and eventually its remaining time (to full charge or discharge).
 #
-# The color will gradually change for a percentage below 85%, and the urgency
+# The color will quarterly change for a percentage below 75%, and the urgency
 # (exit code 33) is set if there is less that 5% remaining.
 
 use strict;
@@ -20,7 +22,6 @@ my $acpi;
 my $status;
 my $percent;
 my $full_text;
-my $short_text;
 my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
 
 # read the first line of the "acpi" command output
@@ -36,39 +37,57 @@ if ($acpi !~ /: (\w+), (\d+)%/) {
 $status = $1;
 $percent = $2;
 
-if ($status eq 'Discharging') {
-	$full_text = ' ';
-} elsif ($status eq 'Charging') {
-	$full_text = ' ';
+# add icons
+if ($status eq 'Charging') {
+  $full_text = ' ';
+} elsif ($status eq 'Discharging') {
+
+  if ($percent < 10) {
+    $full_text = ' ';
+  } elsif ($percent < 25) {
+    $full_text = ' ';
+  } elsif ($percent < 50) {
+    $full_text = ' ';
+  } elsif ($percent < 75) {
+    $full_text = ' ';
+  } else {
+    $full_text = ' ';
+  }
+
+} elsif ($status eq 'Unknown' || $status eq 'Full') {
+  $full_text = ' ';
 }
 
+# percentage of battery life
 $full_text .= "$percent%";
-$short_text = $full_text;
 
+# append remaining time
+# either until fully charged, if charging
+# or fully drained, if discharging
 if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= "($1)";
+  $full_text .= "($1)";
 }
 
-# print text
-print "$full_text\n";
-print "$short_text\n";
+# print text on the i3blocks
+# double newline is needed
+# otherwise next print statement is not evaluated
+# don't know why
+print "$full_text\n\n";
 
 # consider color and urgent flag only on discharge
 if ($status eq 'Discharging') {
 
-	if ($percent < 20) {
-		print "#FF0000\n";
-	} elsif ($percent < 40) {
-		print "#FFAE00\n";
-	} elsif ($percent < 60) {
-		print "#FFF600\n";
-	} elsif ($percent < 85) {
-		print "#A8FF00\n";
-	}
+  if ($percent < 10) {
+    print "#FF0000\n";
+  } elsif ($percent < 25) {
+    print "#FFAE00\n";
+  } elsif ($percent < 50) {
+    print "#FFF600\n";
+  }
 
-	if ($percent < 5) {
-		exit(33);
-	}
+  if ($percent < 5) {
+    exit(33);
+  }
 }
 
 exit(0);
