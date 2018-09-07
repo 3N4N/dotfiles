@@ -20,8 +20,11 @@ set $mod Mod4
 floating_modifier $mod
 font pango:Hack 9
 focus_follows_mouse no
-#gaps outer 10
-#gaps inner 8
+gaps outer 10
+gaps inner 8
+#new_window pixel 1
+default_border pixel 1
+default_floating_border normal
 
 # -- key bindings --------------------------------------------------------------
 
@@ -33,7 +36,7 @@ bindsym $mod+p exec --no-startup-id sh ~/projects/dotFiles/lock.sh
 # system commands
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # splitting
 bindsym $mod+v split h
@@ -70,7 +73,7 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 ""
+set $workspace10 "?"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -117,15 +120,16 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # -- window colors -------------------------------------------------------------
-#                       border             background         text                   indicator
-client.focused          $active-bg-color   $active-bg-color   $text-color            $indicator
-client.unfocused        $bg-color          $bg-color          $text-color            $indicator
-client.focused_inactive $bg-color          $bg-color          $text-color            $indicator
-client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color            $indicator
+
+#                       border            background        text         indicator
+client.focused          $active-bg-color  $active-bg-color  $text-color  $indicator
+client.unfocused        $bg-color         $bg-color         $text-color  $indicator
+client.focused_inactive $bg-color         $bg-color         $text-color  $indicator
+client.urgent           $urgent-bg-color  $urgent-bg-color  $text-color  $indicator
 
 bar {
     Position top
@@ -134,19 +138,17 @@ bar {
     colors {
         background $bg-color
         separator #757575
-        #                   border             background               text
-        focused_workspace   $bg-color          $focused-ws-color        $bg-color
-        inactive_workspace  $bg-color          $inactive-ws-color       $text-color
-        urgent_workspace    $bg-color          $urgent-bg-color         $text-color
+        #                   border      background           text
+        focused_workspace   $bg-color   $focused-ws-color    $bg-color
+        inactive_workspace  $bg-color   $inactive-ws-color   $text-color
+        urgent_workspace    $bg-color   $urgent-bg-color     $text-color
     }
 }
 
 # -- startup programs ----------------------------------------------------------
-exec_always --no-startup-id feh --bg-scale $HOME/.local/share/backgrounds/batman_bat.png
+
+exec_always --no-startup-id feh --bg-scale /home/enan/.local/share/backgrounds/polygon.jpg
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
-new_window pixel 1
-#default_border pixel 1
-#default_floating_border normal
