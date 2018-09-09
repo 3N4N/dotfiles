@@ -6,7 +6,6 @@
 #                                |___/
 
 # set color variables
-set $indicator           #a4a8ad
 set $bg-color            #2f343f
 set $active-bg-color     #545c6d
 set $urgent-bg-color     #E53935
@@ -20,8 +19,8 @@ set $mod Mod4
 floating_modifier $mod
 font pango:Hack 9
 focus_follows_mouse no
-gaps outer 10
-gaps inner 8
+gaps outer 5
+gaps inner 5
 #new_window pixel 1
 default_border pixel 1
 default_floating_border normal
@@ -30,7 +29,7 @@ default_floating_border normal
 
 # frequently used
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+d exec --no-startup-id dmenu_run -b
+bindsym $mod+d exec --no-startup-id dmenu_run -b -i -nb '#2f343f' -sb '#b8babc' -sf '#000000' -p ''
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id sh ~/projects/dotFiles/lock.sh
 # system commands
@@ -126,10 +125,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 # -- window colors -------------------------------------------------------------
 
 #                       border            background        text         indicator
-client.focused          $active-bg-color  $active-bg-color  $text-color  $indicator
-client.unfocused        $bg-color         $bg-color         $text-color  $indicator
-client.focused_inactive $bg-color         $bg-color         $text-color  $indicator
-client.urgent           $urgent-bg-color  $urgent-bg-color  $text-color  $indicator
+client.focused          $active-bg-color  $active-bg-color  $text-color  $active-bg-color
+client.unfocused        $bg-color         $bg-color         $text-color  $bg-color
+client.focused_inactive $bg-color         $bg-color         $text-color  $bg-color
+client.urgent           $urgent-bg-color  $urgent-bg-color  $text-color  $urgent-bg-color
 
 bar {
     Position top
