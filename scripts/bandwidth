@@ -7,12 +7,14 @@ else
   INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
 fi
 
+echo -n " "
+
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
 then
-    echo "$INTERFACE down"
-    echo "$INTERFACE down"
-    echo "#FF0000"
+    echo "down"
+    echo ""
+    echo "#f92302"
     exit 0
 fi
 
@@ -49,6 +51,9 @@ rx_diff=$(( $rx - ${old[1]} ))
 tx_diff=$(( $tx - ${old[2]} ))
 rx_rate=$(( $rx_diff / $time_diff ))
 tx_rate=$(( $tx_diff / $time_diff ))
+
+echo -n $INTERFACE
+echo -n " "
 
 # shift by 10 bytes to get KiB/s. If the value is larger than
 # 1024^2 = 1048576, then display MiB/s instead
