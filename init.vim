@@ -31,7 +31,7 @@ set noswapfile            " don't use swap files
 set number relativenumber " show hybrid line numbers
 set shortmess=filmnxrtToO " shorten some messages
 set showmode              " show current mode at the bottom
-set signcolumn=auto       " show gutter only when there is a sign to display
+set signcolumn=yes        " always show gutter column
 set spelllang=en_us       " set language for spell checking
 set splitbelow            " always split below
 set splitright            " always split right
