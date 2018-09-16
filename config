@@ -19,8 +19,8 @@ set $mod Mod4
 floating_modifier $mod
 font pango:Hack 9
 focus_follows_mouse no
-gaps outer 5
-gaps inner 5
+gaps outer 8
+gaps inner 8
 #new_window pixel 1
 default_border pixel 1
 default_floating_border normal
@@ -114,13 +114,13 @@ mode "resize" {
 }
 
 # Audio volume controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+12 i3blocks
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -RTMIN+12 i3blocks
 
 # -- window colors -------------------------------------------------------------
 
