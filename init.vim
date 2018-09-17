@@ -21,24 +21,24 @@ call plug#end()
 
 " -- General -------------------------------------------------------------------
 
-set colorcolumn=81        " colorize a column to show long lines
-set conceallevel=0        " don't conceal anything
-set fillchars=vert:│      " use unicode icon for vertical split
-set nocursorline          " cursorline slows down vim
-set nolazyredraw          " redraw screen
-set noruler               " ruler removes column position from ctrl-g
-set noswapfile            " don't use swap files
-set number relativenumber " show hybrid line numbers
-set shortmess=filmnxrtToO " shorten some messages
-set showmode              " show current mode at the bottom
-set signcolumn=yes        " always show gutter column
-set spelllang=en_us       " set language for spell checking
-set splitbelow            " always split below
-set splitright            " always split right
-set synmaxcol=200         " don't highlight after 200 columns
-set updatetime=250        " update after each 0.25s
-set virtualedit=block     " select empty spaces in visual-block mode
-set cpo-=aA               " :read and :write <file> shouldn't set #
+set colorcolumn=81            " colorize a column to show long lines
+set conceallevel=0            " don't conceal anything
+set fillchars=vert:│          " use unicode icon for vertical split
+set nocursorline              " cursorline slows down vim
+set nolazyredraw              " redraw screen
+set noruler                   " ruler removes column position from ctrl-g
+set noswapfile                " don't use swap files
+set nonumber relativenumber   " show relative line numbers
+set shortmess=filmnxrtToO     " shorten some messages
+set showmode                  " show current mode at the bottom
+set signcolumn=no             " never show gutter column
+set spelllang=en_us           " set language for spell checking
+set splitbelow                " always split below
+set splitright                " always split right
+set synmaxcol=200             " don't highlight after 200 columns
+set updatetime=250            " update after each 0.25s
+set virtualedit=block         " select empty spaces in visual-block mode
+set cpo-=aA                   " :read and :write <file> shouldn't set #
 set backspace=indent,eol,start
 
 " show useful visual icons

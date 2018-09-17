@@ -65,7 +65,7 @@ alias emacs='emacs -nw'                       # use terminal emacs in terminal
 alias vi='nvim'                               # old habits die hard
 alias vimdiff='nvim -d'                       # used in .gitconfig
 alias t='sh ~/projects/dotFiles/tmux.sh'      # run tmux start script
-alias weather='curl wttr.in/dhaka'            # get weather report
+alias weather='curl wttr.in/dhaka?0'          # get weather report
 
 # elaborate digital clock
 now() {
