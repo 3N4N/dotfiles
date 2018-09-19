@@ -77,9 +77,9 @@ set cinoptions=g0,l1,i0
 
 " -- Tab settings --------------------------------------------------------------
 
-set tabstop=2         " number of spaces that a <Tab> in the file counts for
-set softtabstop=2     " number of spaces a <Tab> accounts for while editing
-set shiftwidth=2      " number of spaces to use for each step of (auto)indent
+set tabstop=4         " number of spaces that a <Tab> in the file counts for
+set softtabstop=4     " number of spaces a <Tab> accounts for while editing
+set shiftwidth=4      " number of spaces to use for each step of (auto)indent
 set smarttab          " use 'shiftwidth' when press <Tab> in front of a line
 set shiftround        " round indent to multiple of 'shiftwidth'
 set expandtab         " use spaces instead of tabs
@@ -156,6 +156,7 @@ nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
 nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
 nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
+nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
       \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
@@ -288,7 +289,7 @@ set smartcase
 
 " use ag over grep
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
 endif
 
 " -- Colorscheme ---------------------------------------------------------------
@@ -345,8 +346,8 @@ let g:netrw_cursor=0
 " -- Ultisnips -----------------------------------------------------------------
 
 let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+let g:UltiSnipsJumpForwardTrigger="<C-f>"
+let g:UltiSnipsJumpBackwardTrigger="<C-j>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']

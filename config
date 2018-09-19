@@ -114,11 +114,11 @@ mode "resize" {
 }
 
 # Audio volume controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
-bindsym $mod+shift+n exec --no-startup-id amixer -q set Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym $mod+shift+b exec --no-startup-id amixer -q set Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym $mod+shift+n exec --no-startup-id amixer -q set Master 1%+ && pkill -RTMIN+10 i3blocks
+bindsym $mod+shift+b exec --no-startup-id amixer -q set Master 1%- && pkill -RTMIN+10 i3blocks
 bindsym $mod+shift+m exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
 
 # Sreen brightness controls
