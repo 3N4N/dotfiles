@@ -102,7 +102,8 @@ let mapleader = "\<Space>"
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
 " take a break
-inoremap <C-u> <C-g>u<C-u>
+" Uppercase word mapping.
+inoremap <C-u> <esc>m0gUiw`0a
 
 " escape with double tapping j in insert mode
 inoremap jj <Esc>
