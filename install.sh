@@ -38,7 +38,8 @@ rm -rf $HOME/.config/ranger
 ln -s $DIR/ranger $RANGERDIR
 
 rm -rf $FONTDIR
-ln -s $DIR/fonts $FONTDIR
+mkdir $FONTDIR
+cp -r $DIR/fonts/* $FONTDIR
 
 rm -rf $BACKGROUNDDIR
 ln -s $DIR/backgrounds $BACKGROUNDDIR
