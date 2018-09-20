@@ -12,7 +12,7 @@
   # improve performance (requires msysgit 1.9.4+)
   fscache = true
   # use colored less as pager
-  pager = less -FMR
+  pager = less -+$LESS -MR
   # use vim as editor
   editor = nvim
 [log]
