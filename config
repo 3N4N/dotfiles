@@ -7,11 +7,12 @@
 
 # set color variables
 set $bg-color            #2f343f
-set $active-bg-color     #545c6d
+set $active-bg-color     #ffffff
 set $urgent-bg-color     #E53935
 set $focused-ws-color    #b8babc
 set $inactive-ws-color   #2f343f
 set $text-color          #b8babc
+set $active-text         #2f343f
 
 # -- general settings ----------------------------------------------------------
 
@@ -22,7 +23,7 @@ focus_follows_mouse no
 gaps outer 8
 gaps inner 8
 #new_window pixel 1
-default_border pixel 1
+default_border pixel 3
 default_floating_border normal
 
 # -- key bindings --------------------------------------------------------------
@@ -128,7 +129,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -
 # -- window colors -------------------------------------------------------------
 
 #                       border            background        text         indicator
-client.focused          $active-bg-color  $active-bg-color  $text-color  $active-bg-color
+client.focused          $active-bg-color  $active-bg-color  $active-text $active-bg-color
 client.unfocused        $bg-color         $bg-color         $text-color  $bg-color
 client.focused_inactive $bg-color         $bg-color         $text-color  $bg-color
 client.urgent           $urgent-bg-color  $urgent-bg-color  $text-color  $urgent-bg-color
