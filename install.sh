@@ -17,12 +17,8 @@ mkdir -p $EMACSDIR
 rm -f $EMACSDIR/init.el
 ln -s $DIR/init.el $EMACSDIR
 
-mkdir -p $I3DIR
-rm -f $I3DIR/config $I3DIR/i3blocks.conf
-rm -rf $I3DIR/scripts
-ln -s $DIR/config $I3DIR
-ln -s $DIR/i3blocks.conf $I3DIR
-ln -s $DIR/scripts $I3DIR
+rm -rf $I3DIR
+ln -s  $DIR/i3 $I3DIR
 
 rm -f $HOME/.config/compton.conf
 ln -s $DIR/compton.conf $HOME/.config
