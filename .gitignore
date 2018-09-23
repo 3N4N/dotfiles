@@ -1,5 +1,7 @@
 Session.vim
 
+nvim/plugged/*
+
 ranger/bookmarks
 ranger/history
 ranger/tagged

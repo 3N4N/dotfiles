@@ -6,14 +6,15 @@
 " -- Vim Plug ------------------------------------------------------------------
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'enanajmain/vim-fault'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 
@@ -59,17 +60,17 @@ set ttimeoutlen=50
 " -- Clipboard -----------------------------------------------------------------
 
 let g:clipboard = {
-      \   'name': 'xclip-xfce4-clipman',
-      \   'copy': {
-      \      '+': 'xclip -selection clipboard',
-      \      '*': 'xclip -selection clipboard',
-      \    },
-      \   'paste': {
-      \      '+': 'xclip -selection clipboard -o',
-      \      '*': 'xclip -selection clipboard -o',
-      \   },
-      \   'cache_enabled': 1,
-      \ }
+            \   'name': 'xclip-xfce4-clipman',
+            \   'copy': {
+            \      '+': 'xclip -selection clipboard',
+            \      '*': 'xclip -selection clipboard',
+            \    },
+            \   'paste': {
+            \      '+': 'xclip -selection clipboard -o',
+            \      '*': 'xclip -selection clipboard -o',
+            \   },
+            \   'cache_enabled': 1,
+            \ }
 
 " -- Indentation ---------------------------------------------------------------
 
@@ -85,13 +86,13 @@ set shiftround        " round indent to multiple of 'shiftwidth'
 set expandtab         " use spaces instead of tabs
 
 command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
-      \ . <args> . " softtabstop=" . <args> . " expandtab" |
-      \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
-      \ . " -> ".(&expandtab ? "spaces" : "tabs")
+            \ . <args> . " softtabstop=" . <args> . " expandtab" |
+            \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
+            \ . " -> ".(&expandtab ? "spaces" : "tabs")
 command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth="
-      \ . <args> . " softtabstop=" . <args> . " noexpandtab" |
-      \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
-      \ . " -> ".(&expandtab ? "spaces" : "tabs")
+            \ . <args> . " softtabstop=" . <args> . " noexpandtab" |
+            \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
+            \ . " -> ".(&expandtab ? "spaces" : "tabs")
 
 " -- Key Mapping ---------------------------------------------------------------
 
@@ -101,7 +102,6 @@ let mapleader = "\<Space>"
 " reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
-" take a break
 " Uppercase word mapping.
 inoremap <C-u> <esc>m0gUiw`0a
 
@@ -114,19 +114,19 @@ nnoremap Y y$
 " undo with <S-u>
 nnoremap U <C-r>
 
-" goto buffer
-nnoremap gb :ls<CR>:b<Space>
-
 " strip trailing whitespaces
 nnoremap <silent> gs :StripTrailingWhiteSpaces<CR>
 command! -nargs=0 StripTrailingWhiteSpaces
-      \ let _w=winsaveview() <Bar>
-      \ let _s=@/ |
-      \ %s/\s\+$//e |
-      \ let @/=_s|
-      \ unlet _s |
-      \ call winrestview(_w) |
-      \ unlet _w
+            \ let _w=winsaveview() <Bar>
+            \ let _s=@/ |
+            \ %s/\s\+$//e |
+            \ let @/=_s|
+            \ unlet _s |
+            \ call winrestview(_w) |
+            \ unlet _w
+
+" turn off highlighting until next search
+nnoremap <Leader>h :nohlsearch<CR>
 
 " don't move cursor while joining lines
 nnoremap J m0J`0
@@ -146,10 +146,10 @@ nnoremap <C-w> <Nop>
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
 for [s:key, s:value] in items(s:pairs)
-  execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
-  execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
-  execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
-  execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
+    execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
+    execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
+    execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
+    execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
 endfor
 
 " toggle
@@ -159,7 +159,23 @@ nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
 nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
-      \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
+            \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
+
+" fzf
+nnoremap <silent> <Leader>fa :Ag<CR>
+nnoremap <silent> <Leader>fb :Buffers<CR>
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <Leader>fg :GFiles<CR>
+nnoremap <silent> <Leader>fh :Helptags<CR>
+nnoremap <silent> <Leader>fm :Marks<CR>
+nnoremap <silent> <Leader>fs :Snippets<CR>
+nnoremap <silent> <Leader>fw :Windows<CR>
+nnoremap <silent> <Leader>fca :Commits<CR>
+nnoremap <silent> <Leader>fcb :BCommits<CR>
+nnoremap <silent> <Leader>fla :Lines<CR>
+nnoremap <silent> <Leader>flb :BLines<CR>
+nnoremap <silent> <Leader>fta :Tags<CR>
+nnoremap <silent> <Leader>ftb :BTags<CR>
 
 " git
 nnoremap <silent> <Leader>gs :Gstatus<CR>
@@ -171,36 +187,36 @@ nnoremap <silent> <Leader>gb :Gblame<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
-    silent! execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
-      call system("tmux select-pane -" . a:tmuxdir)
-    endif
-  endfunction
+    function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+        let previous_winnr = winnr()
+        silent! execute "wincmd " . a:wincmd
+        if previous_winnr == winnr()
+            call system("tmux select-pane -" . a:tmuxdir)
+        endif
+    endfunction
 
-  let previous_title = substitute(system("tmux display-message -p
-        \ '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+    let previous_title = substitute(system("tmux display-message -p
+                \ '#{pane_title}'"), '\n', '', '')
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+    let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
-  tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
-  tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
-  tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
-  tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
+    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
+    tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
+    tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
+    tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
+    tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
 else
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 tnoremap <Esc> <C-\><C-n>
 
@@ -214,26 +230,26 @@ noremap  <Right> <Nop>
 
 " redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd)
-  if a:cmd =~ '^!'
-    execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
-  else
-    redir => output
-    execute a:cmd
-    redir END
-  endif
-  tabnew
-  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-  call setline(1, split(output, "\n"))
-  put! = a:cmd
-  put = '----'
+    if a:cmd =~ '^!'
+        execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
+    else
+        redir => output
+        execute a:cmd
+        redir END
+    endif
+    tabnew
+    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+    call setline(1, split(output, "\n"))
+    put! = a:cmd
+    put = '----'
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
 " -- Autocommand ---------------------------------------------------------------
 
 augroup custom_term
-  autocmd!
-  autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
 augroup gitcommit
@@ -243,12 +259,12 @@ augroup gitcommit
 augroup END
 
 augroup quickfix
-  autocmd!
-  autocmd FileType qf setlocal number norelativenumber colorcolumn=0
-  autocmd BufWinEnter quickfix setlocal statusline=%t
-        \\ %{exists('w:quickfix_title')?w:quickfix_title:''}%=%l/%L
-  autocmd QuickFixCmdPost [^l]* nested cwindow
-  autocmd QuickFixCmdPost    l* nested lwindow
+    autocmd!
+    autocmd FileType qf setlocal number norelativenumber colorcolumn=0
+    autocmd BufWinEnter quickfix setlocal statusline=%t
+                \\ %{exists('w:quickfix_title')?w:quickfix_title:''}%=%l/%L
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
 
 " -- Wildmenu ------------------------------------------------------------------
@@ -267,10 +283,10 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
-  execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
-  execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
-  execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
-  execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
+    execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
+    execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
+    execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
+    execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
 endfor
 
 " line text-objects
@@ -290,7 +306,7 @@ set smartcase
 
 " use ag over grep
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
+    set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
 endif
 
 " -- Colorscheme ---------------------------------------------------------------
@@ -304,29 +320,29 @@ let g:lisp_rainbow = 1
 
 set laststatus=2
 set statusline=
-      \%{&filetype!=#''?&filetype:'none'}
-      \\ \ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
-      \:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
-      \\ \ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-      \%=%<\ %-14(%l,%v%)\ %4(%p%%%)
+            \%{&filetype!=#''?&filetype:'none'}
+            \\ \ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
+            \:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
+            \\ \ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+            \%=%<\ %-14(%l,%v%)\ %4(%p%%%)
 
 " -- Tabline -------------------------------------------------------------------
 
 function! MyTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    let tabnr = i + 1
-    let winnr = tabpagewinnr(tabnr)
-    let buflist = tabpagebuflist(tabnr)
-    let bufnr = buflist[winnr - 1]
-    let bufname = fnamemodify(bufname(bufnr), ':t')
-    let s .= '%' . tabnr . 'T'
-    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= ' ' . tabnr
-    let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
-  endfor
-  let s .= '%#TabLineFill#'
-  return s
+    let s = ''
+    for i in range(tabpagenr('$'))
+        let tabnr = i + 1
+        let winnr = tabpagewinnr(tabnr)
+        let buflist = tabpagebuflist(tabnr)
+        let bufnr = buflist[winnr - 1]
+        let bufname = fnamemodify(bufname(bufnr), ':t')
+        let s .= '%' . tabnr . 'T'
+        let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+        let s .= ' ' . tabnr
+        let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
+    endfor
+    let s .= '%#TabLineFill#'
+    return s
 endfunction
 set showtabline=1
 set tabline=%!MyTabLine()
@@ -350,5 +366,5 @@ let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<C-f>"
 let g:UltiSnipsJumpBackwardTrigger="<C-j>"
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetsDir = "~/projects/vim-snippets"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/projects/vim-snippets']
+let g:UltiSnipsSnippetsDir = "~/.config/nvim/snippets"
+let g:UltiSnipsSnippetDirectories=[$HOME.'.config/nvim/snippets']

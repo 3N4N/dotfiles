@@ -9,9 +9,8 @@ CMUSDIR=$HOME/.cmus
 FONTDIR=$HOME/.fonts
 TERMINALRC=$HOME/.config/xfce4/terminal
 
-mkdir -p $VIMDIR
-rm -f $VIMDIR/init.vim
-ln -s $DIR/init.vim $VIMDIR
+rm -rf $VIMDIR
+ln -s $DIR/nvim $VIMDIR
 
 mkdir -p $EMACSDIR
 rm -f $EMACSDIR/init.el

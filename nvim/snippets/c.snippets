@@ -1,0 +1,38 @@
+snippet for "generic for loop" b
+for (${1:int} ${2:i}=0; $2<${3}; $2++) $0
+endsnippet
+
+snippet main "" b
+int main(${1:int argc, char* argv[]}) {
+	$0
+
+	return 0;
+}
+endsnippet
+
+snippet inc "include <>" b
+#include <${1:stdio.h}>$0
+endsnippet
+
+snippet incc "include <>" b
+#include "$1"$0
+endsnippet
+
+snippet inca "include <>" b
+#include <${1:bits/stdc++.h}>$0
+endsnippet
+
+snippet print "print" b
+printf("${1:%d}", $2);$0
+endsnippet
+
+snippet scan "scanf" b
+scanf("%${1:d}", $2);$0
+endsnippet
+
+snippet ifndef "ifndef" b
+#ifndef ${1:DEFINE}
+$2
+#endif
+$0
+endsnippet
