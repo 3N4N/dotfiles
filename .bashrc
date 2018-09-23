@@ -34,6 +34,9 @@ bind 'set mark-symlinked-directories on'
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
+# -- fzf fuzzy finder ----------------------------------------------------------
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # -- aliases -------------------------------------------------------------------
 
 # useful ls aliases
@@ -50,7 +53,7 @@ alias ldl='ld -l --time-style=+'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias ag='ag --color-match "31;40"'
+alias ag='ag --color-match "31"'
 
 # shorthand for python executables
 alias py2='python2'

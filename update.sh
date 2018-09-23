@@ -1,4 +1,5 @@
 sudo apt install \
+    deluge \
     ranger \
     scrot \
     imagemagick \
