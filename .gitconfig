@@ -1,36 +1,37 @@
+#   ██████╗ ██╗████████╗
+#  ██╔════╝ ██║╚══██╔══╝
+#  ██║  ███╗██║   ██║
+#  ██║   ██║██║   ██║
+#  ╚██████╔╝██║   ██║
+#   ╚═════╝ ╚═╝   ╚═╝
+
 [user]
-  email = 3nan.ajmain@gmail.com
-  name = Enan Ajmain
+    email = 3nan.ajmain@gmail.com
+    name = Enan Ajmain
 [credential]
-  # after entering password, don't ask for it again in 30 mins
-  helper = cache --timeout=1800
+    helper = cache --timeout=1800
 [core]
-  # recommended SHA minimum length  https://lkml.org/lkml/2013/9/30/365
-  abbrev = 12
-  # Enable parallel index preload for some operations (diff, status).
-  preloadindex = true
-  # improve performance (requires msysgit 1.9.4+)
-  fscache = true
-  # use colored less as pager
-  pager = less -+$LESS -MR
-  # use vim as editor
-  editor = nvim
+    abbrev = 12
+    preloadindex = true
+    fscache = true
+    pager = less -+$LESS -MR
+    editor = nvim
 [log]
-  date = short
+    date = short
 [push]
-  default = current
+    default = current
 [alias]
-  ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
-  ll = log --stat --source -p
-  b = branch
-  ba = branch -avv
-  br = branch -vv
-  st = status -sb
-  sh = stash
-  sa = stash save --include-untracked
-  co = checkout
-  cp = cherry-pick
-  cl = clone
-  ct = commit
-  dw = diff --word-diff
-  ds = diff --staged
+    ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
+    ll = log --stat --source -p
+    b = branch
+    ba = branch -avv
+    br = branch -vv
+    st = status -sb
+    sh = stash
+    sa = stash save --include-untracked
+    co = checkout
+    cp = cherry-pick
+    cl = clone
+    ct = commit
+    dw = diff --word-diff
+    ds = diff --staged
