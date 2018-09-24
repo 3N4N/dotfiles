@@ -3,22 +3,6 @@
 " | | | \ V /| | | | | | |
 " |_| |_|\_/ |_|_| |_| |_|
 
-" -- Vim Plug ------------------------------------------------------------------
-
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'SirVer/ultisnips'
-
-call plug#end()
 
 " -- General -------------------------------------------------------------------
 
@@ -111,6 +95,9 @@ inoremap jj <Esc>
 " sensible yank til last character
 nnoremap Y y$
 
+" goto buffer
+nnoremap gb :ls<CR>:b<Space>
+
 " undo with <S-u>
 nnoremap U <C-r>
 
@@ -160,22 +147,6 @@ nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
 nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
             \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
-
-" fzf
-nnoremap <silent> <Leader>fa :Ag<CR>
-nnoremap <silent> <Leader>fb :Buffers<CR>
-nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <Leader>fg :GFiles<CR>
-nnoremap <silent> <Leader>fh :Helptags<CR>
-nnoremap <silent> <Leader>fm :Marks<CR>
-nnoremap <silent> <Leader>fs :Snippets<CR>
-nnoremap <silent> <Leader>fw :Windows<CR>
-nnoremap <silent> <Leader>fca :Commits<CR>
-nnoremap <silent> <Leader>fcb :BCommits<CR>
-nnoremap <silent> <Leader>fla :Lines<CR>
-nnoremap <silent> <Leader>flb :BLines<CR>
-nnoremap <silent> <Leader>fta :Tags<CR>
-nnoremap <silent> <Leader>ftb :BTags<CR>
 
 " git
 nnoremap <silent> <Leader>gs :Gstatus<CR>
@@ -359,12 +330,3 @@ let g:netrw_winsize=25
 let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_hide = 1
 let g:netrw_cursor=0
-
-" -- Ultisnips -----------------------------------------------------------------
-
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-f>"
-let g:UltiSnipsJumpBackwardTrigger="<C-j>"
-let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetsDir = "~/.config/nvim/snippets"
-let g:UltiSnipsSnippetDirectories=[$HOME.'.config/nvim/snippets']

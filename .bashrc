@@ -34,9 +34,6 @@ bind 'set mark-symlinked-directories on'
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
-# -- fzf fuzzy finder ----------------------------------------------------------
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # -- aliases -------------------------------------------------------------------
 
 # useful ls aliases
