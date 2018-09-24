@@ -1,0 +1,5 @@
+#!/bin/bash
+echo -n '  '
+echo -n $(date '+%A, %d %B')
+echo -n '  '
+echo $(date '+%H:%M')
