@@ -89,7 +89,7 @@ let mapleader = "\<Space>"
 " reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
-" Uppercase word mapping.
+" Uppercase word mapping
 inoremap <C-u> <esc>m0gUiw`0a
 
 " escape with double tapping j in insert mode
@@ -98,14 +98,18 @@ inoremap jj <Esc>
 " sensible yank til last character
 nnoremap Y y$
 
-" goto buffer
-nnoremap gb :ls<CR>:b<Space>
-
 " undo with <S-u>
 nnoremap U <C-r>
 
+" useful leader mappings
+nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap <Leader>e :e **/
+nnoremap <Leader>g :grep<space>
+nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>m :make<CR>
+
 " strip trailing whitespaces
-nnoremap <silent> gs :StripTrailingWhiteSpaces<CR>
+nnoremap <silent> <Leader>s :StripTrailingWhiteSpaces<CR>
 command! -nargs=0 StripTrailingWhiteSpaces
             \ let _w=winsaveview() <Bar>
             \ let _s=@/ |
@@ -115,9 +119,6 @@ command! -nargs=0 StripTrailingWhiteSpaces
             \ call winrestview(_w) |
             \ unlet _w
 
-" turn off highlighting until next search
-nnoremap <Leader>h :nohlsearch<CR>
-
 " don't move cursor while joining lines
 nnoremap J m0J`0
 
@@ -126,12 +127,12 @@ nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
 " better window management
+nnoremap <Leader>w <C-w>
+nnoremap <C-w> <Nop>
 nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
-nnoremap <Leader>w <C-w>
-nnoremap <C-w> <Nop>
 
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
@@ -151,17 +152,9 @@ nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
             \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
-" git
-nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gc :Gcommit<CR>
-nnoremap <silent> <Leader>gd :Gdiff<CR>
-nnoremap <silent> <Leader>gw :Gwrite<CR>
-nnoremap <silent> <Leader>gr :Gread<CR>
-nnoremap <silent> <Leader>gb :Gblame<CR>
-
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
-    function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
         let previous_winnr = winnr()
         silent! execute "wincmd " . a:wincmd
         if previous_winnr == winnr()
@@ -203,7 +196,7 @@ noremap  <Right> <Nop>
 " -- Functions -----------------------------------------------------------------
 
 " redirect the output of a Vim or external command into a scratch buffer
-function! Redir(cmd)
+function! Redir(cmd) abort
     if a:cmd =~ '^!'
         execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
     else
@@ -226,17 +219,8 @@ augroup custom_term
     autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-augroup gitcommit
-  autocmd!
-  autocmd FileType gitcommit setlocal colorcolumn=72
-  autocmd FileType gitcommit setlocal spell
-augroup END
-
 augroup quickfix
     autocmd!
-    autocmd FileType qf setlocal number norelativenumber colorcolumn=0
-    autocmd BufWinEnter quickfix setlocal statusline=%t
-                \\ %{exists('w:quickfix_title')?w:quickfix_title:''}%=%l/%L
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
