@@ -12,5 +12,8 @@ sudo apt install \
     sysstat \
     acpi \
     mpv \
+    curl \
+    xbacklight \
+    fonts-font-awesome \
     silversearcher-ag \
     simplescreenrecorder
