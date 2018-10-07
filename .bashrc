@@ -59,15 +59,15 @@ alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias tree='tree -nF --dirsfirst'             # append indicators after filename
-alias reload='source ~/.bashrc'               # reload bashrc
-alias screenfetch='screenfetch -t'            # wrap output of screenfetch
-alias i3lock='sh ~/projects/dotFiles/lock.sh' # use custom script to lock screen
-alias emacs='emacs -nw'                       # use terminal emacs in terminal
-alias vi='nvim'                               # old habits die hard
-alias vimdiff='nvim -d'                       # used in .gitconfig
-alias t='sh ~/projects/dotFiles/tmux.sh'      # run tmux start script
-alias weather='curl wttr.in/dhaka?0'          # get weather report
+alias tree='tree -nF --dirsfirst'           # append indicators after filename
+alias reload='source ~/.bashrc'             # reload bashrc
+alias screenfetch='screenfetch -t'          # wrap output of screenfetch
+alias emacs='emacs -nw'                     # use terminal emacs in terminal
+alias vi='nvim'                             # old habits die hard
+alias vimdiff='nvim -d'                     # used in .gitconfig
+alias t='sh ~/projects/dotFiles/tmux.sh'    # run tmux start script
+alias weather='curl wttr.in/dhaka?0'        # get weather report
+alias i3lock='sh ~/projects/dotFiles/i3/lock.sh'
 
 # elaborate digital clock
 now() {
