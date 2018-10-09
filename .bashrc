@@ -12,6 +12,8 @@
 [ -z "$BASH_VERSION" ] && return
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
+# automatically cd into directories
+shopt -s autocd
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth

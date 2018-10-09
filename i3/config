@@ -33,10 +33,11 @@ bindsym $mod+Return exec --no-startup-id xfce4-terminal
 bindsym $mod+d exec --no-startup-id dmenu_run -b -i -nb '#2f343f' -sb '#b8babc' -sf '#000000' -p ''
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id sh ~/projects/dotFiles/i3/lock.sh
+
 # system commands
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # splitting
 bindsym $mod+v split h
@@ -149,6 +150,11 @@ bar {
 }
 
 # -- startup programs ----------------------------------------------------------
+
+# Caps as Ctrl
+exec_always --no-startup-id setxkbmap -option ''
+exec_always --no-startup-id setxkbmap -option caps:ctrl_modifier
+exec_always --no-startup-id setxkbmap -option shift:both_capslock
 
 exec_always --no-startup-id feh --bg-scale /home/enan/projects/dotFiles/backgrounds/polygon.jpg
 exec --no-startup-id compton --config $HOME/.config/compton.conf

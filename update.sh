@@ -1,19 +1,22 @@
 sudo apt install \
+    acpi \
+    cmus \
+    compton \
+    curl \
     deluge \
+    dmenu \
+    easytag \
+    feh \
+    fonts-font-awesome \
+    i3blocks \
+    i3lock \
+    imagemagick \
+    mpv \
     ranger \
     scrot \
-    imagemagick \
-    x11-xkb-utils \
-    cmus \
-    xclip \
-    i3blocks \
-    feh \
-    compton \
-    sysstat \
-    acpi \
-    mpv \
-    curl \
-    xbacklight \
-    fonts-font-awesome \
     silversearcher-ag \
-    simplescreenrecorder
+    simplescreenrecorder \
+    sysstat \
+    x11-xkb-utils \
+    xbacklight \
+    xclip
