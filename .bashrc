@@ -12,8 +12,6 @@
 [ -z "$BASH_VERSION" ] && return
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-# automatically cd into directories
-shopt -s autocd
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
@@ -61,15 +59,15 @@ alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias tree='tree -nF --dirsfirst'           # append indicators after filename
-alias reload='source ~/.bashrc'             # reload bashrc
-alias screenfetch='screenfetch -t'          # wrap output of screenfetch
-alias emacs='emacs -nw'                     # use terminal emacs in terminal
-alias vi='nvim'                             # old habits die hard
-alias vimdiff='nvim -d'                     # used in .gitconfig
-alias t='sh ~/projects/dotFiles/tmux.sh'    # run tmux start script
-alias weather='curl wttr.in/dhaka?0'        # get weather report
-alias i3lock='sh ~/projects/dotFiles/i3/lock.sh'
+alias emacs='emacs -nw'
+alias i3lock='sh ~/Documents/projects/dotFiles/i3/lock.sh'
+alias reload='source ~/.bashrc'
+alias screenfetch='screenfetch -t'
+alias tree='tree -nF --dirsfirst'
+alias t='sh ~/Documents/projects/dotFiles/tmux.sh'
+alias vimdiff='nvim -d'
+alias vi='nvim'
+alias weather='curl wttr.in/dhaka?0'
 
 # elaborate digital clock
 now() {

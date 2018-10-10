@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/projects/dotFiles
+DIR=$HOME/Documents/projects/dotFiles
 EMACSDIR=$HOME/.emacs.d
 VIMDIR=$HOME/.config/nvim
 I3DIR=$HOME/.config/i3

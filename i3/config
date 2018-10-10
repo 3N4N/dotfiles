@@ -32,7 +32,7 @@ default_floating_border normal
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
 bindsym $mod+d exec --no-startup-id dmenu_run -b -i -nb '#2f343f' -sb '#b8babc' -sf '#000000' -p ''
 bindsym $mod+q kill
-bindsym $mod+p exec --no-startup-id sh ~/projects/dotFiles/i3/lock.sh
+bindsym $mod+p exec --no-startup-id sh ~/Documents/projects/dotFiles/i3/lock.sh
 
 # system commands
 bindsym $mod+Shift+c reload
@@ -156,7 +156,7 @@ exec_always --no-startup-id setxkbmap -option ''
 exec_always --no-startup-id setxkbmap -option caps:ctrl_modifier
 exec_always --no-startup-id setxkbmap -option shift:both_capslock
 
-exec_always --no-startup-id feh --bg-scale /home/enan/projects/dotFiles/backgrounds/polygon.jpg
+exec_always --no-startup-id feh --bg-scale ~/Documents/projects/dotFiles/backgrounds/polygon.jpg
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
