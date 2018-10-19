@@ -38,5 +38,4 @@ ShortcutsNoHelpkey=TRUE
 ShortcutsNoMnemonics=TRUE
 MiscShowRelaunchDialog=TRUE
 MiscNewTabAdjacent=FALSE
-BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 

@@ -8,6 +8,7 @@ sudo apt install \
     easytag \
     feh \
     fonts-font-awesome \
+    htop \
     i3blocks \
     i3lock \
     imagemagick \
@@ -17,6 +18,7 @@ sudo apt install \
     silversearcher-ag \
     simplescreenrecorder \
     sysstat \
+    tree \
     x11-xkb-utils \
     xbacklight \
     xclip

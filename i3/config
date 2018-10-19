@@ -7,24 +7,18 @@
 #  ╚═╝╚═════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
 
 # set color variables
-set $bg-color            #2f343f
-set $active-bg-color     #ffffff
-set $urgent-bg-color     #E53935
-set $focused-ws-color    #b8babc
-set $inactive-ws-color   #2f343f
-set $text-color          #b8babc
-set $active-text         #2f343f
+set $inactive-bg    #2f343f
+set $active-bg      #56b6c2
+set $urgent         #E53935
+set $focused-ws     #b8babc
+set $inactive-ws    #2f343f
 
 # -- general settings ----------------------------------------------------------
 
 set $mod Mod4
 floating_modifier $mod
-font pango:Hack 9
+font pango:Hack 2
 focus_follows_mouse no
-gaps outer 2
-gaps inner 8
-default_border pixel 1
-default_floating_border normal
 
 # -- key bindings --------------------------------------------------------------
 
@@ -37,7 +31,7 @@ bindsym $mod+p exec --no-startup-id sh ~/Documents/projects/dotFiles/i3/lock.sh
 # system commands
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Want to exit?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # splitting
 bindsym $mod+v split h
@@ -129,35 +123,31 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -
 
 # -- window colors -------------------------------------------------------------
 
-#                       border            background        text         indicator
-client.focused          $active-bg-color  $active-bg-color  $active-text $active-bg-color
-client.unfocused        $bg-color         $bg-color         $text-color  $bg-color
-client.focused_inactive $bg-color         $bg-color         $text-color  $bg-color
-client.urgent           $urgent-bg-color  $urgent-bg-color  $text-color  $urgent-bg-color
+#                       border          background     text           indicator
+client.focused          $active-bg      $active-bg     $active-bg     $active-bg
+client.unfocused        $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.focused_inactive $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.urgent           $urgent         $urgent        $urgent        $urgent
 
 bar {
     Position top
     font pango:Hack 9
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
-        background $bg-color
+        background $inactive-bg
         separator #757575
-        #                   border      background           text
-        focused_workspace   $bg-color   $focused-ws-color    $bg-color
-        inactive_workspace  $bg-color   $inactive-ws-color   $text-color
-        urgent_workspace    $bg-color   $urgent-bg-color     $text-color
+        #                   border         background     text
+        focused_workspace   $focused-ws    $focused-ws    $inactive-ws
+        inactive_workspace  $inactive-ws   $inactive-ws   $active-ws
+        urgent_workspace    $urgent        $urgent        $active-ws
     }
 }
 
 # -- startup programs ----------------------------------------------------------
 
-# Caps as Ctrl
-exec_always --no-startup-id setxkbmap -option ''
-exec_always --no-startup-id setxkbmap -option caps:ctrl_modifier
-exec_always --no-startup-id setxkbmap -option shift:both_capslock
-
-exec_always --no-startup-id feh --bg-scale ~/Documents/projects/dotFiles/backgrounds/polygon.jpg
-exec --no-startup-id compton --config $HOME/.config/compton.conf
+exec_always --no-startup-id feh --bg-scale ~/Documents/projects/dotFiles/backgrounds/batman_bat.png
+exec_always --no-startup-id sh ~/Documents/projects/dotFiles/keyboard.sh
+exec --no-startup-id compton --config $HOME/.config/compton.conf"
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
