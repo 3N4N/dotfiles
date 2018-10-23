@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR=$HOME/Documents/projects/dotFiles
+BINDIR=$HOME/bin
 EMACSDIR=$HOME/.emacs.d
 VIMDIR=$HOME/.config/nvim
 I3DIR=$HOME/.config/i3
@@ -8,6 +9,9 @@ RANGERDIR=$HOME/.config/ranger
 CMUSDIR=$HOME/.cmus
 FONTDIR=$HOME/.fonts
 TERMINALRC=$HOME/.config/xfce4/terminal
+
+rm -rf $BINDIR
+ln -s $DIR/bin $BINDIR
 
 rm -rf $VIMDIR
 ln -s $DIR/nvim $VIMDIR
