@@ -145,9 +145,9 @@ bar {
 
 # -- startup programs ----------------------------------------------------------
 
-exec_always --no-startup-id feh --bg-scale ~/Documents/projects/dotFiles/backgrounds/batman_bat.png
+exec_always --no-startup-id feh --bg-scale ~/Documents/projects/dotFiles/backgrounds/batman_bat.jpg
 exec_always --no-startup-id sh ~/Documents/projects/dotFiles/keyboard.sh
-exec --no-startup-id compton --config $HOME/.config/compton.conf"
+exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
