@@ -96,6 +96,18 @@ bindsym $mod+Shift+8 move container to  workspace $workspace8
 bindsym $mod+Shift+9 move container to  workspace $workspace9
 bindsym $mod+Shift+0 move container to  workspace $workspace10
 
+# assign window, you can find window class using xprop
+# workspace 2 (web browsers)
+assign [class=Firefox|Chromium|Opera] 2
+# workspace 3 (docs)
+assign [class=Geany|libreoffice*|Wps|MuPDF] 3
+# workspace 4 (multimedia)
+assign [class=Vlc|mpv|Audacity|Ghb|Xfburn] 4
+# workspace 5 (file-manager)
+assign [class=Thunar|Nautilus] 5
+# workspace 9 (File Transfer)
+assign [class=Filezilla|Deluge] 9
+
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -125,11 +137,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -
 
 # -- window colors -------------------------------------------------------------
 
-#                       border          background     text           indicator
-client.focused          $active-bg      $active-bg     $active-bg     $active-bg
-client.unfocused        $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
-client.focused_inactive $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
-client.urgent           $urgent         $urgent        $urgent        $urgent
+#                         border          background     text           indicator
+client.focused            $active-bg      $active-bg     $active-bg     $active-bg
+client.unfocused          $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.focused_inactive   $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.urgent             $urgent         $urgent        $urgent        $urgent
 
 bar {
     Position top
@@ -147,7 +159,7 @@ bar {
 
 # -- startup programs ----------------------------------------------------------
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/abstract.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/polygon.jpg
 exec_always --no-startup-id sh ~/Documents/projects/dotFiles/keyboard.sh
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
