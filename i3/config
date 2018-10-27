@@ -147,7 +147,7 @@ bar {
 
 # -- startup programs ----------------------------------------------------------
 
-exec_always --no-startup-id feh --bg-scale ~/Documents/projects/dotFiles/backgrounds/batman_bat.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/abstract.jpg
 exec_always --no-startup-id sh ~/Documents/projects/dotFiles/keyboard.sh
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet

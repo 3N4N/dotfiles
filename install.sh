@@ -9,6 +9,7 @@ RANGERDIR=$HOME/.config/ranger
 CMUSDIR=$HOME/.cmus
 FONTDIR=$HOME/.fonts
 TERMINALRC=$HOME/.config/xfce4/terminal
+BACKGROUNDDIR=$HOME/Pictures/backgrounds
 
 rm -rf $BINDIR
 ln -s $DIR/bin $BINDIR
@@ -44,3 +45,6 @@ cp -r $DIR/fonts/* $FONTDIR
 
 mkdir -p $TERMINALRC
 cp $DIR/terminalrc $TERMINALRC
+
+rm -rf $BACKGROUNDDIR
+ln -s $DIR/backgrounds $BACKGROUNDDIR
