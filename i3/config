@@ -17,8 +17,10 @@ set $inactive-ws    #2f343f
 
 set $mod Mod4
 floating_modifier $mod
-font pango:Hack 2
 focus_follows_mouse no
+font pango:Hack 2
+new_window normal 0
+new_float normal 0
 
 # -- key bindings --------------------------------------------------------------
 
