@@ -25,7 +25,7 @@ new_float normal 0
 # -- key bindings --------------------------------------------------------------
 
 # frequently used
-bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+Return exec --no-startup-id st
 bindsym $mod+d exec --no-startup-id dmenu_run -b -i -nb '#2f343f' -sb '#b8babc' -sf '#000000' -p ''
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id sh ~/Documents/projects/dotFiles/i3/lock.sh
