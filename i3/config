@@ -18,9 +18,9 @@ set $inactive-ws    #2f343f
 set $mod Mod4
 floating_modifier $mod
 focus_follows_mouse no
-font pango:Hack 2
 new_window normal 0
 new_float normal 0
+font pango:Monaco for powerline 2
 
 # -- key bindings --------------------------------------------------------------
 
@@ -145,7 +145,7 @@ client.urgent             $urgent         $urgent        $urgent        $urgent
 
 bar {
     Position top
-    font pango:Hack 9
+    font pango:Monaco for powerline 9
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
         background $inactive-bg
