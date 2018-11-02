@@ -1,0 +1,5 @@
+#!/bin/bash
+
+title=screenshot_$(date '+%Y%m%d_%H%M').png
+scrot $title -d 2 \
+-e 'mv $f ~/Pictures ; feh ~/Pictures/$f'
