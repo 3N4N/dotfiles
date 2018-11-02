@@ -18,9 +18,11 @@ set $inactive-ws    #2f343f
 set $mod Mod4
 floating_modifier $mod
 focus_follows_mouse no
-new_window normal 0
-new_float normal 0
 font pango:Monaco for powerline 2
+default_border normal 0
+default_floating_border normal 0
+gaps inner 0
+gaps outer 0
 
 # -- key bindings --------------------------------------------------------------
 
@@ -96,7 +98,7 @@ bindsym $mod+Shift+8 move container to  workspace $workspace8
 bindsym $mod+Shift+9 move container to  workspace $workspace9
 bindsym $mod+Shift+0 move container to  workspace $workspace10
 
-# assign window, you can find window class using xprop
+# Assign window, you can find window class using xprop
 # workspace 2 (web browsers)
 assign [class=Firefox|Chromium|Opera] 2
 # workspace 3 (docs)
@@ -107,6 +109,9 @@ assign [class=Vlc|mpv|Audacity|Ghb|Xfburn] 4
 assign [class=Thunar|Nautilus] 5
 # workspace 9 (File Transfer)
 assign [class=Filezilla|Deluge] 9
+
+# Start these windows in floating mode
+for_window [class=feh] floating enable
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"

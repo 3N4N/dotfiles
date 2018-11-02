@@ -11,6 +11,7 @@ FONTDIR=$HOME/.fonts
 TERMINALRC=$HOME/.config/xfce4/terminal
 BACKGROUNDDIR=$HOME/Pictures/backgrounds
 DUNSTDIR=$HOME/.config/dunst
+MPVDIR=$HOME/.config/mpv
 
 rm -rf $BINDIR
 ln -s $DIR/bin $BINDIR
@@ -53,3 +54,6 @@ ln -s $DIR/dunstrc $DUNSTDIR
 
 rm -rf $BACKGROUNDDIR
 ln -s $DIR/backgrounds $BACKGROUNDDIR
+
+rm -rf $MPVDIR
+ln -s $DIR/mpv $MPVDIR
