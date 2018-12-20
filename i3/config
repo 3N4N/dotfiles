@@ -143,17 +143,19 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -
 # -- window colors -------------------------------------------------------------
 
 #                         border          background     text           indicator
-client.focused            $active-bg      $active-bg     $active-bg     $active-bg
-client.unfocused          $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
-client.focused_inactive   $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.focused            $active-bg      $active-bg     $inactive-bg   $active-bg
+client.unfocused          $inactive-bg    $inactive-bg   $active-bg     $inactive-bg
+client.focused_inactive   $inactive-bg    $inactive-bg   $active-bg     $inactive-bg
 client.urgent             $urgent         $urgent        $urgent        $urgent
 
 bar {
     Position top
     font pango:Monaco for powerline 9
+    separator_symbol "  "
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
         background $inactive-bg
+        statusline #b8babc
         separator #757575
         #                   border         background     text
         focused_workspace   $focused-ws    $focused-ws    $unfocused-ws

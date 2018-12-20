@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xset q | grep Caps | tr -s ' ' | cut -d ' ' -f 5,9,13 | sed 's/on/▣/g' | sed 's/off/▢/g'

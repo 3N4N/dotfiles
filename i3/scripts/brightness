@@ -40,7 +40,7 @@ if [[ "${percent}" -le 0 ]]; then
   exit
 fi
 
-echo "${percent}%"
+echo " ${percent}%"
 echo ""
 
 if [[ "${percent}" -lt "${URGENT_VALUE}" ]]; then
