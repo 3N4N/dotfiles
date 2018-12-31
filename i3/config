@@ -18,11 +18,11 @@ set $unfocused-ws   #2f343f
 set $mod Mod4
 floating_modifier $mod
 focus_follows_mouse no
-font pango:Monaco for powerline 9
-default_border pixel 2
-default_floating_border pixel 2
-gaps inner 10
-gaps outer 10
+font pango:Monaco for powerline 2
+default_border normal 0
+default_floating_border normal 0
+gaps inner 0
+gaps outer 0
 
 # -- key bindings --------------------------------------------------------------
 
@@ -129,9 +129,11 @@ mode "resize" {
 }
 
 # Audio volume controls
+
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
+
 bindsym $mod+shift+n exec --no-startup-id amixer -q set Master 1%+ && pkill -RTMIN+10 i3blocks
 bindsym $mod+shift+b exec --no-startup-id amixer -q set Master 1%- && pkill -RTMIN+10 i3blocks
 bindsym $mod+shift+m exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
@@ -143,9 +145,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -
 # -- window colors -------------------------------------------------------------
 
 #                         border          background     text           indicator
-client.focused            $active-bg      $active-bg     $inactive-bg   $active-bg
-client.unfocused          $inactive-bg    $inactive-bg   $active-bg     $inactive-bg
-client.focused_inactive   $inactive-bg    $inactive-bg   $active-bg     $inactive-bg
+client.focused            $active-bg      $active-bg     $active-bg     $active-bg
+client.unfocused          $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.focused_inactive   $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
 client.urgent             $urgent         $urgent        $urgent        $urgent
 
 bar {

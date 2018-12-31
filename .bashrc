@@ -39,7 +39,7 @@ bind '"\C-n": history-search-forward'
 # -- aliases -------------------------------------------------------------------
 
 # useful ls aliases
-alias l='ls -hF1 --group-directories-first'
+alias l='ls -vhF1 --group-directories-first'
 alias la='l -A'
 alias lh='la -d .[^.]*'
 alias ld='la -d --indicator-style=none */ .[^.]*/'

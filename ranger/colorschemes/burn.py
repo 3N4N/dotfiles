@@ -23,7 +23,7 @@ class base(ColorScheme):
             if context.image:
                 fg = 11     # yellow
             if context.video:
-                fg = 176    # pink
+                fg = 173    # orange
             if context.audio:
                 fg = 173    # orange
             if context.document:
