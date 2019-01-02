@@ -28,7 +28,7 @@ gaps outer 0
 
 # frequently used
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+d exec --no-startup-id dmenu_run -b -i -nb '#2f343f' -sb '#b8babc' -sf '#000000' -p ''
+bindsym $mod+d exec --no-startup-id dmenu_run -i -p ''
 bindsym $mod+q kill
 bindsym $mod+p exec --no-startup-id sh ~/Documents/projects/dotFiles/i3/lock.sh
 
@@ -129,14 +129,12 @@ mode "resize" {
 }
 
 # Audio volume controls
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
-
-bindsym $mod+shift+n exec --no-startup-id amixer -q set Master 1%+ && pkill -RTMIN+10 i3blocks
-bindsym $mod+shift+b exec --no-startup-id amixer -q set Master 1%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+shift+m exec --no-startup-id amixer -q -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master toggle
+bindsym $mod+shift+n exec --no-startup-id amixer -q set Master 1%+
+bindsym $mod+shift+b exec --no-startup-id amixer -q set Master 1%-
+bindsym $mod+shift+m exec --no-startup-id amixer -q -D pulse set Master toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && pkill -RTMIN+12 i3blocks
