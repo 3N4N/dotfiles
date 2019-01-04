@@ -13,6 +13,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export VISUAL=/usr/bin/nvim
+export EDITOR="$VISUAL"
+
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
 HISTSIZE=20000
@@ -59,7 +62,6 @@ alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias emacs='emacs -nw'
 alias i3lock='sh ~/Documents/projects/dotFiles/i3/lock.sh'
 alias reload='source ~/.bashrc'
 alias r='ranger'
