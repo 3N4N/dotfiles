@@ -1,0 +1,8 @@
+#!/bin/bash
+
+INPUT_FILE=$1
+OUTPUT_FILE=$2
+START_AT=$3
+DURATION=$4
+
+ffmpeg -i $INPUT_FILE -ss $START_AT -t $DURATION -async 1 -strict -2 $OUTPUT_FILE
