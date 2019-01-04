@@ -7,3 +7,5 @@ ranger/history
 ranger/tagged
 ranger/colorschemes/__init__.py
 ranger/colorschemes/*.pyo
+
+vifm/vifminfo

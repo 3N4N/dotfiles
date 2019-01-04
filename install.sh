@@ -12,7 +12,7 @@ TERMINALRC=$HOME/.config/xfce4/terminal
 BACKGROUNDDIR=$HOME/Pictures/backgrounds
 DUNSTDIR=$HOME/.config/dunst
 MPVDIR=$HOME/.config/mpv
-VIFMDIR=@HOME/.config/vifm
+VIFMDIR=$HOME/.config/vifm
 
 rm -rf $BINDIR
 ln -s $DIR/bin $BINDIR
