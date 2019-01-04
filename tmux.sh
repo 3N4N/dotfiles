@@ -15,7 +15,7 @@ if [ $? != 0 ]; then
 
   tmux new-window -t "$session_name"
   tmux rename-window -t "$session_name" files
-  tmux send-keys -t "$session_name" 'ranger' C-m
+  tmux send-keys -t "$session_name" 'vifm' C-m
 
   tmux next-window
 fi

@@ -10,21 +10,43 @@ will be responsible if your system breaks.
 
 ## Requirements
 
-  * [ranger file manager](https://ranger.github.io/)
-  * w3m-img(for Debian) or w3m (for Arch) (for preview\_images in ranger)
-  * scrot (for lock.sh script)
-  * imagemagick (for lock.sh script)
-  * x11-xkb-utils
-  * [nvim](https://neovim.io/)
-  * [tmux](https://github.com/tmux/tmux/wiki)
-  * cmus
-  * xclip (for system clipboard integration in nvim)
-  * i3wm or i3-gaps
-  * i3blocks
-  * feh
-  * compton
-  * sysstat (for cpu\_usage script in i3blocks)
-  * acpi (for battery script in i3blocks)
+* Build from source:
+    * [Compton](https://github.com/yshui/compton)
+    * [i3wm](https://github.com/i3/i3)
+    * [i3blocks](https://github.com/vivien/i3blocks)
+    * [tmux](https://github.com/tmux/tmux)
+    * [nvim](https://neovim.io/)
+    * dmenu
+        * [official website](https://tools.suckless.org/dmenu)
+        * [git repository](https://git.suckless.org/dmenu)
+    * st
+        * [official website](https://st.suckless.org)
+        * [git repository](https://git.suckless.org/st)
+    * vifm
+        * [official website](https://vifm.info)
+        * [git repository](https://github.com/vifm/vifm)
+
+* Install from official package managers:
+    * acpi (for battery script i3blocks)
+    * cmus (music player)
+    * curl (console downloader)
+    * deluge (torrent downloader)
+    * easytag (mp3 tag editor)
+    * enca (for enconv in defviewer script in vifm)
+    * feh (for image viewer)
+    * ffmpeg (for video editing and recording)
+    * fonts-font-awesome
+    * htop
+    * i3lock
+    * imagemagick (for lock script)
+    * mpv (video player)
+    * scrot (screenshot utility)
+    * silversearcher-ag
+    * tree
+    * x11-xkb-utils
+    * xbacklight (for brightness script in i3blocks)
+    * xclip (system clipboard manager)
+
 
 ## Install
 

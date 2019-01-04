@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Are you sure you want to delete all $# items?(y/n):"
+for arg in "$@"; do
+    echo $arg
+done
+
+read confirmation
+if [ $confirmation == 'y' ]; then
+    rm -r $@
+else
+    echo "exiting"
+fi
