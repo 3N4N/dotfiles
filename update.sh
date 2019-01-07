@@ -12,9 +12,11 @@ sudo apt install \
     i3lock \
     imagemagick \
     mpv \
+    rar \
     scrot \
     silversearcher-ag \
     tree \
     x11-xkb-utils \
     xbacklight \
-    xclip
+    xclip \
+    zip
