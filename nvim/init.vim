@@ -44,6 +44,16 @@ set notimeout
 set ttimeout
 set ttimeoutlen=50
 
+" backup and persistent undo
+set nobackup
+set swapfile
+set backupdir=~/.local/share/nvim/backup//
+set directory=~/.local/share/nvim/swap//
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.local/share/nvim/undo//
+endif
+
 " -- Clipboard -----------------------------------------------------------------
 
 let g:clipboard = {
