@@ -161,7 +161,8 @@ command! reload :write | restart
 " program.
 
 " Pdf
-filextype *.pdf,*.epub mupdf %f </dev/null &>/dev/null &
+filextype *.pdf,*.epub mupdf-gl %f </dev/null &>/dev/null &
+fileviewer *.pdf,*.epub echo ""
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
@@ -169,13 +170,7 @@ filextype *.ps,*.eps,*.ps.gz
         \ zathura %f,
         \ {View in gv}
         \ gv %c %i &,
-
-" Djvu
-filextype *.djvu
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in apvlv}
-        \ apvlv %f,
+fileviewer *.ps,*.eps,*.ps.gz echo ""
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
@@ -195,16 +190,6 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \*.as[fx]
         \ echo ""
 
-" Web
-filextype *.html,*.htm
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype *.html,*.htm links, lynx
-
 " Object
 filetype *.o nm %f | less
 fileviewer *.o nm %f | less
@@ -220,43 +205,8 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ echo ""
 
-" OpenRaster
-filextype *.ora
-        \ {Edit in MyPaint}
-        \ mypaint %f,
-
-" Mindmap
-filextype *.vym
-        \ {Open with VYM}
-        \ vym %f &,
-
-" MD5
-filetype *.md5
-        \ {Check MD5 hash sum}
-        \ md5sum -c %f %S,
-
-" SHA1
-filetype *.sha1
-        \ {Check SHA1 hash sum}
-        \ sha1sum -c %f %S,
-
-" SHA256
-filetype *.sha256
-        \ {Check SHA256 hash sum}
-        \ sha256sum -c %f %S,
-
-" SHA512
-filetype *.sha512
-        \ {Check SHA512 hash sum}
-        \ sha512sum -c %f %S,
-
-" GPG signature
-filetype *.asc
-        \ {Check signature}
-        \ !!gpg --verify %c,
-
 " Torrent
-filetype *.torrent ktorrent %f &
+filetype *.torrent deluge %f &
 fileviewer *.torrent dumptorrent -v %c
 
 " Archive
@@ -279,25 +229,9 @@ filetype *.iso
         \ {Mount with fuseiso}
         \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
 
-" SshMount
-filetype *.ssh
-        \ {Mount with sshfs}
-        \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
-
-" FtpMount
-filetype *.ftp
-        \ {Mount with curlftpfs}
-        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
-
 " Office files
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
-fileviewer *.docx docx2txt.pl %f -
-
-" TuDu files
-filetype *.tudu tudu -f %c
-
-" Qt projects
-filextype *.pro qtcreator %f &
+fileviewer *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx echo ""
 
 " Syntax highlighting in preview
 "
