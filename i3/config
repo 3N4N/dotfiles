@@ -8,7 +8,7 @@
 
 # set color variables
 set $inactive-bg    #2f343f
-set $active-bg      #c678dd
+set $active-bg      #ffffff
 set $urgent         #e53935
 set $focused-ws     #b8babc
 set $unfocused-ws   #2f343f
@@ -18,10 +18,10 @@ set $unfocused-ws   #2f343f
 set $mod Mod4
 floating_modifier $mod
 focus_follows_mouse no
-font pango:Monaco for powerline 2
-default_border normal 0
-default_floating_border normal 0
-gaps inner 0
+font pango:Monaco for powerline 9
+default_border pixel 2
+default_floating_border pixel 2
+gaps inner 10
 gaps outer 0
 
 # -- key bindings --------------------------------------------------------------
@@ -166,7 +166,7 @@ bar {
 
 # -- startup programs ----------------------------------------------------------
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/deer.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/polygon.jpg
 exec_always --no-startup-id sh ~/Documents/projects/dotFiles/keyboard.sh
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet

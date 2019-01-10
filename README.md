@@ -12,19 +12,14 @@ will be responsible if your system breaks.
 
 * Build from source:
     * [Compton](https://github.com/yshui/compton)
-    * [i3wm](https://github.com/i3/i3)
+    * [i3-gaps](https://github.com/Airblader/i3)
     * [i3blocks](https://github.com/vivien/i3blocks)
     * [tmux](https://github.com/tmux/tmux)
     * [nvim](https://neovim.io/)
-    * dmenu
-        * [official website](https://tools.suckless.org/dmenu)
-        * [git repository](https://git.suckless.org/dmenu)
-    * st
-        * [official website](https://st.suckless.org)
-        * [git repository](https://git.suckless.org/st)
-    * vifm
-        * [official website](https://vifm.info)
-        * [git repository](https://github.com/vifm/vifm)
+    * [MuPDF](https://mupdf.com)
+    * [dmenu](https://tools.suckless.org/dmenu)
+    * [st](https://st.suckless.org)
+    * [vifm](https://vifm.info)
 
 * Install from official package managers:
     * acpi (for battery script i3blocks)
@@ -32,7 +27,6 @@ will be responsible if your system breaks.
     * curl (console downloader)
     * deluge (torrent downloader)
     * easytag (mp3 tag editor)
-    * enca (for enconv in defviewer script in vifm)
     * feh (for image viewer)
     * ffmpeg (for video editing and recording)
     * fonts-font-awesome
