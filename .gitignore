@@ -1,6 +1,7 @@
 Session.vim
 
-nvim/plugged/*
+nvim/pack/*
+nvim/.netrwhist
 
 ranger/bookmarks
 ranger/history

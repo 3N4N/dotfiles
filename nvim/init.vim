@@ -114,12 +114,14 @@ nnoremap U <C-r>
 " useful leader mappings
 nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>e :e **/
-nnoremap <Leader>g :grep<space>
+nnoremap <Leader>f :grep<space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
+nnoremap <Leader>s :%s/\v
+xnoremap <Leader>s :s/\%V\v
 
 " strip trailing whitespaces
-nnoremap <silent> <Leader>s :StripTrailingWhiteSpaces<CR>
+nnoremap <silent> gs :StripTrailingWhiteSpaces<CR>
 command! -nargs=0 StripTrailingWhiteSpaces
             \ let _w=winsaveview() <Bar>
             \ let _s=@/ |
@@ -143,6 +145,15 @@ nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
+
+" vim-fugitive mappings
+" https://github.com/tpope/vim-fugitive.git
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gc :Gcommit<CR>
+nnoremap <silent> <Leader>gd :Gdiff<CR>
+nnoremap <silent> <Leader>gr :Gread<CR>
+nnoremap <silent> <Leader>gw :Gwrite<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>
 
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
