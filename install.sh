@@ -10,6 +10,7 @@ BACKGROUNDDIR=$HOME/Pictures/backgrounds
 DUNSTDIR=$HOME/.config/dunst
 MPVDIR=$HOME/.config/mpv
 VIFMDIR=$HOME/.config/vifm
+FEHDIR=$HOME/.config/feh
 
 rm -f $HOME/.profile $HOME/.bash_profile $HOME/.bashrc
 ln -s $DIR/.profile $DIR/.bash_profile $DIR/.bashrc $HOME/
@@ -48,3 +49,6 @@ ln -s $DIR/mpv $MPVDIR
 
 rm -rf $VIFMDIR
 ln -s $DIR/vifm $VIFMDIR
+
+rm -rf $FEHDIR
+ln -s $DIR/feh $FEHDIR
