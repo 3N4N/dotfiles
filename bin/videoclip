@@ -1,5 +1,12 @@
 #!/bin/bash
 
+USAGE="Usage: videoclip INPUTFILE OUTPUTFILE STARTAT DURATION"
+
+if [ "$#" != 4 ]; then
+	echo "$USAGE"
+	exit 1
+fi
+
 INPUT_FILE=$1
 OUTPUT_FILE=$2
 START_AT=$3

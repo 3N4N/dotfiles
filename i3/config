@@ -143,9 +143,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && pkill -
 # -- window colors -------------------------------------------------------------
 
 #                         border          background     text           indicator
-client.focused            $active-bg      $active-bg     $active-bg     $active-bg
-client.unfocused          $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
-client.focused_inactive   $inactive-bg    $inactive-bg   $inactive-bg   $inactive-bg
+client.focused            $active-bg      $active-bg     $inactive-bg   $active-bg
+client.unfocused          $inactive-bg    $inactive-bg   $active-bg     $inactive-bg
+client.focused_inactive   $inactive-bg    $inactive-bg   $active-bg     $inactive-bg
 client.urgent             $urgent         $urgent        $urgent        $urgent
 
 bar {
