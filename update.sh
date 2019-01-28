@@ -7,7 +7,6 @@ sudo apt install \
     enca \
     feh \
     ffmpeg \
-    fonts-font-awesome \
     htop \
     i3lock \
     imagemagick \
