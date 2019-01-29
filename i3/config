@@ -28,9 +28,9 @@ gaps outer 0
 
 # frequently used
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+d exec --no-startup-id dmenu_run -i -p ''
+bindsym $mod+p exec --no-startup-id dmenu_run -i
 bindsym $mod+q kill
-bindsym $mod+p exec --no-startup-id sh ~/Documents/projects/dotFiles/i3/lock.sh
+bindsym $mod+d exec --no-startup-id sh ~/projects/dotFiles/i3/lock.sh
 
 # system commands
 bindsym $mod+Shift+c reload
@@ -167,7 +167,7 @@ bar {
 # -- startup programs ----------------------------------------------------------
 
 exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/polygon.jpg
-exec_always --no-startup-id sh ~/Documents/projects/dotFiles/keyboard.sh
+exec_always --no-startup-id sh ~/projects/dotFiles/keyboard.sh
 exec --no-startup-id compton --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1

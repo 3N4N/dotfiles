@@ -44,8 +44,8 @@ will be responsible if your system breaks.
 
 ## Install
 
-    rm -rf ~/Documents/projects/dotFiles
-    git clone https://www.github.com/enanajmain/dotFiles ~/Documents/projects
-    cd ~/Documents/projects/dotFiles
+    rm -rf ~/projects/dotFiles
+    git clone https://www.github.com/enanajmain/dotFiles ~/projects
+    cd ~/projects/dotFiles
     sh install.sh
     cd -

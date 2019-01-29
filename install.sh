@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/Documents/projects/dotFiles
+DIR=$HOME/projects/dotFiles
 BINDIR=$HOME/.bin
 VIMDIR=$HOME/.config/nvim
 I3DIR=$HOME/.config/i3

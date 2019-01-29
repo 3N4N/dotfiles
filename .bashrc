@@ -62,11 +62,11 @@ alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias i3lock='sh ~/Documents/projects/dotFiles/i3/lock.sh'
+alias i3lock='sh ~/projects/dotFiles/i3/lock.sh'
 alias reload='source ~/.bashrc'
 alias r='ranger'
 alias tree='tree -nF --dirsfirst'
-alias t='sh ~/Documents/projects/dotFiles/tmux.sh'
+alias t='sh ~/projects/dotFiles/tmux.sh'
 alias vimdiff='nvim -d'
 alias vi='nvim'
 

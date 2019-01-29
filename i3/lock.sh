@@ -9,8 +9,8 @@
 #!/bin/bash
 
 # set the icon and a temporary location for the screenshot to be stored
-lighticon="$HOME/Documents/projects/dotFiles/i3/icons/locklight.png"
-darkicon="$HOME/Documents/projects/dotFiles/i3/icons/lockdark.png"
+lighticon="$HOME/projects/dotFiles/i3/icons/locklight.png"
+darkicon="$HOME/projects/dotFiles/i3/icons/lockdark.png"
 tmpbg='/tmp/screen.png'
 
 # take a screenshot
