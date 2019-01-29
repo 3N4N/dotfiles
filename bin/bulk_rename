@@ -8,16 +8,16 @@ i=0
 # a termporary file to store the file names
 TMPFILE="/tmp/bulk_rename.txt"
 if [ -f "$TMPFILE" ]; then
-	rm "$TMPFILE"
+    rm "$TMPFILE"
 fi
 
 # get the file names under current directory
 # put the names in an array and also the temporary file
 for entry in *
 do
-	OLD["$i"]=$entry
-	echo "$entry" >> $TMPFILE
-	i=$((i + 1))
+    OLD["$i"]=$entry
+    echo "$entry" >> $TMPFILE
+    i=$((i + 1))
 done
 
 i=0
@@ -27,8 +27,8 @@ $VISUAL "$TMPFILE"
 
 # get the file names from the edited files
 while read -r line; do
-	NEW[$i]=$line
-	i=$((i + 1))
+    NEW[$i]=$line
+    i=$((i + 1))
 done < "$TMPFILE"
 
 i=0
@@ -38,15 +38,15 @@ i=0
 # then don't do anything
 # else rename the files
 if [ "${#OLD[@]}" == "${#NEW[@]}" ]; then
-	NOOFFILES=${#OLD[@]}
-	while [ $i -lt $NOOFFILES ]
-	do
-		if [ "${OLD[$i]}" != "${NEW[$i]}" ];then
-			echo "${OLD[$i]} -> ${NEW[$i]}"
-			mv "${OLD[$i]}" "${NEW[$i]}"
-		fi
-		i=$((i + 1))
-	done
+    NOOFFILES=${#OLD[@]}
+    while [ $i -lt $NOOFFILES ]
+    do
+        if [ "${OLD[$i]}" != "${NEW[$i]}" ];then
+            echo "${OLD[$i]} -> ${NEW[$i]}"
+            mv "${OLD[$i]}" "${NEW[$i]}"
+        fi
+        i=$((i + 1))
+    done
 else
-	echo "You must not remove the entry of a file or directory!"
+    echo "You must not remove the entry of a file or directory!"
 fi

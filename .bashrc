@@ -74,11 +74,11 @@ alias vi='nvim'
 
 # elaborate digital clock
 now() {
-  echo -n 'date : '
-  date "+%A, %B %d"
-  echo -n 'time : '
-  date "+%H:%M"
-  curl wttr.in/dhaka?0
+    echo -n 'date : '
+    date "+%A, %B %d"
+    echo -n 'time : '
+    date "+%H:%M"
+    curl wttr.in/dhaka?0
 }
 
 # -- bash prompt ---------------------------------------------------------------

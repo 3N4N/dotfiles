@@ -86,7 +86,7 @@ command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
             \ . <args> . " softtabstop=" . <args> . " expandtab" |
             \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
             \ . " -> ".(&expandtab ? "spaces" : "tabs")
-command! -nargs=1 Tabs   execute "setlocal tabstop=" . <args> . " shiftwidth="
+command! -nargs=1 Tabs execute "setlocal tabstop=" . <args> . " shiftwidth="
             \ . <args> . " softtabstop=" . <args> . " noexpandtab" |
             \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
             \ . " -> ".(&expandtab ? "spaces" : "tabs")
@@ -129,7 +129,8 @@ command! -nargs=0 StripTrailingWhiteSpaces
             \ let @/=_s|
             \ unlet _s |
             \ call winrestview(_w) |
-            \ unlet _w
+            \ unlet _w |
+            \ noh
 
 " don't move cursor while joining lines
 nnoremap J m0J`0
@@ -166,6 +167,7 @@ endfor
 
 " toggle
 nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
+nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
 nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
 nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>

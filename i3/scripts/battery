@@ -17,7 +17,7 @@ close(ACPI);
 
 # fail on unexpected output
 if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
+    die "$acpi\n";
 }
 
 $status = $1;
@@ -31,35 +31,35 @@ $full_text .= " $percent%";
 # either until fully charged, if charging
 # or fully drained, if discharging
 if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= "($1) ";
+    $full_text .= "($1) ";
 }
 
 # print text on the i3blocks
 # double newline is needed
 # otherwise next print statement is not evaluated
-# don't know why
+# don't know why        lsdkf
 
 if ($status eq 'Charging') {
-	$full_text .= 'CHR ';
+    $full_text .= 'CHR ';
 } elsif ($status eq 'Discharging') {
-	$full_text .= 'DIS ';
+    $full_text .= 'DIS ';
 } elsif ($status eq 'Unknown' || $status eq 'Full') {
-	$full_text .= 'BAT ';
+    $full_text .= '';
 }
 print "$full_text\n\n";
 
 # consider color and urgent flag only on discharge
 if ($status eq 'Discharging') {
 
-	if ($percent < 10) {
-		print "#FF0000\n";
-	} elsif ($percent < 25) {
-		print "#FFAE00\n";
-	}
+    if ($percent < 10) {
+        print "#FF0000\n";
+    } elsif ($percent < 25) {
+        print "#FFAE00\n";
+    }
 
-	if ($percent < 5) {
-		exit(33);
-	}
+    if ($percent < 5) {
+        exit(33);
+    }
 }
 
 exit(0);

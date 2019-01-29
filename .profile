@@ -10,26 +10,26 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-	# include .bashrc if it exists
-	if [ -f "$HOME/.bashrc" ]; then
-		. "$HOME/.bashrc"
-	fi
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.bin" ] ; then
-	new_entry="$HOME/.bin"
-	case ":$PATH:" in
-		*":$new_entry:"*) :;;
-		*) PATH="$new_entry:$PATH";;
-	esac
+    new_entry="$HOME/.bin"
+    case ":$PATH:" in
+        *":$new_entry:"*) :;;
+        *) PATH="$new_entry:$PATH";;
+    esac
 fi
 
 # set PATH so it includes installed packages with pip
 if [ -d "$HOME/.local/bin" ] ; then
-	new_entry="$HOME/.local/bin"
-	case ":$PATH:" in
-		*":$new_entry:"*) :;;
-		*) PATH="$new_entry:$PATH";;
-	esac
+    new_entry="$HOME/.local/bin"
+    case ":$PATH:" in
+        *":$new_entry:"*) :;;
+        *) PATH="$new_entry:$PATH";;
+    esac
 fi
