@@ -46,7 +46,6 @@ set ttimeoutlen=50
 
 " backup and persistent undo
 set nobackup
-set swapfile
 set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
 if has('persistent_undo')
@@ -71,7 +70,7 @@ let g:clipboard = {
 
 " -- Indentation ---------------------------------------------------------------
 
-set cinoptions=g0,l1,i0
+set cinoptions=g0,l1,i0,t0
 
 " -- Tab settings --------------------------------------------------------------
 
