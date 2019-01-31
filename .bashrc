@@ -82,6 +82,29 @@ now() {
     curl wttr.in/dhaka?0
 }
 
+# -- fzf -----------------------------------------------------------------------
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+
+# -- bash autocompletion -------------------------------------------------------
+
+# using fzf messes with sourcing bash completion files
+# needs to manually source them again
+# might need to add more checks if used on more systems
+
+if [ -z "$TMUX" ]; then
+    if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+            . /etc/bash_completion
+        fi
+    fi
+fi
+
+
 # -- bash prompt ---------------------------------------------------------------
 
 PS1='\[\033[00;34m\]\u\[\033[00m\]@\[\033[00;34m\]\h\[\033[00m\]:\
