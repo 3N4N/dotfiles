@@ -28,9 +28,9 @@ gaps outer 0
 
 # frequently used
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+p exec --no-startup-id dmenu_run -i
+bindsym $mod+d exec --no-startup-id dmenu_run -i
 bindsym $mod+q kill
-bindsym $mod+d exec --no-startup-id sh ~/projects/dotFiles/i3/lock.sh
+bindsym $mod+p exec --no-startup-id sh ~/projects/dotFiles/i3/lock.sh
 
 # system commands
 bindsym $mod+Shift+c reload
@@ -129,6 +129,21 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+# move window
+bindsym $mod+m mode "move"
+mode "move" {
+
+    # These bindings trigger as soon as you enter the move mode
+    bindsym h move left 30
+    bindsym j move down 30
+    bindsym k move up 30
+    bindsym l move right 30
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 # Audio volume controls
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+
@@ -165,11 +180,3 @@ bar {
     }
 }
 
-# -- startup programs ----------------------------------------------------------
-
-exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/polygon.jpg
-exec_always --no-startup-id sh ~/projects/dotFiles/keyboard.sh
-exec --no-startup-id compton --config $HOME/.config/compton.conf
-exec --no-startup-id nm-applet
-exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
-exec --no-startup-id xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
