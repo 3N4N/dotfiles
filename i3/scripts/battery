@@ -31,8 +31,9 @@ $full_text .= " $percent%";
 # either until fully charged, if charging
 # or fully drained, if discharging
 if ($acpi =~ /(\d\d:\d\d):/) {
-    $full_text .= "($1) ";
+    $full_text .= "($1)";
 }
+$full_text .= " ";
 
 # print text on the i3blocks
 # double newline is needed
@@ -40,11 +41,13 @@ if ($acpi =~ /(\d\d:\d\d):/) {
 # don't know why        lsdkf
 
 if ($status eq 'Charging') {
-    $full_text .= 'CHR ';
+    $full_text .= 'CHR';
 } elsif ($status eq 'Discharging') {
-    $full_text .= 'DIS ';
-} elsif ($status eq 'Unknown' || $status eq 'Full') {
-    $full_text .= '';
+    $full_text .= 'DIS';
+} elsif ($status eq 'Unknown') {
+    $full_text .= 'UNK';
+} elsif ($status eq 'Full') {
+    $full_text .= 'FUL';
 }
 print "$full_text\n\n";
 

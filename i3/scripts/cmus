@@ -1,0 +1,17 @@
+#!/bin/bash
+
+fetch_cmus() {
+    artest=$( cmus-remote -Q | grep "tag artist" | sed s/"tag artist"/""/g | sed '1s/^.//')
+    title=$( cmus-remote -Q | grep "tag title" | sed s/"tag title"/""/g )
+    status=$( cmus-remote -Q | grep "status" | sed s/"tag title"/""/g )
+    track=$( echo -e "$artest -$title")
+    if  [[ "$status" != "status playing" ]]; then
+        cm=""
+        cmcolor=$(echo -e "$cm")
+    else
+        trackc=$( echo -e "$track")
+        echo "$trackc"
+    fi
+}
+
+fetch_cmus
