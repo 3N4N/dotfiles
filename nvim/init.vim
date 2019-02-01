@@ -215,6 +215,10 @@ noremap  <Down>  <Nop>
 noremap  <Left>  <Nop>
 noremap  <Right> <Nop>
 
+" command mode history search
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
+
 " -- Functions -----------------------------------------------------------------
 
 " redirect the output of a Vim or external command into a scratch buffer
@@ -233,6 +237,21 @@ function! Redir(cmd) abort
     put = '----'
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
+
+" copy yanked text to tmux pane
+function! Send_to_tmux()
+    let text = @z
+    let text = substitute(text, ';', '\\;', 'g')
+    let text = substitute(text, '"', '\\"', 'g')
+    let text = substitute(text, '\n', '" Enter "', 'g')
+    let text = substitute(text, '!', '\\!', 'g')
+    let text = substitute(text, '%', '\\"', 'g')
+    let text = substitute(text, '#', '\\#', 'g')
+    execute "!tmux send-keys -t 1 " . "\"" . text . "\""
+    execute "!tmux send-keys -t 1 Enter"
+endfunction
+nnoremap <silent> <leader>cc "zyip:call Send_to_tmux()<cr>
+xnoremap <silent> <leader>cc "zy:call Send_to_tmux()<cr>
 
 " -- Autocommand ---------------------------------------------------------------
 
