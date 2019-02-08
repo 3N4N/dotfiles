@@ -13,17 +13,47 @@ fi
 
 # get the file names under current directory
 # put the names in an array and also the temporary file
-for entry in *
-do
-    OLD["$i"]=$entry
-    echo "$entry" >> $TMPFILE
-    i=$((i + 1))
-done
+
+if [ "$1" == "-a" ]; then
+    for entry in .[^.]*
+    do
+        OLD["$i"]=$entry
+        if [ -d "$entry" ]; then
+            echo "$entry/" >> $TMPFILE
+        else
+            echo "$entry" >> $TMPFILE
+        fi
+        i=$((i + 1))
+    done
+    for entry in *
+    do
+        OLD["$i"]=$entry
+        if [ -d "$entry" ]; then
+            echo "$entry/" >> $TMPFILE
+        else
+            echo "$entry" >> $TMPFILE
+        fi
+        i=$((i + 1))
+    done
+else
+    for entry in *
+    do
+        OLD["$i"]=$entry
+        if [ -d "$entry" ]; then
+            echo "$entry/" >> $TMPFILE
+        else
+            echo "$entry" >> $TMPFILE
+        fi
+        i=$((i + 1))
+    done
+fi
 
 i=0
 
 # open editor
 $VISUAL "$TMPFILE"
+
+sed -i 's/\///' "$TMPFILE"
 
 # get the file names from the edited files
 while read -r line; do
