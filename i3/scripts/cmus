@@ -10,7 +10,7 @@ fetch_cmus() {
         cmcolor=$(echo -e "$cm")
     else
         trackc=$( echo -e "$track")
-        echo "$trackc"
+        echo " $track"
     fi
 }
 

@@ -23,6 +23,29 @@ if ($acpi !~ /: (\w+), (\d+)%/) {
 $status = $1;
 $percent = $2;
 
+if ($status eq 'Charging') {
+    $full_text .= ''
+} elsif ($status eq 'Discharging') {
+
+    if ($percent < 10) {
+        $full_text .= ''
+    }
+    elsif ($percent < 25) {
+        $full_text .= ''
+    }
+    elsif ($percent < 50) {
+        $full_text .= ''
+    }
+    elsif ($percent < 75) {
+        $full_text .= ''
+    }
+    elsif ($percent < 100) {
+        $full_text .= ''
+    }
+
+} elsif ($status eq 'Unknown' || $status eq 'Full') {
+    $full_text .= '';
+}
 
 # percentage of battery life
 $full_text .= " $percent%";
@@ -33,22 +56,12 @@ $full_text .= " $percent%";
 if ($acpi =~ /(\d\d:\d\d):/) {
     $full_text .= "($1)";
 }
-$full_text .= " ";
 
 # print text on the i3blocks
 # double newline is needed
 # otherwise next print statement is not evaluated
-# don't know why        lsdkf
+# don't know why
 
-if ($status eq 'Charging') {
-    $full_text .= 'CHR';
-} elsif ($status eq 'Discharging') {
-    $full_text .= 'DIS';
-} elsif ($status eq 'Unknown') {
-    $full_text .= 'UNK';
-} elsif ($status eq 'Full') {
-    $full_text .= 'FUL';
-}
 print "$full_text\n\n";
 
 # consider color and urgent flag only on discharge
