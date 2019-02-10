@@ -59,35 +59,35 @@ let g:colors_name = "fault"
 " Editor settings
 " --------------------------------
 
-hi ColorColumn    gui=NONE   guibg=#2c323c   guifg=NONE
-hi CursorColumn   gui=NONE   guibg=NONE      guifg=NONE
-hi CursorLine     gui=NONE   guibg=NONE      guifg=NONE
-hi CursorLineNr   gui=NONE   guibg=NONE      guifg=#e06c75
-hi Directory      gui=NONE   guibg=NONE      guifg=#61afef
-hi Error          gui=NONE   guibg=#abb2bf   guifg=#282c34
-hi ErrorMsg       gui=NONE   guibg=NONE      guifg=#e06c75
-hi FoldColumn     gui=NONE   guibg=NONE      guifg=#61afef
-hi Folded         gui=NONE   guibg=#4b5263   guifg=NONE
-hi IncSearch      gui=NONE   guibg=#61afef   guifg=#282c34
-hi LineNr         gui=NONE   guibg=NONE      guifg=#d19a66
-hi MatchParen     gui=NONE   guibg=#61afef   guifg=#282c34
-hi ModeMsg        gui=NONE   guibg=NONE      guifg=#98c379
-hi MoreMsg        gui=NONE   guibg=NONE      guifg=#98c379
-hi NonText        gui=NONE   guibg=NONE      guifg=#5c6370
-hi Question       gui=NONE   guibg=NONE      guifg=#98c379
-hi Search         gui=NONE   guibg=#d19a66   guifg=#282c34
-hi SpecialKey     gui=NONE   guibg=NONE      guifg=#5c6370
-hi StatusLine     gui=NONE   guibg=#4e4e4e   guifg=#abb2bf
-hi StatusLineNC   gui=NONE   guibg=#4e4e4e   guifg=#abb2bf
-hi TabLine        gui=NONE   guibg=#4e4e4e   guifg=#abb2bf
-hi TabLineFill    gui=NONE   guibg=#4e4e4e   guifg=#abb2bf
-hi TabLineSel     gui=NONE   guibg=#abb2bf   guifg=#282c34
-hi Title          gui=NONE   guibg=NONE      guifg=#c678dd
-hi Todo           gui=NONE   guibg=NONE      guifg=#e5c07b
-hi VertSplit      gui=NONE   guibg=NONE      guifg=gray
-hi Visual         gui=NONE   guibg=#abb2bf   guifg=#282c34
-hi WarningMsg     gui=NONE   guibg=NONE      guifg=#e5c07b
-hi WildMenu       gui=NONE   guibg=#abb2bf   guifg=#282c34
+hi ColorColumn    gui=NONE          guibg=#2c323c       guifg=NONE
+hi CursorColumn   gui=NONE          guibg=NONE          guifg=NONE
+hi CursorLine     gui=NONE          guibg=NONE          guifg=NONE
+hi CursorLineNr   gui=NONE          guibg=NONE          guifg=#e06c75
+hi Directory      gui=NONE          guibg=NONE          guifg=#61afef
+hi Error          gui=NONE          guibg=#abb2bf       guifg=#282c34
+hi ErrorMsg       gui=NONE          guibg=NONE          guifg=#e06c75
+hi FoldColumn     gui=NONE          guibg=NONE          guifg=#61afef
+hi Folded         gui=NONE          guibg=#4b5263       guifg=NONE
+hi IncSearch      gui=NONE          guibg=#61afef       guifg=#282c34
+hi LineNr         gui=NONE          guibg=NONE          guifg=#d19a66
+hi MatchParen     gui=underline     guibg=NONE          guifg=#61afef
+hi ModeMsg        gui=NONE          guibg=NONE          guifg=#98c379
+hi MoreMsg        gui=NONE          guibg=NONE          guifg=#98c379
+hi NonText        gui=NONE          guibg=NONE          guifg=#5c6370
+hi Question       gui=NONE          guibg=NONE          guifg=#98c379
+hi Search         gui=NONE          guibg=#d19a66       guifg=#282c34
+hi SpecialKey     gui=NONE          guibg=NONE          guifg=#5c6370
+hi StatusLine     gui=NONE          guibg=#5F9EA0       guifg=#2f2f2f
+hi StatusLineNC   gui=NONE          guibg=#4e4e4e       guifg=#abb2bf
+hi TabLine        gui=NONE          guibg=#4e4e4e       guifg=#abb2bf
+hi TabLineFill    gui=NONE          guibg=#4e4e4e       guifg=#abb2bf
+hi TabLineSel     gui=NONE          guibg=#abb2bf       guifg=#282c34
+hi Title          gui=NONE          guibg=NONE          guifg=#c678dd
+hi Todo           gui=NONE          guibg=NONE          guifg=#e5c07b
+hi VertSplit      gui=NONE          guibg=NONE          guifg=gray
+hi Visual         gui=NONE          guibg=#abb2bf       guifg=#282c34
+hi WarningMsg     gui=NONE          guibg=NONE          guifg=#e5c07b
+hi WildMenu       gui=NONE          guibg=#abb2bf       guifg=#282c34
 
 hi clear Normal
 hi clear SignColumn
