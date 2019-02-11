@@ -176,36 +176,37 @@ nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
-    function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
-        let previous_winnr = winnr()
-        silent! execute "wincmd " . a:wincmd
-        if previous_winnr == winnr()
-            call system("tmux select-pane -" . a:tmuxdir)
-        endif
-    endfunction
+	function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
+		let previous_winnr = winnr()
+		silent! execute "wincmd " . a:wincmd
+		if previous_winnr == winnr()
+			call system("tmux list-panes -F '#F' | grep -q Z
+						\|| tmux select-pane -" . a:tmuxdir)
+		endif
+	endfunction
 
-    let previous_title = substitute(system("tmux display-message -p
-                \ '#{pane_title}'"), '\n', '', '')
-    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-    let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+	let previous_title = substitute(system("tmux display-message -p
+				\ '#{pane_title}'"), '\n', '', '')
+	let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+	let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
-    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
-    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
-    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
-    tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
-    tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
-    tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
-    tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
+	nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+	nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+	nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+	nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
+	tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
+	tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
+	tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
+	tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
 else
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
+	nnoremap <C-h> <C-w>h
+	nnoremap <C-j> <C-w>j
+	nnoremap <C-k> <C-w>k
+	nnoremap <C-l> <C-w>l
+	tnoremap <C-h> <C-\><C-n><C-w>h
+	tnoremap <C-j> <C-\><C-n><C-w>j
+	tnoremap <C-k> <C-\><C-n><C-w>k
+	tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 tnoremap <Esc> <C-\><C-n>
 
