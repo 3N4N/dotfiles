@@ -14,8 +14,8 @@ FEHDIR=$HOME/.config/feh
 
 rm -f $HOME/.profile $HOME/.bash_profile $HOME/.bashrc
 ln -s $DIR/.profile $DIR/.bash_profile $DIR/.bashrc $HOME/
-rm -f $HOME/.tmux.conf $HOME/.gitconfig
-ln -s $DIR/.tmux.conf $DIR/.gitconfig $HOME/
+rm -f $HOME/.tmux.conf $HOME/.gitconfig $HOME/.xinitrc
+ln -s $DIR/.tmux.conf $DIR/.gitconfig $DIR/.xinitrc $HOME/
 
 rm -rf $BINDIR
 ln -s $DIR/bin $BINDIR
@@ -52,3 +52,25 @@ ln -s $DIR/vifm $VIFMDIR
 
 rm -rf $FEHDIR
 ln -s $DIR/feh $FEHDIR
+
+if [ "$1" == "-a" ]; then
+	sudo apt install \
+		acpi \
+		cmus \
+		curl \
+		deluge \
+		easytag \
+		feh \
+		ffmpeg \
+		htop \
+		imagemagick \
+		mpv \
+		rar \
+		scrot \
+		silversearcher-ag \
+		tree \
+		x11-xkb-utils \
+		xbacklight \
+		xclip \
+		zip
+fi
