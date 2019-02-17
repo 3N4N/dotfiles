@@ -7,6 +7,22 @@
 "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 
 
+" -- Vim Plug ------------------------------------------------------------------
+
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'Shougo/neosnippet.vim'
+
+call plug#end()
+
 " -- General -------------------------------------------------------------------
 
 set colorcolumn=81            " colorize a column to show long lines
@@ -405,3 +421,17 @@ let g:netrw_winsize=25
 let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_hide = 1
 let g:netrw_cursor=0
+
+" -- Neosnippet ----------------------------------------------------------------
+
+let g:neosnippet#disable_runtime_snippets = {
+            \   '_' : 1,
+            \ }
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <expr><TAB>
+            \ neosnippet#expandable_or_jumpable() ?
+            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
