@@ -1,4 +1,4 @@
-" vim: filetype=vifm :
+" vim: filetype=vim :
 " Sample configuration file for vifm (last updated: 26 November, 2018)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -106,7 +106,7 @@ set scrolloff=4
 " Don't do too many requests to slow file systems
 
 if !has('win')
-    set slowfs=curlftpfs
+	set slowfs=curlftpfs
 endif
 
 " Set custom status line look
@@ -135,8 +135,8 @@ command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart
 command! FZFfind :set noquickview
-            \ | :execute 'goto "'.system('find | fzf --height 10 2>/dev/tty ').'"%IU'
-            \ | redraw
+			\ | :execute 'goto "'.system('find | fzf --height 10 2>/dev/tty ').'"%IU'
+			\ | redraw
 
 " ------------------------------------------------------------------------------
 
@@ -172,29 +172,29 @@ fileviewer *.pdf,*.epub echo ""
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
-            \ {View in zathura}
-            \ zathura %f,
-            \ {View in gv}
-            \ gv %c %i &,
+			\ {View in zathura}
+			\ zathura %f,
+			\ {View in gv}
+			\ gv %c %i &,
 fileviewer *.ps,*.eps,*.ps.gz echo ""
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
-            \ {Play using mpv}
-            \ mpv --no-video %f,
+			\ {Play using mpv}
+			\ mpv --no-video %f,
 fileviewer *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
-            \ echo ""
+			\ echo ""
 
 " Video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-            \*.as[fx]
-            \ {Play using mpv}
-            \ mpv %f </dev/null &>/dev/null &,
+			\*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+			\*.as[fx]
+			\ {Play using mpv}
+			\ mpv %f </dev/null &>/dev/null &,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-            \*.as[fx]
-            \ echo ""
+			\*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+			\*.as[fx]
+			\ echo ""
 
 " Object
 filetype *.o nm %f | less
@@ -206,10 +206,10 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-            \ {View in feh}
-            \ feh -Z -g 1280x720 %d --start-at %d/%c </dev/null &>/dev/null &
+			\ {View in feh}
+			\ feh -Z -g 1280x720 %d --start-at %d/%c </dev/null &>/dev/null &
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-            \ echo ""
+			\ echo ""
 
 " Torrent
 filetype *.torrent deluge %f &
@@ -232,8 +232,8 @@ fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
 " IsoMount
 filetype *.iso
-            \ {Mount with fuseiso}
-            \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
+			\ {Mount with fuseiso}
+			\ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
 
 " Office files
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
@@ -277,7 +277,7 @@ fileviewer *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx echo ""
 " set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
 " Like in vi
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
-            \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+			\phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
 " ------------------------------------------------------------------------------
 
@@ -397,33 +397,3 @@ set grepprg='ag --line-numbers %i %a %s'
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
-
-" ------------------------------------------------------------------------------
-" Add icons
-
-" file types
-set classify='  :dir:/,  :exe:,  :reg:,@  :link:'
-" various file names
-set classify+='  ::../::,  ::*.sh::'
-set classify+='  ::/^copying|license$/::, ::.git/,,*.git/::/'
-set classify+='  ::*.epub,,*.fb2,,*.djvu::,  ::*.pdf::'
-" archives
-set classify+='  ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,
-                       \*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,
-                       \*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,
-                       \*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
-" images
-set classify+='  ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,
-                       \*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,
-                       \*.xwd::'
-" audio
-set classify+='  ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,
-                       \*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,
-                       \*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
-" media
-set classify+='  ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,
-                       \*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,
-                       \*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid,,*.webm::'
-" office files
-set classify+='  ::*.doc,,*.docx::,  ::*.xls,,*.xls[mx]::'
-set classify+='  ::*.pptx,,*.ppt::'

@@ -10,9 +10,9 @@
 " -- Vim Plug ------------------------------------------------------------------
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -25,25 +25,46 @@ call plug#end()
 
 " -- General -------------------------------------------------------------------
 
-set colorcolumn=81            " colorize a column to show long lines
-set conceallevel=0            " don't conceal anything
-set fillchars=vert:│          " use unicode icon for vertical split
-set nocursorline              " cursorline slows down vim
-set nolazyredraw              " redraw screen
-set noruler                   " ruler removes column position from ctrl-g
-set noswapfile                " don't use swap files
-set nonumber relativenumber   " show relative line numbers
-set shortmess=filmnxrtToO     " shorten some messages
-set showmode                  " show current mode at the bottom
-set signcolumn=no             " never show gutter column
-set spelllang=en_us           " set language for spell checking
-set splitbelow                " always split below
-set splitright                " always split right
-set synmaxcol=200             " don't highlight after 200 columns
-set updatetime=250            " update after each 0.25s
-set virtualedit=block         " select empty spaces in visual-block mode
-set cpo-=aA                   " :read and :write <file> shouldn't set #
-set backspace=indent,eol,start
+set backspace=indent,eol,start  " influence the working of insert mode deletion
+set cinoptions=g0,l1,i0,t0      " options for cindent
+set colorcolumn=81              " colorize a column to show long lines
+set conceallevel=0              " don't conceal anything
+set cpo-=aA                     " :read and :write <file> shouldn't set #
+set fillchars=vert:│            " use unicode icon for vertical split
+set nocursorline                " cursorline slows down vim
+set nolazyredraw                " redraw screen
+set nonumber                    " don't show line numbers
+set norelativenumber            " don't show relative line numbers
+set noruler                     " ruler removes column position from ctrl-g
+set nosplitbelow                " always split below
+set nosplitright                " always split right
+set shortmess=filmnxrtToO       " shorten some messages
+set showmode                    " show current mode at the bottom
+set signcolumn=yes              " never show gutter column
+set spelllang=en_us             " set language for spell checking
+set synmaxcol=200               " don't highlight after 200 columns
+set updatetime=250              " update after each 0.25s
+set virtualedit=block           " select empty spaces in visual-block mode
+
+" searching
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
+endif
+
+" wildmenu settings
+set wildmenu
+set wildignorecase
+set wildmode=full
+set wildignore=*.o,*.obj,*~
+set wildignore+=*.swp,*.tmp
+set wildignore+=*.mp3,*.mp4,*mkv
+set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
+set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
+set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " show useful visual icons
 set list
@@ -58,53 +79,56 @@ set showbreak=↪           " show ↪ before wrapped lines
 " keymap timeout settings
 set notimeout
 set ttimeout
-set ttimeoutlen=50
+set ttimeoutlen=10
 
 " backup and persistent undo
 set nobackup
+set noswapfile
 set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
 if has('persistent_undo')
-    set undofile
-    set undodir=~/.local/share/nvim/undo//
+	set undofile
+	set undodir=~/.local/share/nvim/undo//
 endif
+
+" colorscheme
+syntax on
+set termguicolors
+colorscheme fault
+let g:lisp_rainbow = 1
 
 " -- Clipboard -----------------------------------------------------------------
 
 let g:clipboard = {
-            \   'name': 'xclip-xfce4-clipman',
-            \   'copy': {
-            \      '+': 'xclip -selection clipboard',
-            \      '*': 'xclip -selection clipboard',
-            \    },
-            \   'paste': {
-            \      '+': 'xclip -selection clipboard -o',
-            \      '*': 'xclip -selection clipboard -o',
-            \   },
-            \   'cache_enabled': 1,
-            \ }
-
-" -- Indentation ---------------------------------------------------------------
-
-set cinoptions=g0,l1,i0,t0
+			\   'name': 'xclip-xfce4-clipman',
+			\   'copy': {
+			\      '+': 'xclip -selection clipboard',
+			\      '*': 'xclip -selection clipboard',
+			\    },
+			\   'paste': {
+			\      '+': 'xclip -selection clipboard -o',
+			\      '*': 'xclip -selection clipboard -o',
+			\   },
+			\   'cache_enabled': 1,
+			\ }
 
 " -- Tab settings --------------------------------------------------------------
 
-set tabstop=4         " number of spaces that a <Tab> in the file counts for
-set softtabstop=4     " number of spaces a <Tab> accounts for while editing
-set shiftwidth=4      " number of spaces to use for each step of (auto)indent
-set smarttab          " use 'shiftwidth' when press <Tab> in front of a line
-set shiftround        " round indent to multiple of 'shiftwidth'
-set expandtab         " use spaces instead of tabs
+set tabstop=4           " number of spaces that a <Tab> in the file counts for
+set softtabstop=4       " number of spaces a <Tab> accounts for while editing
+set shiftwidth=4        " number of spaces to use for each step of (auto)indent
+set smarttab            " use 'shiftwidth' when press <Tab> in front of a line
+set shiftround          " round indent to multiple of 'shiftwidth'
+set noexpandtab           " use spaces instead of tabs
 
 command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
-            \ . <args> . " softtabstop=" . <args> . " expandtab" |
-            \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
-            \ . " -> ".(&expandtab ? "spaces" : "tabs")
+			\ . <args> . " softtabstop=" . <args> . " expandtab" |
+			\ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
+			\ . " -> ".(&expandtab ? "spaces" : "tabs")
 command! -nargs=1 Tabs execute "setlocal tabstop=" . <args> . " shiftwidth="
-            \ . <args> . " softtabstop=" . <args> . " noexpandtab" |
-            \ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
-            \ . " -> ".(&expandtab ? "spaces" : "tabs")
+			\ . <args> . " softtabstop=" . <args> . " noexpandtab" |
+			\ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
+			\ . " -> ".(&expandtab ? "spaces" : "tabs")
 
 " -- Key Mapping ---------------------------------------------------------------
 
@@ -116,36 +140,6 @@ nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
 " Uppercase word mapping
 inoremap <C-u> <esc>m0gUiw`0a
-
-" escape with double tapping j in insert mode
-inoremap jj <Esc>
-
-" sensible yank til last character
-nnoremap Y y$
-
-" undo with <S-u>
-nnoremap U <C-r>
-
-" useful leader mappings
-nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap <Leader>e :e **/
-nnoremap <Leader>f :grep<space>
-nnoremap <Leader>h :nohlsearch<CR>
-nnoremap <Leader>m :make<CR>
-nnoremap <Leader>s :%s/\v
-xnoremap <Leader>s :s/\%V\v
-
-" strip trailing whitespaces
-nnoremap <silent> gs :StripTrailingWhiteSpaces<CR>
-command! -nargs=0 StripTrailingWhiteSpaces
-            \ let _w=winsaveview() <Bar>
-            \ let _s=@/ |
-            \ %s/\s\+$//e |
-            \ let @/=_s|
-            \ unlet _s |
-            \ call winrestview(_w) |
-            \ unlet _w |
-            \ noh
 
 " don't move cursor while joining lines
 nnoremap J m0J`0
@@ -164,34 +158,69 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:call winrestview(_w)<CR>
 			\:unlet _w<CR>
 
+" use CTRL-G u
+inoremap <C-H> <C-G>u<C-H>
+inoremap <CR> <C-]><C-G>u<CR>
+
+" sensible yank till last character
+nnoremap Y y$
+
+" undo with <S-u>
+nnoremap U <C-r>
+
+" command mode history search
+cnoremap <c-p> <up>
+cnoremap <c-n> <down>
+
+" useful leader mappings
+nnoremap <Leader>b :ls<CR>:b
+nnoremap <Leader>e :e **/
+nnoremap <Leader>f :grep<space>
+nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>m :make<CR>
+nnoremap <Leader>s :%s/\v
+xnoremap <Leader>s :s/\%V\v
+
+" strip trailing whitespace
+nnoremap <silent> gs :StripTrailingWhiteSpace<CR>
+command! -nargs=0 StripTrailingWhiteSpace
+			\ let _w=winsaveview() <Bar>
+			\ let _s=@/ |
+			\ %s/\s\+$//e |
+			\ let @/=_s|
+			\ unlet _s |
+			\ call winrestview(_w) |
+			\ unlet _w |
+			\ noh
+
+" don't move cursor when searching with * or #
+nnoremap <silent> * :let _w = winsaveview()<CR>
+			\:normal! *<CR>
+			\:call winrestview(_w)<CR>
+			\:unlet _w<CR>
+nnoremap <silent> # :let _w = winsaveview()<CR>
+			\:normal! #<CR>
+			\:call winrestview(_w)<CR>
+			\:unlet _w<CR>
+
 " use n and N to always go forward and backward
 nnoremap <expr> n (v:searchforward ? 'n' : 'N')
 nnoremap <expr> N (v:searchforward ? 'N' : 'n')
 
 " better window management
 nnoremap <Leader>w <C-w>
-nnoremap <C-w> <Nop>
 nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
 
-" vim-fugitive mappings
-" https://github.com/tpope/vim-fugitive.git
-nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gc :Gcommit<CR>
-nnoremap <silent> <Leader>gd :Gdiff<CR>
-nnoremap <silent> <Leader>gr :Gread<CR>
-nnoremap <silent> <Leader>gw :Gwrite<CR>
-nnoremap <silent> <Leader>gb :Gblame<CR>
-
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
 for [s:key, s:value] in items(s:pairs)
-    execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
-    execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
-    execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
-    execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
+	execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
+	execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
+	execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
+	execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
 endfor
 
 " toggle
@@ -202,7 +231,7 @@ nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
 nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
-            \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
+			\ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
@@ -246,14 +275,10 @@ noremap  <Down>  <Nop>
 noremap  <Left>  <Nop>
 noremap  <Right> <Nop>
 
-" command mode history search
-cnoremap <c-p> <up>
-cnoremap <c-n> <down>
-
 " -- Functions -----------------------------------------------------------------
 
 " switch windows effortlessly
-function! SwitchWindow(count)
+function! SwitchWindow(count) abort
 	let l:current_buf = winbufnr(0)
 	exe "buffer" . winbufnr(a:count)
 	exe a:count . "wincmd w"
@@ -263,18 +288,18 @@ nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
 
 " redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd) abort
-    if a:cmd =~ '^!'
-        execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
-    else
-        redir => output
-        execute a:cmd
-        redir END
-    endif
-    tabnew
-    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-    call setline(1, split(output, "\n"))
-    put! = a:cmd
-    put = '----'
+	if a:cmd =~ '^!'
+		execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
+	else
+		redir => output
+		execute a:cmd
+		redir END
+	endif
+	tabnew
+	setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+	call setline(1, split(output, "\n"))
+	put! = a:cmd
+	put = '----'
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
@@ -288,19 +313,19 @@ endfunction
 nnoremap <Leader>n :call ViewTree()<CR>
 
 " copy yanked text to tmux pane
-function! Send_to_tmux()
-    let text = @z
-    let text = substitute(text, ';', '\\;', 'g')
-    let text = substitute(text, '"', '\\"', 'g')
-    let text = substitute(text, '\n', '" Enter "', 'g')
-    let text = substitute(text, '!', '\\!', 'g')
-    let text = substitute(text, '%', '\\"', 'g')
-    let text = substitute(text, '#', '\\#', 'g')
-    execute "!tmux send-keys -t 1 " . "\"" . text . "\""
-    execute "!tmux send-keys -t 1 Enter"
+function! Send_to_tmux(count) abort
+	let text = @z
+	let text = substitute(text, ';', '\\;', 'g')
+	let text = substitute(text, '"', '\\"', 'g')
+	let text = substitute(text, '\n', '" Enter "', 'g')
+	let text = substitute(text, '!', '\\!', 'g')
+	let text = substitute(text, '%', '\\"', 'g')
+	let text = substitute(text, '#', '\\#', 'g')
+	silent execute "!tmux send-keys -t " . a:count . " \"" . text . "\""
+	silent execute "!tmux send-keys -t " . a:count . "Enter"
 endfunction
-nnoremap <silent> <leader>cc "zyip:call Send_to_tmux()<cr>
-xnoremap <silent> <leader>cc "zy:call Send_to_tmux()<cr>
+nnoremap <expr> <leader>cc '"zyip:call Send_to_tmux('.v:count1.')<CR>'
+xnoremap <expr> <leader>cc '"zy:call Send_to_tmux('.v:count1.')<CR>'
 
 " use * and # over visual selection
 function! s:VSetSearch(cmdtype)
@@ -319,36 +344,24 @@ xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 " -- Autocommand ---------------------------------------------------------------
 
 augroup custom_term
-    autocmd!
-    autocmd TermOpen * setlocal nonumber norelativenumber
+	autocmd!
+	autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
 augroup quickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* nested cwindow
-    autocmd QuickFixCmdPost    l* nested lwindow
+	autocmd!
+	autocmd QuickFixCmdPost [^l]* nested cwindow
+	autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
-
-" -- Wildmenu ------------------------------------------------------------------
-
-set wildmenu
-set wildignorecase
-set wildmode=full
-set wildignore=*.o,*.obj,*~
-set wildignore+=*.swp,*.tmp
-set wildignore+=*.mp3,*.mp4,*mkv
-set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
-set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
-set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " -- Text Objects --------------------------------------------------------------
 
 " simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
-    execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
-    execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
-    execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
-    execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
+	execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
+	execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
+	execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
+	execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
 endfor
 
 " line text-objects
@@ -361,50 +374,34 @@ onoremap al :normal val<CR>
 xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
-" -- Search --------------------------------------------------------------------
-
-set ignorecase
-set smartcase
-
-" use ag over grep
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
-endif
-
-" -- Colorscheme ---------------------------------------------------------------
-
-syntax on
-set termguicolors
-colorscheme fault
-let g:lisp_rainbow = 1
-
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
-set statusline=
-            \%{&filetype!=#''?&filetype:'none'}
-            \\ \ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
-            \:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
-            \\ \ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-            \%=%<\ %-14(%l,%v%)\ %4(%p%%%)
+set statusline=[%{winnr()}]
+			\\ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
+			\:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
+			\\ \ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+			\%=
+			\%<\ %{(&fenc!=''?&fenc:&enc)}[%{&filetype!=#''?&filetype:'none'}]
+			\\ \ %3p%%\ \ %l:\ %4(%v\ %)
 
 " -- Tabline -------------------------------------------------------------------
 
 function! MyTabLine()
-    let s = ''
-    for i in range(tabpagenr('$'))
-        let tabnr = i + 1
-        let winnr = tabpagewinnr(tabnr)
-        let buflist = tabpagebuflist(tabnr)
-        let bufnr = buflist[winnr - 1]
-        let bufname = fnamemodify(bufname(bufnr), ':t')
-        let s .= '%' . tabnr . 'T'
-        let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-        let s .= ' ' . tabnr
-        let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
-    endfor
-    let s .= '%#TabLineFill#'
-    return s
+	let s = ''
+	for i in range(tabpagenr('$'))
+		let tabnr = i + 1
+		let winnr = tabpagewinnr(tabnr)
+		let buflist = tabpagebuflist(tabnr)
+		let bufnr = buflist[winnr - 1]
+		let bufname = fnamemodify(bufname(bufnr), ':t')
+		let s .= '%' . tabnr . 'T'
+		let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+		let s .= ' ' . tabnr
+		let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
+	endfor
+	let s .= '%#TabLineFill#'
+	return s
 endfunction
 set showtabline=1
 set tabline=%!MyTabLine()
@@ -424,14 +421,20 @@ let g:netrw_cursor=0
 
 " -- Neosnippet ----------------------------------------------------------------
 
-let g:neosnippet#disable_runtime_snippets = {
-            \   '_' : 1,
-            \ }
+let g:neosnippet#disable_runtime_snippets = { '_' : 1, }
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <expr><TAB>
-            \ neosnippet#expandable_or_jumpable() ?
-            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+xmap <TAB>     <Plug>(neosnippet_expand_target)
+
+" -- Fugitive ------------------------------------------------------------------
+
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gc :Gcommit<CR>
+nnoremap <silent> <Leader>gd :Gdiff<CR>
+nnoremap <silent> <Leader>gr :Gread<CR>
+nnoremap <silent> <Leader>gw :Gwrite<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>

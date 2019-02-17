@@ -75,44 +75,61 @@ alias vi='nvim'
 
 # elaborate digital clock
 now() {
-    echo -n 'date : '
-    date "+%A, %B %d"
-    echo -n 'time : '
-    date "+%H:%M"
-    curl wttr.in/dhaka?0
+	echo -n 'date : '
+	date "+%A, %B %d"
+	echo -n 'time : '
+	date "+%H:%M"
+	curl wttr.in/dhaka?0
 }
 
 # -- fzf -----------------------------------------------------------------------
 
+if [[ ! -d "$HOME/.fzf" ]]; then
+	git clone https://github.com/junegunn/fzf.git ~/.fzf
+	cd ~/.fzf
+	./install --all --no-completion
+	cd -
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
+if type "ag" >/dev/null ; then
+	export FZF_DEFAULT_COMMAND='ag -g ""'
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
 
 # -- bash autocompletion -------------------------------------------------------
 
-# using fzf messes with sourcing bash completion files
+# using fzf messes with bash completion files
 # needs to manually source them again
 # might need to add more checks if used on more systems
+# or could use ~/.fzf/install --all --no-completion
+# this will make fzf leave bash completion alone
 
-if [ -z "$TMUX" ]; then
-    if ! shopt -oq posix; then
-        if [ -f /usr/share/bash-completion/bash_completion ]; then
-            . /usr/share/bash-completion/bash_completion
-        elif [ -f /etc/bash_completion ]; then
-            . /etc/bash_completion
-        fi
-    fi
+if ! shopt -oq posix; then
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
 
 # -- title string --------------------------------------------------------------
 
 case "$TERM" in
-    st*)
-        PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/"~"}"'
-        ;;
+	st*)
+		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/"~"}"'
+		;;
 esac
 
 # -- bash prompt ---------------------------------------------------------------
 
-PS1='\[\033[00;34m\]\u\[\033[00m\]@\[\033[00;34m\]\h\[\033[00m\]:\
-\[\033[00;33m\]\w\[\033[00m\]\$ '
+turquoise=$(tput setaf 5)
+magenta=$(tput setaf 5)
+blue=$(tput setaf 4)
+yellow=$(tput setaf 3)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+reset=$(tput sgr0)
+PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\$ '
