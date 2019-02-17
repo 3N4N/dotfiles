@@ -222,6 +222,15 @@ cnoremap <c-n> <down>
 
 " -- Functions -----------------------------------------------------------------
 
+" switch windows effortlessly
+function! SwitchWindow(count)
+	let l:current_buf = winbufnr(0)
+	exe "buffer" . winbufnr(a:count)
+	exe a:count . "wincmd w"
+	exe "buffer" . l:current_buf
+endfunction
+nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
+
 " redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd) abort
     if a:cmd =~ '^!'
@@ -238,6 +247,15 @@ function! Redir(cmd) abort
     put = '----'
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
+
+" create a temporary buffer with the output of the command `tree`
+function! ViewTree() abort
+	vertical topleft 30new
+	setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+	0read !tree
+	goto 1
+endfunction
+nnoremap <Leader>n :call ViewTree()<CR>
 
 " copy yanked text to tmux pane
 function! Send_to_tmux()
