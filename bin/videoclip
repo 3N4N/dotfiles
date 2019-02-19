@@ -5,46 +5,46 @@ USAGE="Usage: videoclip -i INPUTFILE -o OUTPUTFILE -s START_AT -e END_AT"
 
 # exit if not given any arguments
 if [ -z "$1" ]; then
-    echo "$USAGE"
-    exit
+	echo "$USAGE"
+	exit
 fi
 
 # handle arguments passed with options
 # so that user doesn't need to remember which argument goes in what position
 while [ -n "$1" ]; do
-    case "$1" in
-        -i)
-            INPUT_FILE="$2"
-            shift
-            ;;
-        -o)
-            OUTPUT_FILE="$2"
-            shift
-            ;;
-        -s)
-            START_AT="$2"
-            shift
-            ;;
-        -e)
-            END_AT="$2"
-            shift
-            ;;
-        *)
-            echo "$USAGE"
-            exit
-            ;;
-    esac
-    shift
+	case "$1" in
+		-i)
+			INPUT_FILE="$2"
+			shift
+			;;
+		-o)
+			OUTPUT_FILE="$2"
+			shift
+			;;
+		-s)
+			START_AT="$2"
+			shift
+			;;
+		-e)
+			END_AT="$2"
+			shift
+			;;
+		*)
+			echo "$USAGE"
+			exit
+			;;
+	esac
+	shift
 done
 
 # a function to convert strings like "hh:mm:ss"
 # to it's equivalent integer in seconds
 timestamp_to_second() {
-    tmp=0
-    for i in {1..3}; do
-        tmp=$((tmp * 60))
-        tmp=$((tmp + $(echo $1 | cut -f$i -d:)))
-    done
+	tmp=0
+	for i in {1..3}; do
+		tmp=$(echo "$tmp * 60")
+		tmp=$(echo "$tmp + $(echo $1 | cut -f$i -d:)" | bc)
+	done
 }
 
 timestamp_to_second $START_AT
@@ -52,13 +52,7 @@ start=$tmp
 timestamp_to_second $END_AT
 end=$tmp
 
-duration=$((end - start))
-
-DURATION="$((duration / 3600))"
-duration=$((duration % 3600))
-DURATION="$DURATION:$((duration / 60))"
-duration=$((duration % 60))
-DURATION="$DURATION:$duration"
+DURATION=$(echo "$end - $start" | bc)
 
 # call the ffmpeg program with appropriate arguments
-ffmpeg -i "$INPUT_FILE" -ss "$START_AT" -t "$DURATION" -async 1 -strict -2 "$OUTPUT_FILE"
+ffmpeg -i "$INPUT_FILE" -ss "$START_AT" -t "$DURATION" "$OUTPUT_FILE"
