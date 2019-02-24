@@ -138,6 +138,20 @@ nnoremap J m0J`0
 nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
+" don't move cursor when searching with * or #
+nnoremap <silent> * :let _w = winsaveview()<CR>
+			\:normal! *<CR>
+			\:call winrestview(_w)<CR>
+			\:unlet _w<CR>
+nnoremap <silent> # :let _w = winsaveview()<CR>
+			\:normal! #<CR>
+			\:call winrestview(_w)<CR>
+			\:unlet _w<CR>
+
+" use n and N to always go forward and backward
+nnoremap <expr> n (v:searchforward ? 'n' : 'N')
+nnoremap <expr> N (v:searchforward ? 'N' : 'n')
+
 " better window management
 nnoremap <Leader>w <C-w>
 nnoremap <C-w> <Nop>
@@ -271,6 +285,20 @@ function! Send_to_tmux()
 endfunction
 nnoremap <silent> <leader>cc "zyip:call Send_to_tmux()<cr>
 xnoremap <silent> <leader>cc "zy:call Send_to_tmux()<cr>
+
+" use * and # over visual selection
+function! s:VSetSearch(cmdtype)
+  let t = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let _w = winsaveview()
+  let @s = t
+  call winrestview(_w)
+  unlet _w
+  unlet t
+endfunction
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
 " -- Autocommand ---------------------------------------------------------------
 
