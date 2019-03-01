@@ -119,7 +119,7 @@ set softtabstop=4       " number of spaces a <Tab> accounts for while editing
 set shiftwidth=4        " number of spaces to use for each step of (auto)indent
 set smarttab            " use 'shiftwidth' when press <Tab> in front of a line
 set shiftround          " round indent to multiple of 'shiftwidth'
-set noexpandtab           " use spaces instead of tabs
+set noexpandtab         " use spaces instead of tabs
 
 command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
 			\ . <args> . " softtabstop=" . <args> . " expandtab" |
@@ -173,13 +173,17 @@ cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
 " useful leader mappings
-nnoremap <Leader>b :ls<CR>:b
+nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>e :e **/
 nnoremap <Leader>f :grep<space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s/\v
 xnoremap <Leader>s :s/\%V\v
+
+" Show name of syntax element below cursor
+command! SynName  echo synIDattr(synID(line("."), col("."), 1), "name")
+nnoremap <F12> :SynName<CR>
 
 " strip trailing whitespace
 nnoremap <silent> gs :StripTrailingWhiteSpace<CR>
@@ -377,13 +381,17 @@ onoremap aa :normal vaa<CR>
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
-set statusline=[%{winnr()}]
-			\\ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
+set statusline=%1*\ %{winnr()}
+			\\ %2*\ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
 			\:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
-			\\ \ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+			\\ %0*\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
 			\%=
-			\%<\ %{(&fenc!=''?&fenc:&enc)}[%{&filetype!=#''?&filetype:'none'}]
-			\\ \ %3p%%\ \ %l:\ %4(%v\ %)
+			\%<\ %{(&fenc!=''?&fenc:&enc)}
+			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
+			\\ %1*\ %p%%\ ≡\ %l:\ %4(%v\ %)
+
+hi User1 guibg=#98c379 guifg=#282c34
+hi User2 guibg=#c678dd guifg=#282c34
 
 " -- Tabline -------------------------------------------------------------------
 
