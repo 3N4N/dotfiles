@@ -1,5 +1,9 @@
 #!/bin/bash
+# Author: Enan Ajmain
+# Email : 3nan.ajmain@gmail.com
+# Github: https://github.com/enanajmain
+
+# A script for taking screenshots
 
 title=screenshot_$(date '+%Y%m%d_%H%M').png
-scrot $title -d 2 \
--e 'mv $f ~/Pictures ; feh ~/Pictures/$f'
+scrot $title -d 2 -e 'mv $f ~/Pictures ; feh ~/Pictures/$f'

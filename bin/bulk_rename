@@ -1,8 +1,11 @@
 #!/bin/bash
+# Author: Enan Ajmain
+# Email : 3nan.ajmain@gmail.com
+# Github: https://github.com/enanajmain
 
 # A script to rename multiple files and directories
 
-# a counter variable
+# counter variable
 i=0
 
 # a termporary file to store the file names

@@ -1,7 +1,10 @@
 #!/bin/bash
+# Author: Enan Ajmain
+# Email : 3nan.ajmain@gmail.com
+# Github: https://github.com/enanajmain
 
-if [[ $1 = "stop" ]]; then
-    killall ffmpeg
+# A script for recording screencast
+
 elif [[ $1 = "start" ]]; then
     title=record_$(date '+%Y%m%d%H%M').mkv
     echo $time

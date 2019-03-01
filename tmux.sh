@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+# Author: Enan Ajmain
+# Email : 3nan.ajmain@gmail.com
+# Github: https://github.com/enanajmain
 
 if [ -z "$1" ]; then
     session_name="enan"

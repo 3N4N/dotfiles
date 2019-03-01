@@ -1,4 +1,9 @@
 #!/bin/bash
+# Author: Enan Ajmain
+# Email : 3nan.ajmain@gmail.com
+# Github: https://github.com/enanajmain
+
+# A script for clipping videos
 
 # variable to output when user needs help
 USAGE="Usage: videoclip -i INPUTFILE -o OUTPUTFILE -s START_AT -e END_AT"

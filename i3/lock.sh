@@ -1,12 +1,7 @@
-#
-#  ██╗      ██████╗  ██████╗██╗  ██╗
-#  ██║     ██╔═══██╗██╔════╝██║ ██╔╝
-#  ██║     ██║   ██║██║     █████╔╝
-#  ██║     ██║   ██║██║     ██╔═██╗
-#  ███████╗╚██████╔╝╚██████╗██║  ██╗
-#  ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝
-
 #!/bin/bash
+# Author: Enan Ajmain
+# Email : 3nan.ajmain@gmail.com
+# Github: https://github.com/enanajmain
 
 # set the icon and a temporary location for the screenshot to be stored
 lighticon="$HOME/projects/dotFiles/i3/icons/locklight.png"

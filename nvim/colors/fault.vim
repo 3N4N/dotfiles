@@ -1,14 +1,9 @@
-"
-"  ███████╗ █████╗ ██╗   ██╗██╗  ████████╗
-"  ██╔════╝██╔══██╗██║   ██║██║  ╚══██╔══╝
-"  █████╗  ███████║██║   ██║██║     ██║
-"  ██╔══╝  ██╔══██║██║   ██║██║     ██║
-"  ██║     ██║  ██║╚██████╔╝███████╗██║
-"  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝
-
-
 " Vim color file
-" Maintainer: Enan Ajmain <3nan.ajmain@gmail.com>
+" Name  : Fault
+" Author: Enan Ajmain
+" Email : 3nan.ajmain@gmail.com
+" Github: https://github.com/enanajmain
+
 
 hi clear
 set background=light
