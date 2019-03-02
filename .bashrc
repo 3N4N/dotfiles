@@ -49,23 +49,22 @@ alias lhl='lh -l --time-style=+'
 alias ldl='ld -l --time-style=+'
 
 # show colors in grep and ag
+alias ag='ag --color-match "31"'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias ag='ag --color-match "31"'
 
 # shorthand for python executables
 alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias i3lock='sh ~/projects/dotFiles/i3/lock.sh'
-alias reload='source ~/.bashrc'
 alias r='ranger'
-alias tree='tree -nF --dirsfirst'
+alias reload='source ~/.bashrc'
 alias t='sh ~/projects/dotFiles/tmux.sh'
-alias vimdiff='nvim -d'
+alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
+alias vimdiff='nvim -d'
 
 # -- functions -----------------------------------------------------------------
 
@@ -128,4 +127,5 @@ yellow=$(tput setaf 3)
 green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
+
 PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\$ '

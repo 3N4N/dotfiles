@@ -20,5 +20,13 @@ feh --bg-fill ~/Pictures/backgrounds/deer.jpg
 # setup compositor
 compton --config $HOME/.config/compton.conf </dev/null &>/dev/null &
 
-# start window manager or desktop environment
-exec i3
+# setup status bar
+~/projects/dotFiles/dwm_status &
+#exec dwm
+
+while true; do
+	# Log stderror to a file
+	#dwm 2> ~/.dwm.log
+	# No error logging
+	dwm >/dev/null 2>&1
+done

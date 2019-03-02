@@ -1,21 +1,22 @@
 #!/bin/bash
 
 DIR=$HOME/projects/dotFiles
-BINDIR=$HOME/.bin
-VIMDIR=$HOME/.config/nvim
-I3DIR=$HOME/.config/i3
-CMUSDIR=$HOME/.cmus
-FONTDIR=$HOME/.fonts
 BACKGROUNDDIR=$HOME/Pictures/backgrounds
+BINDIR=$HOME/.bin
+CMUSDIR=$HOME/.cmus
 DUNSTDIR=$HOME/.config/dunst
+FEHDIR=$HOME/.config/feh
 MPVDIR=$HOME/.config/mpv
 VIFMDIR=$HOME/.config/vifm
-FEHDIR=$HOME/.config/feh
+VIMDIR=$HOME/.config/nvim
 
 rm -f $HOME/.profile $HOME/.bash_profile $HOME/.bashrc
 ln -s $DIR/.profile $DIR/.bash_profile $DIR/.bashrc $HOME/
 rm -f $HOME/.tmux.conf $HOME/.gitconfig $HOME/.xinitrc
 ln -s $DIR/.tmux.conf $DIR/.gitconfig $DIR/.xinitrc $HOME/
+
+rm -f $HOME/.config/compton.conf
+ln -s $DIR/compton.conf $HOME/.config
 
 rm -rf $BINDIR
 ln -s $DIR/bin $BINDIR
@@ -23,19 +24,9 @@ ln -s $DIR/bin $BINDIR
 rm -rf $VIMDIR
 ln -s $DIR/nvim $VIMDIR
 
-rm -rf $I3DIR
-ln -s  $DIR/i3 $I3DIR
-
-rm -f $HOME/.config/compton.conf
-ln -s $DIR/compton.conf $HOME/.config
-
 mkdir -p $CMUSDIR
 rm -f $CMUSDIR/cmus.theme
 ln -s $DIR/cmus.theme $CMUSDIR/cmus.theme
-
-rm -rf $FONTDIR
-mkdir $FONTDIR
-cp -r $DIR/fonts/* $FONTDIR
 
 rm -rf $BACKGROUNDDIR
 ln -s $DIR/backgrounds $BACKGROUNDDIR
