@@ -14,7 +14,7 @@ set $unfocused-ws   #2f343f
 set $mod Mod4
 floating_modifier $mod
 focus_follows_mouse yes
-font pango:Monaco for powerline 9
+font pango:Monaco 9
 default_border pixel 2
 default_floating_border pixel 2
 
@@ -182,7 +182,7 @@ client.urgent             $urgent         $urgent        $urgent        $urgent
 
 bar {
     Position top
-    font pango:Monaco for powerline 9
+    font pango:Monaco 9
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
         background $inactive-bg
