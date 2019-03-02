@@ -4,7 +4,7 @@
 
 # set color variables
 set $inactive-bg    #2f343f
-set $active-bg      #ffffff
+set $active-bg      #c678dd
 set $urgent         #e53935
 set $focused-ws     #b8babc
 set $unfocused-ws   #2f343f
@@ -13,12 +13,10 @@ set $unfocused-ws   #2f343f
 
 set $mod Mod4
 floating_modifier $mod
-focus_follows_mouse no
+focus_follows_mouse yes
 font pango:Monaco for powerline 9
 default_border pixel 2
 default_floating_border pixel 2
-gaps inner 10
-gaps outer 0
 
 # -- key bindings --------------------------------------------------------------
 
@@ -53,10 +51,24 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # moving windows
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Left               move left 90
+bindsym $mod+Down               move down 90
+bindsym $mod+Up                 move up 90
+bindsym $mod+Right              move right 90
+bindsym $mod+Ctrl+Left          move left 30
+bindsym $mod+Ctrl+Down          move down 30
+bindsym $mod+Ctrl+Up            move up 30
+bindsym $mod+Ctrl+Right         move right 30
+
+# resizing windows
+bindsym $mod+Shift+Left         resize shrink width 30 px or 30 ppt
+bindsym $mod+Shift+Down         resize grow height 30 px or 30 ppt
+bindsym $mod+Shift+Up           resize shrink height 30 px or 30 ppt
+bindsym $mod+Shift+Right        resize grow width 30 px or 30 ppt
+bindsym $mod+Shift+Ctrl+Left    resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+Ctrl+Down    resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+Ctrl+Up      resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+Ctrl+Right   resize grow width 10 px or 10 ppt
 
 # set workspace variables
 set $workspace1 "1"
@@ -171,7 +183,6 @@ client.urgent             $urgent         $urgent        $urgent        $urgent
 bar {
     Position top
     font pango:Monaco for powerline 9
-    separator_symbol "  "
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     colors {
         background $inactive-bg
