@@ -14,7 +14,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'Shougo/neosnippet.vim'
 
 call plug#end()
 
@@ -28,11 +27,12 @@ set cpo-=aA                     " :read and :write <file> shouldn't set #
 set fillchars=vert:│            " use unicode icon for vertical split
 set nocursorline                " cursorline slows down vim
 set nolazyredraw                " redraw screen
+set nomodeline                  " don't give into vulnerabilities
 set nonumber                    " don't show line numbers
 set norelativenumber            " don't show relative line numbers
 set noruler                     " ruler removes column position from ctrl-g
-set nosplitbelow                " always split below
-set nosplitright                " always split right
+set nosplitbelow                " never split below
+set nosplitright                " never split right
 set shortmess=filmnxrtToO       " shorten some messages
 set showmode                    " show current mode at the bottom
 set signcolumn=yes              " never show gutter column
@@ -421,17 +421,6 @@ let g:netrw_winsize=25
 let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_hide = 1
 let g:netrw_cursor=0
-
-" -- Neosnippet ----------------------------------------------------------------
-
-let g:neosnippet#disable_runtime_snippets = { '_' : 1, }
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-xmap <TAB>     <Plug>(neosnippet_expand_target)
 
 " -- Fugitive ------------------------------------------------------------------
 
