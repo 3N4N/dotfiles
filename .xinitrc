@@ -20,6 +20,9 @@ feh --bg-fill ~/Pictures/backgrounds/mylinuxsystem.jpg
 # setup compositor
 compton --config $HOME/.config/compton.conf </dev/null &>/dev/null &
 
+# setup notification widget
+dunst &>/dev/null &
+
 # setup status bar
 ~/projects/dotFiles/dwm_status &
 #exec dwm
