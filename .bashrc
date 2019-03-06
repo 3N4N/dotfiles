@@ -38,15 +38,15 @@ bind '"\C-n": history-search-forward'
 
 # -- aliases -------------------------------------------------------------------
 
+# safety features
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
 # useful ls aliases
-alias l='ls -vhF1 --group-directories-first'
+alias l='ls -vhFl --group-directories-first'
 alias la='l -A'
-alias lh='la -d .[^.]*'
-alias ld='la -d --indicator-style=none */ .[^.]*/'
-alias ll='l -l --time-style=+'
-alias lal='la -l --time-style=+'
-alias lhl='lh -l --time-style=+'
-alias ldl='ld -l --time-style=+'
+alias lh='la -d .[^.]* 2> /dev/null'
 
 # show colors in grep and ag
 alias ag='ag --color-match "31"'
@@ -59,7 +59,7 @@ alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias r='ranger'
+alias mkdir='mkdir -p'
 alias reload='source ~/.bashrc'
 alias t='sh ~/projects/dotFiles/tmux.sh'
 alias tree='tree -nF --dirsfirst'

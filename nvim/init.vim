@@ -168,6 +168,8 @@ cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
 " useful leader mappings
+nnoremap <Leader>; :
+xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>e :e **/
 nnoremap <Leader>f :grep<space>
@@ -208,6 +210,7 @@ nnoremap <expr> N (v:searchforward ? 'N' : 'n')
 
 " better window management
 nnoremap <Leader>w <C-w>
+nnoremap <Leader>wq ZZ
 nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
@@ -276,6 +279,21 @@ noremap  <Right> <Nop>
 
 " -- Functions -----------------------------------------------------------------
 
+" use spaces for alignment
+function! RetabAlignment() abort
+	let vcol = virtcol('.')
+	let t = &et
+	set et
+	.retab
+	let &et = t
+	unlet t
+	normal! ==
+	execute 'normal! ' . (vcol) . '|'
+	unlet vcol
+endfunction
+nnoremap <Leader>z :<C-u>call RetabAlignment()<CR>
+inoremap <C-Z> <C-O>:<C-u>call RetabAlignment()<CR>
+
 " switch windows effortlessly
 function! SwitchWindow(count) abort
 	let l:current_buf = winbufnr(0)
@@ -328,14 +346,14 @@ xnoremap <expr> <leader>cc '"zy:call Send_to_tmux('.v:count1.')<CR>'
 
 " use * and # over visual selection
 function! s:VSetSearch(cmdtype)
-  let t = @s
-  norm! gv"sy
-  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-  let _w = winsaveview()
-  let @s = t
-  call winrestview(_w)
-  unlet _w
-  unlet t
+	let t = @s
+	norm! gv"sy
+	let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+	let _w = winsaveview()
+	let @s = t
+	call winrestview(_w)
+	unlet _w
+	unlet t
 endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
@@ -383,7 +401,7 @@ set statusline=%1*\ %{winnr()}
 			\%=
 			\%<\ %{(&fenc!=''?&fenc:&enc)}
 			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
-			\\ %1*\ %p%%\ ≡\ %l:\ %4(%v\ %)
+			\\ %1*\ %l:\ %4(%v\ %)
 
 hi User1 guibg=#98c379 guifg=#282c34
 hi User2 guibg=#c678dd guifg=#282c34

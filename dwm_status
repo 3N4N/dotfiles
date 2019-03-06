@@ -20,6 +20,10 @@ print_bat(){
 	status=$(acpi | awk '{print $3}')
 	capacity="$(acpi | sed -r 's/.* ([0-9]*)%.*/\1/')"
 
+	if [ "$status" = "Discharging," ] && [ "$capacity" -le "15" ]; then
+		notify-send "PLUG IN THE CHARGER"
+	fi
+
 	echo -n "[Bat $capacity"
 	if [ "$status" = "Discharging," ]; then
 		echo -n "-"
