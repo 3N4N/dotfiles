@@ -56,6 +56,7 @@ if [ "$1" == "-a" ]; then
 		htop \
 		imagemagick \
 		mpv \
+		pavucontrol \
 		rar \
 		scrot \
 		silversearcher-ag \

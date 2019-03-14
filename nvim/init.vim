@@ -143,6 +143,10 @@ nnoremap J m0J`0
 nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
+" consistent movement
+noremap gh _
+noremap gl g_
+
 " don't move cursor when searching with * or #
 nnoremap <silent> * :let _w = winsaveview()<CR>
 			\:normal! *<CR>
@@ -154,8 +158,8 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:unlet _w<CR>
 
 " use CTRL-G u
-inoremap <C-H> <C-G>u<C-H>
-inoremap <CR> <C-]><C-G>u<CR>
+inoremap <C-h> <C-g>u<C-h>
+inoremap <CR> <C-]><C-g>u<CR>
 
 " sensible yank till last character
 nnoremap Y y$
@@ -292,7 +296,7 @@ function! RetabAlignment() abort
 	unlet vcol
 endfunction
 nnoremap <Leader>z :<C-u>call RetabAlignment()<CR>
-inoremap <C-Z> <C-O>:<C-u>call RetabAlignment()<CR>
+inoremap <C-z> <C-o>:<C-u>call RetabAlignment()<CR>
 
 " switch windows effortlessly
 function! SwitchWindow(count) abort

@@ -18,10 +18,10 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Ena
 feh --bg-fill ~/Pictures/backgrounds/mylinuxsystem.jpg
 
 # setup compositor
-compton --config $HOME/.config/compton.conf </dev/null &>/dev/null &
+compton &> /dev/null &
 
 # setup notification widget
-dunst &>/dev/null &
+dunst &> /dev/null &
 
 # setup status bar
 ~/projects/dotFiles/dwm_status &

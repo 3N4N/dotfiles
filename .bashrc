@@ -59,7 +59,7 @@ alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias mkdir='mkdir -p'
+alias mkdir='mkdir -pv'
 alias reload='source ~/.bashrc'
 alias t='sh ~/projects/dotFiles/tmux.sh'
 alias tree='tree -nF --dirsfirst'
@@ -87,7 +87,10 @@ if [[ ! -d "$HOME/.fzf" ]]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+export FZF_DEFAULT_OPTS='
+	--height 40% --multi --layout=reverse
+	--bind ctrl-f:page-down,ctrl-b:page-up
+'
 
 if type "ag" >/dev/null ; then
 	export FZF_DEFAULT_COMMAND='ag -g ""'
