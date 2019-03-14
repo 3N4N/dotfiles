@@ -1,0 +1,68 @@
+#!/bin/bash
+
+print_volume() {
+	info="$(amixer get Master | tail -n1)"
+	volume="$(echo $info | sed -r 's/.*\[(.*)%\].*/\1/')"
+	status="$(echo $info | sed -r 's/.*\[.*\] \[.*\] \[(.*)\].*/\1/')"
+	if [ "$status" = "on" ]; then
+		echo -n "[Vol $volume]"
+	else
+		echo -n "[Vol $volume(muted)]"
+	fi
+}
+
+print_wifi() {
+
+	echo -e "[W $(iwgetid -r)]"
+}
+
+print_bat(){
+	status=$(acpi | awk '{print $3}')
+	capacity="$(acpi | sed -r 's/.* ([0-9]*)%.*/\1/')"
+
+	if [ "$status" = "Discharging," ] && [ "$capacity" -le "15" ]; then
+		notify-send "PLUG IN THE CHARGER"
+	fi
+
+	echo -n "[Bat $capacity"
+	if [ "$status" = "Discharging," ]; then
+		echo -n "-"
+	elif [ "$status" = "Charging," ]; then
+		echo -n "+"
+	elif [ "$status" = "Full," ]; then
+		echo -n "*"
+	else
+		echo -n "!"
+	fi
+
+	echo "]"
+}
+
+print_brightness() {
+	brightness=$(xbacklight | sed -r 's/(.*)\..*/\1/')
+	echo "[B $brightness]"
+}
+
+print_date(){
+	date '+[%b %d %a %H:%M]'
+}
+
+fetch_cmus() {
+	artist=$( cmus-remote -Q | grep "tag artist" | sed s/"tag artist"/""/g | sed '1s/^.//')
+	title=$( cmus-remote -Q | grep "tag title" | sed s/"tag title"/""/g )
+	status=$( cmus-remote -Q | grep "status" | sed s/"tag title"/""/g )
+	track=$( echo -e "$artist -$title")
+	if  [[ "$status" == "status playing" ]]; then
+		echo "[$track] "
+	fi
+}
+
+
+while true
+do
+
+	xsetroot -name " $(fetch_cmus)$(print_brightness) $(print_wifi) $(print_volume) $(print_bat) $(print_date) ";
+
+	sleep 1
+
+done

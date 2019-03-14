@@ -255,10 +255,6 @@ snippet seed_rand
 snippet typedef
     typedef ${1:#:base_type} ${2:#:custom_type};
 
-snippet sizeof
-alias   size
-    sizeof(${0:TARGET})
-
 snippet sizeof_array
 alias   array_size
     (sizeof(${1:#:array}) / sizeof(*($1)))

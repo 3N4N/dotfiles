@@ -38,34 +38,33 @@ bind '"\C-n": history-search-forward'
 
 # -- aliases -------------------------------------------------------------------
 
+# safety features
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
 # useful ls aliases
-alias l='ls -vhF1 --group-directories-first'
+alias l='ls -vhFl --group-directories-first'
 alias la='l -A'
-alias lh='la -d .[^.]*'
-alias ld='la -d --indicator-style=none */ .[^.]*/'
-alias ll='l -l --time-style=+'
-alias lal='la -l --time-style=+'
-alias lhl='lh -l --time-style=+'
-alias ldl='ld -l --time-style=+'
+alias lh='la -d .[^.]* 2> /dev/null'
 
 # show colors in grep and ag
+alias ag='ag --color-match "31"'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias ag='ag --color-match "31"'
 
 # shorthand for python executables
 alias py2='python2'
 alias py3='python3'
 
 # miscellaneous
-alias i3lock='sh ~/projects/dotFiles/i3/lock.sh'
+alias mkdir='mkdir -pv'
 alias reload='source ~/.bashrc'
-alias r='ranger'
-alias tree='tree -nF --dirsfirst'
 alias t='sh ~/projects/dotFiles/tmux.sh'
-alias vimdiff='nvim -d'
+alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
+alias vimdiff='nvim -d'
 
 # -- functions -----------------------------------------------------------------
 
@@ -88,7 +87,10 @@ if [[ ! -d "$HOME/.fzf" ]]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+export FZF_DEFAULT_OPTS='
+	--height 40% --multi --layout=reverse
+	--bind ctrl-f:page-down,ctrl-b:page-up
+'
 
 if type "ag" >/dev/null ; then
 	export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -128,4 +130,5 @@ yellow=$(tput setaf 3)
 green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
+
 PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\$ '

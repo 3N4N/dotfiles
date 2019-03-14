@@ -14,7 +14,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'Shougo/neosnippet.vim'
 
 call plug#end()
 
@@ -28,11 +27,12 @@ set cpo-=aA                     " :read and :write <file> shouldn't set #
 set fillchars=vert:│            " use unicode icon for vertical split
 set nocursorline                " cursorline slows down vim
 set nolazyredraw                " redraw screen
+set nomodeline                  " don't give into vulnerabilities
 set nonumber                    " don't show line numbers
 set norelativenumber            " don't show relative line numbers
 set noruler                     " ruler removes column position from ctrl-g
-set nosplitbelow                " always split below
-set nosplitright                " always split right
+set nosplitbelow                " never split below
+set nosplitright                " never split right
 set shortmess=filmnxrtToO       " shorten some messages
 set showmode                    " show current mode at the bottom
 set signcolumn=yes              " never show gutter column
@@ -143,6 +143,10 @@ nnoremap J m0J`0
 nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
+" consistent movement
+noremap gh _
+noremap gl g_
+
 " don't move cursor when searching with * or #
 nnoremap <silent> * :let _w = winsaveview()<CR>
 			\:normal! *<CR>
@@ -154,8 +158,8 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:unlet _w<CR>
 
 " use CTRL-G u
-inoremap <C-H> <C-G>u<C-H>
-inoremap <CR> <C-]><C-G>u<CR>
+inoremap <C-h> <C-g>u<C-h>
+inoremap <CR> <C-]><C-g>u<CR>
 
 " sensible yank till last character
 nnoremap Y y$
@@ -168,6 +172,8 @@ cnoremap <c-p> <up>
 cnoremap <c-n> <down>
 
 " useful leader mappings
+nnoremap <Leader>; :
+xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>e :e **/
 nnoremap <Leader>f :grep<space>
@@ -208,6 +214,7 @@ nnoremap <expr> N (v:searchforward ? 'N' : 'n')
 
 " better window management
 nnoremap <Leader>w <C-w>
+nnoremap <Leader>wq ZZ
 nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
@@ -276,6 +283,21 @@ noremap  <Right> <Nop>
 
 " -- Functions -----------------------------------------------------------------
 
+" use spaces for alignment
+function! RetabAlignment() abort
+	let vcol = virtcol('.')
+	let t = &et
+	set et
+	.retab
+	let &et = t
+	unlet t
+	normal! ==
+	execute 'normal! ' . (vcol) . '|'
+	unlet vcol
+endfunction
+nnoremap <Leader>z :<C-u>call RetabAlignment()<CR>
+inoremap <C-z> <C-o>:<C-u>call RetabAlignment()<CR>
+
 " switch windows effortlessly
 function! SwitchWindow(count) abort
 	let l:current_buf = winbufnr(0)
@@ -328,14 +350,14 @@ xnoremap <expr> <leader>cc '"zy:call Send_to_tmux('.v:count1.')<CR>'
 
 " use * and # over visual selection
 function! s:VSetSearch(cmdtype)
-  let t = @s
-  norm! gv"sy
-  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-  let _w = winsaveview()
-  let @s = t
-  call winrestview(_w)
-  unlet _w
-  unlet t
+	let t = @s
+	norm! gv"sy
+	let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+	let _w = winsaveview()
+	let @s = t
+	call winrestview(_w)
+	unlet _w
+	unlet t
 endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
@@ -383,7 +405,7 @@ set statusline=%1*\ %{winnr()}
 			\%=
 			\%<\ %{(&fenc!=''?&fenc:&enc)}
 			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
-			\\ %1*\ %p%%\ ≡\ %l:\ %4(%v\ %)
+			\\ %1*\ %l:\ %4(%v\ %)
 
 hi User1 guibg=#98c379 guifg=#282c34
 hi User2 guibg=#c678dd guifg=#282c34
@@ -421,17 +443,6 @@ let g:netrw_winsize=25
 let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_hide = 1
 let g:netrw_cursor=0
-
-" -- Neosnippet ----------------------------------------------------------------
-
-let g:neosnippet#disable_runtime_snippets = { '_' : 1, }
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-xmap <TAB>     <Plug>(neosnippet_expand_target)
 
 " -- Fugitive ------------------------------------------------------------------
 
