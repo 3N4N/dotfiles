@@ -1,13 +1,13 @@
 Session.vim
 
-nvim/pack/*
-nvim/.netrwhist
-nvim/plugged
+.config/nvim/pack/*
+.config/nvim/.netrwhist
+.config/nvim/plugged
 
-ranger/bookmarks
-ranger/history
-ranger/tagged
-ranger/colorschemes/__init__.py
-ranger/colorschemes/*.pyo
+.config/ranger/bookmarks
+.config/ranger/history
+.config/ranger/tagged
+.config/ranger/colorschemes/__init__.py
+.config/ranger/colorschemes/*.pyo
 
-vifm/vifminfo
+.config/vifm/vifminfo

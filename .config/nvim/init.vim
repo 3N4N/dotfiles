@@ -23,8 +23,9 @@ set backspace=indent,eol,start  " influence the working of insert mode deletion
 set cinoptions=g0,l1,i0,t0      " options for cindent
 set colorcolumn=81              " colorize a column to show long lines
 set conceallevel=0              " don't conceal anything
-set cpo-=aA                     " :read and :write <file> shouldn't set #
+set cpoptions-=aA               " :read and :write <file> shouldn't set #
 set fillchars=vert:│            " use unicode icon for vertical split
+set inccommand=nosplit          " show the effect of a command incrementally
 set nocursorline                " cursorline slows down vim
 set nolazyredraw                " redraw screen
 set nomodeline                  " don't give into vulnerabilities
@@ -45,6 +46,7 @@ set virtualedit=block           " select empty spaces in visual-block mode
 set hlsearch
 set ignorecase
 set incsearch
+set nowrapscan
 set smartcase
 if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
@@ -219,6 +221,10 @@ nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
+
+" switch tabpages
+nnoremap <Leader>] gt
+nnoremap <Leader>[ gT
 
 " handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
