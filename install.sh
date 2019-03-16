@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DIR=$HOME/projects/dotFiles
 BACKGROUNDDIR=$HOME/Pictures/backgrounds

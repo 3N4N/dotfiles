@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 print_volume() {
 	info="$(amixer get Master | tail -n1)"
@@ -52,7 +52,7 @@ fetch_cmus() {
 	title=$( cmus-remote -Q | grep "tag title" | sed s/"tag title"/""/g )
 	status=$( cmus-remote -Q | grep "status" | sed s/"tag title"/""/g )
 	track=$( echo -e "$artist -$title")
-	if  [[ "$status" == "status playing" ]]; then
+	if  [ "$status" == "status playing" ]; then
 		echo "[$track] "
 	fi
 }
