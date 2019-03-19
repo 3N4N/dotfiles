@@ -11,3 +11,5 @@ Session.vim
 .config/ranger/colorschemes/*.pyo
 
 .config/vifm/vifminfo
+
+.local/share/fonts/.uuid

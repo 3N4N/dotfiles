@@ -8,7 +8,7 @@
 hi clear
 set background=light
 if exists("syntax_on")
-    syntax reset
+	syntax reset
 endif
 let g:colors_name = "fault"
 
@@ -129,22 +129,22 @@ hi def hlLevel9  guifg=#c678dd
 " need to keep track of main terminal colorschemes
 
 if has("nvim")
-    let g:terminal_color_0 =  '#282c34'
-    let g:terminal_color_1 =  '#e06c75'
-    let g:terminal_color_2 =  '#98c379'
-    let g:terminal_color_3 =  '#e5c07b'
-    let g:terminal_color_4 =  '#61afef'
-    let g:terminal_color_5 =  '#c678dd'
-    let g:terminal_color_6 =  '#56b6c2'
-    let g:terminal_color_7 =  '#abb2bf'
-    let g:terminal_color_8 =  '#3E4452'
-    let g:terminal_color_9 =  '#be5046'
-    let g:terminal_color_10 = '#98c379' " No dark version
-    let g:terminal_color_11 = '#d19a66'
-    let g:terminal_color_12 = '#61afef' " No dark version
-    let g:terminal_color_13 = '#c678dd' " No dark version
-    let g:terminal_color_14 = '#56b6c2' " No dark version
-    let g:terminal_color_15 = '#5c6370'
-    let g:terminal_color_background = g:terminal_color_0
-    let g:terminal_color_foreground = g:terminal_color_7
+	let g:terminal_color_0 =  '#282c34'
+	let g:terminal_color_1 =  '#e06c75'
+	let g:terminal_color_2 =  '#98c379'
+	let g:terminal_color_3 =  '#e5c07b'
+	let g:terminal_color_4 =  '#61afef'
+	let g:terminal_color_5 =  '#c678dd'
+	let g:terminal_color_6 =  '#56b6c2'
+	let g:terminal_color_7 =  '#abb2bf'
+	let g:terminal_color_8 =  '#3E4452'
+	let g:terminal_color_9 =  '#be5046'
+	let g:terminal_color_10 = '#98c379' " No dark version
+	let g:terminal_color_11 = '#d19a66'
+	let g:terminal_color_12 = '#61afef' " No dark version
+	let g:terminal_color_13 = '#c678dd' " No dark version
+	let g:terminal_color_14 = '#56b6c2' " No dark version
+	let g:terminal_color_15 = '#5c6370'
+	let g:terminal_color_background = g:terminal_color_0
+	let g:terminal_color_foreground = g:terminal_color_7
 endif

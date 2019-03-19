@@ -3,20 +3,20 @@
 DIR=$HOME/projects/dotFiles
 
 DOTFILES=(
-".bin"
-".bashrc"
-".bash_profile"
-".gitconfig"
-".profile"
-".tmux.conf"
-".xinitrc"
-".config/cmus/cmus.theme"
-".config/compton.conf"
-".config/dunst"
-".config/feh"
-".config/mpv"
-".config/nvim"
-".local/share/fonts"
+	".bin"
+	".bashrc"
+	".bash_profile"
+	".gitconfig"
+	".profile"
+	".tmux.conf"
+	".xinitrc"
+	".config/cmus/cmus.theme"
+	".config/compton.conf"
+	".config/dunst"
+	".config/feh"
+	".config/mpv"
+	".config/nvim"
+	".local/share/fonts"
 )
 
 for dotfile in "${DOTFILES[@]}";do

@@ -19,35 +19,33 @@ call plug#end()
 
 " -- General -------------------------------------------------------------------
 
-set backspace=indent,eol,start  " influence the working of insert mode deletion
-set cinoptions=g0,l1,i0,t0      " options for cindent
-set colorcolumn=81              " colorize a column to show long lines
-set conceallevel=0              " don't conceal anything
-set cpoptions-=aA               " :read and :write <file> shouldn't set #
-set fillchars=vert:│            " use unicode icon for vertical split
-set inccommand=nosplit          " show the effect of a command incrementally
-set nocursorline                " cursorline slows down vim
-set nolazyredraw                " redraw screen
-set nomodeline                  " don't give into vulnerabilities
-set nonumber                    " don't show line numbers
-set norelativenumber            " don't show relative line numbers
-set noruler                     " ruler removes column position from ctrl-g
-set nosplitbelow                " never split below
-set nosplitright                " never split right
-set shortmess=filmnxrtToO       " shorten some messages
-set showmode                    " show current mode at the bottom
-set signcolumn=yes              " never show gutter column
-set spelllang=en_us             " set language for spell checking
-set synmaxcol=200               " don't highlight after 200 columns
-set updatetime=250              " update after each 0.25s
-set virtualedit=block           " select empty spaces in visual-block mode
+" visual perks
+set colorcolumn=81
+set conceallevel=0
+set fillchars=vert:│
+set nocursorline
+set nolazyredraw
+set nomodeline
+set nonumber
+set norelativenumber
+set noruler
+set showmode
+set signcolumn=yes
+
+" new split position
+set nosplitbelow
+set nosplitright
+
+" dictionary and spelling
+set dictionary=/usr/share/dict/words
+set spelllang=en_us
 
 " searching
 set hlsearch
 set ignorecase
 set incsearch
-set nowrapscan
 set smartcase
+set wrapscan
 if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
 endif
@@ -68,15 +66,26 @@ set list
 set listchars=tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
 
 " wrap lines visually
-set nowrap                " don't wrap long lines
-set breakindent           " continue wrapped lines visually indented
-set linebreak             " break at 'breakat' rather than last character
-set showbreak=↪           " show ↪ before wrapped lines
+set nowrap
+set breakindent
+set linebreak
+let &showbreak = '↪ '
+set breakindentopt=shift:2
 
 " keymap timeout settings
 set notimeout
 set ttimeout
 set ttimeoutlen=10
+
+" miscellaneous options
+let &inccommand='nosplit'
+set backspace=indent,eol,start
+set cinoptions=g0,l1,i0,t0
+set cpoptions-=aA
+set shortmess=filmnxrtToO
+set synmaxcol=200
+set updatetime=250
+set virtualedit=block
 
 " backup and persistent undo
 set nobackup
@@ -111,12 +120,12 @@ let g:clipboard = {
 
 " -- Tab settings --------------------------------------------------------------
 
-set tabstop=4           " number of spaces that a <Tab> in the file counts for
-set softtabstop=4       " number of spaces a <Tab> accounts for while editing
-set shiftwidth=4        " number of spaces to use for each step of (auto)indent
-set smarttab            " use 'shiftwidth' when press <Tab> in front of a line
-set shiftround          " round indent to multiple of 'shiftwidth'
-set noexpandtab         " use spaces instead of tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set shiftround
+set noexpandtab
 
 command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
 			\ . <args> . " softtabstop=" . <args> . " expandtab" |
@@ -177,6 +186,7 @@ cnoremap <c-n> <down>
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap <Leader>d :e .**/
 nnoremap <Leader>e :e **/
 nnoremap <Leader>f :grep<space>
 nnoremap <Leader>h :nohlsearch<CR>
@@ -281,11 +291,25 @@ else
 endif
 tnoremap <Esc> <C-\><C-n>
 
-" disable arrow keys
-noremap  <Up>    <Nop>
-noremap  <Down>  <Nop>
-noremap  <Left>  <Nop>
-noremap  <Right> <Nop>
+" -- Text Objects --------------------------------------------------------------
+
+" simple text-objects
+for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
+	execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
+	execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
+	execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
+	execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
+endfor
+
+" line text-objects
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o0
+onoremap al :normal val<CR>
+
+" buffer text-objects
+xnoremap aa GoggV
+onoremap aa :normal vaa<CR>
 
 " -- Functions -----------------------------------------------------------------
 
@@ -351,8 +375,8 @@ function! Send_to_tmux(count) abort
 	silent execute "!tmux send-keys -t " . a:count . " \"" . text . "\""
 	silent execute "!tmux send-keys -t " . a:count . "Enter"
 endfunction
-nnoremap <expr> <leader>cc '"zyip:call Send_to_tmux('.v:count1.')<CR>'
-xnoremap <expr> <leader>cc '"zy:call Send_to_tmux('.v:count1.')<CR>'
+nnoremap <expr> <leader>p '"zyip:call Send_to_tmux('.v:count1.')<CR>'
+xnoremap <expr> <leader>p '"zy:call Send_to_tmux('.v:count1.')<CR>'
 
 " use * and # over visual selection
 function! s:VSetSearch(cmdtype)
@@ -381,37 +405,16 @@ augroup quickfix
 	autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
 
-" -- Text Objects --------------------------------------------------------------
-
-" simple text-objects
-for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
-	execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
-	execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
-	execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
-	execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
-endfor
-
-" line text-objects
-xnoremap il g_o^
-onoremap il :normal vil<CR>
-xnoremap al $o0
-onoremap al :normal val<CR>
-
-" buffer text-objects
-xnoremap aa GoggV
-onoremap aa :normal vaa<CR>
-
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
 set statusline=%1*\ %{winnr()}
 			\\ %2*\ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
 			\:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
-			\\ %0*\ %{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+			\\ %0*\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
 			\%=
-			\%<\ %{(&fenc!=''?&fenc:&enc)}
 			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
-			\\ %1*\ %l:\ %4(%v\ %)
+			\\ %1*\ %l:%4(%v\ %)
 
 hi User1 guibg=#98c379 guifg=#282c34
 hi User2 guibg=#c678dd guifg=#282c34
@@ -442,19 +445,19 @@ set tabline=%!MyTabLine()
 let g:netrw_altv=1
 let g:netrw_banner=0
 let g:netrw_browse_split=0
+let g:netrw_cursor=0
+let g:netrw_hide = 1
+let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_liststyle=0
 let g:netrw_sort_by='name'
 let g:netrw_sort_direction='normal'
 let g:netrw_winsize=25
-let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
-let g:netrw_hide = 1
-let g:netrw_cursor=0
 
 " -- Fugitive ------------------------------------------------------------------
 
-nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gc :Gcommit<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gr :Gread<CR>
+nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gw :Gwrite<CR>
-nnoremap <silent> <Leader>gb :Gblame<CR>
