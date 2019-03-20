@@ -15,7 +15,7 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
 
 # setup background
-feh --bg-fill ~/Pictures/backgrounds/mylinuxsystem.jpg
+feh --bg-fill ~/projects/dotFiles/backgrounds/mylinuxsystem.jpg
 
 # setup compositor
 compton &> /dev/null &
