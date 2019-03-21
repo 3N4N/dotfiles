@@ -179,14 +179,13 @@ nnoremap Y y$
 nnoremap U <C-r>
 
 " command mode history search
-cnoremap <c-p> <up>
-cnoremap <c-n> <down>
+cnoremap <C-p> <up>
+cnoremap <C-n> <down>
 
 " useful leader mappings
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap <Leader>d :e .**/
 nnoremap <Leader>e :e **/
 nnoremap <Leader>f :grep<space>
 nnoremap <Leader>h :nohlsearch<CR>

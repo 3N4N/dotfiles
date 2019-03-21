@@ -44,7 +44,7 @@ alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
 # useful ls aliases
-alias l='ls -vhFl --group-directories-first'
+alias l='ls -vhFl --group-directories-first --time-style=+'
 alias la='l -A'
 alias lh='la -d .[^.]* 2> /dev/null'
 
@@ -60,6 +60,7 @@ alias py3='python3'
 
 # miscellaneous
 alias mkdir='mkdir -pv'
+alias mupdf='mupdf-gl'
 alias reload='source ~/.bashrc'
 alias t='sh ~/projects/dotFiles/tmux.sh'
 alias tree='tree -nF --dirsfirst'
@@ -79,7 +80,7 @@ now() {
 
 # -- fzf -----------------------------------------------------------------------
 
-if [[ ! -d "$HOME/.fzf" ]]; then
+if [ ! -d "$HOME/.fzf" ]; then
 	git clone https://github.com/junegunn/fzf.git ~/.fzf
 	cd ~/.fzf
 	./install --all --no-completion

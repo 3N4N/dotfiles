@@ -34,7 +34,6 @@ if [ "$1" == "-a" ]; then
 		feh \
 		ffmpeg \
 		htop \
-		imagemagick \
 		mpv \
 		pavucontrol \
 		rar \
