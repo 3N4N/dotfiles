@@ -39,7 +39,6 @@ if [ "$1" == "-a" ]; then
 		pavucontrol \
 		rar \
 		scrot \
-		silversearcher-ag \
 		tree \
 		x11-xkb-utils \
 		xbacklight \
