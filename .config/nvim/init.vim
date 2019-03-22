@@ -145,7 +145,7 @@ let mapleader = "\<Space>"
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
 " Uppercase word mapping
-inoremap <C-u> <esc>m0gUiw`0a
+inoremap <C-u> <Esc>m0gUiw`0a
 
 " don't move cursor while joining lines
 nnoremap J m0J`0
@@ -179,15 +179,15 @@ nnoremap Y y$
 nnoremap U <C-r>
 
 " command mode history search
-cnoremap <C-p> <up>
-cnoremap <C-n> <down>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " useful leader mappings
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>e :e **/
-nnoremap <Leader>f :grep<space>
+nnoremap <Leader>f :grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s/\v
@@ -293,7 +293,7 @@ tnoremap <Esc> <C-\><C-n>
 " -- Text Objects --------------------------------------------------------------
 
 " simple text-objects
-for s:char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
+for s:char in [ '_', '.', ':', ',', ';', '<Bar>', '/', '<Bslash>', '*', '+', '%', '`' ]
 	execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
 	execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
 	execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
@@ -374,8 +374,8 @@ function! Send_to_tmux(count) abort
 	silent execute "!tmux send-keys -t " . a:count . " \"" . text . "\""
 	silent execute "!tmux send-keys -t " . a:count . "Enter"
 endfunction
-nnoremap <expr> <leader>p '"zyip:call Send_to_tmux('.v:count1.')<CR>'
-xnoremap <expr> <leader>p '"zy:call Send_to_tmux('.v:count1.')<CR>'
+nnoremap <expr> <Leader>p '"zyip:call Send_to_tmux('.v:count1.')<CR>'
+xnoremap <expr> <Leader>p '"zy:call Send_to_tmux('.v:count1.')<CR>'
 
 " use * and # over visual selection
 function! s:VSetSearch(cmdtype)

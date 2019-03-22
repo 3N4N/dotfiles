@@ -3,32 +3,34 @@
 ; Github: https://github.com/enanajmain
 
 [user]
-    email = 3nan.ajmain@gmail.com
-    name = Enan Ajmain
+	email = 3nan.ajmain@gmail.com
+	name = Enan Ajmain
 [credential]
-    helper = cache --timeout=1800
+	helper = cache --timeout=1800
 [core]
-    abbrev = 12
-    preloadindex = true
-    fscache = true
-    pager = less -+$LESS -MR
-    editor = nvim
+	abbrev = 12
+	preloadindex = true
+	fscache = true
+	pager = less -+$LESS -MR
+	editor = nvim
 [log]
-    date = short
+	date = short
 [push]
-    default = current
+	default = current
 [alias]
-    ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
-    ll = log --stat --source -p
-    b = branch
-    ba = branch -avv
-    br = branch -vv
-    st = status -sb
-    sh = stash
-    sa = stash save --include-untracked
-    co = checkout
-    cp = cherry-pick
-    cl = clone
-    ct = commit
-    dw = diff --word-diff
-    ds = diff --staged
+	ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
+	ll = log --stat --source -p
+	br = branch
+	ba = branch -av
+	bv = branch -v
+	st = status -sb
+	sh = stash
+	sa = stash save --include-untracked
+	co = checkout
+	cp = cherry-pick
+	cl = clone
+	ct = commit
+	df = diff
+	dp = diff --stat
+	ds = diff --staged
+	dw = diff --word-diff
