@@ -454,9 +454,9 @@ let g:netrw_winsize=25
 
 " -- Fugitive ------------------------------------------------------------------
 
-nnoremap <silent> <Leader>gb :Gblame<CR>
-nnoremap <silent> <Leader>gc :Gcommit<CR>
-nnoremap <silent> <Leader>gd :Gdiff<CR>
-nnoremap <silent> <Leader>gr :Gread<CR>
-nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gc :Gcommit<Space>
+nnoremap <Leader>gd :Gdiff<Space>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gw :Gwrite<CR>
