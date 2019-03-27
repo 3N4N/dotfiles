@@ -83,18 +83,19 @@ now() {
 if [ ! -d "$HOME/.fzf" ]; then
 	git clone https://github.com/junegunn/fzf.git ~/.fzf
 	cd ~/.fzf
-	./install --all --no-completion
+	./install --all
 	cd -
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export FZF_DEFAULT_OPTS='
-	--height 40% --multi --layout=reverse
-	--bind ctrl-f:page-down,ctrl-b:page-up
+	--height 40% --multi --layout=reverse --border
+	--bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
 '
 
-if type "ag" >/dev/null ; then
-	export FZF_DEFAULT_COMMAND='ag -g ""'
+if type "ag" &> /dev/null ; then
+	export FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
