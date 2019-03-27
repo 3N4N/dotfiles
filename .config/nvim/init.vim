@@ -395,7 +395,8 @@ xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
 augroup custom_term
 	autocmd!
-	autocmd TermOpen * setlocal nonumber norelativenumber
+	autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+	autocmd BufEnter term://* startinsert
 augroup END
 
 augroup quickfix
