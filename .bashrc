@@ -83,7 +83,7 @@ now() {
 if [ ! -d "$HOME/.fzf" ]; then
 	git clone https://github.com/junegunn/fzf.git ~/.fzf
 	cd ~/.fzf
-	./install --all
+	./install --all --no-completion
 	cd -
 fi
 
@@ -98,6 +98,11 @@ if type "ag" &> /dev/null ; then
 	export FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
+
+# bind capitalize-word to Alt-I
+# in reference to Initcap
+# to unshadow Alt-C provided by fzf
+bind '"\ei": capitalize-word'
 
 # -- bash autocompletion -------------------------------------------------------
 
