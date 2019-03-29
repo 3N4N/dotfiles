@@ -36,6 +36,9 @@ bind 'set mark-symlinked-directories on'
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
+# remove XON/XOFF
+stty -ixon
+
 # -- aliases -------------------------------------------------------------------
 
 # safety features

@@ -106,7 +106,7 @@ let g:lisp_rainbow = 1
 " -- Clipboard -----------------------------------------------------------------
 
 let g:clipboard = {
-			\   'name': 'xclip-xfce4-clipman',
+			\   'name': 'xclip_neovim_clipboard',
 			\   'copy': {
 			\      '+': 'xclip -selection clipboard',
 			\      '*': 'xclip -selection clipboard',
