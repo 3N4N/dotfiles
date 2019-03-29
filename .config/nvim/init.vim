@@ -22,7 +22,7 @@ call plug#end()
 " visual perks
 set colorcolumn=81
 set conceallevel=0
-set fillchars=vert:│
+let &fillchars="vert:│"
 set nocursorline
 set nolazyredraw
 set nomodeline
@@ -47,13 +47,13 @@ set incsearch
 set smartcase
 set wrapscan
 if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git
+	let &grepprg="ag --nogroup --nocolor --hidden --ignore .git"
 endif
 
 " wildmenu settings
 set wildmenu
 set wildignorecase
-set wildmode=full
+let &wildmode="full"
 set wildignore=*.o,*.obj,*~
 set wildignore+=*.swp,*.tmp
 set wildignore+=*.mp3,*.mp4,*mkv
@@ -63,13 +63,13 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " show useful visual icons
 set list
-set listchars=tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
+let &listchars="tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«"
 
 " wrap lines visually
 set nowrap
 set breakindent
 set linebreak
-let &showbreak = '↪ '
+let &showbreak = "↪ "
 set breakindentopt=shift:2
 
 " keymap timeout settings
@@ -78,7 +78,7 @@ set ttimeout
 set ttimeoutlen=10
 
 " miscellaneous options
-let &inccommand='nosplit'
+let &inccommand="nosplit"
 set backspace=indent,eol,start
 set cinoptions=g0,l1,i0,t0
 set cpoptions-=aA
