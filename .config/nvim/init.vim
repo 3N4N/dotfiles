@@ -363,22 +363,24 @@ endfunction
 nnoremap <Leader>n :call ViewTree()<CR>
 
 " copy yanked text to tmux pane
-function! Send_to_tmux(count) abort
-	let _count = (a:count == 0) ? 2 : a:count
+function! Send_to_tmux(visual, count) range abort
+	if (a:visual)
+		execute "normal! gv\"zy"
+	else
+		execute "normal! \"zyip"
+	endif
 	let text = @z
 	let text = substitute(text, ';', '\\;', 'g')
 	let text = substitute(text, '"', '\\"', 'g')
 	let text = substitute(text, '\n', '" Enter "', 'g')
 	let text = substitute(text, '!', '\\!', 'g')
-	let text = substitute(text, '%', '\\%', 'g')
+	let text = substitute(text, '%', '\\"', 'g')
 	let text = substitute(text, '#', '\\#', 'g')
-	silent execute "!tmux send-keys -t " . _count . " -- \"" . text . "\""
-	silent execute "!tmux send-keys -t " . _count . "Enter"
-	unlet _count
-	unlet text
+	silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
+	silent execute "!tmux send-keys -t " . a:count . "Enter"
 endfunction
-nnoremap <expr> <Leader>p '"zyip:call Send_to_tmux('.v:count.')<CR>'
-xnoremap <expr> <Leader>p '"zy:call Send_to_tmux('.v:count.')<CR>'
+nnoremap <Leader>p :<C-u>call Send_to_tmux(0, v:count1)<CR>
+xnoremap <Leader>p :<C-u>call Send_to_tmux(1, v:count1)<CR>
 
 " use * and # over visual selection
 function! s:VSetSearch(cmdtype)
