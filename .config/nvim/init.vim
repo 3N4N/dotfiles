@@ -383,7 +383,7 @@ nnoremap <Leader>p :<C-u>call Send_to_tmux(0, v:count1)<CR>
 xnoremap <Leader>p :<C-u>call Send_to_tmux(1, v:count1)<CR>
 
 " use * and # over visual selection
-function! s:VSetSearch(cmdtype)
+function! s:VSetSearch(cmdtype) abort
 	let t = @s
 	norm! gv"sy
 	let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
@@ -426,7 +426,7 @@ hi User2 guibg=#c678dd guifg=#282c34
 
 " -- Tabline -------------------------------------------------------------------
 
-function! MyTabLine()
+function! MyTabLine() abort
 	let s = ''
 	for i in range(tabpagenr('$'))
 		let tabnr = i + 1
