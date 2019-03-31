@@ -98,10 +98,10 @@ hi SpellRare    gui=underline   guibg=NONE   guifg=#61afef
 
 " -- Diff ----------------------------------------------------------------------
 
-hi DiffAdd      gui=NONE   guibg=#98c379   guifg=#282c34
-hi DiffChange   gui=NONE   guibg=#e5c07b   guifg=#282c34
-hi DiffDelete   gui=NONE   guibg=#e06c75   guifg=#282c34
-hi DiffText     gui=NONE   guibg=#61afef   guifg=#282c34
+hi DiffAdd      gui=NONE   guibg=#282c34   guifg=#98c379
+hi DiffChange   gui=NONE   guibg=#282c34   guifg=#e5c07b
+hi DiffDelete   gui=NONE   guibg=#282c34   guifg=#e06c75
+hi DiffText     gui=NONE   guibg=#282c34   guifg=#e06c75
 
 " -- Gitgutter signs -----------------------------------------------------------
 
@@ -137,7 +137,7 @@ if has("nvim")
 	let g:terminal_color_5 =  '#c678dd'
 	let g:terminal_color_6 =  '#56b6c2'
 	let g:terminal_color_7 =  '#abb2bf'
-	let g:terminal_color_8 =  '#3E4452'
+	let g:terminal_color_8 =  '#3e4452'
 	let g:terminal_color_9 =  '#be5046'
 	let g:terminal_color_10 = '#98c379' " No dark version
 	let g:terminal_color_11 = '#d19a66'
