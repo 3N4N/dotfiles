@@ -20,7 +20,7 @@ if [ $? != 0 ]; then
 	# tmux rename-window -t "$session_name" files
 	# tmux send-keys -t "$session_name" 'vifm' C-m
 
-	tmux next-window
+	# tmux next-window
 fi
 
 tmux attach-session -t "$session_name"
