@@ -11,7 +11,8 @@
 
 export VISUAL=/usr/bin/nvim
 export EDITOR="$VISUAL"
-export PAGER="/usr/bin/less -S"
+export LESS="-iSMR"
+export PAGER="less"
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
