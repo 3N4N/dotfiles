@@ -66,7 +66,6 @@ alias py3='python3'
 alias mkdir='mkdir -pv'
 alias mupdf='mupdf-gl'
 alias reload='source ~/.bashrc'
-alias t='sh ~/projects/dotFiles/tmux.sh'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
 alias vimdiff='nvim -d'
@@ -80,6 +79,25 @@ now() {
 	echo -n 'time : '
 	date "+%H:%M"
 	curl wttr.in/dhaka?0
+}
+
+# tmux starting script
+t() {
+	if [ -z "$1" ]; then
+		session_name="enan"
+	else
+		session_name=$1
+	fi
+
+	cd ~
+	tmux has-session -t="$session_name"
+
+	if [ $? != 0 ]; then
+		tmux new-session -s "$session_name" -d
+		tmux rename-window -t "$session_name" shell
+	fi
+
+	tmux attach-session -t "$session_name"
 }
 
 # -- fzf -----------------------------------------------------------------------
