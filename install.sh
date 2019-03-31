@@ -3,7 +3,7 @@
 DIR=$HOME/projects/dotFiles
 
 DOTFILES=(
-	".bin"
+	"bin"
 	".bashrc"
 	".bash_profile"
 	".gitconfig"
