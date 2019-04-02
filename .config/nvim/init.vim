@@ -312,20 +312,17 @@ onoremap aa :normal vaa<CR>
 
 " -- Functions -----------------------------------------------------------------
 
-" use spaces for alignment
-function! RetabAlignment() abort
-	let vcol = virtcol('.')
-	let t = &et
-	set et
-	.retab
-	let &et = t
-	unlet t
-	normal! ==
-	execute 'normal! ' . (vcol) . '|'
-	unlet vcol
+" use tabs for indentation and spaces for alignment
+function! SpecialTab() abort
+	if (col('.') == 1) && (matchstr(getline('.'), '\%'.col('.').'c.') =~ '[^\t]')
+		exe "norm! ".(&tabstop - (virtcol('.') % &tabstop))."a\<Space>\<Esc>"
+	elseif (col('.') == 1) || (matchstr(getline('.'), '\%'.col('.').'c.') =~ '\t')
+		exe "norm! a\<Tab>\<Esc>"
+	else
+		exe "norm! ".(&tabstop - (virtcol('.') % &tabstop))."a\<Space>\<Esc>"
+	endif
 endfunction
-nnoremap <Leader>z :<C-u>call RetabAlignment()<CR>
-inoremap <C-z> <C-o>:<C-u>call RetabAlignment()<CR>
+inoremap <Tab> <Esc>:<C-u>call SpecialTab()<CR>a
 
 " switch windows effortlessly
 function! SwitchWindow(count) abort
