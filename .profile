@@ -28,6 +28,6 @@ append_to_path() {
 }
 
 # set PATH so it includes user's private bin if it exists
-append_to_path "$HOME/.bin"
+append_to_path "$HOME/bin"
 # set PATH so it includes installed packages with pip
 append_to_path "$HOME/.local/bin"
