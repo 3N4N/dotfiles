@@ -19,7 +19,7 @@ call plug#end()
 
 " -- General -------------------------------------------------------------------
 
-" visual perks
+" Visual perks
 set colorcolumn=81
 set conceallevel=0
 let &fillchars="vert:│"
@@ -32,15 +32,15 @@ set noruler
 set showmode
 set signcolumn=yes
 
-" new split position
+" New split position
 set nosplitbelow
 set nosplitright
 
-" dictionary and spelling
+" Dictionary and spelling
 set dictionary=/usr/share/dict/words
 set spelllang=en_us
 
-" searching
+" Searching
 set hlsearch
 set ignorecase
 set incsearch
@@ -50,7 +50,7 @@ if executable('ag')
 	let &grepprg="ag --nogroup --nocolor --hidden --ignore .git"
 endif
 
-" wildmenu settings
+" Wildmenu settings
 set wildmenu
 set wildignorecase
 let &wildmode="full"
@@ -61,23 +61,23 @@ set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
 set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
-" show useful visual icons
+" Show useful visual icons
 set list
 let &listchars="tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«"
 
-" wrap lines visually
-set nowrap
+" Wrap lines visually
+set wrap
 set breakindent
 set linebreak
 let &showbreak = "↪ "
 set breakindentopt=shift:2
 
-" keymap timeout settings
+" Keymap timeout settings
 set notimeout
 set ttimeout
 set ttimeoutlen=10
 
-" miscellaneous options
+" Miscellaneous settings
 let &inccommand="nosplit"
 set backspace=indent,eol,start
 set cinoptions=g0,l1,i0,t0
@@ -86,8 +86,9 @@ set shortmess=filmnxrtToO
 set synmaxcol=200
 set updatetime=250
 set virtualedit=block
+let &viewoptions="folds,cursor"
 
-" backup and persistent undo
+" Backup and Persistent Undo
 set nobackup
 set noswapfile
 set backupdir=~/.local/share/nvim/backup//
@@ -97,7 +98,7 @@ if has('persistent_undo')
 	set undodir=~/.local/share/nvim/undo//
 endif
 
-" colorscheme
+" Colorscheme
 syntax on
 set termguicolors
 colorscheme fault
@@ -138,27 +139,31 @@ command! -nargs=1 Tabs execute "setlocal tabstop=" . <args> . " shiftwidth="
 
 " -- Key Mapping ---------------------------------------------------------------
 
-" map leader
+" Map leader
 let mapleader = "\<Space>"
 
-" reload vimrc
+" Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
 " Uppercase word mapping
 inoremap <C-u> <Esc>m0gUiw`0a
 
-" don't move cursor while joining lines
+" Don't move cursor while joining lines
 nnoremap J m0J`0
 
-" don't move cursor while changing case
+" Don't move cursor while changing case
 nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
-" consistent movement
-noremap gh _
-noremap gl g_
+" Consistent movement
+noremap ( _
+noremap ) $
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
 
-" don't move cursor when searching with * or #
+" Don't move cursor when searching with * or #
 nnoremap <silent> * :let _w = winsaveview()<CR>
 			\:normal! *<CR>
 			\:call winrestview(_w)<CR>
@@ -168,36 +173,40 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:call winrestview(_w)<CR>
 			\:unlet _w<CR>
 
-" use CTRL-G u
+" Use CTRL-G u
 inoremap <C-h> <C-g>u<C-h>
 inoremap <CR> <C-]><C-g>u<CR>
 
-" sensible yank till last character
+" Sensible yank till last character
 nnoremap Y y$
 
-" undo with <S-u>
+" Undo with <S-u>
 nnoremap U <C-r>
 
-" command mode history search
+" Command mode history search
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-" useful leader mappings
+" Useful leader mappings
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap <Leader>e :e **/
 nnoremap <Leader>f :grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s/\v
 xnoremap <Leader>s :s/\%V\v
 
+" Opening files
+nnoremap <Leader>e :e **/
+nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
+			\<S-left><Left><Left><Left>
+
 " Show name of syntax element below cursor
 command! SynName  echo synIDattr(synID(line("."), col("."), 1), "name")
 nnoremap <F12> :SynName<CR>
 
-" strip trailing whitespace
+" Strip trailing whitespace
 nnoremap <silent> gs :StripTrailingWhiteSpace<CR>
 command! -nargs=0 StripTrailingWhiteSpace
 			\ let _w=winsaveview() <Bar>
@@ -209,7 +218,7 @@ command! -nargs=0 StripTrailingWhiteSpace
 			\ unlet _w |
 			\ noh
 
-" don't move cursor when searching with * or #
+" Don't move cursor when searching with * or #
 nnoremap <silent> * :let _w = winsaveview()<CR>
 			\:normal! *<CR>
 			\:call winrestview(_w)<CR>
@@ -219,11 +228,11 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:call winrestview(_w)<CR>
 			\:unlet _w<CR>
 
-" use n and N to always go forward and backward
+" Use n and N to always go forward and backward
 nnoremap <expr> n (v:searchforward ? 'n' : 'N')
 nnoremap <expr> N (v:searchforward ? 'N' : 'n')
 
-" better window management
+" Better window management
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>wq ZZ
 nnoremap <Leader>wt :tab split<CR>
@@ -231,11 +240,11 @@ nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
 
-" switch tabpages
+" Switch tabpages
 nnoremap <Leader>] gt
 nnoremap <Leader>[ gT
 
-" handy bracket mappings
+" Handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
 for [s:key, s:value] in items(s:pairs)
 	execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
@@ -244,7 +253,7 @@ for [s:key, s:value] in items(s:pairs)
 	execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
 endfor
 
-" toggle
+" Toggle key bindings
 nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
 nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
 nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
@@ -292,7 +301,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " -- Text Objects --------------------------------------------------------------
 
-" simple text-objects
+" Simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<Bar>', '/', '<Bslash>', '*', '+', '%', '`' ]
 	execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
 	execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
@@ -300,20 +309,26 @@ for s:char in [ '_', '.', ':', ',', ';', '<Bar>', '/', '<Bslash>', '*', '+', '%'
 	execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
 endfor
 
-" line text-objects
+" Line text-objects
 xnoremap il g_o^
 onoremap il :normal vil<CR>
 xnoremap al $o0
 onoremap al :normal val<CR>
 
-" buffer text-objects
+" Buffer text-objects
 xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
 " -- Functions -----------------------------------------------------------------
 
-" use tabs for indentation and spaces for alignment
+" Use Tabs for indentation and Spaces for alignment
 function! SpecialTab() abort
+	" FIXME
+	" When the cursor is on the first column and there are texts behind it,
+	" it doesn't work as expected, but I decided that it isn't necessary
+	" anyway because there are `:h i_ctrl-T` and `:h i_ctrl-D`.
+	" But it should be fixed so that it doesn't do anything when Tab is pressed
+	" when the cursor is at the first column and there are texts behind it
 	if (col('.') == 1) && (matchstr(getline('.'), '\%'.col('.').'c.') =~ '[^\t]')
 		exe "norm! ".(&tabstop - (virtcol('.') % &tabstop))."a\<Space>\<Esc>"
 	elseif (col('.') == 1) || (matchstr(getline('.'), '\%'.col('.').'c.') =~ '\t')
@@ -324,16 +339,17 @@ function! SpecialTab() abort
 endfunction
 inoremap <Tab> <Esc>:<C-u>call SpecialTab()<CR>a
 
-" switch windows effortlessly
+" Switch windows effortlessly
 function! SwitchWindow(count) abort
 	let l:current_buf = winbufnr(0)
 	exe "buffer" . winbufnr(a:count)
 	exe a:count . "wincmd w"
 	exe "buffer" . l:current_buf
+	wincmd p
 endfunction
 nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
 
-" redirect the output of a Vim or external command into a scratch buffer
+" Redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd) abort
 	if a:cmd =~ '^!'
 		execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
@@ -350,7 +366,7 @@ function! Redir(cmd) abort
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
-" create a temporary buffer with the output of the command `tree`
+" Create a temporary buffer with the output of the command `tree`
 function! ViewTree() abort
 	vertical topleft 30new
 	setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
@@ -359,7 +375,7 @@ function! ViewTree() abort
 endfunction
 nnoremap <Leader>n :call ViewTree()<CR>
 
-" copy yanked text to tmux pane
+" Copy yanked text to tmux pane
 function! Send_to_tmux(visual, count) range abort
 	if (a:visual)
 		execute "normal! gv\"zy"
@@ -371,7 +387,7 @@ function! Send_to_tmux(visual, count) range abort
 	let text = substitute(text, '"', '\\"', 'g')
 	let text = substitute(text, '\n', '" Enter "', 'g')
 	let text = substitute(text, '!', '\\!', 'g')
-	let text = substitute(text, '%', '\\"', 'g')
+	let text = substitute(text, '%', '\\%', 'g')
 	let text = substitute(text, '#', '\\#', 'g')
 	silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
 	silent execute "!tmux send-keys -t " . a:count . "Enter"
@@ -379,7 +395,7 @@ endfunction
 nnoremap <Leader>p :<C-u>call Send_to_tmux(0, v:count1)<CR>
 xnoremap <Leader>p :<C-u>call Send_to_tmux(1, v:count1)<CR>
 
-" use * and # over visual selection
+" Use * and # over visual selection
 function! s:VSetSearch(cmdtype) abort
 	let t = @s
 	norm! gv"sy
@@ -418,8 +434,11 @@ set statusline=%1*\ %{winnr()}
 			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
 			\\ %1*\ %l:%4(%v\ %)
 
-hi User1 guibg=#98c379 guifg=#282c34
-hi User2 guibg=#c678dd guifg=#282c34
+augroup statusline
+	autocmd!
+	autocmd VimEnter,ColorScheme * hi User1 guibg=#98c379 guifg=#282c34
+	autocmd VimEnter,ColorScheme * hi User2 guibg=#c678dd guifg=#282c34
+augroup END
 
 " -- Tabline -------------------------------------------------------------------
 

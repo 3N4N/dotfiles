@@ -101,7 +101,7 @@ hi SpellRare    gui=underline   guibg=NONE   guifg=#61afef
 hi DiffAdd      gui=NONE   guibg=#282c34   guifg=#98c379
 hi DiffChange   gui=NONE   guibg=#282c34   guifg=#e5c07b
 hi DiffDelete   gui=NONE   guibg=#282c34   guifg=#e06c75
-hi DiffText     gui=NONE   guibg=#282c34   guifg=#e06c75
+hi DiffText     gui=NONE   guibg=#282c34   guifg=#61afef
 
 " -- Gitgutter signs -----------------------------------------------------------
 
