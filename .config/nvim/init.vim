@@ -366,15 +366,6 @@ function! Redir(cmd) abort
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
-" Create a temporary buffer with the output of the command `tree`
-function! ViewTree() abort
-	vertical topleft 30new
-	setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-	0read !tree
-	goto 1
-endfunction
-nnoremap <Leader>n :call ViewTree()<CR>
-
 " Copy yanked text to tmux pane
 function! Send_to_tmux(visual, count) range abort
 	if (a:visual)
@@ -413,7 +404,8 @@ xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
 augroup custom_term
 	autocmd!
-	autocmd TermOpen * setlocal nonumber norelativenumber bufhidden=hide
+	autocmd TermOpen * setlocal nonumber norelativenumber
+	autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
 	autocmd BufEnter term://* startinsert
 augroup END
 

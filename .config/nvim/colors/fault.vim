@@ -52,6 +52,7 @@ hi ModeMsg        gui=NONE          guibg=NONE          guifg=#98c379
 hi MoreMsg        gui=NONE          guibg=NONE          guifg=#98c379
 hi NonText        gui=NONE          guibg=NONE          guifg=#5c6370
 hi Question       gui=NONE          guibg=NONE          guifg=#98c379
+hi QuickFixLine   gui=NONE          guibg=#3e4452       guifg=NONE
 hi Search         gui=NONE          guibg=#d19a66       guifg=#282c34
 hi SpecialKey     gui=NONE          guibg=NONE          guifg=#5c6370
 hi StatusLine     gui=NONE          guibg=#5c6370       guifg=#f0f0f0
