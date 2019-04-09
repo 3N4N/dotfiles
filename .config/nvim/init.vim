@@ -323,21 +323,13 @@ onoremap aa :normal vaa<CR>
 
 " Use Tabs for indentation and Spaces for alignment
 function! SpecialTab() abort
-	" FIXME
-	" When the cursor is on the first column and there are texts behind it,
-	" it doesn't work as expected, but I decided that it isn't necessary
-	" anyway because there are `:h i_ctrl-T` and `:h i_ctrl-D`.
-	" But it should be fixed so that it doesn't do anything when Tab is pressed
-	" when the cursor is at the first column and there are texts behind it
-	if (col('.') == 1) && (matchstr(getline('.'), '\%'.col('.').'c.') =~ '[^\t]')
-		exe "norm! ".(&tabstop - (virtcol('.') % &tabstop))."a\<Space>\<Esc>"
-	elseif (col('.') == 1) || (matchstr(getline('.'), '\%'.col('.').'c.') =~ '\t')
-		exe "norm! a\<Tab>\<Esc>"
-	else
-		exe "norm! ".(&tabstop - (virtcol('.') % &tabstop))."a\<Space>\<Esc>"
-	endif
+    if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
+        return "\<Tab>"
+    else
+        return repeat("\<Space>", (&tabstop - (virtcol('.') % &tabstop) + 1))
+    endif
 endfunction
-inoremap <Tab> <Esc>:<C-u>call SpecialTab()<CR>a
+inoremap <expr> <Tab> SpecialTab()
 
 " Switch windows effortlessly
 function! SwitchWindow(count) abort
