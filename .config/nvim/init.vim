@@ -329,6 +329,20 @@ onoremap aa :normal vaa<CR>
 
 " -- Functions -----------------------------------------------------------------
 
+" Repeatable window resize
+function! RepeatResize(first)
+    let l:command = a:first
+    while stridx('+-><', l:command) != -1
+        execute "normal! \<C-w>" . l:command
+        redraw
+        let l:command = nr2char(getchar())
+    endwhile
+endfunction
+nnoremap <Leader>w- :call RepeatResize('-')<CR>
+nnoremap <Leader>w+ :call RepeatResize('+')<CR>
+nnoremap <Leader>w< :call RepeatResize('<')<CR>
+nnoremap <Leader>w> :call RepeatResize('>')<CR>
+
 " Use Tabs for indentation and Spaces for alignment
 function! SpecialTab() abort
     if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
