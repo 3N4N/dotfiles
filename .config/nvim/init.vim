@@ -145,13 +145,13 @@ let mapleader = "\<Space>"
 " Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
-" Uppercase word mapping
+" Uppercase word in Insert-mode
 inoremap <C-u> <Esc>m0gUiw`0a
 
-" Don't move cursor while joining lines
+" Don't move cursor when joining lines
 nnoremap J m0J`0
 
-" Don't move cursor while changing case
+" Don't move cursor when changing case
 nnoremap gUiw m0gUiw`0
 nnoremap guiw m0guiw`0
 
@@ -173,7 +173,7 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:call winrestview(_w)<CR>
 			\:unlet _w<CR>
 
-" Use CTRL-G u
+" Break undo sequence, start new change
 inoremap <C-h> <C-g>u<C-h>
 inoremap <CR> <C-]><C-g>u<CR>
 
@@ -183,9 +183,17 @@ nnoremap Y y$
 " Undo with <S-u>
 nnoremap U <C-r>
 
-" Command mode history search
+" Recall older/newer command-line from history
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+" Move to next and previous matches
+" without exiting command-line-mode
+" `incsearch` needs to be set
+cnoremap <C-j> <C-g>
+cnoremap <C-k> <C-t>
+cnoremap <C-g> <C-k>
+cnoremap <C-t> <Nop>
 
 " Useful leader mappings
 nnoremap <Leader>; :
@@ -392,7 +400,7 @@ endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
-" -- Autocommand ---------------------------------------------------------------
+" -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
 	autocmd!
@@ -418,6 +426,9 @@ set statusline=%1*\ %{winnr()}
 			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
 			\\ %1*\ %l:%4(%v\ %)
 
+" Highlight commands need to be used with autocommands
+" Otherwise, when manually changing colorschemes or syntax
+" these highlight commands will fail to load
 augroup statusline
 	autocmd!
 	autocmd VimEnter,ColorScheme * hi User1 guibg=#98c379 guifg=#282c34
