@@ -16,21 +16,21 @@ let g:colors_name = "fault"
 " +------------------------+  +------------------------+
 " |  Color Name  |   Hex   |  |  Color Name  |   Hex   |
 " |--------------+---------|  |--------------+---------|
-" | Black        | #282c34 |  | Dark Yellow  | #d19a66 |
+" | Black        | #282c34 |  | Cyan         | #56b6c2 |
 " |--------------+---------|  |--------------+---------|
-" | Brown        | #4e4e4e |  | Blue         | #61afef |
+" | Green        | #98c379 |  | Blue         | #61afef |
 " |--------------+---------|  |--------------+---------|
 " | White        | #abb2bf |  | Magenta      | #c678dd |
 " |--------------+---------|  |--------------+---------|
-" | LightWhite   | #f0f0f0 |  | Cyan         | #56b6c2 |
+" | LightWhite   | #f0f0f0 |  | Green        | #98c379 |
 " |--------------+---------|  |--------------+---------|
-" | Light Red    | #e06c75 |  | Gutter Grey  | #3b4048 |
+" | Light Red    | #e06c75 |  | Gutter Grey  | #5c6d70 |
 " |--------------+---------|  |--------------+---------|
 " | Dark Red     | #be5046 |  | Light Grey   | #5c6370 |
 " |--------------+---------|  |--------------+---------|
-" | Green        | #98c379 |  | Dark Grey    | #2c323c |
+" | Light Yellow | #e5c07b |  | Dark Grey    | #2c323c |
 " |--------------+---------|  |--------------+---------|
-" | Light Yellow | #e5c07b |  | Mild Grey    | #3e4452 |
+" | Dark Yellow  | #d19a66 |  | Mild Grey    | #3e4452 |
 " +------------------------+  +------------------------+
 
 
@@ -52,7 +52,7 @@ hi ModeMsg        gui=NONE          guibg=NONE          guifg=#98c379
 hi MoreMsg        gui=NONE          guibg=NONE          guifg=#98c379
 hi NonText        gui=NONE          guibg=NONE          guifg=#5c6370
 hi Question       gui=NONE          guibg=NONE          guifg=#98c379
-hi QuickFixLine   gui=NONE          guibg=#3e4452       guifg=NONE
+hi QuickFixLine   gui=underline     guibg=NONE          guifg=NONE
 hi Search         gui=NONE          guibg=#d19a66       guifg=#282c34
 hi SpecialKey     gui=NONE          guibg=NONE          guifg=#5c6370
 hi StatusLine     gui=NONE          guibg=#5c6370       guifg=#f0f0f0
@@ -86,7 +86,7 @@ hi clear Type
 " -- Completion menu -----------------------------------------------------------
 
 hi Pmenu        gui=NONE   guibg=#3e4452   guifg=NONE
-hi PmenuSbar    gui=NONE   guibg=#3b4048   guifg=NONE
+hi PmenuSbar    gui=NONE   guibg=#5c6d70   guifg=NONE
 hi PmenuSel     gui=NONE   guibg=#61afef   guifg=#282c34
 hi PmenuThumb   gui=NONE   guibg=#abb2bf   guifg=NONE
 
