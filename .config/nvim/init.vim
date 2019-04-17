@@ -80,7 +80,7 @@ set ttimeoutlen=10
 " Miscellaneous settings
 let &inccommand="nosplit"
 set backspace=indent,eol,start
-set cinoptions=g0,l1,i0,t0
+set cinoptions=g0,l1,i0,t0,(0
 set cpoptions-=aA
 set shortmess=filmnxrtToO
 set synmaxcol=200
@@ -420,7 +420,7 @@ augroup custom_term
 	autocmd!
 	autocmd TermOpen * setlocal nonumber norelativenumber
 	autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
-	autocmd BufEnter term://* startinsert
+	autocmd TermOpen,BufEnter term://* startinsert
 augroup END
 
 augroup quickfix
