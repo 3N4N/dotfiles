@@ -128,15 +128,6 @@ set smarttab
 set shiftround
 set noexpandtab
 
-command! -nargs=1 Spaces execute "setlocal tabstop=" . <args> . " shiftwidth="
-			\ . <args> . " softtabstop=" . <args> . " expandtab" |
-			\ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
-			\ . " -> ".(&expandtab ? "spaces" : "tabs")
-command! -nargs=1 Tabs execute "setlocal tabstop=" . <args> . " shiftwidth="
-			\ . <args> . " softtabstop=" . <args> . " noexpandtab" |
-			\ echo "tabstop = shiftwidth = softtabstop = " . &tabstop
-			\ . " -> ".(&expandtab ? "spaces" : "tabs")
-
 " -- Key Mapping ---------------------------------------------------------------
 
 " Map leader
@@ -364,21 +355,10 @@ endfunction
 nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
 
 " Redirect the output of a Vim or external command into a scratch buffer
-function! Redir(cmd) abort
-	if a:cmd =~ '^!'
-		execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
-	else
-		redir => output
-		execute a:cmd
-		redir END
-	endif
-	tabnew
-	setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-	call setline(1, split(output, "\n"))
-	put! = a:cmd
-	put = '----'
-endfunction
-command! -nargs=1 Redir silent call Redir(<f-args>)
+command! -nargs=1 Redir
+            \ tabnew |
+            \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
+            \ call setline(1, split(execute(<q-args>), "\n"))
 
 " Copy yanked text to tmux pane
 function! Send_to_tmux(visual, count) range abort
@@ -482,12 +462,3 @@ let g:netrw_liststyle=0
 let g:netrw_sort_by='name'
 let g:netrw_sort_direction='normal'
 let g:netrw_winsize=25
-
-" -- Fugitive ------------------------------------------------------------------
-
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gc :Gcommit<Space>
-nnoremap <Leader>gd :Gdiff<Space>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gw :Gwrite<CR>
