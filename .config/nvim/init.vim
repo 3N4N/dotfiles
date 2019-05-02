@@ -30,7 +30,7 @@ set nonumber
 set norelativenumber
 set noruler
 set showmode
-set signcolumn=yes
+set signcolumn=no
 
 " New split position
 set nosplitbelow
@@ -55,6 +55,7 @@ set wildmenu
 set wildignorecase
 let &wildmode="full"
 set wildignore=*.o,*.obj,*~
+set wildignore+=*/.git
 set wildignore+=*.swp,*.tmp
 set wildignore+=*.mp3,*.mp4,*mkv
 set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
@@ -87,6 +88,7 @@ set synmaxcol=200
 set updatetime=250
 set virtualedit=block
 let &viewoptions="folds,cursor"
+let g:tex_flavor='latex'
 
 " Backup and Persistent Undo
 set nobackup
@@ -126,7 +128,7 @@ set softtabstop=4
 set shiftwidth=4
 set smarttab
 set shiftround
-set noexpandtab
+set expandtab
 
 " -- Key Mapping ---------------------------------------------------------------
 
@@ -136,19 +138,15 @@ let mapleader = "\<Space>"
 " Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
 
+" Don't change the registers for x
+noremap x "_x
+
 " Uppercase word in Insert-mode
 inoremap <C-u> <Esc>m0gUiw`0a
 
-" Don't move cursor when joining lines
-nnoremap J m0J`0
-
-" Don't move cursor when changing case
-nnoremap gUiw m0gUiw`0
-nnoremap guiw m0guiw`0
-
 " Consistent movement
-noremap ( _
-noremap ) $
+noremap gh _
+noremap gl $
 noremap j gj
 noremap k gk
 noremap gj j
@@ -227,9 +225,11 @@ nnoremap <silent> # :let _w = winsaveview()<CR>
 			\:call winrestview(_w)<CR>
 			\:unlet _w<CR>
 
-" Use n and N to always go forward and backward
+" direction-unaware search and jump
 nnoremap <expr> n (v:searchforward ? 'n' : 'N')
 nnoremap <expr> N (v:searchforward ? 'N' : 'n')
+nnoremap <expr> ; getcharsearch().forward ? ';':','
+nnoremap <expr> , getcharsearch().forward ? ',':';'
 
 " Better window management
 nnoremap <Leader>w <C-w>
@@ -309,16 +309,19 @@ for s:char in [ '_', '.', ':', ',', ';', '<Bar>', '/', '<Bslash>', '*', '+', '%'
 endfor
 
 " Line text-objects
-xnoremap il g_o^
+xnoremap il ^og_
 onoremap il :normal vil<CR>
-xnoremap al $o0
+xnoremap al 0o$
 onoremap al :normal val<CR>
 
 " Buffer text-objects
 xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
-" -- Functions -----------------------------------------------------------------
+" -- Functions and Commands ----------------------------------------------------
+
+" Send selected text to a pastebin
+command! -range=% Paste silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | xclip -selection clipboard"
 
 " Repeatable window resize
 function! RepeatResize(first)
@@ -333,16 +336,6 @@ nnoremap <Leader>w- :call RepeatResize('-')<CR>
 nnoremap <Leader>w+ :call RepeatResize('+')<CR>
 nnoremap <Leader>w< :call RepeatResize('<')<CR>
 nnoremap <Leader>w> :call RepeatResize('>')<CR>
-
-" Use Tabs for indentation and Spaces for alignment
-function! SpecialTab() abort
-    if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
-        return "\<Tab>"
-    else
-        return repeat("\<Space>", (&tabstop - (virtcol('.') % &tabstop) + 1))
-    endif
-endfunction
-inoremap <expr> <Tab> SpecialTab()
 
 " Switch windows effortlessly
 function! SwitchWindow(count) abort
