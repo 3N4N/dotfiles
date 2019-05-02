@@ -65,6 +65,7 @@ alias py3='python3'
 # miscellaneous
 alias mkdir='mkdir -pv'
 alias mupdf='mupdf-gl'
+alias r='ranger'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
@@ -95,6 +96,12 @@ t() {
 	if [ $? != 0 ]; then
 		tmux new-session -s "$session_name" -d
 		tmux rename-window -t "$session_name" shell
+
+        tmux new-window -t "$session_name"
+        tmux rename-window -t "$session_name" files
+        tmux send-keys -t "$session_name" 'ranger' C-m
+
+        tmux select-window -t 1
 	fi
 
 	tmux attach-session -t "$session_name"
