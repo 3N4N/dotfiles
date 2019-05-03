@@ -82,6 +82,11 @@ now() {
 	curl wttr.in/dhaka?0
 }
 
+# look up dictionary
+dict() {
+    grep -i ^"$1" $HOME/projects/dotFiles/dictionary.txt
+}
+
 # tmux starting script
 t() {
 	if [ -z "$1" ]; then
