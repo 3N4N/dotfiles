@@ -48,7 +48,7 @@ alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
 # useful ls aliases
-alias l='ls -vhFl --group-directories-first --time-style=+'
+alias l='ls -NvhFl --group-directories-first --time-style=+'
 alias la='l -A'
 alias lh='la -d .[^.]* 2> /dev/null'
 

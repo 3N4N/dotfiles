@@ -262,6 +262,12 @@ nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
 			\ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
+" CTRL-X submode
+inoremap <C-]> <C-x><C-]>
+inoremap <C-f> <C-x><C-f>
+inoremap <C-d> <C-x><C-d>
+inoremap <C-l> <C-x><C-l>
+
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
 	function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
