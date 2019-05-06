@@ -47,7 +47,7 @@ set incsearch
 set smartcase
 set wrapscan
 if executable('ag')
-	let &grepprg="ag --nogroup --nocolor --hidden --ignore .git"
+	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
 endif
 
 " Wildmenu settings
@@ -137,9 +137,6 @@ let mapleader = "\<Space>"
 
 " Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
-
-" Don't change the registers for x
-noremap x "_x
 
 " Uppercase word in Insert-mode
 inoremap <C-u> <Esc>m0gUiw`0a
@@ -412,20 +409,20 @@ augroup END
 
 set laststatus=2
 set statusline=%1*\ %{winnr()}
-			\\ %2*\ %{&fileformat==#'unix'?'U':&fileformat==#'dos'?'D':'N'}
-			\:%{&readonly\|\|!&modifiable?&modified?'%*':'%%':&modified?'**':'--'}
-			\\ %0*\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-			\%=
 			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
-			\\ %1*\ %l:%4(%v\ %)
+			\\ %0*\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+            \\ %m%r
+			\%=
+			\\ %2*\ %l:%3(%v%)
+			\\ %1*\ %4(%P\ %)
 
 " Highlight commands need to be used with autocommands
 " Otherwise, when manually changing colorschemes or syntax
 " these highlight commands will fail to load
 augroup statusline
 	autocmd!
-	autocmd VimEnter,ColorScheme * hi User1 guibg=#98c379 guifg=#282c34
-	autocmd VimEnter,ColorScheme * hi User2 guibg=#c678dd guifg=#282c34
+	autocmd VimEnter,ColorScheme * hi User1 guibg=#c678dd guifg=#282c34
+	autocmd VimEnter,ColorScheme * hi User2 guibg=#98c379 guifg=#282c34
 augroup END
 
 " -- Tabline -------------------------------------------------------------------
