@@ -14,18 +14,20 @@ setxkbmap -option 'shift:both_capslock'
 xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
 
-# setup background
-feh --bg-fill --bo-fehbg ~/projects/dotFiles/backgrounds/mylinuxsystem.jpg
-
 # setup compositor
 compton &> /dev/null &
+
+# setup background
+feh --bg-fill --bo-fehbg ~/projects/dotFiles/backgrounds/mylinuxsystem.jpg
 
 # setup notification widget
 dunst &> /dev/null &
 
+# fix broken java applications
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # setup status bar
-~/projects/dotFiles/dwm_status &
-#exec dwm
+dwm_status &> /dev/null &
 
 while true; do
 	# Log stderror to a file
