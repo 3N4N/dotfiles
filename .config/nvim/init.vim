@@ -396,7 +396,6 @@ augroup custom_term
 	autocmd!
 	autocmd TermOpen * setlocal nonumber norelativenumber
 	autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
-	autocmd TermOpen,BufEnter term://* startinsert
 augroup END
 
 augroup quickfix

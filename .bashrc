@@ -18,7 +18,7 @@ export PAGER="less"
 HISTCONTROL=erasedups:ignoreboth
 HISTSIZE=20000
 HISTFILESIZE=20000
-HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd'
+HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd:clear'
 HISTTIMEFORMAT='%F %T '
 shopt -s histappend             # don't overwrite previous history
 shopt -s cmdhist                # store one command per line in history
@@ -158,6 +158,9 @@ fi
 
 case "$TERM" in
 	st*)
+		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/"~"}"'
+		;;
+	xterm*)
 		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/"~"}"'
 		;;
 esac

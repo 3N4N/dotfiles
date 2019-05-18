@@ -61,7 +61,7 @@ fetch_cmus() {
 while true
 do
 
-	xsetroot -name "$(fetch_cmus)$(print_brightness) $(print_wifi) $(print_volume) $(print_bat) $(print_date)";
+	xsetroot -name " $(fetch_cmus)$(print_brightness) $(print_wifi) $(print_volume) $(print_bat) $(print_date) ";
 
 	sleep 1
 
