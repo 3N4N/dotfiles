@@ -13,3 +13,5 @@ Session.vim
 .config/vifm/vifminfo
 
 .local/share/fonts/.uuid
+
+.config/mpv/watch_later/*
