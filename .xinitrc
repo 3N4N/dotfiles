@@ -18,7 +18,7 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Ena
 compton &> /dev/null &
 
 # setup background
-feh --bg-fill --bo-fehbg ~/projects/dotFiles/backgrounds/mylinuxsystem.jpg
+hsetroot -full ~/projects/dotFiles/backgrounds/deer.jpg
 
 # setup notification widget
 dunst &> /dev/null &

@@ -13,7 +13,6 @@ DOTFILES=(
 	".config/cmus/cmus.theme"
 	".config/compton.conf"
 	".config/dunst"
-	".config/feh"
 	".config/mpv"
 	".config/nvim"
     ".config/ranger"
@@ -32,7 +31,7 @@ if [ "$1" == "-a" ]; then
 		curl \
 		deluge \
 		easytag \
-		feh \
+        evince \
 		ffmpeg \
 		htop \
 		mpv \
@@ -44,4 +43,5 @@ if [ "$1" == "-a" ]; then
 		xbacklight \
 		xclip \
 		zip
+        sxiv \
 fi
