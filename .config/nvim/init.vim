@@ -54,6 +54,8 @@ endif
 set wildmenu
 set wildignorecase
 let &wildmode="full"
+let &wildoptions="pum"
+set pumblend=0
 set wildignore=*.o,*.obj,*~
 set wildignore+=*/.git
 set wildignore+=*.swp,*.tmp
@@ -402,6 +404,11 @@ augroup quickfix
 	autocmd!
 	autocmd QuickFixCmdPost [^l]* nested cwindow
 	autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+
+augroup resize_splits
+    au!
+    au VimResized * wincmd =
 augroup END
 
 " -- Statusline ----------------------------------------------------------------

@@ -138,6 +138,9 @@ fi
 # to unshadow Alt-C provided by fzf
 bind '"\ei": capitalize-word'
 
+# use fzf to open files
+bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
+
 # -- bash autocompletion -------------------------------------------------------
 
 # using fzf messes with bash completion files
