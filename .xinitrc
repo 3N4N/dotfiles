@@ -9,6 +9,7 @@
 setxkbmap -option ''
 setxkbmap -option 'caps:ctrl_modifier'
 setxkbmap -option 'shift:both_capslock'
+setxkbmap -option 'numpad:microsoft'
 
 # setup natural scrolling in touchpad
 xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
