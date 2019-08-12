@@ -56,7 +56,7 @@ set wildignorecase
 let &wildmode="full"
 let &wildoptions="pum"
 set pumblend=0
-set wildignore=*.o,*.obj,*~
+set wildignore=*.o,*.obj,*~,*.class
 set wildignore+=*/.git
 set wildignore+=*.swp,*.tmp
 set wildignore+=*.mp3,*.mp4,*mkv
@@ -194,7 +194,7 @@ nnoremap <Leader>s :%s/\v
 xnoremap <Leader>s :s/\%V\v
 
 " Opening files
-nnoremap <Leader>e :e **/
+nnoremap <Leader>e :e **/*
 nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
 			\<S-left><Left><Left><Left>
 
@@ -264,7 +264,6 @@ nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
 " CTRL-X submode
 inoremap <C-]> <C-x><C-]>
 inoremap <C-f> <C-x><C-f>
-inoremap <C-d> <C-x><C-d>
 inoremap <C-l> <C-x><C-l>
 
 " Navigate seamlessly between vim and tmux
@@ -398,6 +397,7 @@ augroup custom_term
 	autocmd!
 	autocmd TermOpen * setlocal nonumber norelativenumber
 	autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
+	autocmd BufEnter term://* startinsert
 augroup END
 
 augroup quickfix
@@ -406,10 +406,10 @@ augroup quickfix
 	autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
 
-augroup resize_splits
-    au!
-    au VimResized * wincmd =
-augroup END
+" augroup resize_splits
+"     au!
+"     au VimResized * wincmd =
+" augroup END
 
 " -- Statusline ----------------------------------------------------------------
 
@@ -464,3 +464,9 @@ let g:netrw_liststyle=0
 let g:netrw_sort_by='name'
 let g:netrw_sort_direction='normal'
 let g:netrw_winsize=25
+
+" -- Load Local Vimrc ----------------------------------------------------------
+
+if filereadable("local.vim")
+    source local.vim
+endif

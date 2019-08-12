@@ -64,7 +64,6 @@ alias py3='python3'
 
 # miscellaneous
 alias mkdir='mkdir -pv'
-alias mupdf='mupdf-gl'
 alias r='ranger'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
