@@ -14,15 +14,14 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
 
 call plug#end()
 
 " -- General -------------------------------------------------------------------
 
 " Visual perks
-set colorcolumn=81
 set conceallevel=0
-let &fillchars="vert:│"
 set nocursorline
 set nolazyredraw
 set nomodeline
@@ -31,6 +30,8 @@ set norelativenumber
 set noruler
 set showmode
 set signcolumn=no
+let &colorcolumn=join(range(81,999),",")
+let &fillchars="vert:│"
 
 " New split position
 set nosplitbelow
@@ -130,7 +131,7 @@ set softtabstop=4
 set shiftwidth=4
 set smarttab
 set shiftround
-set expandtab
+set noexpandtab
 
 " -- Key Mapping ---------------------------------------------------------------
 

@@ -18,21 +18,23 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Ena
 # setup compositor
 compton &> /dev/null &
 
-# setup background
-hsetroot -full ~/projects/dotFiles/backgrounds/deer.jpg
+exec startxfce4
 
-# setup notification widget
-dunst &> /dev/null &
+## setup background
+#hsetroot -full ~/projects/dotFiles/backgrounds/deer.jpg
 
-# fix broken java applications
-export _JAVA_AWT_WM_NONREPARENTING=1
+## setup notification widget
+#dunst &> /dev/null &
 
-# setup status bar
-dwm_status &> /dev/null &
+## fix broken java applications
+#export _JAVA_AWT_WM_NONREPARENTING=1
 
-while true; do
-	# Log stderror to a file
-	#dwm 2> ~/.dwm.log
-	# No error logging
-	dwm >/dev/null 2>&1
-done
+## setup status bar
+#dwm_status &> /dev/null &
+
+#while true; do
+#	# Log stderror to a file
+#	#dwm 2> ~/.dwm.log
+#	# No error logging
+#	dwm >/dev/null 2>&1
+#done

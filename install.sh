@@ -31,17 +31,16 @@ if [ "$1" == "-a" ]; then
 		curl \
 		deluge \
 		easytag \
-        evince \
+		evince \
 		ffmpeg \
 		htop \
 		mpv \
 		pavucontrol \
 		rar \
-		scrot \
 		tree \
 		x11-xkb-utils \
 		xbacklight \
 		xclip \
+		sxiv \
 		zip
-        sxiv \
 fi
