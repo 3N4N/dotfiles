@@ -5,6 +5,9 @@
 # Github: https://github.com/enanajmain
 
 
+DESKTOP="xfce"
+# DESKTOP="dwm"
+
 # setup keyboard mappings
 setxkbmap -option ''
 setxkbmap -option 'caps:ctrl_modifier'
@@ -18,23 +21,29 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Ena
 # setup compositor
 compton &> /dev/null &
 
-exec startxfce4
+if [ $DESKTOP = "xfce" ]; then
 
-## setup background
-#hsetroot -full ~/projects/dotFiles/backgrounds/deer.jpg
+	exec startxfce4
 
-## setup notification widget
-#dunst &> /dev/null &
+elif [ $DESKTOP = "dwm" ]; then
 
-## fix broken java applications
-#export _JAVA_AWT_WM_NONREPARENTING=1
+	# setup background
+	hsetroot -full ~/projects/dotFiles/backgrounds/deer.jpg
 
-## setup status bar
-#dwm_status &> /dev/null &
+	# setup notification widget
+	dunst &> /dev/null &
 
-#while true; do
-#	# Log stderror to a file
-#	#dwm 2> ~/.dwm.log
-#	# No error logging
-#	dwm >/dev/null 2>&1
-#done
+	# fix broken java applications
+	export _JAVA_AWT_WM_NONREPARENTING=1
+
+	# setup status bar
+	dwm_status &> /dev/null &
+
+	while true; do
+		# Log stderror to a file
+		#dwm 2> ~/.dwm.log
+		# No error logging
+		dwm >/dev/null 2>&1
+	done
+
+fi
