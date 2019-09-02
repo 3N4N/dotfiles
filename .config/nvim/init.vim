@@ -328,6 +328,16 @@ onoremap aa :normal vaa<CR>
 " Send selected text to a pastebin
 command! -range=% Paste silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | xclip -selection clipboard"
 
+" Use tabs for indentation and spaces for alignment
+function! SpecialTab() abort
+    if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
+        return "\<Tab>"
+    else
+        return repeat("\<Space>", (&tabstop - (virtcol('.') % &tabstop)) + 1)
+    endif
+endfunction
+inoremap <Tab> <C-R>=SpecialTab()<CR>
+
 " Repeatable window resize
 function! RepeatResize(first)
     let l:command = a:first
