@@ -3,13 +3,13 @@
 # Email : 3nan.ajmain@gmail.com
 # Github: https://github.com/enanajmain
 
-VERSION=26.1
+VERSION=26.3
 
 sudo apt remove emacs
 sudo apt build-dep emacs25
 
 cd /tmp
-wget http://ftp.gnu.org/gnu/emacs/emacs-"${VERSION}".tar.gz
+wget --no-passive-ftp http://ftp.gnu.org/gnu/emacs/emacs-"${VERSION}".tar.gz
 tar xzvf emacs-"${VERSION}".tar.gz
 cd emacs-"${VERSION}"
 ./configure
