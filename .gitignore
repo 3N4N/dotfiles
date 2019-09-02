@@ -9,6 +9,7 @@ Session.vim
 .config/ranger/tagged
 .config/ranger/colorschemes/__init__.py
 .config/ranger/colorschemes/*.pyo
+.config/ranger/colorschemes/*.pyc
 
 .config/vifm/vifminfo
 

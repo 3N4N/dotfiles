@@ -30,7 +30,8 @@ set norelativenumber
 set noruler
 set showmode
 set signcolumn=no
-let &colorcolumn=join(range(81,999),",")
+" let &colorcolumn=join(range(81,999),",")
+let &colorcolumn=0
 let &fillchars="vert:│"
 
 " New split position
@@ -191,8 +192,8 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Leader>f :grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
-nnoremap <Leader>s :%s/\v
-xnoremap <Leader>s :s/\%V\v
+nnoremap <Leader>s :%s:\v
+xnoremap <Leader>s :s:\%V\v
 
 " Opening files
 nnoremap <Leader>e :e **/*
