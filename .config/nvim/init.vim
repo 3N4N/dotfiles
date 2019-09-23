@@ -14,7 +14,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-abolish'
 
 call plug#end()
 
@@ -409,7 +408,7 @@ augroup custom_term
 	autocmd!
 	autocmd TermOpen * setlocal nonumber norelativenumber
 	autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
-	autocmd BufEnter term://* startinsert
+	" autocmd BufEnter term://* startinsert
 augroup END
 
 augroup quickfix

@@ -30,17 +30,21 @@ if [ "$1" == "-a" ]; then
 		cmus \
 		curl \
 		deluge \
+		dmenu \
+		dunst \
 		easytag \
 		evince \
 		ffmpeg \
+		hsetroot \
 		htop \
 		mpv \
 		pavucontrol \
 		rar \
+		scrot \
+		sxiv \
 		tree \
 		x11-xkb-utils \
 		xbacklight \
 		xclip \
-		sxiv \
 		zip
 fi

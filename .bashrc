@@ -99,13 +99,21 @@ t() {
 
 	if [ $? != 0 ]; then
 		tmux new-session -s "$session_name" -d
+		tmux rename-window -t "$session_name" files
+		tmux send-keys -t "$session_name" 'ranger' C-m
+
+		tmux new-window -t "$session_name"
 		tmux rename-window -t "$session_name" shell
 
-        tmux new-window -t "$session_name"
-        tmux rename-window -t "$session_name" files
-        tmux send-keys -t "$session_name" 'ranger' C-m
+		if [ $session_name = "enan" ]; then
+			tmux new-window -t "$session_name"
+			tmux rename-window -t "$session_name" dots
+			tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
+			tmux split-window -bh
+			tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
+		fi
 
-        tmux select-window -t 1
+		tmux select-window -t 2
 	fi
 
 	tmux attach-session -t "$session_name"

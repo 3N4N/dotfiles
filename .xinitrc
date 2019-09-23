@@ -5,8 +5,8 @@
 # Github: https://github.com/enanajmain
 
 
-DESKTOP="xfce"
-# DESKTOP="dwm"
+# DESKTOP="xfce"
+DESKTOP="dwm"
 
 # setup keyboard mappings
 setxkbmap -option ''
