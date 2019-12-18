@@ -15,8 +15,9 @@ DOTFILES=(
 	".config/dunst"
 	".config/mpv"
 	".config/nvim"
+	".config/thunar"
+	".config/xfce4/terminal"
     ".config/ranger"
-    ".config/xfce4"
 	".local/share/fonts"
 )
 
