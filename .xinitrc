@@ -5,8 +5,8 @@
 # Github: https://github.com/enanajmain
 
 
-# DESKTOP="xfce"
-DESKTOP="dwm"
+DESKTOP="xfce"
+# DESKTOP="dwm"
 
 # setup keyboard mappings
 setxkbmap -option ''
@@ -28,7 +28,7 @@ if [ $DESKTOP = "xfce" ]; then
 elif [ $DESKTOP = "dwm" ]; then
 
 	# setup background
-	hsetroot -full ~/projects/dotFiles/backgrounds/deer.jpg
+	hsetroot -fill ~/projects/dotFiles/backgrounds/typewriter.jpg
 
 	# setup notification widget
 	dunst &> /dev/null &

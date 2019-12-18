@@ -34,7 +34,6 @@
       <property name="&lt;Super&gt;p" type="string" value="xfce4-display-settings --minimal"/>
       <property name="&lt;Primary&gt;Escape" type="string" value="xfdesktop --menu"/>
       <property name="override" type="bool" value="true"/>
-      <property name="&lt;Super&gt;Return" type="string" value="xfce4-terminal --geometry &apos;70x20&apos;"/>
       <property name="&lt;Super&gt;s" type="string" value="xfce4-settings-manager"/>
       <property name="&lt;Super&gt;d" type="string" value="xfce4-appfinder --collapsed">
         <property name="startup-notify" type="bool" value="true"/>
@@ -47,6 +46,8 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;f" type="string" value="exo-open --launch FileManager"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="string" value="xfce4-terminal --geometry &apos;175x45-15-15&apos;"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;m" type="string" value="amixer -q -D pulse set Master toggle"/>
+      <property name="&lt;Super&gt;Return" type="string" value="xfce4-terminal"/>
+      <property name="&lt;Super&gt;f" type="string" value="x-terminal-emulator -e ranger"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
@@ -139,13 +140,13 @@
       <property name="&lt;Super&gt;Down" type="string" value="down_workspace_key"/>
       <property name="&lt;Super&gt;Left" type="string" value="left_workspace_key"/>
       <property name="&lt;Super&gt;Right" type="string" value="right_workspace_key"/>
-      <property name="&lt;Super&gt;q" type="string" value="close_window_key"/>
       <property name="&lt;Alt&gt;Tab" type="string" value="cycle_windows_key"/>
       <property name="&lt;Shift&gt;&lt;Alt&gt;ISO_Left_Tab" type="string" value="cycle_reverse_windows_key"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Left" type="string" value="move_window_left_workspace_key"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Right" type="string" value="move_window_right_workspace_key"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Down" type="string" value="move_window_down_workspace_key"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;Up" type="string" value="move_window_up_workspace_key"/>
+      <property name="&lt;Alt&gt;F4" type="string" value="close_window_key"/>
     </property>
   </property>
   <property name="providers" type="array">

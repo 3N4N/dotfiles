@@ -9,13 +9,19 @@
     <property name="known_applications" type="array">
       <value type="string" value="Artha"/>
       <value type="string" value="calibre-gui"/>
+      <value type="string" value="Clementine"/>
+      <value type="string" value="Firefox"/>
       <value type="string" value="Liferea"/>
       <value type="string" value="nm-applet"/>
+      <value type="string" value="notify-send"/>
+      <value type="string" value="rhythmbox"/>
       <value type="string" value="Spotify"/>
       <value type="string" value="Thunar"/>
+      <value type="string" value="uGet"/>
       <value type="string" value="Xfce volume control"/>
       <value type="string" value="Xfce volume daemon"/>
       <value type="string" value="Xfce4-notifyd settings"/>
+      <value type="string" value="xfce4-sensors-plugin"/>
     </property>
     <property name="muted_applications" type="array">
       <value type="string" value="Xfce4-notifyd settings"/>
