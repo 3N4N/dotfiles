@@ -16,6 +16,7 @@ DOTFILES=(
 	".config/mpv"
 	".config/nvim"
     ".config/ranger"
+    ".config/xfce4"
 	".local/share/fonts"
 )
 
@@ -30,18 +31,13 @@ if [ "$1" == "-a" ]; then
 		cmus \
 		curl \
 		deluge \
-		dmenu \
-		dunst \
 		easytag \
 		evince \
 		ffmpeg \
-		hsetroot \
 		htop \
 		mpv \
 		pavucontrol \
 		rar \
-		scrot \
-		sxiv \
 		tree \
 		x11-xkb-utils \
 		xbacklight \
