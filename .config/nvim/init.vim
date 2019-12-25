@@ -422,6 +422,16 @@ augroup END
 "     au VimResized * wincmd =
 " augroup END
 
+" -- Title ---------------------------------------------------------------------
+
+set title
+
+if has('nvim')
+	set titlestring=Nvim\ %{&modified?'•':':'}\ %t
+else
+	set titlestring=Vim\ %{&modified?'•':':'}\ %t
+endif
+
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
