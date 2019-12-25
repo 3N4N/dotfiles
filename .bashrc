@@ -9,7 +9,7 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export VISUAL=/usr/bin/nvim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 export LESS="-iSMR"
 export PAGER="less"
