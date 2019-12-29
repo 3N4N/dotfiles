@@ -28,7 +28,7 @@ if [ $DESKTOP = "xfce" ]; then
 elif [ $DESKTOP = "dwm" ]; then
 
 	# setup background
-	hsetroot -fill ~/projects/dotFiles/backgrounds/typewriter.jpg
+	hsetroot -fill ~/Pictures/backgrounds/typewriter.jpg
 
 	# setup notification widget
 	dunst &> /dev/null &
