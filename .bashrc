@@ -69,6 +69,7 @@ alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
 alias vimdiff='nvim -d'
+alias xopen='xdg-open'
 
 # -- functions -----------------------------------------------------------------
 

@@ -15,7 +15,7 @@ DOTFILES=(
 	".config/dunst"
 	".config/mpv"
 	".config/nvim"
-	".config/thunar"
+	".config/Thunar"
 	".config/xfce4/terminal"
     ".config/ranger"
 	".local/share/fonts"
@@ -33,13 +33,15 @@ if [ "$1" == "-a" ]; then
 		curl \
 		deluge \
 		easytag \
-		evince \
 		ffmpeg \
 		htop \
 		mpv \
+		mupdf \
 		pavucontrol \
+		qpdfview \
 		rar \
 		tree \
+		wget \
 		x11-xkb-utils \
 		xbacklight \
 		xclip \
