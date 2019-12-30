@@ -267,6 +267,13 @@ inoremap <C-]> <C-x><C-]>
 inoremap <C-f> <C-x><C-f>
 inoremap <C-l> <C-x><C-l>
 
+" Git
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiffsplit<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gr :Gread<CR>
+
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
 	function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
