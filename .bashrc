@@ -11,6 +11,7 @@
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export GEM_HOME=$HOME/gems
 export LESS="-iSMR"
 export PAGER="less"
 

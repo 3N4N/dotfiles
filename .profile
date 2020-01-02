@@ -31,3 +31,5 @@ append_to_path() {
 append_to_path "$HOME/bin"
 # set PATH so it includes installed packages with pip
 append_to_path "$HOME/.local/bin"
+# set PATH so it includes installed packages with gem
+append_to_path "$HOME/.gem/ruby/2.5.0/bin"
