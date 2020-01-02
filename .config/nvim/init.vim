@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-ragtag'
 
 call plug#end()
 
@@ -21,6 +22,7 @@ call plug#end()
 
 " Visual perks
 set conceallevel=0
+set nocursorcolumn
 set nocursorline
 set nolazyredraw
 set nomodeline
@@ -49,6 +51,8 @@ set smartcase
 set wrapscan
 if executable('ag')
 	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
+else
+	let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
 endif
 
 " Wildmenu settings
@@ -105,7 +109,7 @@ endif
 
 " Colorscheme
 syntax on
-set termguicolors
+set notermguicolors
 colorscheme fault
 let g:lisp_rainbow = 1
 
@@ -253,12 +257,13 @@ for [s:key, s:value] in items(s:pairs)
 endfor
 
 " Toggle key bindings
-nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
+nnoremap <silent> <Leader>tc :let &colorcolumn=(&cc==0)?81:0<CR>
 nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
+nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
+nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
 nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
-nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
 			\ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
@@ -442,22 +447,11 @@ endif
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
-set statusline=%1*\ %{winnr()}
-			\\ %2*\ %{&filetype!=#''?&filetype:'none'}
-			\\ %0*\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-            \\ %m%r
+set statusline=[%{&filetype!=#''?&filetype:'none'}]
+			\\ \ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+			\\ %m%r
 			\%=
-			\\ %2*\ %l:%3(%v%)
-			\\ %1*\ %4(%P\ %)
-
-" Highlight commands need to be used with autocommands
-" Otherwise, when manually changing colorschemes or syntax
-" these highlight commands will fail to load
-augroup statusline
-	autocmd!
-	autocmd VimEnter,ColorScheme * hi User1 guibg=#c678dd guifg=#282c34
-	autocmd VimEnter,ColorScheme * hi User2 guibg=#98c379 guifg=#282c34
-augroup END
+			\\ %l:%5(%v\ %)
 
 " -- Tabline -------------------------------------------------------------------
 
