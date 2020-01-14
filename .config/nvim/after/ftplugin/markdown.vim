@@ -1,4 +1,4 @@
-setlocal textwidth=81
+setlocal textwidth=80
 " setlocal spell
 
 setlocal formatoptions=jtcroqln
