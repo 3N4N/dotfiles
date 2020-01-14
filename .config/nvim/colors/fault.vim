@@ -6,7 +6,7 @@
 
 
 hi clear
-set background=light
+set background=dark
 if exists("syntax_on")
 	syntax reset
 endif
@@ -26,10 +26,6 @@ let g:colors_name = "fault"
 " |--------------+---------|  |--------------+---------|  |--------------+---------|
 " | Light White  | #f0f0f0 |  | Gutter Grey  | #5c6d70 |  | Light Yellow | #e5c07b |
 " +--------------+---------+  +--------------+---------+  +------------------------+
-
-
-
-
 
 
 " -- Editor settings -----------------------------------------------------------
@@ -70,7 +66,7 @@ hi  StatusLine    cterm=none  ctermbg=8     ctermfg=15  gui=none  guibg=#5c6370 
 hi  StatusLineNC  cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
 hi  TabLine       cterm=none  ctermbg=none  ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
 hi  TabLineFill   cterm=none  ctermbg=none  ctermfg=0   gui=none  guibg=#3e4452  guifg=#abb2bf
-hi  TabLineSel    cterm=none  ctermbg=7     ctermfg=0   gui=none  guibg=#98c379  guifg=#282c34
+hi  TabLineSel    cterm=none  ctermbg=8     ctermfg=15  gui=none  guibg=#98c379  guifg=#282c34
 
 " -- Language constructs -------------------------------------------------------
 
