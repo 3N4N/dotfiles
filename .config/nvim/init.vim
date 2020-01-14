@@ -269,7 +269,6 @@ nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
 
 " CTRL-X submode
 inoremap <C-]> <C-x><C-]>
-inoremap <C-f> <C-x><C-f>
 inoremap <C-l> <C-x><C-l>
 
 " Git
@@ -414,6 +413,17 @@ endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
+function! MyCompleteFileName()
+	" match a (potential) wildcard preceding cursor position
+	" note: \f is a filename character, see :h 'isfname'
+	let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
+	" set the matches
+	call complete(col('.') - len(l:pattern), getcompletion(l:pattern, "file"))
+	" must return an empty string to show the menu
+	return ''
+endfunction
+inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
+
 " -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
@@ -447,11 +457,10 @@ endif
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
-set statusline=[%{&filetype!=#''?&filetype:'none'}]
-			\\ \ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+set statusline=%<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
 			\\ %m%r
 			\%=
-			\\ %l:%5(%v\ %)
+			\\ %-14.(%l:%3(%v%)\ %)\ %P
 
 " -- Tabline -------------------------------------------------------------------
 
