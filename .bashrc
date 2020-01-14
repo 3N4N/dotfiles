@@ -24,7 +24,7 @@ HISTTIMEFORMAT='%F %T '
 shopt -s histappend             # don't overwrite previous history
 shopt -s cmdhist                # store one command per line in history
 PROMPT_COMMAND='history -a'     # append history file after each command
-PROMPT_DIRTRIM=4                # truncate long paths to ".../foo/bar/baz"
+PROMPT_DIRTRIM=2                # truncate long paths to ".../foo/bar/baz"
 
 shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
@@ -55,7 +55,7 @@ alias lh='la -d .[^.]* 2> /dev/null'
 
 # show colors in grep and ag
 alias ag='ag --color-match "31"'
-alias grep='grep --color=auto'
+alias grep='grep --color=auto --exclude-dir=".git"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
@@ -65,6 +65,7 @@ alias py3='python3'
 
 # miscellaneous
 alias mkdir='mkdir -pv'
+alias psgrep='ps aux | grep -v grep | grep'
 alias r='ranger'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
@@ -85,7 +86,11 @@ now() {
 
 # look up dictionary
 dict() {
-    grep -i ^"$1" $HOME/projects/dotFiles/dictionary.txt
+    grep -i ^"$1" $HOME/Documents/dictionary.txt
+}
+
+fdemoji() {
+	grep -i "$1" $HOME/Documents/emoji_list.txt
 }
 
 # tmux starting script
@@ -170,10 +175,10 @@ fi
 
 case "$TERM" in
 	st*)
-		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/"~"}"'
+		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}"'
 		;;
 	xterm*)
-		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/"~"}"'
+		PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
 		;;
 esac
 
