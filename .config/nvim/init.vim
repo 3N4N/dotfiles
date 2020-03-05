@@ -354,7 +354,9 @@ function! SpecialTab() abort
         return repeat("\<Space>", (&tabstop - (virtcol('.') % &tabstop)) + 1)
     endif
 endfunction
-inoremap <Tab> <C-R>=SpecialTab()<CR>
+if !&et
+	inoremap <Tab> <C-R>=SpecialTab()<CR>
+endif
 
 " Repeatable window resize
 function! RepeatResize(first)
