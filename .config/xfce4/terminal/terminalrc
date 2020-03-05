@@ -1,10 +1,10 @@
 [Configuration]
-FontName=Iosevka Term 10
+FontName=Iosevka Term 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
 MiscBordersDefault=TRUE
-MiscCursorBlinks=FALSE
+MiscCursorBlinks=TRUE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=81x35
 MiscInheritGeometry=FALSE
@@ -45,4 +45,5 @@ ColorCursorUseDefault=FALSE
 ColorBoldIsBright=FALSE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 DropdownKeepAbove=FALSE
+ScrollingOnKeystroke=FALSE
 

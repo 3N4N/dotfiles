@@ -1,0 +1,12 @@
+[Scheme]
+Name=Ayu-Light
+ColorBoldIsBright=FALSE
+
+ColorForeground=#424242
+ColorBackground=#f1f1f1
+
+ColorCursorUseDefault=FALSE
+ColorCursor=#424242
+ColorCursorForeground=#f1f1f1
+
+ColorPalette=#212121;#c30771;#10a778;#918a43;#008ec4;#523c79;#20a5ba;#d9d9d9;#424242;#fb007a;#5fd7af;#a99e26;#20bbfc;#6855de;#4fb8cc;#f1f1f1
