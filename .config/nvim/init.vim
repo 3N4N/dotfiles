@@ -54,9 +54,13 @@ set smartcase
 set wrapscan
 if executable('ag')
 	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
-else
-	let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
-endif
+" if executable('ag')
+" 	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
+" else
+" 	let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
+" endif
+
+let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude=\"dictionary.txt\""
 
 " Wildmenu settings
 set wildmenu
