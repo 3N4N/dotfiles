@@ -30,7 +30,7 @@ set nonumber
 set norelativenumber
 set noruler
 set showmode
-set signcolumn=no
+set signcolumn=yes:1
 " let &colorcolumn=join(range(81,999),",")
 let &colorcolumn=0
 let &fillchars="vert:│"
@@ -52,8 +52,8 @@ set ignorecase
 set incsearch
 set smartcase
 set wrapscan
-if executable('ag')
-	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
+nohlsearch
+
 " if executable('ag')
 " 	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
 " else
@@ -81,7 +81,7 @@ set list
 let &listchars="tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«"
 
 " Wrap lines visually
-set wrap
+set nowrap
 set breakindent
 set linebreak
 let &showbreak = "↪ "
@@ -267,7 +267,7 @@ endfor
 nnoremap <silent> <Leader>tc :let &colorcolumn=(&cc==0)?81:0<CR>
 nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
 nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
-nnoremap <silent> <Leader>tl :set nu!<Bar>set rnu!<Cr>
+nnoremap <silent> <Leader>tl :set nu!<Cr>
 nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
 nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
@@ -458,9 +458,9 @@ augroup END
 set title
 
 if has('nvim')
-	set titlestring=Nvim\ %{&modified?'•':':'}\ %t
+	set titlestring=nvim\ %{&modified?'•':':'}\ %t
 else
-	set titlestring=Vim\ %{&modified?'•':':'}\ %t
+	set titlestring=vim\ %{&modified?'•':':'}\ %t
 endif
 
 " -- Statusline ----------------------------------------------------------------
