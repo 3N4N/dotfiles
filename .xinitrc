@@ -23,6 +23,7 @@ compton &> /dev/null &
 
 if [ $DESKTOP = "xfce" ]; then
 
+	ibus-daemon -drx
 	exec startxfce4
 
 elif [ $DESKTOP = "dwm" ]; then
