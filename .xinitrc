@@ -19,17 +19,16 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
 
 # setup compositor
-compton &> /dev/null &
+picom -b
 
 if [ $DESKTOP = "xfce" ]; then
 
-	ibus-daemon -drx
 	exec startxfce4
 
 elif [ $DESKTOP = "dwm" ]; then
 
 	# setup background
-	hsetroot -fill ~/Pictures/backgrounds/typewriter.jpg
+	hsetroot -fill /home/enan/Pictures/backgrounds/quay.jpg
 
 	# setup notification widget
 	dunst &> /dev/null &
