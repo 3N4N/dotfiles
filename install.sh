@@ -29,10 +29,8 @@ done
 if [ "$1" == "-a" ]; then
 	sudo apt install \
 		acpi \
-		cmus \
 		curl \
 		deluge \
-		easytag \
 		ffmpeg \
 		htop \
 		mpv \

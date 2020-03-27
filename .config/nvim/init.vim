@@ -22,6 +22,7 @@ call plug#end()
 
 " Visual perks
 set conceallevel=0
+set foldcolumn=0
 set nocursorcolumn
 set nocursorline
 set nolazyredraw
@@ -30,7 +31,7 @@ set nonumber
 set norelativenumber
 set noruler
 set showmode
-set signcolumn=yes:1
+set signcolumn=no
 " let &colorcolumn=join(range(81,999),",")
 let &colorcolumn=0
 let &fillchars="vert:│"

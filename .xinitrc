@@ -19,7 +19,7 @@ xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1
 xinput set-prop 'DELL0767:00 06CB:7E92 Touchpad' 'libinput Natural Scrolling Enabled' 1
 
 # setup compositor
-picom -b
+compton -b
 
 if [ $DESKTOP = "xfce" ]; then
 
