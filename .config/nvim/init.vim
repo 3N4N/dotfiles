@@ -434,6 +434,30 @@ function! MyCompleteFileName()
 endfunction
 inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
 
+command! Prose inoremap <buffer> . .<C-G>u|
+			\ inoremap <buffer> ! !<C-G>u|
+			\ inoremap <buffer> ? ?<C-G>u|
+			\ setlocal foldcolumn=5 |
+			\ setlocal spell |
+			\ setlocal nolist nowrap tw=70 fo=t1 nonu |
+			\ setlocal expandtab |
+			\ set stl-=%P |
+			\ set stl+=%{wordcount().words}W |
+			\ augroup PROSE|
+			\   autocmd InsertEnter <buffer> set fo+=a|
+			\   autocmd InsertLeave <buffer> set fo-=a|
+			\ augroup END
+
+command! Code silent! iunmap <buffer> .|
+			\ silent! iunmap <buffer> !|
+			\ silent! iunmap <buffer> ?|
+			\ setlocal foldcolumn=0 |
+			\ setlocal nospell list nowrap |
+			\ setlocal tw=80 fo=cqr1 |
+			\ set stl-=%{wordcount().words}W |
+			\ set stl+=%P |
+			\ silent! autocmd! PROSE * <buffer>
+
 " -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
