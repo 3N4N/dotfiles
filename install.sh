@@ -10,13 +10,8 @@ DOTFILES=(
 	".profile"
 	".tmux.conf"
 	".xinitrc"
-	".config/cmus/cmus.theme"
-	".config/compton.conf"
-	".config/dunst"
 	".config/mpv"
 	".config/nvim"
-	".config/Thunar"
-	".config/xfce4/terminal"
     ".config/ranger"
 	".local/share/fonts"
 )
@@ -36,7 +31,6 @@ if [ "$1" == "-a" ]; then
 		mpv \
 		mupdf \
 		pavucontrol \
-		qpdfview \
 		rar \
 		tree \
 		wget \

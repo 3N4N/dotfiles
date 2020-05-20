@@ -3,6 +3,7 @@ Session.vim
 .config/nvim/pack/*
 .config/nvim/.netrwhist
 .config/nvim/plugged
+.config/nvim/spell
 
 .config/ranger/bookmarks
 .config/ranger/history
