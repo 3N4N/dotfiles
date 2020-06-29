@@ -10,9 +10,10 @@ DOTFILES=(
 	".profile"
 	".tmux.conf"
 	".xinitrc"
+	".config/libreoffice"
 	".config/mpv"
 	".config/nvim"
-    ".config/ranger"
+	".config/ranger"
 	".local/share/fonts"
 )
 
