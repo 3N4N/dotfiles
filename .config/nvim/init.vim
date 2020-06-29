@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-ragtag'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -98,6 +99,7 @@ let &inccommand="nosplit"
 set backspace=indent,eol,start
 set cinoptions=g0,l1,i0,t0,(0
 set cpoptions-=aA
+set nojoinspaces
 set shortmess=filmnxrtToO
 set synmaxcol=200
 set updatetime=250
@@ -118,7 +120,8 @@ endif
 " Colorscheme
 syntax on
 set notermguicolors
-colorscheme fault
+set background=light
+colorscheme solarized
 let g:lisp_rainbow = 1
 
 " -- Clipboard -----------------------------------------------------------------

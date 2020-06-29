@@ -140,10 +140,15 @@ fi
 export FZF_DEFAULT_OPTS='
 	--height 40% --multi --layout=reverse --border
 	--bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
+	--color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33
+	--color info:33,prompt:33,pointer:166,marker:166,spinner:33
 '
 
-if type "ag" &> /dev/null ; then
+if  hash ag 2>/dev/null ; then
 	export FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+else
+	export FZF_DEFAULT_COMMAND='find -type f'
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
