@@ -10,7 +10,6 @@ DOTFILES=(
 	".profile"
 	".tmux.conf"
 	".xinitrc"
-	".config/libreoffice"
 	".config/mpv"
 	".config/nvim"
 	".config/ranger"
@@ -28,6 +27,7 @@ if [ "$1" == "-a" ]; then
 		curl \
 		deluge \
 		ffmpeg \
+		git \
 		htop \
 		mpv \
 		mupdf \
