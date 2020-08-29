@@ -1,5 +1,10 @@
-setlocal textwidth=79
+setlocal textwidth=70
 setlocal spell
 
 setlocal formatoptions=jtcroqln
-setlocal comments=b:*,b:-,fb:+,n:>
+setlocal comments=fb:*,fb:-,fb:+,n:>
+
+set statusline=%<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+			\\ %m%r
+			\%=
+			\\ %-14.(%l:%3(%v%)\ %)\ %{wordcount()['words']}W
