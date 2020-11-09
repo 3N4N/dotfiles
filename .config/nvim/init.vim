@@ -370,7 +370,7 @@ if !&et
 endif
 
 " Repeatable window resize
-function! RepeatResize(first)
+function! RepeatResize(first) abort
     let l:command = a:first
     while stridx('+-><', l:command) != -1
         execute "normal! \<C-w>" . l:command
@@ -433,7 +433,8 @@ endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
-function! MyCompleteFileName()
+" Get filenames ignoring `wildignore`
+function! MyCompleteFileName() abort
 	" match a (potential) wildcard preceding cursor position
 	" note: \f is a filename character, see :h 'isfname'
 	let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
