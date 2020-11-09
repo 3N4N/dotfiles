@@ -23,7 +23,6 @@ call plug#end()
 
 " Visual perks
 set conceallevel=0
-set foldcolumn=0
 set nocursorcolumn
 set nocursorline
 set nolazyredraw
@@ -89,6 +88,10 @@ set linebreak
 let &showbreak = "↪ "
 set breakindentopt=shift:2
 
+" Folding
+set foldcolumn=0
+set foldmethod=manual
+
 " Keymap timeout settings
 set notimeout
 set ttimeout
@@ -112,6 +115,12 @@ set nobackup
 set noswapfile
 set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
+if !isdirectory(&backupdir)
+    call system("mkdir -p " . &backupdir)
+endif
+if !isdirectory(&directory)
+    call system("mkdir -p " . &backupdir)
+endif
 if has('persistent_undo')
 	set undofile
 	set undodir=~/.local/share/nvim/undo//
@@ -138,6 +147,8 @@ let g:clipboard = {
 			\   },
 			\   'cache_enabled': 1,
 			\ }
+
+set clipboard+=unnamed,unnamedplus
 
 " -- Tab settings --------------------------------------------------------------
 
@@ -167,15 +178,9 @@ noremap k gk
 noremap gj j
 noremap gk k
 
-" Don't move cursor when searching with * or #
-nnoremap <silent> * :let _w = winsaveview()<CR>
-			\:normal! *<CR>
-			\:call winrestview(_w)<CR>
-			\:unlet _w<CR>
-nnoremap <silent> # :let _w = winsaveview()<CR>
-			\:normal! #<CR>
-			\:call winrestview(_w)<CR>
-			\:unlet _w<CR>
+" Folding
+nnoremap za zA
+nnoremap zA za
 
 " Break undo sequence, start new change
 inoremap <C-h> <C-g>u<C-h>
@@ -230,7 +235,7 @@ command! -nargs=0 StripTrailingWhiteSpace
 			\ unlet _w |
 			\ noh
 
-" Don't move cursor when searching with * or #
+" Don't jump to the next result when searching with * or #
 nnoremap <silent> * :let _w = winsaveview()<CR>
 			\:normal! *<CR>
 			\:call winrestview(_w)<CR>
@@ -348,7 +353,9 @@ onoremap aa :normal vaa<CR>
 " -- Functions and Commands ----------------------------------------------------
 
 " Send selected text to a pastebin
-command! -range=% Paste silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | xclip -selection clipboard"
+command! -range=% Paste silent execute <line1> . "," . <line2>
+            \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
+            \ | xclip -selection clipboard"
 
 " Use tabs for indentation and spaces for alignment
 function! SpecialTab() abort
@@ -382,7 +389,7 @@ function! SwitchWindow(count) abort
 	exe "buffer" . winbufnr(a:count)
 	exe a:count . "wincmd w"
 	exe "buffer" . l:current_buf
-	wincmd p
+	" wincmd p
 endfunction
 nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
 
@@ -393,7 +400,7 @@ command! -nargs=1 Redir
             \ call setline(1, split(execute(<q-args>), "\n"))
 
 " Copy yanked text to tmux pane
-function! Send_to_tmux(visual, count) range abort
+function! SendToTmux(visual, count) range abort
 	if (a:visual)
 		execute "normal! gv\"zy"
 	else
@@ -409,8 +416,8 @@ function! Send_to_tmux(visual, count) range abort
 	silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
 	silent execute "!tmux send-keys -t " . a:count . "Enter"
 endfunction
-nnoremap <Leader>p :<C-u>call Send_to_tmux(0, v:count1)<CR>
-xnoremap <Leader>p :<C-u>call Send_to_tmux(1, v:count1)<CR>
+nnoremap <Leader>p :<C-u>call SendToTmux(0, v:count1)<CR>
+xnoremap <Leader>p :<C-u>call SendToTmux(1, v:count1)<CR>
 
 " Use * and # over visual selection
 function! s:VSetSearch(cmdtype) abort
@@ -436,30 +443,6 @@ function! MyCompleteFileName()
 	return ''
 endfunction
 inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
-
-command! Prose inoremap <buffer> . .<C-G>u|
-			\ inoremap <buffer> ! !<C-G>u|
-			\ inoremap <buffer> ? ?<C-G>u|
-			\ setlocal foldcolumn=5 |
-			\ setlocal spell |
-			\ setlocal nolist nowrap tw=70 fo=t1 nonu |
-			\ setlocal expandtab |
-			\ set stl-=%P |
-			\ set stl+=%{wordcount().words}W |
-			\ augroup PROSE|
-			\   autocmd InsertEnter <buffer> set fo+=a|
-			\   autocmd InsertLeave <buffer> set fo-=a|
-			\ augroup END
-
-command! Code silent! iunmap <buffer> .|
-			\ silent! iunmap <buffer> !|
-			\ silent! iunmap <buffer> ?|
-			\ setlocal foldcolumn=0 |
-			\ setlocal nospell list nowrap |
-			\ setlocal tw=80 fo=cqr1 |
-			\ set stl-=%{wordcount().words}W |
-			\ set stl+=%P |
-			\ silent! autocmd! PROSE * <buffer>
 
 " -- Autocommands --------------------------------------------------------------
 
@@ -494,7 +477,8 @@ endif
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
-set statusline=%<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+set statusline=[%{winnr()}]
+			\\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
 			\\ %m%r
 			\%=
 			\\ %-14.(%l:%3(%v%)\ %)\ %P
@@ -523,7 +507,7 @@ set tabline=%!MyTabLine()
 " -- Netrw ---------------------------------------------------------------------
 
 let g:netrw_altv=1
-let g:netrw_banner=0
+let g:netrw_banner=1
 let g:netrw_browse_split=0
 let g:netrw_cursor=0
 let g:netrw_hide = 1
