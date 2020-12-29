@@ -461,6 +461,42 @@ function! MyCompleteFileName() abort
 endfunction
 inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
 
+" Center the next block of text
+function! CenterNextBlock() abort
+    let l:cur_line = getline(".")
+    if (l:cur_line != '')
+        normal! }
+        let l:line1 = line(".")
+        keepjumps normal! }
+    else
+        let l:line1 = line(".")
+        normal! }
+    endif
+    let l:line2 = line(".")
+    let l:line = l:line1 + ((l:line2 - l:line1) / 2)
+    execute "call cursor(" . l:line . ",1)"
+    normal! zz
+endfunction
+nnoremap - :<C-u>call CenterNextBlock()<CR>
+
+" Center the previous block of text
+function! CenterPrevBlock() abort
+    let l:cur_line = getline(".")
+    if (l:cur_line != '')
+        normal! {
+        let l:line1 = line(".")
+        keepjumps normal! {
+    else
+        let l:line1 = line(".")
+        normal! {
+    endif
+    let l:line2 = line(".")
+    let l:line = l:line1 - ((l:line1 - l:line2) / 2)
+    execute "call cursor(" . l:line . ",1)"
+    normal! zz
+endfunction
+nnoremap _ :<C-u>call CenterPrevBlock()<CR>
+
 " -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
