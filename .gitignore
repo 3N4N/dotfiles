@@ -1,5 +1,7 @@
 Session.vim
 
+tags*
+
 .config/nvim/pack/*
 .config/nvim/.netrwhist
 .config/nvim/plugged

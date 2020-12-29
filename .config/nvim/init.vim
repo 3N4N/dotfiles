@@ -16,6 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-ragtag'
 Plug 'altercation/vim-colors-solarized'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -33,7 +34,7 @@ set noruler
 set showmode
 set signcolumn=no
 " let &colorcolumn=join(range(81,999),",")
-let &colorcolumn=0
+let &colorcolumn=81
 let &fillchars="vert:│"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 			\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
@@ -61,7 +62,7 @@ nohlsearch
 " 	let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
 " endif
 
-let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude=\"dictionary.txt\""
+let &grepprg="grep -IHnri --exclude-dir=\".git\" --exclude=\"tags\""
 
 " Wildmenu settings
 set wildmenu
@@ -157,7 +158,15 @@ set softtabstop=4
 set shiftwidth=4
 set smarttab
 set shiftround
-set noexpandtab
+set expandtab
+
+" -- Make ----------------------------------------------------------------------
+
+if isdirectory("build")
+    set makeprg=make\ -C\ build
+else
+    set makeprg=make
+endif
 
 " -- Key Mapping ---------------------------------------------------------------
 
@@ -203,6 +212,10 @@ cnoremap <C-j> <C-g>
 cnoremap <C-k> <C-t>
 cnoremap <C-g> <C-k>
 cnoremap <C-t> <Nop>
+
+" Use `:tjump` instead of `:tag`
+
+nnoremap <C-]> g<C-]>
 
 " Useful leader mappings
 nnoremap <Leader>; :
@@ -286,6 +299,7 @@ nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
 " CTRL-X submode
 inoremap <C-]> <C-x><C-]>
 inoremap <C-l> <C-x><C-l>
+inoremap <C-o> <C-x><C-o>
 
 " Git
 nnoremap <Leader>gs :Gstatus<CR>
@@ -438,8 +452,10 @@ function! MyCompleteFileName() abort
 	" match a (potential) wildcard preceding cursor position
 	" note: \f is a filename character, see :h 'isfname'
 	let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
+    let l:file_comp_list = getcompletion(l:pattern, "file")
+    " let l:file_comp_list += getcompletion(l:pattern, "file_in_path")
 	" set the matches
-	call complete(col('.') - len(l:pattern), getcompletion(l:pattern, "file"))
+	call complete(col('.') - len(l:pattern), l:file_comp_list)
 	" must return an empty string to show the menu
 	return ''
 endfunction
@@ -470,9 +486,9 @@ augroup END
 set title
 
 if has('nvim')
-	set titlestring=nvim\ %{&modified?'•':':'}\ %t
+	set titlestring=NVIM\ %{&modified?'•':':'}\ %t
 else
-	set titlestring=vim\ %{&modified?'•':':'}\ %t
+	set titlestring=VIM\ %{&modified?'•':':'}\ %t
 endif
 
 " -- Statusline ----------------------------------------------------------------

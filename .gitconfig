@@ -5,6 +5,7 @@
 [user]
 	email = 3nan.ajmain@gmail.com
 	name = Enan Ajmain
+	signingkey = 10D38A5DC03CCD408A24C1B67FBDF102C090B06C
 [credential]
 	helper = cache --timeout=1800
 [core]
@@ -34,3 +35,4 @@
 	dp = diff --stat
 	ds = diff --staged
 	dw = diff --word-diff
+	cnt = rev-list --count HEAD

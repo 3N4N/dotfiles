@@ -55,9 +55,7 @@ alias lh='la -d .[^.]* 2> /dev/null'
 
 # show colors in grep and ag
 alias ag='ag --color-match "31"'
-alias grep='grep --color=auto --exclude-dir=".git"'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto --exclude-dir=".git" --exclude="tags"'
 
 # shorthand for python executables
 alias py2='python2'
@@ -66,12 +64,11 @@ alias py3='python3'
 # miscellaneous
 alias mkdir='mkdir -pv'
 alias psgrep='ps aux | grep -v grep | grep'
-alias r='ranger'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
 alias vimdiff='nvim -d'
-alias xopen='xdg-open'
+# alias xopen='xdg-open'
 
 # -- functions -----------------------------------------------------------------
 
@@ -84,46 +81,19 @@ now() {
 	curl wttr.in/dhaka?0
 }
 
-# look up dictionary
-dict() {
-    grep -i ^"$1" $HOME/Documents/dictionary.txt
+# Set the title of the terminal window or tab
+set-title() {
+    if [[ -z "$PS1_BAK" ]]; then
+        PS1_BAK=$PS1
+    fi
+
+    TITLE="\[\e]2;$@\a\]"
+    PS1=${PS1_BAK}${TITLE}
 }
 
-fdemoji() {
-	grep -i "$1" $HOME/Documents/emoji_list.txt
-}
-
-# tmux starting script
-t() {
-	if [ -z "$1" ]; then
-		session_name="enan"
-	else
-		session_name=$1
-	fi
-
-	cd ~
-	tmux has-session -t="$session_name"
-
-	if [ $? != 0 ]; then
-		tmux new-session -s "$session_name" -d
-		tmux rename-window -t "$session_name" files
-		tmux send-keys -t "$session_name" 'ranger' C-m
-
-		tmux new-window -t "$session_name"
-		tmux rename-window -t "$session_name" shell
-
-		if [ $session_name = "enan" ]; then
-			tmux new-window -t "$session_name"
-			tmux rename-window -t "$session_name" dots
-			tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
-			tmux split-window -bh
-			tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
-		fi
-
-		tmux select-window -t 2
-	fi
-
-	tmux attach-session -t "$session_name"
+# Open a file and detach the process
+xopen() {
+    xdg-open "$1" & disown
 }
 
 # -- fzf -----------------------------------------------------------------------
@@ -140,8 +110,9 @@ fi
 export FZF_DEFAULT_OPTS='
 	--height 40% --multi --layout=reverse --border
 	--bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
-	--color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33
-	--color info:33,prompt:33,pointer:166,marker:166,spinner:33
+    --color=bg:#FDF6E3,bg+:#EEE8D5
+    --color=fg:#657B83,fg+:#839496
+    --color=hl:#DC322F,hl+:#DC322F
 '
 
 if  hash ag 2>/dev/null ; then
