@@ -1,0 +1,98 @@
+#!/bin/env bash
+
+# TODO:
+# [ ] sanity check for the zoom link.
+# [x] check if the meeting is already scheduled.
+
+MINS=$1
+HOUR=$2
+DATE=$3
+MNTH=$4
+YEAR="date +%Y"
+PAT_CMD="\[ \\\$(date \\\"+\\\\%Y\\\") -eq $($YEAR) \] && export DISPLAY=:0 && xdg-open \\\"$5\\\""
+ACT_CMD="[ \$(date \"+\\%Y\") -eq $($YEAR) ] && export DISPLAY=:0 && xdg-open \"$5\""
+
+
+################################################################################
+#                                 Sanity Check
+################################################################################
+
+if [ "$#" -ne 5 ]
+then
+    echo "ERROR: More or less than required parameters are passed."
+    echo ""
+    echo "Usage: ./add-zoom-meeting.sh <minute> <hour> <date> <month> <link>"
+    echo "                               0-59    0-23   1-31   1-12"
+    echo "The parameter <minute> should be in normal format (0-59)."
+    echo "The parameter <hour> should be in 24-hr format (0-23)."
+    echo "The parameter <date> should be in normal format (1-31)."
+    echo "The parameter <month> should be in normal format (1-12)."
+    echo "The parameter <link> should be in the following format."
+    echo "https://bdren.zoom.us/j/69471476777?pwd=V2Z3dEpNa0hvQ3dCMklZbG5hSKNjdz09"
+    exit
+fi
+
+if [ "$MINS" -gt 59 ] || [ "$MINS" -lt 0 ]
+then
+    echo "The parameter <minute> should be in normal format (0-59)."
+    exit
+fi
+
+if [ "$HOUR" -gt 23 ] || [ "$HOUR" -lt 0 ]
+then
+    echo "The parameter <hour> should be in 24-hr format (0-23)."
+    exit
+fi
+
+if [ "$DATE" -gt 31 ] || [ "$DATE" -lt 1 ]
+then
+    echo "The parameter <date> should be in normal format (1-31)."
+    exit
+fi
+
+if [ "$MNTH" -gt 31 ] || [ "$MNTH" -lt 1 ]
+then
+    echo "The parameter <month> should be in normal format (1-12)."
+    exit
+fi
+
+################################################################################
+#                             Add Meeting to Cron
+################################################################################
+
+# We just open the given url in the browser, like a dumbass. Zoom apparently
+# had a dedicated protocol for opening links directly in app but it was
+# deprecated. Must be some security stuff. I dunno.
+# https://medium.com/zoom-developer-blog/zoom-url-schemes-748b95fd9205
+#
+# So for now we will have to tolerate the annoyance of a browser tab opening
+# out of nowhere.
+#
+# The zoommtg protocol still works if you have the meeting password. The
+# conference number embedded in the link can be extracted easily. But the
+# password embedded in the link is some sort of hashmap. Not extractable. Maybe
+# someone can reverse-engineer how the browser or the app extracts the password
+# with a debugger. I cannot.
+#
+# usage of zoommtg protocol: zoom-client
+# "zoommtg://zoom.us/join?action=join&confno=74080808553&pwd=71rEZm"
+#
+# This has an upside, too. We don't have to check if someone has the app
+# installed or not. Bully for us.
+
+# 19 15 24 12 * [ $(date "+\%Y") -eq 2020 ] && export DISPLAY=:0 && xdg-open "https://bdren.zoom.us/j/69471476777?pwd=V2V3dEpNa0hvQ3dCMklIbG5hSXNjdz09"
+PATTERN="echo "$MINS" "$HOUR" "$DATE" "$MNTH" \* "$PAT_CMD""
+
+# echo $PATTERN
+# crontab -l | grep -Ev "^(#|$)" | grep --color "$($PATTERN)" ; echo $?
+# echo "$(crontab -l ; echo ""$MINS" "$HOUR" "$DATE" "$MNTH" * "$ACT_CMD"")"
+# exit
+
+# if meeting not already scheduled
+if [[ $(crontab -l | grep -Ev "^(#|$)" | grep "$($PATTERN)"; echo $?) == 1 ]]
+then
+    # add zoom meeting to cronjob
+    echo "$(crontab -l ; echo ""$MINS" "$HOUR" "$DATE" "$MNTH" * "$ACT_CMD"")" | crontab -
+else
+    echo "ERROR: The meeting is already scheduled."
+fi
