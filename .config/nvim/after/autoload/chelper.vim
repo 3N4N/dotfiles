@@ -1,5 +1,4 @@
-
-function! SwitchToHeader() abort
+function! chelper#SwitchToHeader() abort
     let l:root = expand('%:t:r')
     let l:ext = expand('%:t:e')
 
@@ -11,5 +10,3 @@ function! SwitchToHeader() abort
         exe "find " . l:root . ".cpp"
     endif
 endfunction
-nnoremap <Leader>wh :<C-u>call SwitchToHeader()<CR>
-
