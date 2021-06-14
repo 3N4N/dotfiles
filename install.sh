@@ -33,6 +33,7 @@ if [ "$1" == "-a" ]; then
 		mupdf \
 		pavucontrol \
 		rar \
+		silversearcher-ag \
 		tree \
 		wget \
 		x11-xkb-utils \

@@ -15,6 +15,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-ragtag'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ludovicchabant/vim-gutentags'
 
@@ -70,6 +72,7 @@ set wildignorecase
 let &wildmode="full"
 let &wildoptions="pum"
 set pumblend=0
+set complete-=t
 set wildignore=*.o,*.obj,*~,*.class
 set wildignore+=*/.git
 set wildignore+=*.swp,*.tmp
@@ -221,7 +224,7 @@ nnoremap <C-]> g<C-]>
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap <Leader>f :grep<Space>
+" nnoremap <Leader>f :grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s:\v
@@ -307,6 +310,7 @@ nnoremap <Leader>gd :Gdiffsplit<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gb :Gblame<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
@@ -569,6 +573,19 @@ let g:netrw_liststyle=0
 let g:netrw_sort_by='name'
 let g:netrw_sort_direction='normal'
 let g:netrw_winsize=25
+
+" -- FZF -----------------------------------------------------------------------
+
+command! -bang -nargs=* Ag
+            \ call fzf#vim#ag(<q-args>,
+            \ {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fg :GFiles<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fa :Ag<CR>
+nnoremap <Leader>ft :Tags<CR>
+nnoremap <Leader>fc :Commands<CR>
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
