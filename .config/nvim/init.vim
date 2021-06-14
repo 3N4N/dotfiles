@@ -587,6 +587,23 @@ nnoremap <Leader>fa :Ag<CR>
 nnoremap <Leader>ft :Tags<CR>
 nnoremap <Leader>fc :Commands<CR>
 
+" -- Uncrustify ----------------------------------------------------------------
+
+let g:uncrustifyCfgFile = '~/.uncrustify.cfg'
+
+function! UncrustifyFunc(options) range
+    exec a:firstline.','.a:lastline.'!uncrustify '.a:options
+                \.' -c '.g:uncrustifyCfgFile.' -q -l '.&filetype
+endfunction
+
+command! -range=% UncrustifyRange <line1>,<line2>call UncrustifyFunc('--frag')
+command! Uncrustify  let s:save_cursor = getcurpos()
+                  \| %call UncrustifyFunc('')
+                  \| call setpos('.', s:save_cursor)
+
+nnoremap <Leader>u :Uncrustify<CR>
+xnoremap <Leader>u :UncrustifyRange<CR>
+
 " -- Load Local Vimrc ----------------------------------------------------------
 
 if filereadable("local.vim")
