@@ -19,7 +19,7 @@ export PAGER="less"
 HISTCONTROL=erasedups:ignoreboth
 HISTSIZE=20000
 HISTFILESIZE=20000
-HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd:clear'
+HISTIGNORE='exit:cd:ls:l:la:lh:bg:fg:history:f:fd:clear'
 HISTTIMEFORMAT='%F %T '
 shopt -s histappend             # don't overwrite previous history
 shopt -s cmdhist                # store one command per line in history
@@ -61,6 +61,11 @@ alias grep='grep --color=auto --exclude-dir=".git" --exclude="tags"'
 alias py2='python2'
 alias py3='python3'
 
+# spotify controls
+alias spp="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+alias sprev="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+alias snext="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
 # miscellaneous
 alias mkdir='mkdir -pv'
 alias psgrep='ps aux | grep -v grep | grep'
@@ -69,6 +74,8 @@ alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
 alias vimdiff='nvim -d'
 # alias xopen='xdg-open'
+alias xclip='xclip -selection clipboard'
+alias gdb='gdb --silent'
 
 # -- functions -----------------------------------------------------------------
 
