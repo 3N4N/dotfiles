@@ -386,6 +386,12 @@ command! -range=% Paste silent execute <line1> . "," . <line2>
             \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
             \ | xclip -selection clipboard"
 
+" Redirect the output of a Vim or external command into a scratch buffer
+command! -nargs=1 Redir
+            \ tabnew |
+            \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
+            \ call setline(1, split(execute(<q-args>), "\n"))
+
 " Use tabs for indentation and spaces for alignment
 function! SpecialTab() abort
     if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
@@ -421,12 +427,6 @@ function! SwitchWindow(count) abort
 	" wincmd p
 endfunction
 nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
-
-" Redirect the output of a Vim or external command into a scratch buffer
-command! -nargs=1 Redir
-            \ tabnew |
-            \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
-            \ call setline(1, split(execute(<q-args>), "\n"))
 
 " Copy yanked text to tmux pane
 function! SendToTmux(visual, count) range abort
@@ -512,6 +512,23 @@ function! CenterPrevBlock() abort
 endfunction
 nnoremap _ :<C-u>call CenterPrevBlock()<CR>
 
+function! UpdateTodoKeywords(...) abort
+    let newKeywords = join(a:000, " ")
+    let synTodo = map(filter(split(execute("syntax list"), '\n'),
+                \ { i,v -> match(v, '^\w*Todo\>') == 0}),
+                \ {i,v -> substitute(v, ' .*$', '', '')})
+    for synGrp in synTodo
+        execute "syntax keyword " . synGrp . " contained " . newKeywords
+    endfor
+endfunction
+
+augroup todo
+    autocmd!
+    " autocmd Syntax * call UpdateTodoKeywords("NOTE", "NOTES")
+    autocmd Syntax * call UpdateTodoKeywords("NOTE")
+augroup END
+
+
 " -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
@@ -579,8 +596,9 @@ let g:netrw_banner=1
 let g:netrw_browse_split=0
 let g:netrw_cursor=0
 let g:netrw_hide = 1
-let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
-let g:netrw_liststyle=0
+" let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
+let g:netrw_list_hide = '^\.git/$'
+let g:netrw_liststyle=1
 let g:netrw_sort_by='name'
 let g:netrw_sort_direction='normal'
 let g:netrw_winsize=25
