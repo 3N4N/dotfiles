@@ -35,6 +35,7 @@ if [ "$1" == "-a" ]; then
 		rar \
 		silversearcher-ag \
 		tree \
+		uncrustify \
 		wget \
 		x11-xkb-utils \
 		xbacklight \
