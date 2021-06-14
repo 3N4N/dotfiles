@@ -22,6 +22,14 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'jalvesaq/Nvim-R'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'prettier/vim-prettier', {
+            \ 'do': 'yarn install',
+            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
+            \         'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
 call plug#end()
 
 " -- General -------------------------------------------------------------------
@@ -606,6 +614,11 @@ command! Uncrustify  let s:save_cursor = getcurpos()
 
 nnoremap <Leader>u :Uncrustify<CR>
 xnoremap <Leader>u :UncrustifyRange<CR>
+
+" -- Prettier ------------------------------------------------------------------
+
+let g:prettier#autoformat_config_present = 1
+let g:prettier#autoformat_require_pragma = 0
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
