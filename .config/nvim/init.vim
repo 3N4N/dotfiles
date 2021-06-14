@@ -19,6 +19,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'jalvesaq/Nvim-R'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 call plug#end()
 
@@ -113,6 +115,7 @@ set updatetime=250
 set virtualedit=block
 let &viewoptions="folds,cursor"
 let g:tex_flavor='latex'
+let R_assign = 2
 
 " Backup and Persistent Undo
 set nobackup
@@ -344,7 +347,7 @@ else
 	tnoremap <C-h> <C-\><C-n><C-w>h
 	tnoremap <C-j> <C-\><C-n><C-w>j
 	tnoremap <C-k> <C-\><C-n><C-w>k
-	tnoremap <C-l> <C-\><C-n><C-w>l
+	" tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 tnoremap <Esc> <C-\><C-n>
 
