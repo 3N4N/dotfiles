@@ -22,6 +22,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'jalvesaq/Nvim-R'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
+Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -615,6 +616,18 @@ nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fa :Ag<CR>
 nnoremap <Leader>ft :Tags<CR>
 nnoremap <Leader>fc :Commands<CR>
+
+
+" -- Closetag ------------------------------------------------------------------
+
+" let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js'
+" let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb'
+let g:closetag_filetypes = 'html,xhtml,phtml,javascript'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,javascript'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
+
 
 " -- Uncrustify ----------------------------------------------------------------
 
