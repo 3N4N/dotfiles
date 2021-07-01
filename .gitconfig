@@ -3,36 +3,37 @@
 ; Github: https://github.com/enanajmain
 
 [user]
-	email = 3nan.ajmain@gmail.com
-	name = Enan Ajmain
-	signingkey = 10D38A5DC03CCD408A24C1B67FBDF102C090B06C
+    email = 3nan.ajmain@gmail.com
+    name = Enan Ajmain
+    signingkey = 10D38A5DC03CCD408A24C1B67FBDF102C090B06C
 [credential]
-	helper = cache --timeout=1800
+    helper = cache --timeout=1800
 [core]
-	abbrev = 12
-	preloadindex = true
-	fscache = true
-	pager = less -+$LESS
-	editor = nvim
+    abbrev = 12
+    preloadindex = true
+    fscache = true
+    pager = less -+$LESS
+    editor = nvim
 [log]
-	date = short
+    date = short
 [push]
-	default = current
+    default = current
 [alias]
-	ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
-	ll = log --stat --source -p
-	br = branch
-	ba = branch -av
-	bv = branch -v
-	st = status -sb
-	sh = stash
-	sa = stash save --include-untracked
-	co = checkout
-	cp = cherry-pick
-	cl = clone
-	ct = commit
-	df = diff
-	dp = diff --stat
-	ds = diff --staged
-	dw = diff --word-diff
-	cnt = rev-list --count HEAD
+    ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
+    ll = log --stat --source -p
+    br = branch
+    ba = branch -av
+    bv = branch -v
+    st = status -sb
+    sh = stash
+    sa = stash save --include-untracked
+    co = checkout
+    cp = cherry-pick
+    cl = clone
+    ct = commit
+    df = diff
+    dp = diff --stat
+    ds = diff --staged
+    dw = diff --word-diff
+    la = config --get-regexp alias
+    cnt = rev-list --count HEAD
