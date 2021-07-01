@@ -3,7 +3,7 @@
 # Email : 3nan.ajmain@gmail.com
 # Github: https://github.com/enanajmain
 
-VERSION=2.8
+VERSION=3.2a
 
 sudo apt remove tmux
 sudo apt install wget tar gcc g++ make libevent-dev libncurses-dev
