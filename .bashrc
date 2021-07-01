@@ -66,6 +66,13 @@ alias spp="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mp
 alias sprev="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 alias snext="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
+# Commands for for docker
+alias dcbuild='docker-compose build'
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
+docksh() { docker exec -it $1 /bin/bash; }
+
 # miscellaneous
 alias mkdir='mkdir -pv'
 alias psgrep='ps aux | grep -v grep | grep'
@@ -81,11 +88,11 @@ alias gdb='gdb --silent'
 
 # elaborate digital clock
 now() {
-	echo -n 'date : '
-	date "+%A, %B %d"
-	echo -n 'time : '
-	date "+%H:%M"
-	curl wttr.in/dhaka?0
+    echo -n 'date : '
+    date "+%A, %B %d"
+    echo -n 'time : '
+    date "+%H:%M"
+    curl wttr.in/dhaka?0
 }
 
 # Set the title of the terminal window or tab
@@ -98,36 +105,71 @@ set-title() {
     PS1=${PS1_BAK}${TITLE}
 }
 
+# tmux starting script
+t() {
+    if [ -z "$1" ]; then
+        session_name="enan"
+    else
+        session_name=$1
+    fi
+
+    cd ~
+    tmux has-session -t="$session_name"
+
+    if [ $? != 0 ]; then
+        tmux new-session -s "$session_name" -d
+        # tmux rename-window -t "$session_name" files
+        # tmux send-keys -t "$session_name" 'ranger' C-m
+
+        # tmux new-window -t "$session_name"
+        tmux rename-window -t "$session_name" shell
+
+        if [ $session_name = "enan" ]; then
+            tmux new-window -t "$session_name"
+            tmux rename-window -t "$session_name" dots
+            tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
+            tmux split-window -bh
+            tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
+        fi
+
+        tmux select-window -t 2
+    fi
+
+    tmux attach-session -t "$session_name"
+}
+
+
 # Open a file and detach the process
 xopen() {
     xdg-open "$1" & disown
 }
 
+
 # -- fzf -----------------------------------------------------------------------
 
 if [ ! -d "$HOME/.fzf" ]; then
-	git clone https://github.com/junegunn/fzf.git ~/.fzf
-	cd ~/.fzf
-	./install --all --no-completion
-	cd -
+    git clone https://github.com/junegunn/fzf.git ~/.fzf
+    cd ~/.fzf
+    ./install --all --no-completion
+    cd -
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_DEFAULT_OPTS='
-	--height 40% --multi --layout=reverse --border
-	--bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
+    --height 40% --multi --layout=reverse --border
+    --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
     --color=bg:#FDF6E3,bg+:#EEE8D5
     --color=fg:#657B83,fg+:#839496
     --color=hl:#DC322F,hl+:#DC322F
 '
 
 if  hash ag 2>/dev/null ; then
-	export FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
-	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 else
-	export FZF_DEFAULT_COMMAND='find -type f'
-	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_DEFAULT_COMMAND='find -type f'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
 # bind capitalize-word to Alt-I
@@ -147,22 +189,22 @@ bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-o
 # this will make fzf leave bash completion alone
 
 if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		. /etc/bash_completion
-	fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 # -- title string --------------------------------------------------------------
 
 case "$TERM" in
-	st*)
-		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}"'
-		;;
-	xterm*)
-		PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
-		;;
+    st*)
+        PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}"'
+        ;;
+    xterm*)
+        PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
+        ;;
 esac
 
 # -- bash prompt ---------------------------------------------------------------
