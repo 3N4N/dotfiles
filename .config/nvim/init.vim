@@ -317,12 +317,12 @@ inoremap <C-l> <C-x><C-l>
 inoremap <C-o> <C-x><C-o>
 
 " Git
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :Git<CR>
 nnoremap <Leader>gd :Gdiffsplit<CR>
-nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gc :Git commit<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gb :Git_blame<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
