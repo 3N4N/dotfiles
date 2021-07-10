@@ -1,6 +1,6 @@
-" Author: Enan Ajmain
-" Email : 3nan.ajmain@gmail.com
-" Github: https://github.com/enanajmain
+" Author : Enan Ajmain
+" Email  : 3nan.ajmain@gmail.com
+" Github : https://github.com/3N4N
 
 " -- Vim Plug ------------------------------------------------------------------
 

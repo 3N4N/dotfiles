@@ -1,8 +1,8 @@
 " Vim color file
-" Name  : Fault
-" Author: Enan Ajmain
-" Email : 3nan.ajmain@gmail.com
-" Github: https://github.com/enanajmain
+" Name   : Fault
+" Author : Enan Ajmain
+" Email  : 3nan.ajmain@gmail.com
+" Github : https://github.com/3N4N
 
 
 hi clear

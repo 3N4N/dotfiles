@@ -2,7 +2,7 @@
 
 # Author: Enan Ajmain
 # Email : 3nan.ajmain@gmail.com
-# Github: https://github.com/enanajmain
+# Github: https://github.com/3N4N
 
 
 DESKTOP="xfce"

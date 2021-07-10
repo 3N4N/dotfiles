@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Author: Enan Ajmain
-# Email : 3nan.ajmain@gmail.com
-# Github: https://github.com/enanajmain
+
+# Author : Enan Ajmain
+# Email  : 3nan.ajmain@gmail.com
+# Github : https://github.com/3N4N
 
 # install dependencies
 sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
