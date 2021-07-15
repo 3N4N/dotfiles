@@ -64,8 +64,8 @@ hi  clear  SignColumn
 
 hi  StatusLine    cterm=none  ctermbg=8     ctermfg=15  gui=none  guibg=#5c6370  guifg=#f0f0f0
 hi  StatusLineNC  cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
-hi  TabLine       cterm=none  ctermbg=none  ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
-hi  TabLineFill   cterm=none  ctermbg=none  ctermfg=0   gui=none  guibg=#3e4452  guifg=#abb2bf
+hi  TabLine       cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
+hi  TabLineFill   cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
 hi  TabLineSel    cterm=none  ctermbg=8     ctermfg=15  gui=none  guibg=#98c379  guifg=#282c34
 
 " -- Language constructs -------------------------------------------------------
