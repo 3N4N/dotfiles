@@ -39,6 +39,11 @@ bind 'set mark-symlinked-directories on'
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
+# bind keys for case conversion
+bind '"\ei": capitalize-word'
+bind '"\eo": upcase-word'
+bind '"\eu": downcase-word'
+
 # remove XON/XOFF
 stty -ixon
 
@@ -170,11 +175,6 @@ else
     export FZF_DEFAULT_COMMAND='find -type f'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
-
-# bind capitalize-word to Alt-I
-# in reference to Initcap
-# to unshadow Alt-C provided by fzf
-bind '"\ei": capitalize-word'
 
 # use fzf to open files
 bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
