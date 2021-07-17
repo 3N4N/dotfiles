@@ -18,7 +18,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'jalvesaq/Nvim-R'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
@@ -125,6 +125,7 @@ set virtualedit=block
 let &viewoptions="folds,cursor"
 let g:tex_flavor='latex'
 let R_assign = 2
+" let r_indent_align_args = 0
 
 " Backup and Persistent Undo
 set nobackup
@@ -145,8 +146,8 @@ endif
 " Colorscheme
 syntax on
 set notermguicolors
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme fault
 let g:lisp_rainbow = 1
 
 " -- Clipboard -----------------------------------------------------------------
@@ -164,7 +165,7 @@ let g:clipboard = {
 			\   'cache_enabled': 1,
 			\ }
 
-set clipboard+=unnamed,unnamedplus
+set clipboard+=unnamed
 
 " -- Tab settings --------------------------------------------------------------
 
@@ -322,7 +323,7 @@ nnoremap <Leader>gd :Gdiffsplit<CR>
 nnoremap <Leader>gc :Git commit<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gb :Git_blame<CR>
+nnoremap <Leader>gb :Git blame<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
@@ -392,6 +393,8 @@ command! -nargs=1 Redir
             \ tabnew |
             \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
             \ call setline(1, split(execute(<q-args>), "\n"))
+
+command! Date put =strftime('%B %d, %Y')
 
 " Use tabs for indentation and spaces for alignment
 function! SpecialTab() abort
@@ -529,7 +532,6 @@ augroup todo
     autocmd Syntax * call UpdateTodoKeywords("NOTE")
 augroup END
 
-
 " -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
@@ -626,8 +628,11 @@ let g:closetag_filetypes = 'html,xhtml,phtml,javascript'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx,javascript'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
+let g:closetag_close_shortcut = ''
 
+" -- Ctags ---------------------------------------------------------------------
+
+nnoremap <Leader>c :!ctags -R .<CR>
 
 " -- Uncrustify ----------------------------------------------------------------
 
@@ -655,4 +660,8 @@ let g:prettier#autoformat_require_pragma = 0
 
 if filereadable("local.vim")
     source local.vim
+endif
+
+if filereadable(".local.vim")
+    source .local.vim
 endif
