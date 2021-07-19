@@ -146,8 +146,8 @@ endif
 " Colorscheme
 syntax on
 set notermguicolors
-set background=dark
-colorscheme fault
+set background=light
+colorscheme solarized
 let g:lisp_rainbow = 1
 
 " -- Clipboard -----------------------------------------------------------------

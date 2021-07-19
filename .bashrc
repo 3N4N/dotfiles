@@ -166,20 +166,10 @@ export FZF_DEFAULT_OPTS='
     --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
 '
 
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#     --color=light
-#     --color=bg:#FDF6E3,bg+:#EEE8D5
-#     --color=fg:#657B83,fg+:#839496
-#     --color=hl:#DC322F,hl+:#DC322F
-#     --color fg:240,bg:230,hl:33,fg+:241,bg+:221,hl+:33
-#     --color info:33,prompt:33,pointer:166,marker:166,spinner:33
-# '
-
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=dark
-    --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
-    --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b
-    --color=spinner:#61afef,header:#61afef
+    --color=light
+    --color=fg:-1,bg:-1,hl:33,fg+:241,bg+:221,hl+:33
+    --color=info:33,prompt:33,pointer:166,marker:166,spinner:33
 '
 
 if  hash ag 2>/dev/null ; then
