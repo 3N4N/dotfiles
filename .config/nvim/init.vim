@@ -75,7 +75,7 @@ nohlsearch
 " 	let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
 " endif
 
-let &grepprg="grep -IHnri --exclude-dir=\".git\" --exclude=\"tags\""
+let &grepprg="grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
 
 " Wildmenu settings
 set wildmenu
@@ -324,6 +324,7 @@ nnoremap <Leader>gc :Git commit<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gg :Git grep ''<Left>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
