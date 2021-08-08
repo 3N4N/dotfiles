@@ -11,8 +11,8 @@ set confirm off
 set verbose off
 set prompt \033[31m>>> \033[0m
 
-set output-radix 0x10
-set input-radix 0x10
+# set output-radix 0x10
+# set input-radix 0x10
 
 # makes the gdb terminal behave weird
 # # These make gdb never pause in its output
@@ -40,4 +40,4 @@ set $SHOWDATAWIN = 0
 
 
 # __________________end gdb options_________________
-
+source ~/.config/gdb/modules/gef.py
