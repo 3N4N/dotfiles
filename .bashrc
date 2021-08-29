@@ -10,6 +10,11 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+isWSL=0
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    isWSL=1
+fi
+
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GEM_HOME=$HOME/gems
@@ -209,6 +214,29 @@ case "$TERM" in
         PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
         ;;
 esac
+
+# -- set path ------------------------------------------------------------------
+
+# append user specified directories to PATH
+append_to_path() {
+	if [ -d "$1" ] ; then
+		new_entry="$1"
+		case ":$PATH:" in
+			*":$new_entry:"*) :;;
+			*) PATH="$new_entry:$PATH";;
+		esac
+	fi
+}
+
+# if [ "$isWSL" -eq 0 ]; then
+# # set PATH so it includes user's private bin if it exists
+# append_to_path "$HOME/bin"
+# # set PATH so it includes installed packages with pip
+# append_to_path "$HOME/.local/bin"
+# # set PATH so it includes installed packages with gem
+# append_to_path "$HOME/.gem/ruby/2.5.0/bin"
+# append_to_path "$HOME/gems/bin"
+# fi
 
 # -- bash prompt ---------------------------------------------------------------
 

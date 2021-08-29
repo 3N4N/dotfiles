@@ -5,9 +5,9 @@
 " -- Vim Plug ------------------------------------------------------------------
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-	silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -50,8 +50,8 @@ set signcolumn=no
 let &colorcolumn=81
 let &fillchars="vert:│"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-			\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-			\,sm:block-blinkwait175-blinkoff150-blinkon175
+            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+            \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " New split position
 set nosplitbelow
@@ -70,9 +70,9 @@ set wrapscan
 nohlsearch
 
 " if executable('ag')
-" 	let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
+"   let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
 " else
-" 	let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
+"   let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
 " endif
 
 let &grepprg="grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
@@ -139,8 +139,8 @@ if !isdirectory(&directory)
     call system("mkdir -p " . &backupdir)
 endif
 if has('persistent_undo')
-	set undofile
-	set undodir=~/.local/share/nvim/undo//
+    set undofile
+    set undodir=~/.local/share/nvim/undo//
 endif
 
 " Colorscheme
@@ -152,20 +152,30 @@ let g:lisp_rainbow = 1
 
 " -- Clipboard -----------------------------------------------------------------
 
-let g:clipboard = {
-			\   'name': 'xclip_neovim_clipboard',
-			\   'copy': {
-			\      '+': 'xclip -selection clipboard',
-			\      '*': 'xclip -selection clipboard',
-			\    },
-			\   'paste': {
-			\      '+': 'xclip -selection clipboard -o',
-			\      '*': 'xclip -selection clipboard -o',
-			\   },
-			\   'cache_enabled': 1,
-			\ }
-
+if system("cat /proc/version") =~ "Microsoft"
+    let g:clipboard = {
+                \   'name': 'clip_nvim',
+                \   'copy': {
+                \      '+': 'clip.exe',
+                \      '*': 'clip.exe',
+                \    },
+                \   'cache_enabled': 1,
+                \ }
+else
+    let g:clipboard = {
+                \   'name': 'xclip_nvim',
+                \   'copy': {
+                \      '+': 'xclip -selection clipboard',
+                \      '*': 'xclip -selection clipboard',
+                \    },
+                \   'paste': {
+                \      '+': 'xclip -selection clipboard -o',
+                \      '*': 'xclip -selection clipboard -o',
+                \   },
+                \   'cache_enabled': 1,
+                \ }
 set clipboard+=unnamed
+endif
 
 " -- Tab settings --------------------------------------------------------------
 
@@ -246,7 +256,7 @@ xnoremap <Leader>s :s:\%V\v
 " Opening files
 nnoremap <Leader>e :e **/*
 nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
-			\<S-left><Left><Left><Left>
+            \<S-left><Left><Left><Left>
 
 " Show name of syntax element below cursor
 command! SynName  echo synIDattr(synID(line("."), col("."), 1), "name")
@@ -255,24 +265,24 @@ nnoremap <F12> :SynName<CR>
 " Strip trailing whitespace
 nnoremap <silent> gs :StripTrailingWhiteSpace<CR>
 command! -nargs=0 StripTrailingWhiteSpace
-			\ let _w=winsaveview() <Bar>
-			\ let _s=@/ |
-			\ %s/\s\+$//e |
-			\ let @/=_s|
-			\ unlet _s |
-			\ call winrestview(_w) |
-			\ unlet _w |
-			\ noh
+            \ let _w=winsaveview() <Bar>
+            \ let _s=@/ |
+            \ %s/\s\+$//e |
+            \ let @/=_s|
+            \ unlet _s |
+            \ call winrestview(_w) |
+            \ unlet _w |
+            \ noh
 
 " Don't jump to the next result when searching with * or #
 nnoremap <silent> * :let _w = winsaveview()<CR>
-			\:normal! *<CR>
-			\:call winrestview(_w)<CR>
-			\:unlet _w<CR>
+            \:normal! *<CR>
+            \:call winrestview(_w)<CR>
+            \:unlet _w<CR>
 nnoremap <silent> # :let _w = winsaveview()<CR>
-			\:normal! #<CR>
-			\:call winrestview(_w)<CR>
-			\:unlet _w<CR>
+            \:normal! #<CR>
+            \:call winrestview(_w)<CR>
+            \:unlet _w<CR>
 
 " direction-unaware search and jump
 nnoremap <expr> n (v:searchforward ? 'n' : 'N')
@@ -295,10 +305,10 @@ nnoremap <Leader>[ gT
 " Handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
 for [s:key, s:value] in items(s:pairs)
-	execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
-	execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
-	execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
-	execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
+    execute 'nnoremap <silent> [' . s:key . ' :' . s:value . 'prev<CR>'
+    execute 'nnoremap <silent> ]' . s:key . ' :' . s:value . 'next<CR>'
+    execute 'nnoremap <silent> [' . toupper(s:key) . ' :' . s:value . 'first<CR>'
+    execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
 endfor
 
 " Toggle key bindings
@@ -310,7 +320,7 @@ nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
 nnoremap <silent> <Leader>ts :setlocal spell!<Bar>setlocal spell?<CR>
 nnoremap <silent> <Leader>tw :set wrap!<Bar>set wrap?<CR>
 nnoremap <silent> <Leader>tm :let &mouse=(&mouse==#""?"a":"")<Bar>
-			\ echo "mouse ".(&mouse==#""?"off":"on")<CR>
+            \ echo "mouse ".(&mouse==#""?"off":"on")<CR>
 
 " CTRL-X submode
 inoremap <C-]> <C-x><C-]>
@@ -328,37 +338,37 @@ nnoremap <Leader>gg :Git grep ''<Left>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
-	function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
-		let previous_winnr = winnr()
-		silent! execute "wincmd " . a:wincmd
-		if previous_winnr == winnr()
-			call system("tmux list-panes -F '#F' | grep -q Z
-						\|| tmux select-pane -" . a:tmuxdir)
-		endif
-	endfunction
+    function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
+        let previous_winnr = winnr()
+        silent! execute "wincmd " . a:wincmd
+        if previous_winnr == winnr()
+            call system("tmux list-panes -F '#F' | grep -q Z
+                        \|| tmux select-pane -" . a:tmuxdir)
+        endif
+    endfunction
 
-	let previous_title = substitute(system("tmux display-message -p
-				\ '#{pane_title}'"), '\n', '', '')
-	let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-	let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+    let previous_title = substitute(system("tmux display-message -p
+                \ '#{pane_title}'"), '\n', '', '')
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+    let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-	nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
-	nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
-	nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
-	nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
-	tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
-	tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
-	tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
-	tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
+    nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+    nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+    nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+    nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
+    tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
+    tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
+    tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
+    tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
 else
-	nnoremap <C-h> <C-w>h
-	nnoremap <C-j> <C-w>j
-	nnoremap <C-k> <C-w>k
-	nnoremap <C-l> <C-w>l
-	tnoremap <C-h> <C-\><C-n><C-w>h
-	tnoremap <C-j> <C-\><C-n><C-w>j
-	tnoremap <C-k> <C-\><C-n><C-w>k
-	" tnoremap <C-l> <C-\><C-n><C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    " tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 tnoremap <Esc> <C-\><C-n>
 
@@ -366,10 +376,10 @@ tnoremap <Esc> <C-\><C-n>
 
 " Simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<Bar>', '/', '<Bslash>', '*', '+', '%', '`' ]
-	execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
-	execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
-	execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
-	execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
+    execute 'xnoremap i' . s:char . ' :<C-u>normal! T' . s:char . 'vt' . s:char . '<CR>'
+    execute 'onoremap i' . s:char . ' :normal vi' . s:char . '<CR>'
+    execute 'xnoremap a' . s:char . ' :<C-u>normal! F' . s:char . 'vf' . s:char . '<CR>'
+    execute 'onoremap a' . s:char . ' :normal va' . s:char . '<CR>'
 endfor
 
 " Line text-objects
@@ -406,7 +416,7 @@ function! SpecialTab() abort
     endif
 endfunction
 if !&et
-	inoremap <Tab> <C-R>=SpecialTab()<CR>
+    inoremap <Tab> <C-R>=SpecialTab()<CR>
 endif
 
 " Repeatable window resize
@@ -425,59 +435,59 @@ nnoremap <Leader>w> :call RepeatResize('>')<CR>
 
 " Switch windows effortlessly
 function! SwitchWindow(count) abort
-	let l:current_buf = winbufnr(0)
-	exe "buffer" . winbufnr(a:count)
-	exe a:count . "wincmd w"
-	exe "buffer" . l:current_buf
-	" wincmd p
+    let l:current_buf = winbufnr(0)
+    exe "buffer" . winbufnr(a:count)
+    exe a:count . "wincmd w"
+    exe "buffer" . l:current_buf
+    " wincmd p
 endfunction
 nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
 
 " Copy yanked text to tmux pane
 function! SendToTmux(visual, count) range abort
-	if (a:visual)
-		execute "normal! gv\"zy"
-	else
-		execute "normal! \"zyip"
-	endif
-	let text = @z
-	let text = substitute(text, ';', '\\;', 'g')
-	let text = substitute(text, '"', '\\"', 'g')
-	let text = substitute(text, '\n', '" Enter "', 'g')
-	let text = substitute(text, '!', '\\!', 'g')
-	let text = substitute(text, '%', '\\%', 'g')
-	let text = substitute(text, '#', '\\#', 'g')
-	silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
-	silent execute "!tmux send-keys -t " . a:count . "Enter"
+    if (a:visual)
+        execute "normal! gv\"zy"
+    else
+        execute "normal! \"zyip"
+    endif
+    let text = @z
+    let text = substitute(text, ';', '\\;', 'g')
+    let text = substitute(text, '"', '\\"', 'g')
+    let text = substitute(text, '\n', '" Enter "', 'g')
+    let text = substitute(text, '!', '\\!', 'g')
+    let text = substitute(text, '%', '\\%', 'g')
+    let text = substitute(text, '#', '\\#', 'g')
+    silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
+    silent execute "!tmux send-keys -t " . a:count . "Enter"
 endfunction
 nnoremap <Leader>p :<C-u>call SendToTmux(0, v:count1)<CR>
 xnoremap <Leader>p :<C-u>call SendToTmux(1, v:count1)<CR>
 
 " Use * and # over visual selection
 function! s:VSetSearch(cmdtype) abort
-	let t = @s
-	norm! gv"sy
-	let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-	let _w = winsaveview()
-	let @s = t
-	call winrestview(_w)
-	unlet _w
-	unlet t
+    let t = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+    let _w = winsaveview()
+    let @s = t
+    call winrestview(_w)
+    unlet _w
+    unlet t
 endfunction
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
 " Get filenames ignoring `wildignore`
 function! MyCompleteFileName() abort
-	" match a (potential) wildcard preceding cursor position
-	" note: \f is a filename character, see :h 'isfname'
-	let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
+    " match a (potential) wildcard preceding cursor position
+    " note: \f is a filename character, see :h 'isfname'
+    let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
     let l:file_comp_list = getcompletion(l:pattern, "file")
     " let l:file_comp_list += getcompletion(l:pattern, "file_in_path")
-	" set the matches
-	call complete(col('.') - len(l:pattern), l:file_comp_list)
-	" must return an empty string to show the menu
-	return ''
+    " set the matches
+    call complete(col('.') - len(l:pattern), l:file_comp_list)
+    " must return an empty string to show the menu
+    return ''
 endfunction
 inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
 
@@ -536,16 +546,16 @@ augroup END
 " -- Autocommands --------------------------------------------------------------
 
 augroup custom_term
-	autocmd!
-	autocmd TermOpen * setlocal nonumber norelativenumber
-	autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
-	" autocmd BufEnter term://* startinsert
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
+    " autocmd BufEnter term://* startinsert
 augroup END
 
 augroup quickfix
-	autocmd!
-	autocmd QuickFixCmdPost [^l]* nested cwindow
-	autocmd QuickFixCmdPost    l* nested lwindow
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
 
 " augroup resize_splits
@@ -558,37 +568,37 @@ augroup END
 set title
 
 if has('nvim')
-	set titlestring=NVIM\ %{&modified?'•':':'}\ %t
+    set titlestring=NVIM\ %{&modified?'•':':'}\ %t
 else
-	set titlestring=VIM\ %{&modified?'•':':'}\ %t
+    set titlestring=VIM\ %{&modified?'•':':'}\ %t
 endif
 
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
 set statusline=[%{winnr()}]
-			\\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-			\\ %m%r
-			\%=
-			\\ %-14.(%l:%3(%v%)\ %)\ %P
+            \\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
+            \\ %m%r
+            \%=
+            \\ %-14.(%l:%3(%v%)\ %)\ %P
 
 " -- Tabline -------------------------------------------------------------------
 
 function! MyTabLine() abort
-	let s = ''
-	for i in range(tabpagenr('$'))
-		let tabnr = i + 1
-		let winnr = tabpagewinnr(tabnr)
-		let buflist = tabpagebuflist(tabnr)
-		let bufnr = buflist[winnr - 1]
-		let bufname = fnamemodify(bufname(bufnr), ':t')
-		let s .= '%' . tabnr . 'T'
-		let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-		let s .= ' ' . tabnr
-		let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
-	endfor
-	let s .= '%#TabLineFill#'
-	return s
+    let s = ''
+    for i in range(tabpagenr('$'))
+        let tabnr = i + 1
+        let winnr = tabpagewinnr(tabnr)
+        let buflist = tabpagebuflist(tabnr)
+        let bufnr = buflist[winnr - 1]
+        let bufname = fnamemodify(bufname(bufnr), ':t')
+        let s .= '%' . tabnr . 'T'
+        let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+        let s .= ' ' . tabnr
+        let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
+    endfor
+    let s .= '%#TabLineFill#'
+    return s
 endfunction
 set showtabline=1
 set tabline=%!MyTabLine()
