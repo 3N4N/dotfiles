@@ -4,12 +4,12 @@
 
 
 if !exists("g:env")
-    if has('windows')
+    if has('windows') && !has('unix')
         let g:env = "WIN"
     elseif system('uname') =~? "msys"
         let g:env = "MSYS2"
     else
-        let g:env = "LINUX"
+        let g:env = "UNIX"
     endif
 endif
 
@@ -92,7 +92,7 @@ set dictionary=/usr/share/dict/words
 set spelllang=en_us
 
 " Set powershell default terminal in windows
-if g:env !=# "WIN"
+if g:env ==# "WIN"
     let &shell = 'pwsh'
     let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
     let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
