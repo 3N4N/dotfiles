@@ -4,7 +4,9 @@
 
 
 if !exists("g:env")
-    if has('windows') && !has('unix')
+    if has('windows') && has('unix')
+        let g:env = "WSL"
+    elseif has('windows') && !has('unix')
         let g:env = "WIN"
     elseif system('uname') =~? "msys"
         let g:env = "MSYS2"
@@ -171,37 +173,35 @@ let R_assign = 2
 " let r_indent_align_args = 0
 
 " Backup and swap
-
 set nobackup
 set noswapfile
-
 if g:env ==# "WIN"
-	set backupdir=~\AppData\Local\nvim-data\backup\
-	set directory=~\AppData\Local\nvim-data\swap\
-	if !isdirectory(&backupdir)
-		call system("md " . &backupdir)
-	endif
-	if !isdirectory(&directory)
-		call system("md " . &directory)
-	endif
+    set backupdir=~\AppData\Local\nvim-data\backup\
+    set directory=~\AppData\Local\nvim-data\swap\
+    if !isdirectory(&backupdir)
+        call system("md " . &backupdir)
+    endif
+    if !isdirectory(&directory)
+        call system("md " . &directory)
+    endif
 else
-	set backupdir=~/.local/share/nvim/backup//
-	set directory=~/.local/share/nvim/swap//
-	if !isdirectory(&backupdir)
-		call system("mkdir -p " . &backupdir)
-	endif
-	if !isdirectory(&directory)
-		call system("mkdir -p " . &directory)
-	endif
+    set backupdir=~/.local/share/nvim/backup//
+    set directory=~/.local/share/nvim/swap//
+    if !isdirectory(&backupdir)
+        call system("mkdir -p " . &backupdir)
+    endif
+    if !isdirectory(&directory)
+        call system("mkdir -p " . &directory)
+    endif
 endif
 
 " Persistent Undo
 if has('persistent_undo')
     set undofile
     if g:env ==# "WIN"
-	    set undodir=~\AppData\Local\nvim-data\undo\
+        set undodir=~\AppData\Local\nvim-data\undo\
     else
-	    set undodir=~/.local/share/nvim/undo//
+        set undodir=~/.local/share/nvim/undo//
     endif
 endif
 
@@ -218,7 +218,7 @@ let g:neovide_cursor_animation_length=0
 
 " -- Clipboard -----------------------------------------------------------------
 
-if g:env !=# "WIN"
+if g:env ==# "UNIX"
     let g:clipboard = {
                 \   'name': 'xclip_nvim',
                 \   'copy': {
