@@ -14,6 +14,7 @@
     fscache = true
     pager = less -+$LESS
     editor = nvim
+	filemode = false
 [log]
     date = short
 [push]

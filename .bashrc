@@ -98,6 +98,12 @@ alias vimdiff='nvim -d'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 
+# WSL aliases
+if [ $isWSL ]; then
+    alias e='explorer.exe'
+fi
+
+
 # -- functions -----------------------------------------------------------------
 
 # elaborate digital clock
@@ -154,6 +160,13 @@ xopen() {
     xdg-open "$1" & disown
 }
 
+start() {
+    if [ -z "$1" ]; then
+        echo "FUCK!"
+    else
+        cmd.exe /C "start $(wslpath -aw $1)"
+    fi
+}
 
 # -- fzf -----------------------------------------------------------------------
 
@@ -228,16 +241,6 @@ append_to_path() {
 	fi
 }
 
-# if [ "$isWSL" -eq 0 ]; then
-# # set PATH so it includes user's private bin if it exists
-# append_to_path "$HOME/bin"
-# # set PATH so it includes installed packages with pip
-# append_to_path "$HOME/.local/bin"
-# # set PATH so it includes installed packages with gem
-# append_to_path "$HOME/.gem/ruby/2.5.0/bin"
-# append_to_path "$HOME/gems/bin"
-# fi
-
 # -- bash prompt ---------------------------------------------------------------
 
 turquoise=$(tput setaf 5)
@@ -248,4 +251,4 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\$ '
+PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\n\$ '
