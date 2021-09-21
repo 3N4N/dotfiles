@@ -2,34 +2,63 @@
 " Email  : 3nan.ajmain@gmail.com
 " Github : https://github.com/3N4N
 
-" -- Vim Plug ------------------------------------------------------------------
 
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if !exists("g:env")
+    if has('windows')
+        let g:env = "WIN"
+    elseif system('uname') =~? "msys"
+        let g:env = "MSYS2"
+    else
+        let g:env = "LINUX"
+    endif
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+if g:env ==# "WIN"
+    let s:cmd_mkdir = "md"
+    let s:vim_plug_dir = "~/AppData/Local/nvim-data/plugged"
+else
+    let s:cmd_mkdir = "mkdir -p"
+    let s:vim_plug_dir = "~/.config/nvim/plugged"
+endif
+
+" -- Vim Plug ------------------------------------------------------------------
+
+
+if g:env !=# "WIN"
+    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+        silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+endif
+
+
+let g:plug_url_format = 'git@github.com:%s.git'
+
+call plug#begin(s:vim_plug_dir)
+
+" Plug 'romainl/flattened'
+" Plug 'ashfinal/vim-colors-violet'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-ragtag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'altercation/vim-colors-solarized'
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'jalvesaq/Nvim-R'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 
-Plug 'alvan/vim-closetag'
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'prettier/vim-prettier', {
-            \ 'do': 'yarn install',
-            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
-            \         'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+Plug 'jalvesaq/Nvim-R'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" Plug 'alvan/vim-closetag'
+" Plug 'pangloss/vim-javascript'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'prettier/vim-prettier', {
+"             \ 'do': 'yarn install',
+"             \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
+"             \         'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 call plug#end()
 
@@ -47,11 +76,12 @@ set noruler
 set showmode
 set signcolumn=no
 " let &colorcolumn=join(range(81,999),",")
-let &colorcolumn=81
+let &colorcolumn=0
 let &fillchars="vert:│"
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
             \,sm:block-blinkwait175-blinkoff150-blinkon175
+set guicursor=
 
 " New split position
 set nosplitbelow
@@ -60,6 +90,15 @@ set nosplitright
 " Dictionary and spelling
 set dictionary=/usr/share/dict/words
 set spelllang=en_us
+
+" Set powershell default terminal in windows
+if g:env !=# "WIN"
+    let &shell = 'pwsh'
+    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    set shellquote= shellxquote=
+endif
 
 " Searching
 set hlsearch
@@ -75,7 +114,11 @@ nohlsearch
 "   let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
 " endif
 
-let &grepprg="grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
+if g:env ==# "WIN"
+    let &grepprg="grep -IHnri --exclude-dir=.git --exclude=\"tags\""
+else
+    let &grepprg="grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
+endif
 
 " Wildmenu settings
 set wildmenu
@@ -127,41 +170,55 @@ let g:tex_flavor='latex'
 let R_assign = 2
 " let r_indent_align_args = 0
 
-" Backup and Persistent Undo
+" Backup and swap
+
 set nobackup
 set noswapfile
-set backupdir=~/.local/share/nvim/backup//
-set directory=~/.local/share/nvim/swap//
-if !isdirectory(&backupdir)
-    call system("mkdir -p " . &backupdir)
+
+if g:env ==# "WIN"
+	set backupdir=~\AppData\Local\nvim-data\backup\
+	set directory=~\AppData\Local\nvim-data\swap\
+	if !isdirectory(&backupdir)
+		call system("md " . &backupdir)
+	endif
+	if !isdirectory(&directory)
+		call system("md " . &directory)
+	endif
+else
+	set backupdir=~/.local/share/nvim/backup//
+	set directory=~/.local/share/nvim/swap//
+	if !isdirectory(&backupdir)
+		call system("mkdir -p " . &backupdir)
+	endif
+	if !isdirectory(&directory)
+		call system("mkdir -p " . &directory)
+	endif
 endif
-if !isdirectory(&directory)
-    call system("mkdir -p " . &backupdir)
-endif
+
+" Persistent Undo
 if has('persistent_undo')
     set undofile
-    set undodir=~/.local/share/nvim/undo//
+    if g:env ==# "WIN"
+	    set undodir=~\AppData\Local\nvim-data\undo\
+    else
+	    set undodir=~/.local/share/nvim/undo//
+    endif
 endif
 
 " Colorscheme
 syntax on
-set notermguicolors
-set background=light
-colorscheme solarized
 let g:lisp_rainbow = 1
+set termguicolors
+set bg=light
+colo violet
+
+" gui settings
+set guifont=Iosevka\ Term:h14
+let g:neovide_cursor_animation_length=0
 
 " -- Clipboard -----------------------------------------------------------------
 
-if system("cat /proc/version") =~ "Microsoft"
-    let g:clipboard = {
-                \   'name': 'clip_nvim',
-                \   'copy': {
-                \      '+': 'clip.exe',
-                \      '*': 'clip.exe',
-                \    },
-                \   'cache_enabled': 1,
-                \ }
-else
+if g:env !=# "WIN"
     let g:clipboard = {
                 \   'name': 'xclip_nvim',
                 \   'copy': {
@@ -174,8 +231,8 @@ else
                 \   },
                 \   'cache_enabled': 1,
                 \ }
-set clipboard+=unnamed
 endif
+set clipboard+=unnamed
 
 " -- Tab settings --------------------------------------------------------------
 
@@ -619,9 +676,7 @@ let g:netrw_winsize=25
 
 " -- FZF -----------------------------------------------------------------------
 
-command! -bang -nargs=* Ag
-            \ call fzf#vim#ag(<q-args>,
-            \ {'options': '--delimiter : --nth 4..'}, <bang>0)
+let g:fzf_preview_window=''
 
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>fg :GFiles<CR>
