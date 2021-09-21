@@ -142,7 +142,7 @@ t() {
         if [ $session_name = "enan" ]; then
             tmux rename-window -t "$session_name" dots
             tmux send-keys -t "$session_name" 'cd ~/projects/dotFiles' C-m
-            tmux send-keys -t "$session_name" 'nvim' C-m
+            # tmux send-keys -t "$session_name" 'nvim' C-m
         fi
 
         tmux new-window -t "$session_name"
