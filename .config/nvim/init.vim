@@ -50,7 +50,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'ludovicchabant/vim-gutentags'
 
 
-Plug 'jalvesaq/Nvim-R'
+" Plug 'jalvesaq/Nvim-R'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Plug 'alvan/vim-closetag'
@@ -72,7 +72,7 @@ set nocursorcolumn
 set nocursorline
 set nolazyredraw
 set nomodeline
-set nonumber
+set number
 set norelativenumber
 set noruler
 set showmode
@@ -100,6 +100,8 @@ if g:env ==# "WIN"
     let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
     let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
     set shellquote= shellxquote=
+    set ssl
+    " set csl="slash"
 endif
 
 " Searching
@@ -173,8 +175,10 @@ let R_assign = 2
 " let r_indent_align_args = 0
 
 " Backup and swap
+
 set nobackup
 set noswapfile
+
 if g:env ==# "WIN"
     set backupdir=~\AppData\Local\nvim-data\backup\
     set directory=~\AppData\Local\nvim-data\swap\
@@ -721,6 +725,11 @@ xnoremap <Leader>u :UncrustifyRange<CR>
 
 let g:prettier#autoformat_config_present = 1
 let g:prettier#autoformat_require_pragma = 0
+
+" -- termsend ------------------------------------------------------------------
+
+nnoremap <Bslash>p :lua require("termsend").sendToTerm(0)<CR>
+xnoremap <Bslash>p :lua require("termsend").sendToTerm(1)<CR>
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
