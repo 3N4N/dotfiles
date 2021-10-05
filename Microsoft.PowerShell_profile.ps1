@@ -109,13 +109,13 @@ Set-Alias -Name find -Value 'C:\Program Files\git\usr\bin\find.exe'
 
 # ------- Functions ------------------------------------------------------------
 
-# Function ls-long { ls -NvhFl --group-directories-first --time-style=+ }
-# Set-Alias -Name l -Value ls-long
+Function ls-long { ls -NvhFl --group-directories-first --time-style=+ $args }
+Set-Alias -Name l -Value ls-long
 
-# Function grep-color {
-#     grep --color=auto --exclude-dir=".git" --exclude="tags"
-# }
-# Set-Alias -Name grepc -Value grep-color
+Function grep-color {
+    grep --color --exclude-dir=".git" --exclude="tags" $args
+}
+Set-Alias -Name grep -Value grep-color
 
 Function start-pwsh { Start-Process pwsh }
 Set-Alias -Name stpw -Value start-pwsh
