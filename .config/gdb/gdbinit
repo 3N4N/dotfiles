@@ -40,4 +40,5 @@ set $SHOWDATAWIN = 0
 
 
 # __________________end gdb options_________________
-source ~/.config/gdb/modules/gef.py
+# source ~/.config/gdb/modules/gef.py
+# source c:/Users/ACER/.config/gdb/modules/gef.py

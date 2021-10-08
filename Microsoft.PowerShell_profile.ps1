@@ -6,8 +6,13 @@ $esc = [char]27
 
 Function prompt
 {
+    $loc = Get-Location
+
+    # Emulate standard PS prompt with location followed by ">"
+    # $out = "PS $loc> "
+
     #Assign Windows Title Text
-    $host.ui.rawui.windowtitle = $(if ($isInAdmin) {"ADMIN: "} get-location)
+    $host.ui.rawui.windowtitle = $(if ($isInAdmin) {"ADMIN: "} $loc)
 
     #Configure current user and current folder
     $CmdPromptCurrentFolder = Split-Path -Path $pwd -Leaf
@@ -15,13 +20,8 @@ Function prompt
 
     #Decorate the CMD Prompt
     Write-Host ""
-    if ($IsAdmin) {
-        Write-Host "PS " -ForegroundColor DarkRed -NoNewline
-    }
-    else {
-        Write-Host "PS " -ForegroundColor DarkGreen -NoNewline
-    }
     Write-Host "$($CmdPromptUser.Name.split("\")[1])@$env:COMPUTERNAME " -ForegroundColor DarkBlue -NoNewline
+
     If ($CmdPromptCurrentFolder -like "*:*") {
         Write-Host " $CmdPromptCurrentFolder "  -ForegroundColor Cyan
     }
@@ -29,53 +29,54 @@ Function prompt
         Write-Host "..\$CmdPromptCurrentFolder\ "  -ForegroundColor Cyan
     }
 
-    return "> "
+    if ($IsAdmin) {
+        Write-Host "PS" -ForegroundColor DarkRed -NoNewline
+    }
+    else {
+        Write-Host "PS" -ForegroundColor DarkGreen -NoNewline
+    }
+
+    $out = "> "
+
+    # # Check for ConEmu existance and ANSI emulation enabled
+    # if ($env:ConEmuANSI -eq "ON") {
+    #     # Let ConEmu know when the prompt ends, to select typed
+    #     # command properly with "Shift+Home", to change cursor
+    #     # position in the prompt by simple mouse click, etc.
+    #     $out += "$([char]27)]9;12$([char]7)"
+
+    #     # And current working directory (FileSystem)
+    #     # ConEmu may show full path or just current folder name
+    #     # in the Tab label (check Tab templates)
+    #     # Also this knowledge is crucial to process hyperlinks clicks
+    #     # on files in the output from compilers and source control
+    #     # systems (git, hg, ...)
+    #     if ($loc.Provider.Name -eq "FileSystem") {
+    #         $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
+    #     }
+    # }
+
+    if ($env:WT_SESSION) {
+        if ($loc.Provider.Name -eq "FileSystem") {
+            $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
+        }
+    }
+
+    return $out
 }
 
-# https://gist.github.com/LuanVSO/6f2b94cf3bd90f184722676c43ccc1c6
-If($env:WT_SESSION){
-	$prevprompt = $Function:prompt
-	Function prompt {
-		if ($pwd.provider.name -eq "FileSystem") {
-			$p = $pwd.ProviderPath
-			Write-Host "$esc]9;9;`"$p`"$esc\" -NoNewline
-		}
-		return $prevprompt.invoke()
-	}
-}
-
-# Function prompt
-# {
-#   $loc = Get-Location
-#
-#   # Emulate standard PS prompt with location followed by ">"
-#   # $out = "PS $loc> "
-#
-#   # Or prettify the prompt by coloring its parts
-#   Write-Host -NoNewline -ForegroundColor Cyan "PS "
-#   Write-Host -NoNewline -ForegroundColor Yellow $loc
-#   $out = "> "
-#
-#   # Check for ConEmu existance and ANSI emulation enabled
-#   if ($env:ConEmuANSI -eq "ON") {
-#     # Let ConEmu know when the prompt ends, to select typed
-#     # command properly with "Shift+Home", to change cursor
-#     # position in the prompt by simple mouse click, etc.
-#     $out += "$([char]27)]9;12$([char]7)"
-#
-#     # And current working directory (FileSystem)
-#     # ConEmu may show full path or just current folder name
-#     # in the Tab label (check Tab templates)
-#     # Also this knowledge is crucial to process hyperlinks clicks
-#     # on files in the output from compilers and source control
-#     # systems (git, hg, ...)
-#     if ($loc.Provider.Name -eq "FileSystem") {
-#       $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
-#     }
-#   }
-#
-#   return $out
+# # https://gist.github.com/LuanVSO/6f2b94cf3bd90f184722676c43ccc1c6
+# If($env:WT_SESSION){
+# 	$prevprompt = $Function:prompt
+# 	Function prompt {
+# 		if ($pwd.provider.name -eq "FileSystem") {
+# 			$p = $pwd.ProviderPath
+# 			Write-Host "$esc]9;9;`"$p`"$esc\" -NoNewline
+# 		}
+# 		return $prevprompt.invoke()
+# 	}
 # }
+
 
 
 # ------- PSReadLine -----------------------------------------------------------
@@ -97,6 +98,7 @@ if (Test-Path alias:rmdir) { Remove-Alias rmdir }
 if (Test-Path alias:mv) { Remove-Alias mv }
 if (Test-Path alias:r) { Remove-Alias r }
 if (Test-Path alias:where) { del alias:where -force }
+if (Test-Path alias:echo) { Remove-Alias echo }
 
 Set-Alias -Name vi -Value nvim
 Set-Alias -Name nvi -Value neovide
@@ -109,13 +111,21 @@ Set-Alias -Name find -Value 'C:\Program Files\git\usr\bin\find.exe'
 
 # ------- Functions ------------------------------------------------------------
 
-Function ls-long { ls -NvhFl --group-directories-first --time-style=+ $args }
-Set-Alias -Name l -Value ls-long
+# Function ls-long { ls -NvhFl --group-directories-first --time-style=+ $args }
+# Set-Alias -Name l -Value ls-long
 
-Function grep-color {
-    grep --color --exclude-dir=".git" --exclude="tags" $args
-}
-Set-Alias -Name grep -Value grep-color
+# Function grep-color {
+#     Param(
+#           [Parameter(ValueFromPipeline=$true)]
+#           [string[]]$text
+#     )
+#     Begin {}
+#     Process {
+#         grep --color --exclude-dir=".git" --exclude="tags" $text
+#     }
+#     End {}
+# }
+# Set-Alias -Name grep -Value grep-color
 
 Function start-pwsh { Start-Process pwsh }
 Set-Alias -Name stpw -Value start-pwsh
@@ -125,9 +135,9 @@ Set-Alias -Name stpwad -Value start-pwsh-admin
 
 # ------- fzf ------------------------------------------------------------------
 
-    # # --height 40% --multi
+# # --height 40% --multi
 # $env:FZF_DEFAULT_OPTS='
-    # --layout=reverse --border
+# --layout=reverse --border
     # --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
     # --color=light
     # --color=fg:-1,bg:-1,hl:33,fg+:241,bg+:221,hl+:33

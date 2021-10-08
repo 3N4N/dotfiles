@@ -56,11 +56,13 @@ Plug 'junegunn/fzf.vim'
 " Plug 'alvan/vim-closetag'
 " Plug 'pangloss/vim-javascript'
 " Plug 'leafgarland/typescript-vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'prettier/vim-prettier', {
-"             \ 'do': 'yarn install',
-"             \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
-"             \         'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'prettier/vim-prettier', {
+            \ 'do': 'yarn install',
+            \ 'branch': 'release/1.x',
+            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
+            \         'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+" Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -72,7 +74,7 @@ set nocursorcolumn
 set nocursorline
 set nolazyredraw
 set nomodeline
-set number
+set nonumber
 set norelativenumber
 set noruler
 set showmode
@@ -94,14 +96,17 @@ set dictionary=/usr/share/dict/words
 set spelllang=en_us
 
 " Set powershell default terminal in windows
-if g:env ==# "WIN"
+if g:env ==# "DBG" " WIN
     let &shell = 'pwsh'
     let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
     let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
     let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
     set shellquote= shellxquote=
-    set ssl
+    " set ssl
     " set csl="slash"
+elseif g:env ==# "WIN"
+    set ssl
+    let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
 endif
 
 " Searching
@@ -724,7 +729,17 @@ xnoremap <Leader>u :UncrustifyRange<CR>
 " -- Prettier ------------------------------------------------------------------
 
 let g:prettier#autoformat_config_present = 1
-let g:prettier#autoformat_require_pragma = 0
+" let g:prettier#autoformat_require_pragma = 0
+
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js Prettier
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+
 
 " -- termsend ------------------------------------------------------------------
 
