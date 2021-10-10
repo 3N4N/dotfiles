@@ -9,9 +9,6 @@ Function prompt
 {
     $loc = (Get-Location).Path
 
-    # Emulate standard PS prompt with location followed by ">"
-    # $out = "PS $loc> "
-
     #Assign Windows Title Text
     $host.ui.rawui.windowtitle = $(if ($isInAdmin) {"ADMIN: "} $loc)
 
@@ -30,19 +27,6 @@ Function prompt
     return $out
 }
 
-# # https://gist.github.com/LuanVSO/6f2b94cf3bd90f184722676c43ccc1c6
-# If($env:WT_SESSION){
-# 	$prevprompt = $Function:prompt
-# 	Function prompt {
-# 		if ($pwd.provider.name -eq "FileSystem") {
-# 			$p = $pwd.ProviderPath
-# 			Write-Host "$esc]9;9;`"$p`"$esc\" -NoNewline
-# 		}
-# 		return $prevprompt.invoke()
-# 	}
-# }
-
-
 
 # ------- PSReadLine -----------------------------------------------------------
 
@@ -54,49 +38,6 @@ Set-PSReadLineKeyHandler -chord ctrl+n -Function HistorySearchForward
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
-
-# ------- aliases --------------------------------------------------------------
-
-if (Test-Path alias:ls) { Remove-Alias ls }
-if (Test-Path alias:rm) { Remove-Alias rm }
-if (Test-Path alias:rmdir) { Remove-Alias rmdir }
-if (Test-Path alias:mv) { Remove-Alias mv }
-if (Test-Path alias:r) { Remove-Alias r }
-if (Test-Path alias:where) { del alias:where -force }
-if (Test-Path alias:echo) { Remove-Alias echo }
-
-Set-Alias -Name vi -Value nvim
-Set-Alias -Name nvi -Value neovide
-
-Set-Alias -Name find -Value 'C:\Program Files\git\usr\bin\find.exe'
-
-# Set-Alias -Name py -Value python
-# Set-Alias -Name py2 -Value python2
-# Set-Alias -Name py3 -Value python3
-
-# ------- Functions ------------------------------------------------------------
-
-# Function ls-long { ls -NvhFl --group-directories-first --time-style=+ $args }
-# Set-Alias -Name l -Value ls-long
-
-# Function grep-color {
-#     Param(
-#           [Parameter(ValueFromPipeline=$true)]
-#           [string[]]$text
-#     )
-#     Begin {}
-#     Process {
-#         grep --color --exclude-dir=".git" --exclude="tags" $text
-#     }
-#     End {}
-# }
-# Set-Alias -Name grep -Value grep-color
-
-Function start-pwsh { Start-Process pwsh }
-Set-Alias -Name stpw -Value start-pwsh
-
-Function start-pwsh-admin { Start-Process pwsh -verb runas }
-Set-Alias -Name stpwad -Value start-pwsh-admin
 
 # ------- fzf ------------------------------------------------------------------
 
@@ -133,7 +74,49 @@ Set-PSReadLineOption -Colors @{
 }
 
 
-# ---------- Functions ---------------------------------------------------
+# ------- aliases --------------------------------------------------------------
+
+if (Test-Path alias:ls) { Remove-Alias ls }
+if (Test-Path alias:rm) { Remove-Alias rm }
+if (Test-Path alias:rmdir) { Remove-Alias rmdir }
+if (Test-Path alias:mv) { Remove-Alias mv }
+if (Test-Path alias:r) { Remove-Alias r }
+if (Test-Path alias:where) { del alias:where -force }
+if (Test-Path alias:echo) { Remove-Alias echo }
+
+Set-Alias -Name vi -Value nvim
+Set-Alias -Name nvi -Value neovide
+
+Set-Alias -Name find -Value 'C:\Program Files\git\usr\bin\find.exe'
+
+# Set-Alias -Name py -Value python
+# Set-Alias -Name py2 -Value python2
+# Set-Alias -Name py3 -Value python3
+
+
+# ------- Functions ------------------------------------------------------------
+
+# Function ls-long { ls -NvhFl --group-directories-first --time-style=+ $args }
+# Set-Alias -Name l -Value ls-long
+
+# Function grep-color {
+#     Param(
+#           [Parameter(ValueFromPipeline=$true)]
+#           [string[]]$text
+#     )
+#     Begin {}
+#     Process {
+#         grep --color --exclude-dir=".git" --exclude="tags" $text
+#     }
+#     End {}
+# }
+# Set-Alias -Name grep -Value grep-color
+
+Function start-pwsh { Start-Process pwsh }
+Set-Alias -Name stpw -Value start-pwsh
+
+Function start-pwsh-admin { Start-Process pwsh -verb runas }
+Set-Alias -Name stpwad -Value start-pwsh-admin
 
 Function Follow-Link([string]$sym)
 {
