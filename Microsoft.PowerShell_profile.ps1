@@ -32,6 +32,7 @@ Function prompt
 
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
+Set-PSReadlineOption -WordDelimiters ";:,.[]{}()/\|^&*-=+'`"-—―_"
 
 Set-PSReadLineKeyHandler -chord ctrl+p -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -chord ctrl+n -Function HistorySearchForward
