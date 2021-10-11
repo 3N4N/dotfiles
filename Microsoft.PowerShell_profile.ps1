@@ -7,7 +7,7 @@ $esc = [char]27
 
 Function prompt
 {
-    $loc = (Get-Location).Path
+    $loc = Get-Location
 
     #Assign Windows Title Text
     $host.ui.rawui.windowtitle = $(if ($isInAdmin) {"ADMIN: "} $loc)
