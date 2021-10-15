@@ -16,7 +16,7 @@ Function prompt
     #                    $dirSep, ($loc | Split-Path | Split-Path -Leaf),
     #                    $dirSep, ($loc | Split-Path -Leaf))
 
-    $out = "PS $loc> "
+    $out = "$loc> "
 
     if ($env:WT_SESSION) {
         if ($loc.Provider.Name -eq "FileSystem") {
@@ -37,7 +37,7 @@ Set-PSReadlineOption -WordDelimiters ";:,.[]{}()/\|^&*-=+'`"-—―_"
 Set-PSReadLineKeyHandler -chord ctrl+p -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -chord ctrl+n -Function HistorySearchForward
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
 
 # ------- fzf ------------------------------------------------------------------
