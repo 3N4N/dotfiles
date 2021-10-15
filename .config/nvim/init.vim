@@ -741,10 +741,13 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 
-" -- termsend ------------------------------------------------------------------
+" -- lua modules ------------------------------------------------------------------
 
-nnoremap <Bslash>p :lua require("termsend").sendToTerm(0)<CR>
-xnoremap <Bslash>p :lua require("termsend").sendToTerm(1)<CR>
+nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
+xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
+
+nnoremap <silent><Bslash>cc :lua require("docommenter").docformat_text()<CR>
+nnoremap <silent><Bslash>ci :lua require("docommenter").docinfo()<CR>
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
