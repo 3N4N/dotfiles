@@ -54,7 +54,7 @@ alias lh='la -d .[^.]* 2> /dev/null'
 
 # show colors in grep and ag
 alias ag='ag --color-match "31"'
-alias grep='grep --color=auto --exclude-dir=".git" --exclude="tags"'
+alias grep='grep --color=auto --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags"'
 
 # shorthand for python executables
 alias py2='python2'
