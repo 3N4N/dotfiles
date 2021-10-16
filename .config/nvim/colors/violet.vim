@@ -63,7 +63,8 @@ endif
 
 " Syntax Highlighting: {{{
 
-call s:HL("Normal", s:base0, s:base03, "")
+" call s:HL("Normal", s:base0, s:base03, "")
+hi clear Normal
 
 " Switching between dark & light variant through `set background`
 " https://github.com/NLKNguyen/papercolor-theme/pull/20
@@ -101,7 +102,7 @@ call s:HL("Title", s:orange, "", "bold")
 call s:HL("VisualNOS", "", s:base02, "")
 call s:HL("Folded", s:base00, ["NONE","NONE"], "")
 call s:HL("FoldColumn", s:base0, s:base03, "")
-call s:HL("LineNr", s:base0, "", "")
+call s:HL("LineNr", s:base00, "", "")
 call s:HL("SignColumn", s:base0, s:base03, "")
 call s:HL("Conceal", s:blue, "", "")
 call s:HL("CursorLine", "", s:base02, "NONE")
