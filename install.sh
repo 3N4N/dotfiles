@@ -24,7 +24,7 @@ for dotfile in "${DOTFILES[@]}";do
     ln -sf "${DIR}/${dotfile}" "${HOME}/${dotfile}"
 done
 
-echo 'source /home/enan/.config/gdb/gdbinit' > ~/.gdbinit
+echo 'source $HOME/.config/gdb/gdbinit' > ~/.gdbinit
 
 if [ "$1" == "-a" ]; then
     sudo apt install \
@@ -36,6 +36,7 @@ if [ "$1" == "-a" ]; then
         htop \
         mpv \
         mupdf \
+        p7zip-full \
         pavucontrol \
         rar \
         silversearcher-ag \
