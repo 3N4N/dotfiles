@@ -743,6 +743,7 @@ let g:ale_fix_on_save = 1
 
 " -- lua modules ------------------------------------------------------------------
 
+nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
 nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
 xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
 
