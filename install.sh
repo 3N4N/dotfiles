@@ -7,6 +7,7 @@ DOTFILES=(
     ".bashrc"
     ".bash_profile"
     ".gitconfig"
+    ".inputrc"
     ".profile"
     ".tmux.conf"
     ".uncrustify.cfg"

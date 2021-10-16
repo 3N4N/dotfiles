@@ -20,6 +20,10 @@ if (-Not(Test-Path -Path "$GDBDIR")) {
     New-Item -Type Junction -Path "$GDBDIR" -Value $CURDIR/.config/gdb/
 }
 
+if (-Not(Test-Path -Path "~/.inputrc")) {
+    New-Item -Type SymbolicLink -Path "~/.inputrc" -Value $CURDIR/.inputrc
+}
+
 if (-Not(Test-Path -Path "~/.bashrc")) {
     New-Item -Type SymbolicLink -Path "~/.bashrc" -Value $CURDIR/.bashrc
 }

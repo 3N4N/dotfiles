@@ -36,21 +36,6 @@ shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
 shopt -s extglob                # enable extended globbing
 
-bind 'set show-all-if-unmodified'
-bind 'set completion-ignore-case on'
-bind 'set mark-symlinked-directories on'
-
-# bind c-p and c-n keys for history navigation
-bind '"\C-p": history-search-backward'
-bind '"\C-n": history-search-forward'
-
-# bind keys for case conversion
-bind '"\ei": capitalize-word'
-bind '"\eo": upcase-word'
-bind '"\eu": downcase-word'
-
-# bind keys for clearing screen
-bind '"\e\C-l": clear-screen'
 
 # remove XON/XOFF
 stty -ixon
