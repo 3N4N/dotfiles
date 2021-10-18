@@ -1,13 +1,14 @@
 @echo off
 
-PROMPT=$e]9;9;$p$e\$e[1;34m$p$e[1;0m-$g$s
+PROMPT=$e]9;9;$p$e\$e[1;34m$p$e[1;0m$g$s
 
+doskey ocmd=open cmd.exe $*
 doskey ns=nslookup $*
 doskey ip=ipconfig $*
 doskey vi=nvim $*
-doskey grep=grep --color=auto --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
+doskey grep=grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 doskey xclip=win32yank.exe $*
-doskey psgrep=tasklist ^| grep $*
+doskey psgrep=tasklist ^| grep --color -i $*
 doskey e=explorer $*
 
 :: useful ls aliases
