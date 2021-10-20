@@ -12,7 +12,7 @@
     abbrev = 12
     preloadindex = true
     fscache = true
-    pager = less -+$LESS
+    ; pager = less -+$LESS
     editor = nvim
 	filemode = false
 [log]
