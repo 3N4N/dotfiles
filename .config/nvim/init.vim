@@ -616,7 +616,7 @@ augroup END
 func! BetterGx() abort
     if g:env ==# "WSL"
         lcd /mnt/c
-        let cmd = ":silent !cmd.exe /C start"
+        let cmd = ":silent !cmd.exe /C open"
     elseif g:env ==# "WIN"
         let cmd = ':silent !open'
     elseif executable('xdg-open')
@@ -683,7 +683,7 @@ func! BetterGx() abort
 
     exe cmd . ' "' . escape(URL, '#%!')  . '"'
 
-    if exists("$WSLENV") | lcd - | endif
+    if g:env==# "WSL" | lcd - | endif
 endfunc
 
 nnoremap <silent> gx :call BetterGx()<CR>
