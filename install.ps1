@@ -1,16 +1,19 @@
 $CURDIR=(Get-Location | Foreach-Object { $_.Path })
 
+$PWSHDIR="$HOME/Documents/PowerShell"
 $VIMDIR="$HOME/AppData/Local/nvim"
 $MPVDIR="$HOME/AppData/Roaming/mpv"
 $GDBDIR="$HOME/.config/gdb"
+$RDIR  ="$HOME/Documents"
 
 if (-not (Test-Path -Path c:/bin -PathType Container)) {
     New-Item -Path c:/bin -ItemType "directory"
 }
+Remove-Item -Recurse -Force "C:/bin/extract.cmd"
 New-Item -Type SymbolicLink -Path "C:/bin/extract.cmd" -Value $CURDIR/bin/extract.cmd
 
-Remove-Item -Recurse -Force $PROFILE
-New-Item -Type SymbolicLink -Path $PROFILE -Value $CURDIR/Microsoft.PowerShell_profile.ps1
+Remove-Item -Recurse -Force $PWSHDIR
+New-Item -Type SymbolicLink -Path $PWSHDIR -Value $CURDIR/PowerShell
 
 Remove-Item -Recurse -Force $VIMDIR
 New-Item -Type Junction -Path "$VIMDIR" -Value $CURDIR/.config/nvim/
@@ -38,3 +41,6 @@ New-Item -Type SymbolicLink -Path "$HOME/.gitconfig" -Value $CURDIR/.gitconfig
 
 Remove-Item -Recurse -Force $HOME/.tmux.conf
 New-Item -Type SymbolicLink -Path "$HOME/.tmux.conf" -Value $CURDIR/.tmux.conf
+
+Remove-Item -Recurse -Force $RDIR/.Rprofile
+New-Item -Type SymbolicLink -Path "$RDIR/.Rprofile" -Value $CURDIR/.Rprofile
