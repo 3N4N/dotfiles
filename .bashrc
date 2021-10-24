@@ -149,7 +149,7 @@ start() {
     if [ -z "$1" ]; then
         echo "FUCK!"
     else
-        cmd.exe /C "start $(wslpath -aw $1)"
+        cmd.exe /C "open $(wslpath -aw $1)"
     fi
 }
 
@@ -236,4 +236,4 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$yellow\]\w\[$reset\]\$ '
+PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\n\$ '

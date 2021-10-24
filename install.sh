@@ -42,6 +42,7 @@ if [ "$1" == "-a" ]; then
         silversearcher-ag \
         tree \
         uncrustify \
+        valgrind \
         wget \
         x11-xkb-utils \
         xbacklight \

@@ -12,7 +12,7 @@
 # bind keys for clearing screen
 # "\e\C-l": clear-screen
 
-set colored-stats On
+# set colored-stats On
 set completion-ignore-case On
 set completion-prefix-display-length 3
 set mark-symlinked-directories On
