@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 status=$( cmus-remote -Q | grep "status")
 title=$( cmus-remote -Q | grep "tag title\s" | sed s/"tag title\s"/""/g )

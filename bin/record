@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # Author : Enan Ajmain
 # Email  : 3nan.ajmain@gmail.com
