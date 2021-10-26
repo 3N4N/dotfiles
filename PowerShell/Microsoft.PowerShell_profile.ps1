@@ -16,7 +16,8 @@ Function prompt
     #                    $dirSep, ($loc | Split-Path | Split-Path -Leaf),
     #                    $dirSep, ($loc | Split-Path -Leaf))
 
-    $out = "$loc> "
+    Write-Host "$loc" -ForegroundColor "blue" -NoNewline
+    $out = "> "
 
     if ($env:WT_SESSION) {
         if ($loc.Provider.Name -eq "FileSystem") {
