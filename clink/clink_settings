@@ -1,0 +1,4 @@
+# name: Adjusts the cursor visibility and shape
+# type: boolean
+terminal.adjust_cursor_style = False
+
