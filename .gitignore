@@ -20,3 +20,5 @@ tags*
 .local/share/fonts/**/.uuid
 
 .config/mpv/watch_later/*
+
+PowerShell/Modules/

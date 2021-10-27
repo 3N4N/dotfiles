@@ -124,7 +124,7 @@ nohlsearch
 " endif
 
 if g:env ==# "WIN"
-    let &grepprg="grep -IHnri --exclude-dir=.git --exclude=\"tags\""
+    let &grepprg="grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude=\"tags\""
 else
     let &grepprg="grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
 endif
@@ -313,7 +313,7 @@ nnoremap <C-]> g<C-]>
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
-" nnoremap <Leader>f :grep<Space>
+nnoremap <Bslash>f :grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s:\v
