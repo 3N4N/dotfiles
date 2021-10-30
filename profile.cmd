@@ -3,7 +3,7 @@
 PROMPT=$e]9;9;$p$e\$e[1;34m$p$e[1;0m$g$s
 
 doskey ocmd=open cmd.exe $*
-doskey dir=dir /OG $*
+:: doskey dir=dir /OG $*
 doskey ns=nslookup $*
 doskey ip=ipconfig $*
 doskey vi=nvim $*
@@ -22,3 +22,8 @@ doskey dcup=docker-compose up
 doskey dcdown=docker-compose down
 doskey dockps=docker ps --format "{{.ID}}  {{.Names}}"
 :: docksh() { docker exec -it $1 /bin/bash; }
+
+doskey impmsys=set path=%path%;C:\msys64\mingw64\bin;C:\msys64\usr\bin
+doskey msys=C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys
+doskey mingw=C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
+doskey mingw32=C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
