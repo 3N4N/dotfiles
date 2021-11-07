@@ -2,9 +2,9 @@
 # Email : 3nan.ajmain@gmail.com
 # Github: https://github.com/3N4N
 
-# __________________gdb options_________________
+# ----------------- gdb options ----------------
 
-set prompt gdb>
+set prompt gdb> 
 
 set confirm off
 set verbose off
@@ -24,13 +24,13 @@ set python print-stack full
 set $64BITS = 1
 
 
-# __________________gdb aliases_________________
+# ----------------- gdb aliases ----------------
 
 alias vmmap = maintenance info sections
 alias cls = shell clear
 
 
-# __________hex/ascii dump an address_________
+# --------- hex/ascii dump an address ----------
 
 define ascii_char
     if $argc != 1
@@ -104,3 +104,13 @@ document hexdump
 Display a 16-byte hex/ASCII dump of memory at address ADDR.
 Usage: hexdump ADDR <N_Bytes>
 end
+
+# --------- fix Windows tui bug ----------------
+
+define hook-run
+tui disable
+end
+
+# define hookpost-run
+# tui enable
+# end
