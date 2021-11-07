@@ -23,6 +23,12 @@ doskey dcdown = docker-compose down
 doskey dockps = docker ps --format "{{.ID}}  {{.Names}}"
 :: docksh() { docker exec -it $1 /bin/bash; }
 
+:: import aliaes
 doskey msys = C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys
 doskey m64 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
 doskey m32 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
+
+:: shortcuts to msys utilties
+doskey gdb =  C:\msys64\mingw64\bin\gdb -q $*
+doskey fd = C:\msys64\usr\bin\find $*
+doskey tree = C:\msys64\usr\bin\tree $*
