@@ -473,6 +473,12 @@ command! -nargs=1 Redir
 
 command! Date put =strftime('%B %d, %Y')
 
+command! -nargs=1 -complete=function Echo
+            \ let output = <args> |
+            \ echo output |
+            \ let @* = output |
+            \ unlet output
+
 " Use tabs for indentation and spaces for alignment
 function! SpecialTab() abort
     if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
