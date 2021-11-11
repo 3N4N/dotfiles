@@ -3,44 +3,48 @@
 " Github : https://github.com/3N4N
 
 
-if !exists("g:env")
+if !exists('g:env')
     if has('windows') && has('unix')
-        let g:env = "WSL"
+        let g:env = 'WSL'
     elseif has('windows') && !has('unix')
-        let g:env = "WIN"
+        let g:env = 'WIN'
     elseif system('uname') =~? "msys"
-        let g:env = "MSYS2"
+        let g:env = 'MSYS2'
     else
-        let g:env = "UNIX"
+        let g:env = 'UNIX'
     endif
 endif
 
-if g:env ==# "WIN"
-    let s:cmd_mkdir = "md"
-    let s:vim_plug_dir = "~/AppData/Local/nvim-data/plugged"
+if g:env ==# 'WIN'
+    let s:cmd_mkdir = 'md'
+    let s:vim_plug_dir = '~/AppData/Local/nvim-data/plugged'
 else
-    let s:cmd_mkdir = "mkdir -p"
-    let s:vim_plug_dir = "~/.config/nvim/plugged"
+    let s:cmd_mkdir = 'mkdir -p'
+    let s:vim_plug_dir = '~/.config/nvim/plugged'
 endif
+
 
 " -- Vim Plug ------------------------------------------------------------------
 
-
-if g:env !=# "WIN"
+if g:env ==# 'UNIX' || g:env ==# 'WSL'
     if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
         silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
                     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
+elseif g:env ==# 'WIN'
+    if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+        call system('curl -fLo '
+                    \ . expand('~/AppData/Local/nvim-data/site/autoload/plug.vim')
+                    \ . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    endif
 endif
-
 
 let g:plug_url_format = 'git@github.com:%s.git'
 
 call plug#begin(s:vim_plug_dir)
 
-" Plug 'romainl/flattened'
-" Plug 'ashfinal/vim-colors-violet'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -48,21 +52,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'ludovicchabant/vim-gutentags'
-
-
-" Plug 'jalvesaq/Nvim-R'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
-
-" Plug 'alvan/vim-closetag'
-" Plug 'pangloss/vim-javascript'
-" Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'prettier/vim-prettier', {
-            \ 'do': 'yarn install',
-            \ 'branch': 'release/1.x',
-            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
-            \         'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-" Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -92,21 +82,13 @@ set nosplitbelow
 set nosplitright
 
 " Dictionary and spelling
-set dictionary=/usr/share/dict/words
+let &dictionary = "/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english"
 set spelllang=en_us
 
 " Set powershell default terminal in windows
-if g:env ==# "DBG" " WIN
-    let &shell = 'pwsh'
-    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    set shellquote= shellxquote=
-    " set ssl
-    " set csl="slash"
-elseif g:env ==# "WIN"
-    set ssl
+if g:env ==# 'WIN'
     let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
+    set ssl
 endif
 
 " Searching
