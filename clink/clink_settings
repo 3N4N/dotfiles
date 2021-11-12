@@ -1,3 +1,25 @@
+# name: Shell command completions
+# type: color
+color.cmd = bold blue
+
+# name: Commands not automatically added to the history
+# type: string
+history.dont_add_to_history_cmds = exit history dir l ls
+
+# name: Where to sort matching directories
+# type: enum
+# options: before,with,after
+match.sort_dirs = before
+
+# name: Translate slashes and backslashes
+# type: enum
+# options: off,system,slash,backslash
+match.translate_slashes = slash
+
+# name: Match ? and * wildcards when completing
+# type: boolean
+match.wild = False
+
 # name: Adjusts the cursor visibility and shape
 # type: boolean
 terminal.adjust_cursor_style = False

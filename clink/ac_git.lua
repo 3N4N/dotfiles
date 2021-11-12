@@ -1,12 +1,21 @@
+-- TODO
+-- Handle tags
+-- Handle remotes
+
+
 local git_branch_autocomplete = clink.generator(1)
 
 local function starts_with(str, start)
     return string.sub(str, 1, string.len(start)) == start
 end
 
-local function is_checkout_ac(text)
-    if starts_with(text, "git checkout")
-        or starts_with(text, "git co") then
+local function cmd_is_checkout(text)
+    if (starts_with(text, "git checkout")
+        or starts_with(text, "git co")
+        or starts_with(text, "git branch")
+        or starts_with(text, "git br"))
+        and not (starts_with(text, "git checkout --")
+        or starts_with(text, "git co --")) then
         return true
     end
     return false
@@ -32,7 +41,7 @@ end
 
 function git_branch_autocomplete:generate(line_state, match_builder)
     -- Check if it's a checkout command.
-    if not is_checkout_ac(line_state:getline()) then
+    if not cmd_is_checkout(line_state:getline()) then
         return false
     end
     -- Get branches and add them (does nothing if not in a git repo).
