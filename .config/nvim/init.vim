@@ -56,6 +56,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
+
 " -- General -------------------------------------------------------------------
 
 " Visual perks
@@ -85,7 +86,7 @@ set nosplitright
 let &dictionary = "/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english"
 set spelllang=en_us
 
-" Set powershell default terminal in windows
+" Set default shell in windows
 if g:env ==# 'WIN'
     let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
     set ssl
@@ -167,8 +168,8 @@ set nobackup
 set noswapfile
 
 if g:env ==# "WIN"
-    set backupdir=~\AppData\Local\nvim-data\backup\
-    set directory=~\AppData\Local\nvim-data\swap\
+    set backupdir=~/AppData/Local/nvim-data/backup/
+    set directory=~/AppData/Local/nvim-data/swap/
     if !isdirectory(&backupdir)
         call system("md " . &backupdir)
     endif
@@ -190,7 +191,7 @@ endif
 if has('persistent_undo')
     set undofile
     if g:env ==# "WIN"
-        set undodir=~\AppData\Local\nvim-data\undo\
+        set undodir=~/AppData/Local/nvim-data/undo/
     else
         set undodir=~/.local/share/nvim/undo//
     endif
@@ -206,6 +207,7 @@ colo violet
 " gui settings
 set guifont=Iosevka\ Term:h14
 let g:neovide_cursor_animation_length=0
+
 
 " -- Clipboard -----------------------------------------------------------------
 
@@ -225,6 +227,7 @@ if g:env ==# "UNIX"
 endif
 set clipboard+=unnamed
 
+
 " -- Tab settings --------------------------------------------------------------
 
 set tabstop=4
@@ -234,6 +237,7 @@ set smarttab
 set shiftround
 set expandtab
 
+
 " -- Make ----------------------------------------------------------------------
 
 if isdirectory("build")
@@ -241,6 +245,7 @@ if isdirectory("build")
 else
     set makeprg=make
 endif
+
 
 " -- Key Mapping ---------------------------------------------------------------
 
@@ -420,6 +425,7 @@ else
 endif
 tnoremap <Esc> <C-\><C-n>
 
+
 " -- Text Objects --------------------------------------------------------------
 
 " Simple text-objects
@@ -439,6 +445,7 @@ onoremap al :normal val<CR>
 " Buffer text-objects
 xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
+
 
 " -- Functions and Commands ----------------------------------------------------
 
@@ -697,6 +704,7 @@ augroup END
 "     au VimResized * wincmd =
 " augroup END
 
+
 " -- Title ---------------------------------------------------------------------
 
 set title
@@ -707,6 +715,7 @@ else
     set titlestring=VIM\ %{&modified?'•':':'}\ %t
 endif
 
+
 " -- Statusline ----------------------------------------------------------------
 
 set laststatus=2
@@ -715,6 +724,7 @@ set statusline=[%{winnr()}]
             \\ %m%r
             \%=
             \\ %-14.(%l:%3(%v%)\ %)\ %P
+
 
 " -- Tabline -------------------------------------------------------------------
 
@@ -736,6 +746,7 @@ function! MyTabLine() abort
 endfunction
 set showtabline=1
 set tabline=%!MyTabLine()
+
 
 " -- Netrw ---------------------------------------------------------------------
 
@@ -773,9 +784,11 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = ''
 
+
 " -- Ctags ---------------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R .<CR>
+
 
 " -- Uncrustify ----------------------------------------------------------------
 
@@ -794,6 +807,7 @@ command! Uncrustify  let s:save_cursor = getcurpos()
 nnoremap <Leader>u :Uncrustify<CR>
 xnoremap <Leader>u :UncrustifyRange<CR>
 
+
 " -- Prettier ------------------------------------------------------------------
 
 let g:prettier#autoformat_config_present = 1
@@ -809,7 +823,12 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 
-" -- lua modules ------------------------------------------------------------------
+" -- Editor Config ----------------------------------------------------------------
+
+let g:EditorConfig_disable_rules = ['end_of_line']
+
+
+" -- Lua Modules ------------------------------------------------------------------
 
 nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
 nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
@@ -817,6 +836,7 @@ xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
 
 nnoremap <silent><Bslash>cc :lua require("docommenter").docformat_text()<CR>
 nnoremap <silent><Bslash>ci :lua require("docommenter").docinfo()<CR>
+
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
