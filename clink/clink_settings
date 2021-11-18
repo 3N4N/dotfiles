@@ -4,7 +4,7 @@ color.cmd = bold blue
 
 # name: Commands not automatically added to the history
 # type: string
-history.dont_add_to_history_cmds = exit history dir l ls
+history.dont_add_to_history_cmds = exit history
 
 # name: Where to sort matching directories
 # type: enum

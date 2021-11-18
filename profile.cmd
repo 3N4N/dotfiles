@@ -11,7 +11,7 @@ doskey vi = nvim $*
 doskey grep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 doskey xclip = win32yank.exe $*
 doskey psgrep = tasklist ^| grep --color -i $*
-doskey e = explorer $*
+doskey o = open $*
 
 :: useful ls aliases
 doskey l = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first $*
