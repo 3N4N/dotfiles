@@ -44,15 +44,16 @@ let g:plug_url_format = 'git@github.com:%s.git'
 
 call plug#begin(s:vim_plug_dir)
 
-Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-ragtag'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
+
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
