@@ -51,9 +51,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 
 " Plug 'ludovicchabant/vim-gutentags'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'editorconfig/editorconfig-vim'
+
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 
@@ -200,7 +202,6 @@ endif
 
 " Colorscheme
 syntax on
-let g:lisp_rainbow = 1
 set termguicolors
 set bg=light
 colo violet
@@ -828,6 +829,10 @@ let g:ale_fix_on_save = 1
 
 let g:EditorConfig_disable_rules = ['end_of_line']
 
+" -- Rainbow Parentheses ----------------------------------------------------------
+
+let g:lisp_rainbow = 0
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " -- Lua Modules ------------------------------------------------------------------
 
