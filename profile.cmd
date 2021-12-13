@@ -13,9 +13,6 @@ doskey xclip = win32yank.exe $*
 doskey psgrep = tasklist ^| grep --color -i $*
 doskey o = open $*
 
-:: useful ls aliases
-doskey l = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first $*
-doskey la = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first -A $*
 
 :: commands for for docker
 doskey dcbuild = docker-compose build
@@ -30,6 +27,9 @@ doskey m64 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
 doskey m32 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
 
 :: shortcuts to msys utilties
+doskey l = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ $*
+doskey la = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ -A $*
+doskey mkdir = "C:\Program Files\Git\usr\bin\mkdir" -p $*
 doskey tar = "C:\Program Files\Git\usr\bin\tar" $*
 doskey gdb =  C:\msys64\mingw64\bin\gdb -q $*
 doskey fd = C:\msys64\usr\bin\find $*
