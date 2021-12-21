@@ -1,10 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "down",
@@ -13,7 +13,7 @@
             "keys": "ctrl+alt+minus"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "down"
@@ -21,19 +21,11 @@
             "keys": "ctrl+alt+j"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "prevTab"
             },
             "keys": "ctrl+alt+p"
-        },
-        {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+shift+c"
         },
         {
             "command": "unbound",
@@ -44,7 +36,15 @@
             "keys": "ctrl+shift+w"
         },
         {
-            "command": 
+            "command":
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "command":
             {
                 "action": "splitPane",
                 "split": "right",
@@ -57,7 +57,7 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "up"
@@ -69,7 +69,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -78,14 +78,14 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "nextTab"
             },
             "keys": "ctrl+alt+n"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "left"
@@ -93,7 +93,7 @@
             "keys": "ctrl+alt+h"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "right"
@@ -119,13 +119,13 @@
     "initialPosition": "200,40",
     "initialRows": 40,
     "launchMode": "default",
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "colorScheme": "Violet Light",
             "cursorShape": "vintage",
-            "font": 
+            "font":
             {
                 "face": "Iosevka Term",
                 "size": 11
@@ -133,13 +133,13 @@
             "opacity": 100,
             "useAcrylic": false
         },
-        "list": 
+        "list":
         [
             {
                 "bellStyle": "none",
                 "colorScheme": "Violet Light",
                 "cursorShape": "vintage",
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11
@@ -155,7 +155,7 @@
                 "colorScheme": "Violet Light",
                 "cursorHeight": 20,
                 "cursorShape": "vintage",
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11
@@ -169,7 +169,7 @@
             {
                 "bellStyle": "none",
                 "colorScheme": "Campbell Powershell",
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11
@@ -191,7 +191,7 @@
                 "cursorHeight": 20,
                 "cursorShape": "vintage",
                 "experimental.retroTerminalEffect": false,
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11,
@@ -208,7 +208,7 @@
                 "colorScheme": "Violet Light",
                 "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -msys",
                 "cursorShape": "vintage",
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11,
@@ -223,7 +223,7 @@
                 "colorScheme": "Violet Light",
                 "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw64",
                 "cursorShape": "vintage",
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11,
@@ -238,7 +238,7 @@
                 "colorScheme": "Violet Light",
                 "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw32",
                 "cursorShape": "vintage",
-                "font": 
+                "font":
                 {
                     "face": "Iosevka Term",
                     "size": 11,
@@ -264,7 +264,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
