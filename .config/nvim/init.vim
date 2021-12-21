@@ -52,6 +52,7 @@ Plug 'tpope/vim-commentary'
 
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'mcchrish/fountain.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -139,7 +140,6 @@ set nowrap
 set breakindent
 set linebreak
 let &showbreak = "↪ "
-set breakindentopt=shift:2
 
 " Folding
 set foldcolumn=0
