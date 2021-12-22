@@ -80,7 +80,7 @@ let &fillchars="vert:│"
 " set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 "             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 "             \,sm:block-blinkwait175-blinkoff150-blinkon175
-set guicursor=
+let &guicursor = ""
 
 " New split position
 set nosplitbelow
@@ -88,7 +88,7 @@ set nosplitright
 
 " Dictionary and spelling
 let &dictionary = "/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english"
-set spelllang=en_us
+let &spelllang= "en_us"
 
 " Set default shell in windows
 if g:env ==# 'WIN'
@@ -111,16 +111,16 @@ nohlsearch
 " endif
 
 if g:env ==# "WIN"
-    let &grepprg="grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude=\"tags\""
+    let &grepprg = "grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude=\"tags\""
 else
-    let &grepprg="grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
+    let &grepprg = "grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
 endif
 
 " Wildmenu settings
 set wildmenu
 set wildignorecase
-let &wildmode="full"
-let &wildoptions="pum"
+let &wildmode = "full"
+let &wildoptions = "pum"
 set pumblend=0
 set complete-=t
 set wildignore=*.o,*.obj,*~,*.class
@@ -133,7 +133,7 @@ set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " Show useful visual icons
 set list
-let &listchars="tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«"
+let &listchars = "tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«"
 
 " Wrap lines visually
 set nowrap
@@ -142,8 +142,8 @@ set linebreak
 let &showbreak = "↪ "
 
 " Folding
-set foldcolumn=0
-set foldmethod=manual
+let &foldcolumn = 0
+let &foldmethod = "manual"
 
 " Keymap timeout settings
 set notimeout
@@ -151,17 +151,17 @@ set ttimeout
 set ttimeoutlen=10
 
 " Miscellaneous settings
-let &inccommand="nosplit"
-set backspace=indent,eol,start
-set cinoptions=g0,l1,i0,t0,(0
 set cpoptions-=aA
 set nojoinspaces
-set shortmess=filmnxrtToO
-set synmaxcol=200
-set updatetime=250
-set virtualedit=block
-let &viewoptions="folds,cursor"
-let g:tex_flavor='latex'
+let &inccommand = "nosplit"
+let &backspace = "indent,eol,start"
+let &cinoptions = "g0,l1,i0,t0,(0"
+let &shortmess = "filmnxrtToO"
+let &synmaxcol = 200
+let &updatetime = 250
+let &virtualedit = "block"
+let &viewoptions = "folds,cursor"
+let g:tex_flavor = "latex"
 let R_assign = 2
 " let r_indent_align_args = 0
 
@@ -207,8 +207,8 @@ set bg=light
 colo violet
 
 " gui settings
-set guifont=Iosevka\ Term:h14
-let g:neovide_cursor_animation_length=0
+let &guifont = "Iosevka Term:h14"
+let g:neovide_cursor_animation_length = 0
 
 
 " -- Clipboard -----------------------------------------------------------------
@@ -232,20 +232,20 @@ set clipboard+=unnamed
 
 " -- Tab settings --------------------------------------------------------------
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smarttab
-set shiftround
-set expandtab
+let &tabstop = 4
+let &softtabstop = 4
+let &shiftwidth = 4
+let &smarttab = 1
+let &shiftround = 1
+let &expandtab = 1
 
 
 " -- Make ----------------------------------------------------------------------
 
 if isdirectory("build")
-    set makeprg=make\ -C\ build
+    let &makeprg = "make -C build"
 else
-    set makeprg=make
+    let &makeprg = "make"
 endif
 
 
@@ -712,9 +712,9 @@ augroup END
 set title
 
 if has('nvim')
-    set titlestring=NVIM\ %{&modified?'•':':'}\ %t
+    let &titlestring = "NVIM %{&modified?'•':':'} %t"
 else
-    set titlestring=VIM\ %{&modified?'•':':'}\ %t
+    let &titlestring = "VIM %{&modified?'⏺':':'} %t"
 endif
 
 
@@ -746,23 +746,23 @@ function! MyTabLine() abort
     let s .= '%#TabLineFill#'
     return s
 endfunction
-set showtabline=1
-set tabline=%!MyTabLine()
+let &showtabline = 1
+let &tabline = "%!MyTabLine()"
 
 
 " -- Netrw ---------------------------------------------------------------------
 
-let g:netrw_altv=1
-let g:netrw_banner=1
-let g:netrw_browse_split=0
-let g:netrw_cursor=0
+let g:netrw_altv = 1
+let g:netrw_banner = 1
+let g:netrw_browse_split = 0
+let g:netrw_cursor = 0
 let g:netrw_hide = 1
 " let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
 let g:netrw_list_hide = '^\.git/$'
-let g:netrw_liststyle=1
-let g:netrw_sort_by='name'
-let g:netrw_sort_direction='normal'
-let g:netrw_winsize=25
+let g:netrw_liststyle = 1
+let g:netrw_sort_by = 'name'
+let g:netrw_sort_direction = 'normal'
+let g:netrw_winsize = 25
 
 
 " -- Closetag ------------------------------------------------------------------
