@@ -720,12 +720,12 @@ endif
 
 " -- Statusline ----------------------------------------------------------------
 
-set laststatus=2
-set statusline=[%{winnr()}]
-            \\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-            \\ %m%r
-            \%=
-            \\ %-14.(%l:%3(%v%)\ %)\ %P
+let &laststatus = 2
+let &statusline = "[%{winnr()}]"
+let &statusline .= " %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No Name]'}"
+let &statusline .= " %{&modified?'⏺':''} %{&readonly?'✖':''}"
+let &statusline .= "%="
+let &statusline .= "%-14.(%l:%3(%v%) %) %P"
 
 
 " -- Tabline -------------------------------------------------------------------
