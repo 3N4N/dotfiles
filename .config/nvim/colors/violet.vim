@@ -81,7 +81,7 @@ call s:HL("Identifier", s:blue, "", "")
 call s:HL("Statement", s:green, "", "")
 call s:HL("PreProc", s:orange, "", "")
 call s:HL("Type", s:yellow, "", "")
-call s:HL("Special", s:violet, "", "")
+call s:HL("Special", s:blue, "", "")
 call s:HL("Underlined", s:violet, "", "")
 call s:HL("Ignore", "", "", "")
 call s:HL("Error", s:red, s:base03, "bold")
@@ -90,7 +90,8 @@ call s:HL("Todo", s:magenta, s:base03, "bold")
 " Extended highlighting
 call s:HL("SpecialKey", s:base00, s:base02, "bold")
 call s:HL("NonText", s:base00, "", "")
-call s:HL("Visual", s:base03, s:violet, "")
+" call s:HL("Visual", s:base03, s:cyan, "")
+call s:HL("Visual", s:base0, s:base01, "")
 call s:HL("Directory", s:blue, "", "")
 call s:HL("IncSearch", s:orange, "", "")
 call s:HL("Search", s:base03, s:yellow, "")
@@ -138,7 +139,3 @@ call s:HL("SpellLocal", s:base0, s:base03, "underline")
 call s:HL("SpellRare", s:blue, s:base03, "underline")
 
 " }}}
-
-" vim:set et sw=4 ts=4 fdm=marker tw=78:
-
-
