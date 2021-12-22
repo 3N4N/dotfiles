@@ -10,7 +10,7 @@ M.sendToTerm = function(visual)
         local line = vim.api.nvim_get_current_line()
         vim.api.nvim_chan_send(termutilchan, line..'\r')
     else
-        local lines = require("luautil/selection").get_selection()
+        local lines = require("luautil.selection").get_selection()
         for _, line in pairs(lines) do
             vim.api.nvim_chan_send(termutilchan, line..'\r')
         end
