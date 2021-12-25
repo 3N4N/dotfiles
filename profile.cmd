@@ -2,8 +2,8 @@
 
 PROMPT = $e]9;9;$p$e\$e[1;34m$p$e[1;0m$g$s
 
+doskey o = open $*
 doskey ocmd = open cmd.exe $*
-:: doskey dir = dir /OG $*
 doskey cd = cd /d $*
 doskey ns = nslookup $*
 doskey ip = ipconfig $*
@@ -11,7 +11,7 @@ doskey vi = nvim $*
 doskey grep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 doskey xclip = win32yank.exe $*
 doskey psgrep = tasklist ^| grep --color -i $*
-doskey o = open $*
+doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 
 
 :: commands for for docker
