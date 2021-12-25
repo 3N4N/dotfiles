@@ -714,7 +714,7 @@ set title
 if has('nvim')
     let &titlestring = "NVIM %{&modified?'•':':'} %t"
 else
-    let &titlestring = "VIM %{&modified?'⏺':':'} %t"
+    let &titlestring = "VIM %{&modified?'•':':'} %t"
 endif
 
 
@@ -723,7 +723,7 @@ endif
 let &laststatus = 2
 let &statusline = "[%{winnr()}]"
 let &statusline .= " %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No Name]'}"
-let &statusline .= " %{&modified?'⏺':''} %{&readonly?'✖':''}"
+let &statusline .= " %{&modified?'[+]':''}%{&readonly||!&modifiable?'[-]':''}"
 let &statusline .= "%="
 let &statusline .= "%-14.(%l:%3(%v%) %) %P"
 
@@ -831,6 +831,7 @@ lua require('user.telescope')
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
 
