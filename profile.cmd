@@ -10,7 +10,7 @@ doskey ip = ipconfig $*
 doskey vi = nvim $*
 doskey grep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 doskey xclip = win32yank.exe $*
-doskey psgrep = tasklist ^| grep --color -i $*
+doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 
 
