@@ -12,7 +12,9 @@ M.sendToTerm = function(visual)
     else
         local lines = require("util.selection").get_selection()
         for _, line in pairs(lines) do
-            vim.api.nvim_chan_send(termutilchan, line..'\r')
+            if line ~= "" then
+                vim.api.nvim_chan_send(termutilchan, line..'\r')
+            end
         end
         if vim.bo.filetype == "python" then
             vim.api.nvim_chan_send(termutilchan, '\r')
