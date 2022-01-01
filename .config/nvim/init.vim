@@ -16,10 +16,8 @@ if !exists('g:env')
 endif
 
 if g:env ==# 'WIN'
-    let s:cmd_mkdir = 'md'
     let s:vim_plug_dir = '~/AppData/Local/nvim-data/plugged'
 else
-    let s:cmd_mkdir = 'mkdir -p'
     let s:vim_plug_dir = '~/.config/nvim/plugged'
 endif
 
@@ -61,192 +59,23 @@ Plug 'luochen1990/rainbow'
 call plug#end()
 
 
-" -- General -------------------------------------------------------------------
+" -- Colorscheme ---------------------------------------------------------------
 
-" Visual perks
-set conceallevel=0
-set nocursorcolumn
-set nocursorline
-set nolazyredraw
-set nomodeline
-set nonumber
-set norelativenumber
-set noruler
-set showmode
-set signcolumn=no
-" let &colorcolumn=join(range(81,999),",")
-let &colorcolumn=0
-let &fillchars="vert:│"
-" set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-"             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-"             \,sm:block-blinkwait175-blinkoff150-blinkon175
-let &guicursor = ""
-
-" New split position
-set nosplitbelow
-set nosplitright
-
-" Dictionary and spelling
-let &dictionary = "/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english"
-let &spelllang= "en_us"
-
-" Set default shell in windows
-if g:env ==# 'WIN'
-    let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
-    set ssl
-endif
-
-" Searching
-set hlsearch
-set ignorecase
-set incsearch
-set smartcase
-set wrapscan
-nohlsearch
-
-" if executable('ag')
-"   let &grepprg="ag --vimgrep --hidden --ignore={.git,dictionary.txt}"
-" else
-"   let &grepprg="grep -Hnri --exclude-dir=\".git\" --exclude-from=\"dictionary.txt\""
-" endif
-
-if g:env ==# "WIN"
-    let &grepprg = "grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude=\"tags\""
-else
-    let &grepprg = "grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
-endif
-
-" Wildmenu settings
-set wildmenu
-set wildignorecase
-let &wildmode = "full"
-let &wildoptions = "pum"
-set pumblend=0
-set complete-=t
-set wildignore=*.o,*.obj,*~,*.class
-set wildignore+=*/.git
-set wildignore+=*.swp,*.tmp
-set wildignore+=*.mp3,*.mp4,*mkv
-set wildignore+=*.bmp,*.gif,*ico,*.jpg,*.png
-set wildignore+=*.pdf,*.doc,*.docx,*.ppt,*.pptx
-set wildignore+=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
-
-" Show useful visual icons
-set list
-let &listchars = "tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«"
-
-" Wrap lines visually
-set nowrap
-set breakindent
-set linebreak
-let &showbreak = "↪ "
-
-" Folding
-let &foldcolumn = 0
-let &foldmethod = "manual"
-
-" Keymap timeout settings
-set notimeout
-set ttimeout
-set ttimeoutlen=10
-
-" Miscellaneous settings
-set cpoptions-=aA
-set nojoinspaces
-let &inccommand = "nosplit"
-let &backspace = "indent,eol,start"
-let &cinoptions = "g0,l1,i0,t0,(0"
-let &shortmess = "filmnxrtToO"
-let &synmaxcol = 200
-let &updatetime = 250
-let &virtualedit = "block"
-let &viewoptions = "folds,cursor"
-let g:tex_flavor = "latex"
-let R_assign = 2
-" let r_indent_align_args = 0
-
-" Backup and swap
-
-set nobackup
-set noswapfile
-
-if g:env ==# "WIN"
-    set backupdir=~/AppData/Local/nvim-data/backup/
-    set directory=~/AppData/Local/nvim-data/swap/
-    if !isdirectory(&backupdir)
-        call system("md " . &backupdir)
-    endif
-    if !isdirectory(&directory)
-        call system("md " . &directory)
-    endif
-else
-    set backupdir=~/.local/share/nvim/backup//
-    set directory=~/.local/share/nvim/swap//
-    if !isdirectory(&backupdir)
-        call system("mkdir -p " . &backupdir)
-    endif
-    if !isdirectory(&directory)
-        call system("mkdir -p " . &directory)
-    endif
-endif
-
-" Persistent Undo
-if has('persistent_undo')
-    set undofile
-    if g:env ==# "WIN"
-        set undodir=~/AppData/Local/nvim-data/undo/
-    else
-        set undodir=~/.local/share/nvim/undo//
-    endif
-endif
-
-" Colorscheme
 syntax on
 set termguicolors
-set bg=light
+let &bg = "light"
 colo violet
 
-" gui settings
-let &guifont = "Iosevka Term:h14"
-let g:neovide_cursor_animation_length = 0
 
+" -- User-specific lua config --------------------------------------------------
 
-" -- Clipboard -----------------------------------------------------------------
+lua require('plenary.reload').reload_module('user', true)
 
-if g:env ==# "UNIX"
-    let g:clipboard = {
-                \   'name': 'xclip_nvim',
-                \   'copy': {
-                \      '+': 'xclip -selection clipboard',
-                \      '*': 'xclip -selection clipboard',
-                \    },
-                \   'paste': {
-                \      '+': 'xclip -selection clipboard -o',
-                \      '*': 'xclip -selection clipboard -o',
-                \   },
-                \   'cache_enabled': 1,
-                \ }
-endif
-set clipboard+=unnamed
+lua require('user.options')
+lua require('user.clipboard')
+lua require('user.statusline')
+lua require('user.plugins')
 
-
-" -- Tab settings --------------------------------------------------------------
-
-let &tabstop = 4
-let &softtabstop = 4
-let &shiftwidth = 4
-let &smarttab = 1
-let &shiftround = 1
-let &expandtab = 1
-
-
-" -- Make ----------------------------------------------------------------------
-
-if isdirectory("build")
-    let &makeprg = "make -C build"
-else
-    let &makeprg = "make"
-endif
 
 
 " -- Key Mapping ---------------------------------------------------------------
@@ -450,6 +279,8 @@ onoremap aa :normal vaa<CR>
 
 
 " -- Functions and Commands ----------------------------------------------------
+
+command! -nargs=1 Inspect lua print(vim.inspect(<args>))
 
 " Send selected text to a pastebin
 command! -range=% Paste silent execute <line1> . "," . <line2>
@@ -718,64 +549,6 @@ else
 endif
 
 
-" -- Statusline ----------------------------------------------------------------
-
-let &laststatus = 2
-let &statusline = "[%{winnr()}]"
-let &statusline .= " %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No Name]'}"
-let &statusline .= " %{&modified?'[+]':''}%{&readonly||!&modifiable?'[-]':''}"
-let &statusline .= "%="
-let &statusline .= "%-14.(%l:%3(%v%) %) %P"
-
-
-" -- Tabline -------------------------------------------------------------------
-
-function! MyTabLine() abort
-    let s = ''
-    for i in range(tabpagenr('$'))
-        let tabnr = i + 1
-        let winnr = tabpagewinnr(tabnr)
-        let buflist = tabpagebuflist(tabnr)
-        let bufnr = buflist[winnr - 1]
-        let bufname = fnamemodify(bufname(bufnr), ':t')
-        let s .= '%' . tabnr . 'T'
-        let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-        let s .= ' ' . tabnr
-        let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
-    endfor
-    let s .= '%#TabLineFill#'
-    return s
-endfunction
-let &showtabline = 1
-let &tabline = "%!MyTabLine()"
-
-
-" -- Netrw ---------------------------------------------------------------------
-
-let g:netrw_altv = 1
-let g:netrw_banner = 1
-let g:netrw_browse_split = 0
-let g:netrw_cursor = 0
-let g:netrw_hide = 1
-" let g:netrw_list_hide = '^\./$,^\../$,^\.git/$'
-let g:netrw_list_hide = '^\.git/$'
-let g:netrw_liststyle = 1
-let g:netrw_sort_by = 'name'
-let g:netrw_sort_direction = 'normal'
-let g:netrw_winsize = 25
-
-
-" -- Closetag ------------------------------------------------------------------
-
-" let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js'
-" let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb'
-let g:closetag_filetypes = 'html,xhtml,phtml,javascript'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,javascript'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = ''
-
-
 " -- Ctags ---------------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R .<CR>
@@ -798,30 +571,6 @@ command! Uncrustify  let s:save_cursor = getcurpos()
 nnoremap <Leader>u :Uncrustify<CR>
 xnoremap <Leader>u :UncrustifyRange<CR>
 
-
-" -- Prettier ------------------------------------------------------------------
-
-let g:prettier#autoformat_config_present = 1
-" let g:prettier#autoformat_require_pragma = 0
-
-" let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js Prettier
-
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
-
-
-" -- Editor Config ----------------------------------------------------------------
-
-let g:EditorConfig_disable_rules = ['end_of_line']
-
-" -- Rainbow Parentheses ----------------------------------------------------------
-
-let g:lisp_rainbow = 0
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " -- Telescope --------------------------------------------------------------------
 
