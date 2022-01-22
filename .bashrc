@@ -236,4 +236,4 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\n\$ '
+PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\$ '
