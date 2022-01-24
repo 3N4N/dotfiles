@@ -34,3 +34,4 @@ doskey tar = "C:\Program Files\Git\usr\bin\tar" $*
 doskey gdb =  C:\msys64\mingw64\bin\gdb -q $*
 doskey fd = C:\msys64\usr\bin\find $*
 doskey tree = C:\msys64\usr\bin\tree $*
+doskey echo = "C:/Program Files/Git/usr/bin/echo.exe" $*
