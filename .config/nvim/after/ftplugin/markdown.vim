@@ -1,5 +1,6 @@
 setlocal textwidth=80
-setlocal spell
+setlocal nospell
+setlocal wrap
 
 setlocal formatoptions=tcqjroln
 setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,n:>
