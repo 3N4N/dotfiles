@@ -97,7 +97,6 @@ now() {
     date "+%A, %B %d"
     echo -n 'time : '
     date "+%H:%M"
-    curl wttr.in/dhaka?0
 }
 
 # Set the title of the terminal window or tab

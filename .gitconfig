@@ -20,7 +20,7 @@
 [push]
     default = current
 [alias]
-    ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)%an%C(red)%d'
+    ls = log --all --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)[%an]%C(red)%d'
     ll = log --stat --source -p
     br = branch
     ba = branch -av

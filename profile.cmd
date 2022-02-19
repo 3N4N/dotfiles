@@ -13,6 +13,9 @@ doskey xclip = win32yank.exe $*
 doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 
+doskey ffmpeg = ffmpeg -hide_banner $*
+doskey ffprobe = ffprobe -hide_banner $*
+
 
 :: commands for for docker
 doskey dcbuild = docker-compose build
@@ -35,3 +38,4 @@ doskey gdb =  C:\msys64\mingw64\bin\gdb -q $*
 doskey fd = C:\msys64\usr\bin\find $*
 doskey tree = C:\msys64\usr\bin\tree $*
 doskey echo = "C:/Program Files/Git/usr/bin/echo.exe" $*
+doskey du = "C:/Program Files/Git/usr/bin/du.exe"
