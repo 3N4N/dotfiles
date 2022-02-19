@@ -51,8 +51,10 @@ Plug 'nvim-telescope/telescope.nvim'
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mcchrish/fountain.vim'
+Plug 'benknoble/gitignore-vim'
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 Plug 'luochen1990/rainbow'
 
@@ -124,7 +126,6 @@ cnoremap <C-g> <C-k>
 cnoremap <C-t> <Nop>
 
 " Use `:tjump` instead of `:tag`
-
 nnoremap <C-]> g<C-]>
 
 " Useful leader mappings
@@ -136,6 +137,10 @@ nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s:\v
 xnoremap <Leader>s :s:\%V\v
+
+" Go in and out of diffmode
+nnoremap <Leader>dt :windo diffthis<CR>
+nnoremap <Leader>do :windo diffoff<CR>
 
 " Opening files
 nnoremap <Leader>e :e **/*
@@ -195,7 +200,7 @@ for [s:key, s:value] in items(s:pairs)
     execute 'nnoremap <silent> ]' . toupper(s:key) . ' :' . s:value . 'last<CR>'
 endfor
 
-" Toggle key bindings
+" Toggle
 nnoremap <silent> <Leader>tc :let &colorcolumn=(&cc==0)?81:0<CR>
 nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
 nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
@@ -578,7 +583,7 @@ lua require('user.telescope')
 
 " Using Lua functions
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
