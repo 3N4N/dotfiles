@@ -57,6 +57,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 
 Plug 'luochen1990/rainbow'
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 

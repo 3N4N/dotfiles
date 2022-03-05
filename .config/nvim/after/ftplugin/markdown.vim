@@ -10,3 +10,6 @@ setlocal statusline=[%{winnr()}]
 			\\ %m%r
 			\%=
 			\\ %-14.(%l:%3(%v%)\ %)\ %{wordcount()['words']}W
+
+
+xnoremap <buffer> <Leader><Bslash> :EasyAlign*<Bar><Enter>

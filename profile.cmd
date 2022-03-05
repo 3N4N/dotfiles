@@ -30,6 +30,7 @@ doskey m64 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
 doskey m32 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
 
 :: shortcuts to msys utilties
+doskey ls = "C:\Program Files\Git\usr\bin\ls" -NvhF --group-directories-first $*
 doskey l = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ $*
 doskey la = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ -A $*
 doskey mkdir = "C:\Program Files\Git\usr\bin\mkdir" -p $*
