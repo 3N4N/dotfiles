@@ -590,6 +590,14 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
 
+" -- Easy Align -------------------------------------------------------------------
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 
 " -- Lua Modules ------------------------------------------------------------------
 
