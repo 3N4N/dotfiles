@@ -4,9 +4,9 @@
 
 
 if !exists('g:env')
-    if has('windows') && has('unix')
+    if has('win32') && has('unix')
         let g:env = 'WSL'
-    elseif has('windows') && !has('unix')
+    elseif has('win32') && !has('unix')
         let g:env = 'WIN'
     elseif system('uname') =~? "msys"
         let g:env = 'MSYS2'
