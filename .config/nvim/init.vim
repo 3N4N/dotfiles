@@ -8,12 +8,12 @@ if !exists('g:env')
         let g:env = 'WSL'
     elseif has('win32') && !has('unix')
         let g:env = 'WIN'
-    elseif system('uname') =~? "msys"
-        let g:env = 'MSYS2'
     else
         let g:env = 'UNIX'
     endif
 endif
+
+let g:env="WSL"
 
 if g:env ==# 'WIN'
     let s:vim_plug_dir = '~/AppData/Local/nvim-data/plugged'
