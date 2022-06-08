@@ -185,6 +185,7 @@ nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
+nnoremap <Leader>ww :vert res 85<CR>
 
 " Switch tabpages
 nnoremap <Leader>] gt
