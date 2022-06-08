@@ -13,8 +13,6 @@ if !exists('g:env')
     endif
 endif
 
-let g:env="WSL"
-
 if g:env ==# 'WIN'
     let s:vim_plug_dir = '~/AppData/Local/nvim-data/plugged'
 else
