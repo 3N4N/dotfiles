@@ -45,6 +45,7 @@ Plug 'tpope/vim-commentary'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -126,6 +127,7 @@ cnoremap <C-t> <Nop>
 
 " Use `:tjump` instead of `:tag`
 nnoremap <C-]> g<C-]>
+nnoremap <C-w><C-]> <C-w>g]
 
 " Useful leader mappings
 nnoremap <Leader>; :
@@ -585,9 +587,10 @@ lua require('user.telescope')
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
+nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
 
 " -- Easy Align -------------------------------------------------------------------
 
