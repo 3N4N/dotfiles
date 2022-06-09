@@ -79,7 +79,7 @@ alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
 alias vimdiff='nvim -d'
-# alias xopen='xdg-open'
+alias o='xdg-open'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 

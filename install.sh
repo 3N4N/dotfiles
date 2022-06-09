@@ -39,9 +39,11 @@ if [ "$1" == "-a" ]; then
         p7zip-full \
         pavucontrol \
         rar \
+        ripgrep \
         silversearcher-ag \
         tree \
         uncrustify \
+        universal-ctags \
         valgrind \
         wget \
         x11-xkb-utils \
