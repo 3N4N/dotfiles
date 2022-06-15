@@ -42,5 +42,8 @@ New-Item -Type SymbolicLink -Path "$HOME/.gitconfig" -Value $CURDIR/.gitconfig
 Remove-Item -Recurse -Force $HOME/.tmux.conf
 New-Item -Type SymbolicLink -Path "$HOME/.tmux.conf" -Value $CURDIR/.tmux.conf
 
+Remove-Item -Recurse -Force $HOME/.uncrustify.cfg
+New-Item -Type SymbolicLink -Path $HOME/.uncrustify.cfg -Value $CURDIR/.uncrustify.cfg
+
 Remove-Item -Recurse -Force $RDIR/.Rprofile
 New-Item -Type SymbolicLink -Path "$RDIR/.Rprofile" -Value $CURDIR/.Rprofile

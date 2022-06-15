@@ -28,6 +28,7 @@ doskey docksh = docker exec -it $1 /bin/bash
 doskey msys = C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys
 doskey m64 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
 doskey m32 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
+doskey vsdev = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" -arch=x64 -host_arch=x64
 
 :: shortcuts to msys utilties
 doskey ls = "C:\Program Files\Git\usr\bin\ls" -NvhF --group-directories-first $*
@@ -41,3 +42,5 @@ doskey tree = C:\msys64\usr\bin\tree -F $*
 doskey echo = "C:/Program Files/Git/usr/bin/echo.exe" $*
 doskey find = "C:/Program Files/Git/usr/bin/find.exe" $*
 doskey du = "C:/Program Files/Git/usr/bin/du.exe" $*
+
+set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
