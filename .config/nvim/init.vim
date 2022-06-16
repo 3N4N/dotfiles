@@ -563,7 +563,7 @@ nnoremap <Leader>c :!ctags -R .<CR>
 
 " -- Uncrustify ----------------------------------------------------------------
 
-let g:uncrustifyCfgFile = '~/.uncrustify.cfg'
+let g:uncrustifyCfgFile = expand("$HOME/.uncrustify.cfg")
 
 function! UncrustifyFunc(options) range
     exec a:firstline.','.a:lastline.'!uncrustify '.a:options
