@@ -2,6 +2,14 @@
 
 DIR=$HOME/projects/dotFiles
 
+if [ ! -d $HOME/.local/bin ]; then
+  mkdir -p $HOME/.local/bin
+fi
+
+if [ ! -d $HOME/.local/man/man1 ]; then
+  mkdir -p $HOME/.local/man/man1
+fi
+
 DOTFILES=(
     "bin"
     ".bashrc"
