@@ -264,6 +264,10 @@ endif
 tnoremap <Esc> <C-\><C-n>
 
 
+cabbrev cmakefile CMakeLists.txt
+
+
+
 " -- Text Objects --------------------------------------------------------------
 
 " Simple text-objects
@@ -558,7 +562,7 @@ endif
 
 " -- Ctags ---------------------------------------------------------------------
 
-nnoremap <Leader>c :!ctags -R .<CR>
+nnoremap <Leader>c :!ctags -R --c-kinds=+p .<CR>
 
 
 " -- Uncrustify ----------------------------------------------------------------

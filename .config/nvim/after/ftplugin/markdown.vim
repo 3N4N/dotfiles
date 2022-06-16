@@ -3,7 +3,8 @@ setlocal nospell
 setlocal wrap
 
 setlocal formatoptions=tcqjroln
-setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,n:>
+" setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,n:>
+setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,n:>
 
 setlocal statusline=[%{winnr()}]
             \\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
@@ -27,4 +28,4 @@ function! s:end_list()
   endif
 endfunction
 
-inoremap <buffer> <CR> <CR><Esc>:call <SID>end_list()<CR>A
+" inoremap <buffer> <CR> <CR><Esc>:call <SID>end_list()<CR>A
