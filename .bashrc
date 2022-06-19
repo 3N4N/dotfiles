@@ -3,7 +3,11 @@
 # Github: https://github.com/3N4N
 
 
-# -- bash specific settings ----------------------------------------------------
+
+
+# ----------------------------------------------------------------------
+#                             bash specific settings
+# ----------------------------------------------------------------------
 
 # do not continue if we are not in a bash shell
 [ -z "$BASH_VERSION" ] && return
@@ -36,11 +40,13 @@ shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
 shopt -s extglob                # enable extended globbing
 
-
 # remove XON/XOFF
 stty -ixon
 
-# -- aliases -------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+#                                    aliases
+# ----------------------------------------------------------------------
 
 # safety features
 alias chown='chown --preserve-root'
@@ -89,7 +95,9 @@ if [ $isWSL ]; then
 fi
 
 
-# -- functions -----------------------------------------------------------------
+# ----------------------------------------------------------------------
+#                                   functions
+# ----------------------------------------------------------------------
 
 # elaborate digital clock
 now() {
@@ -152,7 +160,10 @@ start() {
     fi
 }
 
-# -- fzf -----------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+#                                      fzf
+# ----------------------------------------------------------------------
 
 if [ ! -d "$HOME/.fzf" ]; then
     git clone https://github.com/junegunn/fzf.git ~/.fzf
@@ -185,7 +196,10 @@ fi
 # use fzf to open files
 bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
 
-# -- bash autocompletion -------------------------------------------------------
+
+# ----------------------------------------------------------------------
+#                              bash autocompletion
+# ----------------------------------------------------------------------
 
 # using fzf messes with bash completion files
 # needs to manually source them again
@@ -201,7 +215,10 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# -- title string --------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+#                                  title string
+# ----------------------------------------------------------------------
 
 case "$TERM" in
     st*)
@@ -212,20 +229,26 @@ case "$TERM" in
         ;;
 esac
 
-# -- set path ------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+#                                    set path
+# ----------------------------------------------------------------------
 
 # append user specified directories to PATH
 append_to_path() {
-	if [ -d "$1" ] ; then
-		new_entry="$1"
-		case ":$PATH:" in
-			*":$new_entry:"*) :;;
-			*) PATH="$new_entry:$PATH";;
-		esac
-	fi
+  if [ -d "$1" ] ; then
+    new_entry="$1"
+    case ":$PATH:" in
+      *":$new_entry:"*) :;;
+      *) PATH="$new_entry:$PATH";;
+    esac
+  fi
 }
 
-# -- bash prompt ---------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+#                                  bash prompt
+# ----------------------------------------------------------------------
 
 turquoise=$(tput setaf 5)
 magenta=$(tput setaf 5)

@@ -17,9 +17,9 @@ end
 M.docinfo = function()
     local cmntstr = vim.api.nvim_buf_get_option(0, "cms")
     local pos = vim.api.nvim_win_get_cursor(0)
-    vim.fn.append(pos[1]-1, (string.gsub(cmntstr, "%%s", "Name:\t\tEnan Ajmain")))
-    vim.fn.append(pos[1]+0, (string.gsub(cmntstr, "%%s", "Email:\t\t3nan.ajmain@gmail.com")))
-    vim.fn.append(pos[1]+1, (string.gsub(cmntstr, "%%s", "Github:\t\t3N4N")))
+    vim.fn.append(pos[1]-1, (string.gsub(cmntstr, "%%s", "Author: Enan Ajmain")))
+    vim.fn.append(pos[1]+0, (string.gsub(cmntstr, "%%s", "Email : 3nan.ajmain@gmail.com")))
+    vim.fn.append(pos[1]+1, (string.gsub(cmntstr, "%%s", "Github: 3N4N")))
 end
 
 return M
