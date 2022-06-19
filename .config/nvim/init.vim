@@ -44,7 +44,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+Plug '3N4N/telescope.nvim', {'branch': 'fix/ctags_relative'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Plug 'ludovicchabant/vim-gutentags'
@@ -305,6 +306,8 @@ command! -nargs=1 Redir
             \ call setline(1, split(execute(<q-args>), "\n"))
 
 command! Date put =strftime('%B %d, %Y')
+
+command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 
 command! -nargs=1 -complete=function Echo
             \ let output = <args> |
