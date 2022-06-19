@@ -4,7 +4,7 @@
 # Email  : 3nan.ajmain@gmail.com
 # Github : https://github.com/3N4N
 
-VERSION=3.2a
+VERSION=3.3a
 
 sudo apt remove tmux
 sudo apt install wget tar gcc g++ make libevent-dev libncurses-dev
