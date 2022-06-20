@@ -28,6 +28,19 @@ if vim.g.env == "WIN" then
     vim.opt.ssl = true
 end
 
+
+
+-- vim.opt.shell = 'pwsh.exe'
+-- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+-- vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+-- vim.opt.shellpipe = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+-- vim.opt.shellquote = ""
+-- vim.opt.shellxquote = ""
+-- vim.opt.ssl = false
+
+
+
+
 -- Searching
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
