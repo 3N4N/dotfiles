@@ -130,6 +130,8 @@ t() {
 
     if [ $? != 0 ]; then
         tmux new-session -s "$session_name" -d
+        tmux rename-window -t "$session_name" shell
+        tmux new-window -t "$session_name"
 
         if [ $session_name = "enan" ]; then
             tmux rename-window -t "$session_name" dots
@@ -137,8 +139,6 @@ t() {
             # tmux send-keys -t "$session_name" 'nvim' C-m
         fi
 
-        tmux new-window -t "$session_name"
-        tmux rename-window -t "$session_name" shell
 
         tmux select-window -t 2
     fi
@@ -228,6 +228,18 @@ case "$TERM" in
         PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
         ;;
 esac
+
+
+# ----------------------------------------------------------------------
+#                                   ROS STUFF
+# ----------------------------------------------------------------------
+
+ros_setup_script="/opt/ros/noetic/setup.bash"
+gazebo_model_path="/home/enan/.gazebo/models/:/home/enan/code/gazebo_models/"
+
+if [ -f "$ros_setup_script" ] ; then
+  source "$ros_setup_script"
+fi
 
 
 # ----------------------------------------------------------------------
