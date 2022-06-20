@@ -87,7 +87,7 @@ vim.opt.cpoptions:remove("aA")
 vim.opt.joinspaces = false
 vim.opt.inccommand = "nosplit"
 vim.opt.backspace = "indent,eol,start"
-vim.opt.cinoptions = "g0,l1,i0,t0,(0,N-s"
+vim.opt.cinoptions = "g0,l1,i0,t0,(4,N-s"
 vim.opt.shortmess = "filmnxrtToO"
 vim.opt.synmaxcol = 200
 vim.opt.updatetime = 250
