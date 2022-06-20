@@ -4,9 +4,9 @@
 
 
 if !exists('g:env')
-    if has('win32') && has('unix')
+    if has('wsl')
         let g:env = 'WSL'
-    elseif has('win32') && !has('unix')
+    elseif has('win32')
         let g:env = 'WIN'
     else
         let g:env = 'UNIX'
