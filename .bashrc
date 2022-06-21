@@ -117,6 +117,10 @@ set-title() {
     PS1=${PS1_BAK}${TITLE}
 }
 
+fmk() {
+  kill `ps aux | grep -v grep | grep -i $1 | awk '{print $2}'`
+}
+
 # tmux starting script
 t() {
     if [ -z "$1" ]; then
