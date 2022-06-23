@@ -79,7 +79,7 @@ alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
 docksh() { docker exec -it $1 /bin/bash; }
 
 # miscellaneous
-alias mkdir='mkdir -pv'
+alias md='mkdir -pv'
 alias psgrep='ps aux | head -n 1 && ps aux | grep -v grep | grep --color -i'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
