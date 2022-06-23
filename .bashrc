@@ -245,6 +245,8 @@ if [ -f "$ros_setup_script" ] ; then
   source "$ros_setup_script"
 fi
 
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:$gazebo_model_path
+
 
 # ----------------------------------------------------------------------
 #                                    set path
