@@ -48,6 +48,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug '3N4N/telescope.nvim', {'branch': 'fix/ctags_relative'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mcchrish/fountain.vim'
@@ -588,16 +590,28 @@ xnoremap <Leader>u :UncrustifyRange<CR>
 
 " -- Telescope --------------------------------------------------------------------
 
-lua require('user.telescope')
+" lua require('user.telescope')
 
-" Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
-nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
+" " Using Lua functions
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
+" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+" nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
+" nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
+
+
+" -- FZF Lua ----------------------------------------------------------------------
+
+
+nnoremap <leader>ff <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <leader>fg <cmd>lua require('fzf-lua').git_files()<CR>
+nnoremap <leader>fb <cmd>lua require('fzf-lua').buffers()<CR>
+nnoremap <leader>fa <cmd>lua require('fzf-lua').live_grep()<CR>
+nnoremap <leader>ftt <cmd>lua require('fzf-lua').tags()<CR>
+nnoremap <leader>ftb <cmd>lua require('fzf-lua').tags()<CR>
+
 
 " -- Easy Align -------------------------------------------------------------------
 
