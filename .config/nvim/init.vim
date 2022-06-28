@@ -295,9 +295,15 @@ onoremap aa :normal vaa<CR>
 command! -nargs=1 Inspect lua print(vim.inspect(<args>))
 
 " Send selected text to a pastebin
-command! -range=% Paste silent execute <line1> . "," . <line2>
-            \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
-            \ | xclip -selection clipboard"
+if g:env ==# 'WIN' || g:env ==# 'WSL'
+  command! -range=% Paste silent execute <line1> . "," . <line2>
+        \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
+        \ | win32yank.exe -i"
+else
+  command! -range=% Paste silent execute <line1> . "," . <line2>
+        \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
+        \ | xclip -selection clipboard"
+endif
 
 " Redirect the output of a Vim or external command into a scratch buffer
 command! -nargs=1 Redir
