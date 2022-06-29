@@ -14,22 +14,22 @@ if !exists('g:env')
 endif
 
 if g:env ==# 'WIN'
-    let s:vim_plug_dir = '~/AppData/Local/nvim-data/plugged'
+    let s:vim_plug_dir = expand('~/AppData/Local/nvim-data/plugged')
 else
-    let s:vim_plug_dir = '~/.config/nvim/plugged'
+    let s:vim_plug_dir = expand('~/.config/nvim/plugged')
 endif
 
 
 " -- Vim Plug ------------------------------------------------------------------
 
 if g:env ==# 'UNIX' || g:env ==# 'WSL'
-    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    if empty(glob(expand('~/.local/share/nvim/site/autoload/plug.vim')))
         silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
                     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 elseif g:env ==# 'WIN'
-    if empty(glob('~/AppData/Local/nvim-data/site/autoload/plug.vim'))
+    if empty(glob(expand('~/AppData/Local/nvim-data/site/autoload/plug.vim')))
         call system('curl -fLo '
                     \ . expand('~/AppData/Local/nvim-data/site/autoload/plug.vim')
                     \ . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
