@@ -2,8 +2,8 @@
 
 PROMPT = $e]9;9;$p$e\$e[1;34m$p$e[1;0m$g$s
 
-doskey o = open $*
-doskey ocmd = open cmd.exe $*
+doskey o = start $*
+doskey ocmd = start cmd.exe $*
 doskey cd = cd /d $*
 doskey ns = nslookup $*
 doskey ip = ipconfig $*
@@ -34,7 +34,7 @@ doskey vsdev = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Co
 doskey ls = "C:\Program Files\Git\usr\bin\ls" -NvhF --group-directories-first $*
 doskey l = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ $*
 doskey la = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ -A $*
-doskey mkdir = "C:\Program Files\Git\usr\bin\mkdir" -p $*
+doskey md = "C:\Program Files\Git\usr\bin\mkdir" -p $*
 doskey tar = "C:\Program Files\Git\usr\bin\tar" $*
 doskey gdb =  C:\msys64\mingw64\bin\gdb -q $*
 doskey fd = C:\msys64\usr\bin\find $*
