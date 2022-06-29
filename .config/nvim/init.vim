@@ -59,6 +59,8 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 
+Plug 'neovim/nvim-lspconfig'
+
 call plug#end()
 
 
@@ -78,6 +80,7 @@ lua require('user.options')
 lua require('user.clipboard')
 lua require('user.statusline')
 lua require('user.plugins')
+lua require('user.lspconfig')
 
 
 
