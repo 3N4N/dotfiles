@@ -94,6 +94,9 @@ if [ $isWSL ]; then
     alias e='explorer.exe'
 fi
 
+alias cmakec='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+alias cmaked='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug'
+
 
 # ----------------------------------------------------------------------
 #                                   functions
