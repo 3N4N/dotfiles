@@ -139,7 +139,8 @@ vim.opt.shiftwidth = 2
 -- Make ----------------------------------------------------------------------
 
 if vim.fn.isdirectory("build") == 1 then
-    vim.opt.makeprg = "make -C build"
+    -- vim.opt.makeprg = "make -C build"
+    vim.opt.makeprg = "ninja -C build"
 else
     vim.opt.makeprg = "make"
 end

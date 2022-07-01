@@ -3,8 +3,8 @@ setlocal nospell
 setlocal wrap
 
 setlocal formatoptions=tcqjroln
-" setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,n:>
-setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,n:>
+setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,n:>
+" setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,n:>
 
 setlocal statusline=[%{winnr()}]
             \\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
