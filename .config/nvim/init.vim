@@ -298,15 +298,9 @@ onoremap aa :normal vaa<CR>
 command! -nargs=1 Inspect lua print(vim.inspect(<args>))
 
 " Send selected text to a pastebin
-if g:env ==# 'WIN' || g:env ==# 'WSL'
-  command! -range=% Paste silent execute <line1> . "," . <line2>
-        \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
-        \ | win32yank.exe -i"
-else
-  command! -range=% Paste silent execute <line1> . "," . <line2>
-        \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n'
-        \ | xclip -selection clipboard"
-endif
+command! -range=% Paste execute <line1> . "," . <line2>
+      \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | "
+      \ . (has('unix') ? "xclip -selection clipboard" : "win32yank.exe -i")
 
 " Redirect the output of a Vim or external command into a scratch buffer
 command! -nargs=1 Redir
