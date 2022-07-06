@@ -64,13 +64,6 @@ Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 
-" -- Colorscheme ---------------------------------------------------------------
-
-syntax on
-set termguicolors
-let &bg = "light"
-colo violet
-
 
 " -- User-specific lua config --------------------------------------------------
 
@@ -558,12 +551,7 @@ augroup END
 " -- Title ---------------------------------------------------------------------
 
 set title
-
-if has('nvim')
-    let &titlestring = "NVIM %{&modified?'•':':'} %t"
-else
-    let &titlestring = "VIM %{&modified?'•':':'} %t"
-endif
+let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
 
 
 " -- Ctags ---------------------------------------------------------------------

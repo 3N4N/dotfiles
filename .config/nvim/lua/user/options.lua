@@ -1,3 +1,11 @@
+-- Colorscheme
+vim.cmd([[ syntax on ]])
+vim.opt.termguicolors = true
+vim.opt.background = "light"
+vim.cmd([[ colo violet ]])
+-- vim.g.colors_name = "violet"
+
+
 -- Visual perks
 vim.opt.conceallevel = 0
 vim.opt.cursorcolumn = false
@@ -30,7 +38,7 @@ end
 
 
 
--- vim.opt.shell = 'pwsh.exe'
+-- vim.opt.shell = 'pwsh'
 -- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
 -- vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
 -- vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
@@ -107,6 +115,7 @@ vim.opt.updatetime = 250
 vim.opt.virtualedit = "block"
 vim.opt.viewoptions = "folds,cursor"
 vim.opt.formatoptions = "tcqjro"
+vim.opt.diffopt = "internal,filler,closeoff,iwhiteall,algorithm:patience,indent-heuristic"
 
 vim.g.R_assign = 2
 vim.g.tex_flavor = "latex"
