@@ -216,13 +216,13 @@ inoremap <C-l> <C-x><C-l>
 inoremap <C-o> <C-x><C-o>
 
 " Git
-nnoremap <Leader>gs :Git<CR>
-nnoremap <Leader>gd :Gdiffsplit<CR>
-nnoremap <Leader>gc :Git commit<CR>
-nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gb :Git blame<CR>
-nnoremap <Leader>gg :Git grep ''<Left>
+nnoremap <Leader>gs :keepalt Git<CR>
+nnoremap <Leader>gd :keepalt Gdiffsplit<CR>
+nnoremap <Leader>gc :keepalt Git commit<CR>
+nnoremap <Leader>gw :keepalt Gwrite<CR>
+nnoremap <Leader>gr :keepalt Gread<CR>
+nnoremap <Leader>gb :keepalt Git blame<CR>
+nnoremap <Leader>gg :keepalt Git grep ''<Left>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
