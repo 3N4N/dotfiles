@@ -32,6 +32,7 @@
   cp = cherry-pick
   cl = clone
   ct = commit
+  cta = commit --amend
   df = diff
   dp = diff --stat
   ds = diff --staged
