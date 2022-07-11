@@ -14,6 +14,7 @@ doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 
 doskey ffmpeg = ffmpeg -hide_banner $*
+doskey ffplay = ffplay -hide_banner $*
 doskey ffprobe = ffprobe -hide_banner $*
 
 
@@ -42,5 +43,8 @@ doskey tree = C:\msys64\usr\bin\tree -F $*
 doskey echo = "C:/Program Files/Git/usr/bin/echo.exe" $*
 doskey find = "C:/Program Files/Git/usr/bin/find.exe" $*
 doskey du = "C:/Program Files/Git/usr/bin/du.exe" $*
+
+doskey cmakec = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
+doskey cmaked = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
 
 set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
