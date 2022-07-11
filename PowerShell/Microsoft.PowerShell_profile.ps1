@@ -40,6 +40,11 @@ Set-PSReadLineKeyHandler -chord ctrl+n -Function HistorySearchForward
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 
+Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert('cd ..')
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
 
 # ------- fzf ------------------------------------------------------------------
 
@@ -94,38 +99,3 @@ Set-Alias -Name find -Value 'C:\Program Files\git\usr\bin\find.exe'
 # Set-Alias -Name py -Value python
 # Set-Alias -Name py2 -Value python2
 # Set-Alias -Name py3 -Value python3
-
-
-# ------- Functions ------------------------------------------------------------
-
-# Function ls-long { ls -NvhFl --group-directories-first --time-style=+ $args }
-# Set-Alias -Name l -Value ls-long
-
-# Function grep-color {
-#     Param(
-#           [Parameter(ValueFromPipeline=$true)]
-#           [string[]]$text
-#     )
-#     Begin {}
-#     Process {
-#         grep --color --exclude-dir=".git" --exclude="tags" $text
-#     }
-#     End {}
-# }
-# Set-Alias -Name grep -Value grep-color
-
-Function start-pwsh { Start-Process pwsh }
-Set-Alias -Name stpw -Value start-pwsh
-
-Function start-pwsh-admin { Start-Process pwsh -verb runas }
-Set-Alias -Name stpwad -Value start-pwsh-admin
-
-Function Follow-Link([string]$sym)
-{
-    if (-Not (Test-Path -Path "$sym" -PathType Container)) {
-        Write-Output "Directory doesn't exist or is a file."
-    } else {
-        cd "$(Get-Item "$sym" | Select-Object -ExpandProperty Target)"
-    }
-}
-Set-Alias -Name cdl -Value Follow-Link
