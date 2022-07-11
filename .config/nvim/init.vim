@@ -217,7 +217,7 @@ inoremap <C-o> <C-x><C-o>
 
 " Git
 nnoremap <Leader>gs :keepalt Git<CR>
-nnoremap <Leader>gd :keepalt Gdiffsplit<CR>
+nnoremap <Leader>gd :keepalt Gvdiffsplit<CR>
 nnoremap <Leader>gc :keepalt Git commit<CR>
 nnoremap <Leader>gw :keepalt Gwrite<CR>
 nnoremap <Leader>gr :keepalt Gread<CR>
@@ -301,7 +301,7 @@ command! -nargs=1 Redir
             \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
             \ call setline(1, split(execute(<q-args>), "\n"))
 
-command! Date put =strftime('%B %d, %Y')
+command! Date put =strftime('%Y-%m-%d')
 
 command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 
@@ -577,7 +577,7 @@ nnoremap <Leader>u :Uncrustify<CR>
 xnoremap <Leader>u :UncrustifyRange<CR>
 
 
-" -- Telescope --------------------------------------------------------------------
+" -- Telescope -----------------------------------------------------------------
 
 lua require('user.telescope')
 
@@ -591,7 +591,7 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
 nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
 
 
-" -- Easy Align -------------------------------------------------------------------
+" -- Easy Align ----------------------------------------------------------------
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -600,7 +600,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-" -- Lua Modules ------------------------------------------------------------------
+" -- Lua Modules ---------------------------------------------------------------
 
 nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
 nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
