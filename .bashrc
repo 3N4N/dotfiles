@@ -250,6 +250,20 @@ fi
 
 export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:$gazebo_model_path
 
+s() {
+  f_setup="devel/setup.bash"
+  curdir=`pwd`
+  while [ ! -f "$f_setup" ] ; do
+    cd ..
+  done
+  if [ -f "$f_setup" ] ; then
+    source "$f_setup"
+  else
+    echo "$f_setup not found"
+  fi
+  cd "$curdir"
+}
+
 
 # ----------------------------------------------------------------------
 #                                    set path
