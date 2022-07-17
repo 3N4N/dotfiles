@@ -19,13 +19,11 @@ Function prompt
     Write-Host "$loc" -ForegroundColor "blue" -NoNewline
     $out = "> "
 
-    # # WT seems to split in current directory w/o this fix now
-    # # checked w/ WT v1.15.1863.0
-    # if ($env:WT_SESSION) {
-    #     if ($loc.Provider.Name -eq "FileSystem") {
-    #         $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
-    #     }
-    # }
+    if ($env:WT_SESSION) {
+        if ($loc.Provider.Name -eq "FileSystem") {
+            $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
+        }
+    }
 
     return $out
 }
