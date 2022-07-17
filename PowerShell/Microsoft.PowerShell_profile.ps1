@@ -88,6 +88,7 @@ Import-Module posh-git
 if (Test-Path alias:ls) { Remove-Alias ls }
 if (Test-Path alias:rm) { Remove-Alias rm }
 if (Test-Path alias:rmdir) { Remove-Alias rmdir }
+if (Test-Path alias:md) { Remove-Alias md }
 if (Test-Path alias:mv) { Remove-Alias mv }
 if (Test-Path alias:r) { Remove-Alias r }
 if (Test-Path alias:where) { del alias:where -force }
@@ -101,12 +102,13 @@ Function ls { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --ti
 Function ll { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
 Function la { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
 
-Function gdb { & 'C:\msys64\mingw64\bin\gdb' -q @args }
-Function tree { & 'C:\msys64\mingw64\bin\tree' -F @args }
+Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
+Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
 
-Set-Alias -Name tar -Value 'C:\msys64\usr\bin\tar.exe'
-Set-Alias -Name fd -Value 'C:\msys64\usr\bin\find'
-Set-Alias -Name du -Value 'C:\msys64\usr\bin\du.exe'
+Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
+Set-Alias -Name md -Value 'C:/msys64/usr/bin/mkdir.exe'
+Set-Alias -Name fd -Value 'C:/msys64/usr/bin/find.exe'
+Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
 Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
 
 # Set-Alias -Name py -Value python
