@@ -9,13 +9,6 @@ Function prompt
 {
     $loc = Get-Location
 
-    #Assign Windows Title Text
-    $host.ui.rawui.windowtitle = $(if ($isInAdmin) {"ADMIN: "} $loc)
-
-    # $promptloc = -Join(($loc | Split-Path -Qualifier),
-    #                    $dirSep, ($loc | Split-Path | Split-Path -Leaf),
-    #                    $dirSep, ($loc | Split-Path -Leaf))
-
     Write-Host "$loc" -ForegroundColor "blue" -NoNewline
     $out = "> "
 
