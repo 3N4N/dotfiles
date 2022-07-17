@@ -35,16 +35,35 @@ Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
 Set-PSReadlineOption -WordDelimiters ";:,.[]{}()/\|^&*-=+'`"-—―_"
 
+Set-PSReadLineOption -PredictionSource None
+
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineKeyHandler -chord ctrl+p -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -chord ctrl+n -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
+Set-PSReadLineKeyHandler -chord alt+u -Function DowncaseWord
+Set-PSReadLineKeyHandler -chord alt+o -Function UpcaseWord
+Set-PSReadLineKeyHandler -chord alt+i -Function CapitalizeWord
 
 Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert('cd ..')
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
+
+Set-PSReadLineOption -Colors @{
+  Command            = 'DarkYellow'
+  Number             = 'DarkGray'
+  Member             = 'DarkGray'
+  Operator           = 'DarkGray'
+  Type               = 'DarkGray'
+  Variable           = 'DarkGreen'
+  Parameter          = 'DarkGreen'
+  InlinePrediction   = 'Gray'
+  ContinuationPrompt = 'DarkGray'
+  Default            = 'DarkGray'
+}
+
 
 # ------- fzf ------------------------------------------------------------------
 
@@ -66,19 +85,9 @@ Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
 # fi
 
 
-# ------- syntax highlighting --------------------------------------------------
+# ------- modules --------------------------------------------------------------
 
-Set-PSReadLineOption -Colors @{
-  Command            = 'DarkYellow'
-  Number             = 'DarkGray'
-  Member             = 'DarkGray'
-  Operator           = 'DarkGray'
-  Type               = 'DarkGray'
-  Variable           = 'DarkGreen'
-  Parameter          = 'DarkGreen'
-  ContinuationPrompt = 'DarkGray'
-  Default            = 'DarkGray'
-}
+Import-Module posh-git
 
 
 # ------- aliases --------------------------------------------------------------
@@ -91,10 +100,21 @@ if (Test-Path alias:r) { Remove-Alias r }
 if (Test-Path alias:where) { del alias:where -force }
 if (Test-Path alias:echo) { Remove-Alias echo }
 
-Set-Alias -Name vi -Value nvim
-Set-Alias -Name nvi -Value neovide
+Set-Alias -Name vi -Value 'C:\apps\nvim\bin\nvim.exe'
+Set-Alias -Name find -Value 'c:\msys64\usr\bin\find.exe'
 
-Set-Alias -Name find -Value 'C:\Program Files\git\usr\bin\find.exe'
+Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -1 @args }
+Function ls { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhF @args }
+Function ll { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
+Function la { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
+
+Function gdb { & 'C:\msys64\mingw64\bin\gdb' -q @args }
+Function tree { & 'C:\msys64\mingw64\bin\tree' -F @args }
+
+Set-Alias -Name tar -Value 'C:\msys64\usr\bin\tar.exe'
+Set-Alias -Name fd -Value 'C:\msys64\usr\bin\find'
+Set-Alias -Name du -Value 'C:\msys64\usr\bin\du.exe'
+Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
 
 # Set-Alias -Name py -Value python
 # Set-Alias -Name py2 -Value python2
