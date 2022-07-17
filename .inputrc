@@ -10,7 +10,7 @@
 "\eu": downcase-word
 
 "\e\C-l": clear-screen
-"\e\C-u": "cd ..\n"
+"\e\C-u": "\C-ucd ..\n"
 
 # set colored-stats On
 set completion-ignore-case On
