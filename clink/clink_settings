@@ -14,7 +14,7 @@ match.sort_dirs = before
 # name: Translate slashes and backslashes
 # type: enum
 # options: off,system,slash,backslash
-match.translate_slashes = slash
+match.translate_slashes = system
 
 # name: Match ? and * wildcards when completing
 # type: boolean
