@@ -43,8 +43,10 @@ doskey tree = C:\msys64\usr\bin\tree -F $*
 doskey echo = "C:/Program Files/Git/usr/bin/echo.exe" $*
 doskey find = "C:/Program Files/Git/usr/bin/find.exe" $*
 doskey du = "C:/Program Files/Git/usr/bin/du.exe" $*
+doskey mpv = "C:/apps/mpv/mpv.exe" $*
 
-doskey cmakec = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
-doskey cmaked = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
+doskey cmake = "c:\msys64\mingw64\bin\cmake.exe" $*
+doskey cmakec = "c:\msys64\mingw64\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
+doskey cmaked = "c:\msys64\mingw64\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
 
 set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
