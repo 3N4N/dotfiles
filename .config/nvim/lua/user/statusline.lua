@@ -7,7 +7,7 @@ vim.opt.statusline:append(" %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No Name]'
 vim.opt.statusline:append(" %{&modified?'[+]':''}")
 vim.opt.statusline:append("%{&readonly||!&modifiable?'[-]':''}")
 vim.opt.statusline:append("%=")
-vim.opt.statusline:append("%-14.(%l:%3(%v%) %) %P")
+vim.opt.statusline:append("%l,%v")
 
 
 -- Tabline -------------------------------------------------------------------
