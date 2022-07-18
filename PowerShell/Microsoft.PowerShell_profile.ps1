@@ -90,11 +90,13 @@ if (Test-Path alias:rm) { Remove-Alias rm }
 if (Test-Path alias:rmdir) { Remove-Alias rmdir }
 if (Test-Path alias:md) { Remove-Alias md }
 if (Test-Path alias:mv) { Remove-Alias mv }
+if (Test-Path alias:cp) { Remove-Alias cp }
 if (Test-Path alias:r) { Remove-Alias r }
-if (Test-Path alias:where) { del alias:where -force }
 if (Test-Path alias:echo) { Remove-Alias echo }
+if (Test-Path alias:where) { del alias:where -force }
+if (Test-Path alias:sort) { del alias:sort -force }
 
-Set-Alias -Name vi -Value 'C:\apps\nvim\bin\nvim.exe'
+Set-Alias -Name vi -Value 'nvim'
 Set-Alias -Name find -Value 'c:\msys64\usr\bin\find.exe'
 
 Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -1 @args }
