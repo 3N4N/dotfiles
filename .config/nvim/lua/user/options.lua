@@ -37,7 +37,8 @@ if vim.g.env == "WIN" then
     vim.opt.shellpipe = ">%s 2>&1"
     vim.opt.shellquote = ""
     vim.opt.shellxquote = "\""
-    vim.opt.ssl = true
+    vim.opt.ssl = false
+    vim.opt.csl = "slash"
 end
 
 -- vim.opt.shell = 'pwsh -nop'
