@@ -97,7 +97,13 @@ if (Test-Path alias:where) { del alias:where -force }
 if (Test-Path alias:sort) { del alias:sort -force }
 
 Set-Alias -Name vi -Value 'nvim'
-Set-Alias -Name find -Value 'c:\msys64\usr\bin\find.exe'
+Set-Alias -Name md -Value 'C:/msys64/usr/bin/mkdir.exe'
+Set-Alias -Name fd -Value 'C:/msys64/usr/bin/find.exe'
+Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
+Set-Alias -Name find -Value 'C:/msys64/usr/bin/find.exe'
+Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
+Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
+
 
 Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -1 @args }
 Function ls { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhF @args }
@@ -107,11 +113,10 @@ Function la { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --ti
 Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
 Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
 
-Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
-Set-Alias -Name md -Value 'C:/msys64/usr/bin/mkdir.exe'
-Set-Alias -Name fd -Value 'C:/msys64/usr/bin/find.exe'
-Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
-Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
+Function Launch-VsDevShell
+{
+  & ${env:ProgramFiles(x86)}'/Microsoft Visual Studio/2019/Community/Common7/Tools/Launch-VsDevShell.ps1'
+}
 
 # Set-Alias -Name py -Value python
 # Set-Alias -Name py2 -Value python2
