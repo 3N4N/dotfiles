@@ -20,6 +20,7 @@ vim.opt.signcolumn = "no"
 vim.opt.colorcolumn = {0}
 vim.opt.fillchars = "vert:│"
 vim.opt.guicursor = ""
+vim.o.mouse = ""
 
 
 -- New split position
