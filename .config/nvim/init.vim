@@ -555,7 +555,7 @@ let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
 
 " -- Ctags ---------------------------------------------------------------------
 
-nnoremap <Leader>c :!ctags -R .<CR>
+nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
 
 
 " -- Uncrustify ----------------------------------------------------------------
