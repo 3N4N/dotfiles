@@ -8,19 +8,15 @@ $esc = [char]27
 Function prompt
 {
     $loc = Get-Location
-
     Write-Host "$loc" -ForegroundColor "blue" -NoNewline
     $out = "> "
-
     if ($env:WT_SESSION) {
         if ($loc.Provider.Name -eq "FileSystem") {
             $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
         }
     }
-
     return $out
 }
-
 
 # ------- PSReadLine -----------------------------------------------------------
 
@@ -96,6 +92,7 @@ if (Test-Path alias:echo) { Remove-Alias echo }
 if (Test-Path alias:where) { del alias:where -force }
 if (Test-Path alias:sort) { del alias:sort -force }
 
+Set-Alias -Name o -Value 'Start-Process'
 Set-Alias -Name vi -Value 'nvim'
 Set-Alias -Name md -Value 'C:/msys64/usr/bin/mkdir.exe'
 Set-Alias -Name fd -Value 'C:/msys64/usr/bin/find.exe'
@@ -103,6 +100,7 @@ Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
 Set-Alias -Name find -Value 'C:/msys64/usr/bin/find.exe'
 Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
 Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
+Set-Alias -Name tig -Value 'C:\Program Files\Git\usr\bin\tig.exe'
 
 
 Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -1 @args }
@@ -112,6 +110,7 @@ Function la { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --ti
 
 Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
 Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
+Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
 
 Function Launch-VsDevShell
 {
