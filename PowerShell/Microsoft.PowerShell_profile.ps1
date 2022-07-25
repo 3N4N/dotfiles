@@ -1,6 +1,3 @@
-# $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-$dirSep = [IO.Path]::DirectorySeparatorChar
-
 # ------- prompt ---------------------------------------------------------------
 
 $esc = [char]27
@@ -114,9 +111,15 @@ Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview
 
 Function Launch-VsDevShell
 {
+  $env:Path = ($env:Path.Split(';') `
+      | Where-Object { $_ -ne 'c:\msys64\mingw64\bin' } `
+      | Where-Object { $_ -ne 'c:\msys64\usr\bin' } ) -join ';'
   & ${env:ProgramFiles(x86)}'/Microsoft Visual Studio/2019/Community/Common7/Tools/Launch-VsDevShell.ps1'
 }
 
 # Set-Alias -Name py -Value python
 # Set-Alias -Name py2 -Value python2
 # Set-Alias -Name py3 -Value python3
+
+
+$env:PATH = "c:\msys64\mingw64\bin;c:\msys64\usr\bin;" + $env:Path
