@@ -38,16 +38,16 @@ Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
 }
 
 Set-PSReadLineOption -Colors @{
-  Command            = 'DarkYellow'
-  Number             = 'DarkGray'
-  Member             = 'DarkGray'
-  Operator           = 'DarkGray'
-  Type               = 'DarkGray'
-  Variable           = 'DarkGreen'
-  Parameter          = 'DarkGreen'
+  Command            = 'Yellow'
+  Number             = 'Black'
+  Member             = 'Black'
+  Operator           = 'Black'
+  Type               = 'Black'
+  Variable           = 'Green'
+  Parameter          = 'Green'
   InlinePrediction   = 'Gray'
-  ContinuationPrompt = 'DarkGray'
-  Default            = 'DarkGray'
+  ContinuationPrompt = 'Black'
+  Default            = 'Black'
 }
 
 
