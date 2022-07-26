@@ -49,4 +49,4 @@ doskey cmake = "c:\msys64\mingw64\bin\cmake.exe" $*
 doskey cmakec = "c:\msys64\mingw64\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
 doskey cmaked = "c:\msys64\mingw64\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
 
-set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
+:: set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
