@@ -2,17 +2,29 @@
 
 $esc = [char]27
 
+# disable python venv auto prompt
+$env:VIRTUAL_ENV_DISABLE_PROMPT = 0
+
 Function prompt
 {
-    $loc = Get-Location
-    Write-Host "$loc" -ForegroundColor "blue" -NoNewline
-    $out = "> "
-    if ($env:WT_SESSION) {
-        if ($loc.Provider.Name -eq "FileSystem") {
-            $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
-        }
+  # prepend python venv info when enabled
+  if (($env:VIRTUAL_ENV_DISABLE_PROMPT) -and ($env:VIRTUAL_ENV -ne $null)) {
+    Write-Host "($( Split-Path $env:VIRTUAL_ENV -Leaf )) " -ForegroundColor "green" -NoNewline
+  }
+
+  # current working directory
+  $loc = Get-Location
+  Write-Host "$loc" -ForegroundColor "blue" -NoNewline
+  $out = "> "
+
+  # OSC9;9; code for opening WT split in current directory
+  if ($env:WT_SESSION) {
+    if ($loc.Provider.Name -eq "FileSystem") {
+      $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
     }
-    return $out
+  }
+
+  return $out
 }
 
 # ------- PSReadLine -----------------------------------------------------------
