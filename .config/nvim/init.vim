@@ -726,10 +726,10 @@ nnoremap <silent>gx :lua require("user.functions").betterGX()<CR>
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
-if filereadable("local.vim")
+if filereadable('local.vim')
     source local.vim
 endif
 
-if filereadable(".local.vim")
+if filereadable('.local.vim')
     source .local.vim
 endif
