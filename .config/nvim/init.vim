@@ -185,8 +185,8 @@ nnoremap <Leader>ws <Nop>
 nnoremap <Leader>ww :vert res 85<CR>
 
 " Switch tabpages
-nnoremap <Leader>] gt
-nnoremap <Leader>[ gT
+nnoremap ) gt
+nnoremap ( gT
 
 " Handy bracket mappings
 let s:pairs = { 'a' : '', 'b' : 'b', 'l' : 'l', 'q' : 'c', 't' : 't' }
