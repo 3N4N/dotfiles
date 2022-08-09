@@ -112,9 +112,8 @@ Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
 Set-Alias -Name tig -Value 'C:\Program Files\Git\usr\bin\tig.exe'
 
 
-Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -1 @args }
-Function ls { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhF @args }
-Function ll { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
+Set-Alias -Name ls -Value Get-ChildItem
+Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
 Function la { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
 
 Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
