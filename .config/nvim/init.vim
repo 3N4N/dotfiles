@@ -303,8 +303,8 @@ command! Date put =strftime('%Y-%m-%d')
 
 command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 
-command! -nargs=1 -complete=function Echo
-            \ let output = <args> |
+command! -nargs=1 -complete=function Echopy
+            \ let output = expand(<args>) |
             \ echo output |
             \ let @* = output |
             \ unlet output
