@@ -688,6 +688,10 @@ command! Uncrustify  let s:save_cursor = getcurpos()
 nnoremap <Leader>u :Uncrustify<CR>
 xnoremap <Leader>u :UncrustifyRange<CR>
 
+if !empty(findfile('src/uncrustify.cfg', ';'))
+  let &formatprg = 'uncrustify -q -l C -c src/uncrustify.cfg --no-backup'
+endif
+
 
 " -- Telescope -----------------------------------------------------------------
 
