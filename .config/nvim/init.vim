@@ -47,8 +47,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-" Plug 'ludovicchabant/vim-gutentags'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
 
