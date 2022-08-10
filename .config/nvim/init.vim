@@ -230,7 +230,7 @@ endif
 " -- Key Mapping ---------------------------------------------------------------
 
 " Map leader
-let mapleader = '\<Space>'
+let mapleader = "\<Space>"
 
 " Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
