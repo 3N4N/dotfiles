@@ -457,7 +457,7 @@ command! -range=% Paste execute <line1> . "," . <line2>
       \ . (has('unix') ? "xclip -selection clipboard" : "win32yank.exe -i")
 
 " Redirect the output of a Vim or external command into a scratch buffer
-command! -nargs=1 Redir
+command! -nargs=1 -complete=command Redir
             \ tabnew |
             \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
             \ call setline(1, split(execute(<q-args>), "\n"))
