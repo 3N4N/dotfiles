@@ -138,4 +138,9 @@ call s:HL("SpellCap", s:yellow, s:base03, "underline")
 call s:HL("SpellLocal", s:base0, s:base03, "underline")
 call s:HL("SpellRare", s:blue, s:base03, "underline")
 
+
+" hl-user1..9 for statusline (mainly)
+call s:HL("User1", s:red, s:base01, "bold")
+call s:HL("User2", s:base01, s:cyan, "bold")
+
 " }}}

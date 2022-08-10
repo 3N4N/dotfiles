@@ -647,12 +647,12 @@ endfunction
 
 let &laststatus = 2
 
-let &statusline = "[%{winnr()}]"
+let &statusline = "%2* %{winnr()} %*"
 let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.')):'[No Name]'}"
-let &statusline .= " %{&modified?'◆':''}"
-let &statusline .= "%{&readonly||!&modifiable?'ø':''}"
+let &statusline .= " %1*%{&modified?'〆':''}%0*"
+let &statusline .= "%1*%{&readonly||!&modifiable?'✗':''}%0*"
 let &statusline .= "%="
-let &statusline .= "%l,%v"
+let &statusline .= "%2* %l: %v %*"
 
 " -- Tabline -------------------------------------------------------------------
 
