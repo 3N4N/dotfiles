@@ -147,7 +147,7 @@ endif
 " Wildmenu settings
 set complete-=t
 let &wildmenu = 1
-let &wildignorecase = 0
+let &wildignorecase = 1
 let &wildmode = 'full'
 let &wildoptions = 'pum'
 let &pumblend=0
