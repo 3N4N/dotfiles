@@ -419,6 +419,7 @@ else
     " tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 tnoremap <Esc> <C-\><C-n>
+nnoremap <C-A-l> <C-l>
 
 
 cabbrev cmakefile CMakeLists.txt
