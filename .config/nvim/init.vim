@@ -131,11 +131,17 @@ let &smartcase = 1
 let &wrapscan = 1
 noh
 
-" -- vimgrep
+" vimgrep
+if executable('rg')
+  " use ripgrep
+  let &grepprg = 'rg --hidden --smart-case --vimgrep -g "!tags"'
+else
+  " use plain grep
 if g:env == 'WIN'
   let &grepprg = 'grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude="tags"'
 else
   let &grepprg = 'grep -IHnri --exclude-dir={.git,node_modules} --exclude="tags"'
+endif
 endif
 
 " Wildmenu settings
