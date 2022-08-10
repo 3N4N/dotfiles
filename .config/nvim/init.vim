@@ -62,7 +62,7 @@ call plug#end()
 
 
 
-" -- User-specific lua config --------------------------------------------------
+" -- lua config ----------------------------------------------------------------
 
 lua require('plenary.reload').reload_module('user', true)
 
@@ -72,13 +72,15 @@ lua require('user.lspconfig')
 lua require('user.functions')
 
 
-" -- Colorscheme
+" -- User config ---------------------------------------------------------------
+
+" Colorscheme
 syntax on
 let &termguicolors = 1
 let &background = "light"
 colorscheme violet
 
-" -- Visual perks
+" Visual perks
 let &conceallevel = 0
 let &cursorcolumn = 0
 let &cursorline = 0
@@ -94,15 +96,15 @@ let &fillchars = 'vert:│'
 let &guicursor = ''
 let &mouse = ''
 
-" -- New split position
+" New split position
 let &splitbelow = 0
 let &splitright = 0
 
-" -- Dictionary and spelling
+" Dictionary and spelling
 let &dictionary = '/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english'
 let &spelllang= 'en_us'
 
-" -- Set default shell in windows
+" Set default shell in windows
 if g:env == "WIN"
   " let &shell = 'C:\\\\Windows\\\\System32\\\\cmd.exe'
   " let &shellredir = '>%s 2>&1'
@@ -121,7 +123,7 @@ if g:env == "WIN"
   let &csl = 'slash'
 endif
 
-" -- Searching
+" Searching
 let &hlsearch = 1
 let &ignorecase = 1
 let &incsearch = 1
@@ -136,7 +138,7 @@ else
   let &grepprg = 'grep -IHnri --exclude-dir={.git,node_modules} --exclude="tags"'
 endif
 
-" -- Wildmenu settings
+" Wildmenu settings
 set complete-=t
 let &wildmenu = 1
 let &wildignorecase = 0
@@ -151,26 +153,26 @@ let &wildignore .= '*.bmp,*.gif,*ico,*.jpg,*.png'
 let &wildignore .= '*.pdf,*.doc,*.docx,*.ppt,*.pptx'
 let &wildignore .= '*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz'
 
-" -- Show useful visual icons
+" Show useful visual icons
 let &list = 1
 let &listchars = 'tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«'
 
-" -- Wrap lines visually
+" Wrap lines visually
 let &wrap = 0
 let &breakindent = 1
 let &linebreak = 1
 let &showbreak = '↪ '
 
-" -- Folding
+" Folding
 let &foldcolumn = '0'
 let &foldmethod = 'manual'
 
-" -- Keymap timeout settings
+" Keymap timeout settings
 let &timeout = 0
 let &ttimeout = 1
 let &ttimeoutlen = 10
 
-" -- Miscellaneous settings
+" Miscellaneous settings
 set cpoptions-=aA
 let &joinspaces = 0
 let &inccommand = 'nosplit'
@@ -192,7 +194,8 @@ let &diffopt .= 'algorithm:patience,indent-heuristic,'
 let g:R_assign = 2
 let g:tex_flavor = 'latex'
 
-" -- Backup and swap
+
+" -- Backup & Undo & Swap ------------------------------------------------------
 
 let &backup = 0
 let &swapfile = 0
@@ -207,6 +210,7 @@ else
   let &directory = expand('~/.local/share/nvim/swap//')
   let &undodir = expand('~/.local/share/nvim/undo//')
 endif
+
 
 " -- Tab settings --------------------------------------------------------------
 
