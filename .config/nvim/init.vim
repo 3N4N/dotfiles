@@ -416,57 +416,57 @@ nnoremap - :<C-u>call CenterNextBlock()<CR>
 function! CenterPrevBlock() abort
   let l:cur_line = getline(".")
   if (l:cur_line != '')
-    normal! {
+    execute "normal! {"
+    let l:line1 = line(".")
+    keepjumps normal! {
+    else
       let l:line1 = line(".")
-      keepjumps normal! {
-      else
-        let l:line1 = line(".")
-        normal! {
-        endif
-        let l:line2 = line(".")
-        let l:line = l:line1 - ((l:line1 - l:line2) / 2)
-        execute "call cursor(" . l:line . ",1)"
-        normal! zz
-      endfunction
-      nnoremap _ :<C-u>call CenterPrevBlock()<CR>
+      execute "normal! {"
+  endif
+  let l:line2 = line(".")
+  let l:line = l:line1 - ((l:line1 - l:line2) / 2)
+  execute "call cursor(" . l:line . ",1)"
+  normal! zz
+endfunction
+nnoremap _ :<C-u>call CenterPrevBlock()<CR>
 
-      function! UpdateTodoKeywords(...) abort
-        let newKeywords = join(a:000, " ")
-        let synTodo = map(filter(split(execute("syntax list"), '\n'),
-              \ { i,v -> match(v, '^\w*Todo\>') == 0}),
-              \ {i,v -> substitute(v, ' .*$', '', '')})
-        for synGrp in synTodo
-          execute "syntax keyword " . synGrp . " contained " . newKeywords
-        endfor
-      endfunction
+function! UpdateTodoKeywords(...) abort
+  let newKeywords = join(a:000, " ")
+  let synTodo = map(filter(split(execute("syntax list"), '\n'),
+        \ { i,v -> match(v, '^\w*Todo\>') == 0}),
+        \ {i,v -> substitute(v, ' .*$', '', '')})
+  for synGrp in synTodo
+    execute "syntax keyword " . synGrp . " contained " . newKeywords
+  endfor
+endfunction
 
-      augroup todo
-        autocmd!
-        " autocmd Syntax * call UpdateTodoKeywords("NOTE", "NOTES")
-        autocmd Syntax * call UpdateTodoKeywords("NOTE")
-      augroup END
+augroup todo
+  autocmd!
+  " autocmd Syntax * call UpdateTodoKeywords("NOTE", "NOTES")
+  autocmd Syntax * call UpdateTodoKeywords("NOTE")
+augroup END
 
 
 
-      " -- Autocommands --------------------------------------------------------------
+" -- Autocommands --------------------------------------------------------------
 
-      augroup custom_term
-        autocmd!
-        autocmd TermOpen * setlocal nonumber norelativenumber
-        autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
-        " autocmd BufEnter term://* startinsert
-      augroup END
+augroup custom_term
+  autocmd!
+  autocmd TermOpen * setlocal nonumber norelativenumber
+  autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
+  " autocmd BufEnter term://* startinsert
+augroup END
 
-      augroup quickfix
-        autocmd!
-        autocmd QuickFixCmdPost [^l]* nested cwindow
-        autocmd QuickFixCmdPost    l* nested lwindow
-      augroup END
+augroup quickfix
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
 
-      " augroup resize_splits
-      "     au!
-      "     au VimResized * wincmd =
-      " augroup END
+" augroup resize_splits
+"     au!
+"     au VimResized * wincmd =
+" augroup END
 
 
 " -- Title ---------------------------------------------------------------------

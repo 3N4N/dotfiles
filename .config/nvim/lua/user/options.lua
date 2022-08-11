@@ -4,7 +4,6 @@ vim.opt.termguicolors = true
 vim.opt.background = "light"
 vim.cmd([[ colo violet ]])
 
-
 -- Visual perks
 vim.opt.conceallevel = 0
 vim.opt.cursorcolumn = false
@@ -21,11 +20,9 @@ vim.opt.fillchars = "vert:│"
 vim.opt.guicursor = ""
 vim.o.mouse = ""
 
-
 -- New split position
 vim.opt.splitbelow = false
 vim.opt.splitright = false
-
 
 -- Dictionary and spelling
 vim.opt.dictionary = "/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english"
@@ -33,20 +30,20 @@ vim.opt.spelllang= "en_us"
 
 -- Set default shell in windows
 if vim.g.env == "WIN" then
-    -- vim.opt.shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
-    -- vim.opt.shellredir = ">%s 2>&1"
-    -- vim.opt.shellpipe = ">%s 2>&1"
-    -- vim.opt.shellquote = ""
-    -- vim.opt.shellxquote = "\""
-    -- vim.opt.ssl = false
-    -- vim.opt.csl = "slash"
+  -- vim.opt.shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
+  -- vim.opt.shellredir = ">%s 2>&1"
+  -- vim.opt.shellpipe = ">%s 2>&1"
+  -- vim.opt.shellquote = ""
+  -- vim.opt.shellxquote = "\""
+  -- vim.opt.ssl = false
+  -- vim.opt.csl = "slash"
 
-    vim.opt.shell = 'pwsh'
-    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-    vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-    vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-    vim.opt.shellquote = ""
-    vim.opt.shellxquote = ""
+  vim.opt.shell = 'pwsh'
+  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
 end
 
 -- Searching
@@ -57,11 +54,17 @@ vim.opt.smartcase = true
 vim.opt.wrapscan = true
 vim.cmd [[ noh ]]
 
-
-if vim.g.env == "WIN" then
-    vim.opt.grepprg = "grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude=\"tags\""
+-- vimgrep
+if vim.fn.executable('rg') then
+  -- use ripgrep
+  vim.opt.grepprg = 'rg --hidden --smart-case --vimgrep -g "!tags"'
 else
-    vim.opt.grepprg = "grep -IHnri --exclude-dir={.git,node_modules} --exclude=\"tags\""
+  -- use plain grep
+  if vim.g.env == 'WIN' then
+    vim.opt.grepprg = 'grep -IHnri --exclude-dir=.git --exclude-dir=node_modules --exclude="tags"'
+  else
+    vim.opt.grepprg = 'grep -IHnri --exclude-dir={.git,node_modules} --exclude="tags"'
+  end
 end
 
 -- Wildmenu settings
@@ -134,13 +137,13 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 
 if vim.g.env == "WIN" then
-    vim.opt.backupdir = vim.fn.expand("~/AppData/Local/nvim-data/backup/")
-    vim.opt.directory = vim.fn.expand("~/AppData/Local/nvim-data/swap/")
-    vim.opt.undodir = vim.fn.expand("~/AppData/Local/nvim-data/undo/")
+  vim.opt.backupdir = vim.fn.expand("~/AppData/Local/nvim-data/backup/")
+  vim.opt.directory = vim.fn.expand("~/AppData/Local/nvim-data/swap/")
+  vim.opt.undodir = vim.fn.expand("~/AppData/Local/nvim-data/undo/")
 else
-    vim.opt.backupdir = vim.fn.expand("~/.local/share/nvim/backup//")
-    vim.opt.directory = vim.fn.expand("~/.local/share/nvim/swap//")
-    vim.opt.undodir = vim.fn.expand("~/.local/share/nvim/undo//")
+  vim.opt.backupdir = vim.fn.expand("~/.local/share/nvim/backup//")
+  vim.opt.directory = vim.fn.expand("~/.local/share/nvim/swap//")
+  vim.opt.undodir = vim.fn.expand("~/.local/share/nvim/undo//")
 end
 
 
@@ -151,15 +154,15 @@ vim.opt.shiftround = true
 vim.opt.expandtab = true
 
 for _,tabstuff in pairs({ 'tabstop', 'softtabstop', 'shiftwidth' }) do
-  vim.opt[tabstuff] = 3
+  vim.opt[tabstuff] = 2
 end
 
 
 -- Make ----------------------------------------------------------------------
 
 if vim.fn.isdirectory("build") == 1 then
-    -- vim.opt.makeprg = "make -C build"
-    vim.opt.makeprg = "ninja -C build"
+  -- vim.opt.makeprg = "make -C build"
+  vim.opt.makeprg = "ninja -C build"
 else
-    vim.opt.makeprg = "make"
+  vim.opt.makeprg = "make"
 end
