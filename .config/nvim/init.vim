@@ -141,8 +141,7 @@ nnoremap <Leader>dt :windo diffthis<CR>
 nnoremap <Leader>do :windo diffoff<CR>
 
 " Opening files
-nnoremap <Leader>e :e **/*
-nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
+nnoremap <Leader>e :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
       \<S-left><Left><Left><Left>
 
 " Show name of syntax element below cursor
