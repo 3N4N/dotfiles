@@ -44,6 +44,8 @@ if vim.g.env == "WIN" then
   vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
   vim.opt.shellquote = ""
   vim.opt.shellxquote = ""
+  vim.opt.ssl = false
+  vim.opt.csl = "slash"
 end
 
 -- Searching
