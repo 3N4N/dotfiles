@@ -25,9 +25,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<leader>lC', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>lF', vim.lsp.buf.formatting, bufopts)
-  vim.keymap.set('n', '<bslash>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<bslash>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<bslash>wl', function()
+  vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<leader>lwl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
 end
@@ -38,6 +38,6 @@ local lsp_flags = {
 }
 
 require'lspconfig'.clangd.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
