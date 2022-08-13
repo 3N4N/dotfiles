@@ -7,12 +7,12 @@
   name = Enan Ajmain
   signingkey = 10D38A5DC03CCD408A24C1B67FBDF102C090B06C
 [credential]
-  helper = cache --timeout=1800
+  helper = manager-core
 [core]
   abbrev = 12
   preloadindex = true
   fscache = true
-    ; pager = less -+$LESS
+  ; pager = less -+$LESS
   editor = nvim
   filemode = false
 [log]
