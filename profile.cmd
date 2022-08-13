@@ -3,14 +3,14 @@
 PROMPT = $e]9;9;$p$e\$e[1;34m$p$e[1;0m$g$s
 
 doskey o = start $*
-doskey ocmd = start cmd.exe $*
 doskey cd = cd /d $*
 doskey ns = nslookup $*
 doskey ip = ipconfig $*
 doskey vi = nvim $*
 doskey grep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
-doskey xclip = win32yank.exe $*
+doskey egrep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" -E $*
 doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
+doskey xclip = win32yank.exe $*
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 
 doskey ffmpeg = ffmpeg -hide_banner $*
@@ -29,24 +29,24 @@ doskey docksh = docker exec -it $1 /bin/bash
 doskey msys = C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys
 doskey m64 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
 doskey m32 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
-doskey vsdev = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" -arch=x64 -host_arch=x64
+doskey vsdev = C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64
 
 :: shortcuts to msys utilties
-doskey ls = "C:\Program Files\Git\usr\bin\ls" -NvhF --group-directories-first $*
-doskey l = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ $*
-doskey la = "C:\Program Files\Git\usr\bin\ls" -NvhFl --group-directories-first --time-style=+ -A $*
-doskey md = "C:\Program Files\Git\usr\bin\mkdir" -p $*
-doskey tar = "C:\Program Files\Git\usr\bin\tar" $*
-doskey gdb =  C:\msys64\mingw64\bin\gdb -q $*
-doskey fd = C:\msys64\usr\bin\find $*
-doskey tree = C:\msys64\usr\bin\tree -F $*
-doskey echo = "C:/Program Files/Git/usr/bin/echo.exe" $*
-doskey find = "C:/Program Files/Git/usr/bin/find.exe" $*
-doskey du = "C:/Program Files/Git/usr/bin/du.exe" $*
+doskey ls = "C:/msys64/usr/bin/ls" -NvhF --group-directories-first $*
+doskey l = "C:/msys64/usr/bin/ls" -NvhFl --group-directories-first --time-style=+ $*
+doskey la = "C:/msys64/usr/bin/ls" -NvhFl --group-directories-first --time-style=+ -A $*
+doskey md = "C:/msys64/usr/bin/mkdir" -p $*
+doskey tar = "C:/msys64/usr/bin/tar" $*
+doskey gdb =  "C:/msys64/mingw64/bin/gdb" -q $*
+doskey fd = "C:/msys64/usr/bin/find" $*
+doskey tree = "C:/msys64/usr/bin/tree" -F $*
+doskey echo = "C:/msys64/usr/bin/echo.exe" $*
+doskey find = "C:/msys64/usr/bin/find.exe" $*
+doskey du = "C:/msys64/usr/bin/du.exe" $*
 doskey mpv = "C:/apps/mpv/mpv.exe" $*
 
-doskey cmake = "c:\msys64\mingw64\bin\cmake.exe" $*
-doskey cmakec = "c:\msys64\mingw64\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
-doskey cmaked = "c:\msys64\mingw64\bin\cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
+doskey cmake = "c:/msys64/mingw64/bin/cmake.exe" $*
+doskey cmakec = "c:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
+doskey cmaked = "c:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
 
-:: set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
+set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%

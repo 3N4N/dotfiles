@@ -109,12 +109,10 @@ Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
 Set-Alias -Name find -Value 'C:/msys64/usr/bin/find.exe'
 Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
 Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
-Set-Alias -Name tig -Value 'C:\Program Files\Git\usr\bin\tig.exe'
-
 
 Set-Alias -Name ls -Value Get-ChildItem
-Function l { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
-Function la { & 'C:/Program Files/Git/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
+Function l { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
+Function la { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
 
 Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
 Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
