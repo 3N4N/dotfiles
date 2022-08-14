@@ -282,10 +282,13 @@ onoremap aa :normal vaa<CR>
 
 " -- Functions and Commands ----------------------------------------------------
 
+" Lua utilities
 command! -nargs=1 Inspect lua print(vim.inspect(<args>))
+command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 
 " Send selected text to a pastebin
-command! -range=% Paste execute <line1> . "," . <line2>
+command! -range=% Paste
+      \ execute <line1> . "," . <line2>
       \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | "
       \ . (has('unix') ? "xclip -selection clipboard" : "win32yank.exe -i")
 
@@ -296,8 +299,6 @@ command! -nargs=1 -complete=command Redir
       \ call setline(1, split(execute(<q-args>), "\n"))
 
 command! Date put =strftime('%Y-%m-%d')
-
-command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 
 command! -nargs=1 -complete=function Echopy
       \ let output = expand(<args>) |
@@ -317,19 +318,6 @@ if !&et
   inoremap <Tab> <C-R>=SpecialTab()<CR>
 endif
 
-" Repeatable window resize
-function! RepeatResize(first) abort
-  let l:command = a:first
-  while stridx('+-><', l:command) != -1
-    execute "normal! \<C-w>" . l:command
-    redraw
-    let l:command = nr2char(getchar())
-  endwhile
-endfunction
-nnoremap <Leader>w- :call RepeatResize('-')<CR>
-nnoremap <Leader>w+ :call RepeatResize('+')<CR>
-nnoremap <Leader>w< :call RepeatResize('<')<CR>
-nnoremap <Leader>w> :call RepeatResize('>')<CR>
 
 " Switch windows effortlessly
 function! SwitchWindow(count) abort
@@ -525,12 +513,6 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
 nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
 xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
-
-nnoremap <silent><Bslash>cc :lua require("docommenter").docformat_text()<CR>
-nnoremap <silent><Bslash>ci :lua require("docommenter").docinfo()<CR>
-
-nnoremap <silent>gx :call BetterGX()<CR>
-
 
 " -- Load Local Vimrc ----------------------------------------------------------
 
