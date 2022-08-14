@@ -1,24 +1,18 @@
 " -- Stautsline ----------------------------------------------------------------
 
-function! MyStatusLine() abort
-  let filename = expand('%:~:.')
-  if filename !=# ''
-    if strlen(filename) > winwidth(0) - 10
-      let filename = pathshorten(filename)
-    endif
-  else
-    let filename = '[No Name]'
+function! PathShortenIfLong(path)
+  if strlen(a:path) > winwidth(0) - 10
+    return pathshorten(a:path)
   endif
-
-  let status = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}"
-  let status .= " %<" . filename
-  let status .= "%="
-  let status .= " %l: %v "
-  return status
+  return a:path
 endfunction
 
 let &laststatus = 2
-let &statusline = '%!MyStatusLine()'
+
+let &statusline = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}"
+let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.')):'[No Name]'}"
+let &statusline .= "%="
+let &statusline .= " %l: %v "
 
 
 " -- Tabline -------------------------------------------------------------------
