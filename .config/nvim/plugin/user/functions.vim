@@ -83,3 +83,132 @@ endfunction
 nnoremap <silent><Bslash>ci :call DocInfo()<CR>
 nnoremap <silent><Bslash>cc :call DocFormat()<CR>
 nnoremap <silent><Bslash>cb :call DocBanner()<CR>
+
+
+" -- Switch windows effortlessly -------------------------------------------
+
+function! SwitchWindow(count) abort
+  let l:current_buf = winbufnr(0)
+  exe "buffer" . winbufnr(a:count)
+  exe a:count . "wincmd w"
+  exe "buffer" . l:current_buf
+  " wincmd p
+endfunction
+
+nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
+
+
+" -- Copy yanked text to tmux pane -----------------------------------------
+
+function! SendToTmux(visual, count) range abort
+  if (a:visual)
+    execute "normal! gv\"zy"
+  else
+    execute "normal! \"zyip"
+  endif
+
+  let text = @z
+  let text = substitute(text, ';', '\\;', 'g')
+  let text = substitute(text, '"', '\\"', 'g')
+  let text = substitute(text, '\n', '" Enter "', 'g')
+  let text = substitute(text, '!', '\\!', 'g')
+  let text = substitute(text, '%', '\\%', 'g')
+  let text = substitute(text, '#', '\\#', 'g')
+
+  silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
+  silent execute "!tmux send-keys -t " . a:count . "Enter"
+endfunction
+
+nnoremap <Leader>p :<C-u>call SendToTmux(0, v:count1)<CR>
+xnoremap <Leader>p :<C-u>call SendToTmux(1, v:count1)<CR>
+
+
+" -- Use * and # over visual selection -------------------------------------
+
+function! s:VSetSearch(cmdtype) abort
+  let t = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let _w = winsaveview()
+  let @s = t
+  call winrestview(_w)
+  unlet _w
+  unlet t
+endfunction
+
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
+
+
+" -- Get filenames ignoring `wildignore` -----------------------------------
+
+function! MyCompleteFileName() abort
+  " match a (potential) wildcard preceding cursor position
+  " NOTE: \f is a filename character, see :h 'isfname'
+  let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
+  let l:file_comp_list = getcompletion(l:pattern, "file")
+  " let l:file_comp_list += getcompletion(l:pattern, "file_in_path")
+  call complete(col('.') - len(l:pattern), l:file_comp_list)
+
+  " must return an empty string to show the menu
+  return ''
+endfunction
+
+inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
+
+
+" -- Center next and prev textblocks ---------------------------------------
+
+function! CenterNextBlock() abort
+  let l:cur_line = getline(".")
+  if (l:cur_line != '')
+    normal! }
+    let l:line1 = line(".")
+    keepjumps normal! }
+  else
+    let l:line1 = line(".")
+    normal! }
+  endif
+  let l:line2 = line(".")
+  let l:line = l:line1 + ((l:line2 - l:line1) / 2)
+  execute "call cursor(" . l:line . ",1)"
+  normal! zz
+endfunction
+
+function! CenterPrevBlock() abort
+  let l:cur_line = getline(".")
+  if (l:cur_line != '')
+    execute "normal! {"
+    let l:line1 = line(".")
+    keepjumps normal! {
+    else
+      let l:line1 = line(".")
+      execute "normal! {"
+  endif
+  let l:line2 = line(".")
+  let l:line = l:line1 - ((l:line1 - l:line2) / 2)
+  execute "call cursor(" . l:line . ",1)"
+  normal! zz
+endfunction
+
+nnoremap - :<C-u>call CenterNextBlock()<CR>
+nnoremap _ :<C-u>call CenterPrevBlock()<CR>
+
+
+" -- Add to syntax keyword Todo --------------------------------------------
+
+function! UpdateTodoKeywords(...) abort
+  let newKeywords = join(a:000, " ")
+  let synTodo = map(filter(split(execute("syntax list"), '\n'),
+        \ { i,v -> match(v, '^\w*Todo\>') == 0}),
+        \ {i,v -> substitute(v, ' .*$', '', '')})
+  for synGrp in synTodo
+    execute "syntax keyword " . synGrp . " contained " . newKeywords
+  endfor
+endfunction
+
+augroup todo
+  autocmd!
+  " autocmd Syntax * call UpdateTodoKeywords("NOTE", "NOTES")
+  autocmd Syntax * call UpdateTodoKeywords("NOTE")
+augroup END
