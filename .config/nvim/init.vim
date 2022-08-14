@@ -68,7 +68,6 @@ lua require('plenary.reload').reload_module('user', true)
 
 lua require('user.options')
 lua require('user.clipboard')
-lua require('user.statusline')
 lua require('user.plugins')
 lua require('user.lspconfig')
 lua require('user.functions')
@@ -258,9 +257,6 @@ else
   " tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 tnoremap <Esc> <C-\><C-n>
-nnoremap <C-A-l> <C-l>
-
-
 
 
 " -- Text Objects --------------------------------------------------------------
@@ -533,7 +529,7 @@ xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
 nnoremap <silent><Bslash>cc :lua require("docommenter").docformat_text()<CR>
 nnoremap <silent><Bslash>ci :lua require("docommenter").docinfo()<CR>
 
-nnoremap <silent>gx :lua require("user.functions").betterGX()<CR>
+nnoremap <silent>gx :call BetterGX()<CR>
 
 
 " -- Load Local Vimrc ----------------------------------------------------------
