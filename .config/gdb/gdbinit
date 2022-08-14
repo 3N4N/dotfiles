@@ -2,7 +2,7 @@
 # Email : 3nan.ajmain@gmail.com
 # Github: https://github.com/3N4N
 
-# ----------------- gdb options ----------------
+# -- gdb options -------------------------------------------------------------
 
 set prompt gdb> 
 
@@ -24,26 +24,23 @@ set python print-stack full
 set $64BITS = 1
 
 
-# ----------------- gdb aliases ----------------
+# -- gdb aliases -------------------------------------------------------------
 
 alias vmmap = maintenance info sections
-alias cls = shell clear
 
-
-# --------- hex/ascii dump an address ----------
+# -- hex/ascii dump an address -----------------------------------------------
 
 define ascii_char
-    if $argc != 1
-        help ascii_char
+  if $argc != 1
+    help ascii_char
+  else
+    set $_c = *(unsigned char *)($arg0)
+    if ($_c < 0x20 || $_c > 0x7E)
+        printf "."
     else
-        # thanks elaine :)
-        set $_c = *(unsigned char *)($arg0)
-        if ($_c < 0x20 || $_c > 0x7E)
-            printf "."
-        else
-            printf "%c", $_c
-        end
+        printf "%c", $_c
     end
+  end
 end
 document ascii_char
 Print ASCII value of byte at address ADDR.
@@ -52,14 +49,14 @@ Usage: ascii_char ADDR
 end
 
 define hex_quad
-    if $argc != 1
-        help hex_quad
-    else
-        printf "%02X %02X %02X %02X %02X %02X %02X %02X", \
-               *(unsigned char*)($arg0), *(unsigned char*)($arg0 + 1),     \
-               *(unsigned char*)($arg0 + 2), *(unsigned char*)($arg0 + 3), \
-               *(unsigned char*)($arg0 + 4), *(unsigned char*)($arg0 + 5), \
-               *(unsigned char*)($arg0 + 6), *(unsigned char*)($arg0 + 7)
+  if $argc != 1
+    help hex_quad
+  else
+    printf "%02X %02X %02X %02X %02X %02X %02X %02X", \
+            *(unsigned char*)($arg0), *(unsigned char*)($arg0 + 1),     \
+            *(unsigned char*)($arg0 + 2), *(unsigned char*)($arg0 + 3), \
+            *(unsigned char*)($arg0 + 4), *(unsigned char*)($arg0 + 5), \
+            *(unsigned char*)($arg0 + 6), *(unsigned char*)($arg0 + 7)
     end
 end
 document hex_quad
@@ -68,44 +65,44 @@ Usage: hex_quad ADDR
 end
 
 define hexdump
-    if $argc == 0
-        help hexdump
+  if $argc == 0
+    help hexdump
+  else
+    if $argc == 2
+      set $_size = $arg1
     else
-        if $argc == 2
-            set $_size = $arg1
-        else
-            set $_size = 4
-        end
-        set $_i = 0
-        while $_i < $_size
-            if ($64BITS == 1)
-            set $_addr = $arg0+$_i*8
-            printf "0x%016lX: ", $_addr
-            else
-            printf "0x%08X: ", $_addr
-            end
-            hex_quad $_addr
-            printf "\t\t"
-            ascii_char $_addr+0x0
-            ascii_char $_addr+0x1
-            ascii_char $_addr+0x2
-            ascii_char $_addr+0x3
-            ascii_char $_addr+0x4
-            ascii_char $_addr+0x5
-            ascii_char $_addr+0x6
-            ascii_char $_addr+0x7
-            printf "\n"
-            set $_i = $_i + 1
-        end
-        set $_i = 0
+      set $_size = 4
     end
+    set $_i = 0
+    while $_i < $_size
+      if ($64BITS == 1)
+        set $_addr = $arg0+$_i*8
+        printf "\e[1;34m0x%016llX: \e[m", $_addr
+      else
+        printf "\e[1;34m0x%08X: \e[m", $_addr
+      end
+      hex_quad $_addr
+      printf "\t\t"
+      ascii_char $_addr+0x0
+      ascii_char $_addr+0x1
+      ascii_char $_addr+0x2
+      ascii_char $_addr+0x3
+      ascii_char $_addr+0x4
+      ascii_char $_addr+0x5
+      ascii_char $_addr+0x6
+      ascii_char $_addr+0x7
+      printf "\n"
+      set $_i = $_i + 1
+    end
+    set $_i = 0
+  end
 end
 document hexdump
 Display a 16-byte hex/ASCII dump of memory at address ADDR.
 Usage: hexdump ADDR <N_Bytes>
 end
 
-# --------- fix Windows tui bug ----------------
+# -- fix Windows tui bug -----------------------------------------------------
 
 define hook-run
 tui disable
