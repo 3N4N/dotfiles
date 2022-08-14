@@ -18,19 +18,19 @@ let &statusline .= " %l: %v "
 " -- Tabline -------------------------------------------------------------------
 
 function! MyTabLine() abort
-    let s = ''
-    for tabnr in range(1, tabpagenr('$'))
-        let winnr = tabpagewinnr(tabnr)
-        let buflist = tabpagebuflist(tabnr)
-        let bufnr = buflist[winnr - 1]
-        let bufname = fnamemodify(bufname(bufnr), ':t')
-        let s .= '%' . tabnr . 'T'
-        let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-        let s .= ' ' . tabnr
-        let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
-    endfor
-    let s .= '%#TabLineFill#'
-    return s
+  let s = ''
+  for tabnr in range(1, tabpagenr('$'))
+    let winnr = tabpagewinnr(tabnr)
+    let buflist = tabpagebuflist(tabnr)
+    let bufnr = buflist[winnr - 1]
+    let bufname = fnamemodify(bufname(bufnr), ':t')
+    let s .= '%' . tabnr . 'T'
+    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tabnr
+    let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
+  endfor
+  let s .= '%#TabLineFill#'
+  return s
 endfunction
 
 let &showtabline = 1
