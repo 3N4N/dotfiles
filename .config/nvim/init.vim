@@ -70,7 +70,6 @@ lua require('user.options')
 lua require('user.clipboard')
 lua require('user.plugins')
 lua require('user.lspconfig')
-lua require('user.functions')
 
 
 " -- Key Mapping ---------------------------------------------------------------

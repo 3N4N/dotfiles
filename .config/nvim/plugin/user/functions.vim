@@ -10,7 +10,7 @@ function! BetterGX() abort
   elseif executable('open')
     let cmd = "open"
   else
-    echohl Error | echom "[BetterGX] Can't find proper opener for an URL!"
+    echohl Error | echom "[BetterGX] Can't find proper opener for an URL"
     return
   endif
 
@@ -212,3 +212,34 @@ augroup todo
   " autocmd Syntax * call UpdateTodoKeywords("NOTE", "NOTES")
   autocmd Syntax * call UpdateTodoKeywords("NOTE")
 augroup END
+
+
+" -- Utility function for setting shell ------------------------------------
+
+function! SetShell(shell) abort
+  let shells = ['cmd', 'pwsh', 'powershell']
+  if index(shells, a:shell) == -1
+    echohl Error | echom "[SetShell] Shell not found"
+  endif
+
+  if a:shell ==# "cmd"
+    let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
+    let &shellredir = ">%s 2>&1"
+    let &shellpipe = ">%s 2>&1"
+    let &shellquote = ""
+    let &shellxquote = "\""
+    let &ssl = 0
+    let &csl = "slash"
+  elseif a:shell ==# "pwsh" || a:shell ==# "powershell"
+    let &shell = a:shell
+    let &shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+    let &shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    let &shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    let &shellquote = ""
+    let &shellxquote = ""
+    let &ssl = 0
+    let &csl = "slash"
+  end
+endfunction
+
+command! -nargs=1 SetShell call SetShell(<q-args>)

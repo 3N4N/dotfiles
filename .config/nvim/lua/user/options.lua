@@ -30,22 +30,26 @@ vim.opt.spelllang= "en_us"
 
 -- Set default shell in windows
 if vim.g.env == "WIN" then
-  vim.opt.shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
-  vim.opt.shellredir = ">%s 2>&1"
-  vim.opt.shellpipe = ">%s 2>&1"
-  vim.opt.shellquote = ""
-  vim.opt.shellxquote = "\""
-  vim.opt.ssl = false
-  vim.opt.csl = "slash"
-
-  -- vim.opt.shell = 'pwsh'
-  -- vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-  -- vim.opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-  -- vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-  -- vim.opt.shellquote = ""
-  -- vim.opt.shellxquote = ""
-  -- vim.opt.ssl = false
-  -- vim.opt.csl = "slash"
+  local shell = "cmd"
+  -- local shell = "pwsh"
+  if shell == "cmd" then
+    vim.opt.shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
+    vim.opt.shellredir = ">%s 2>&1"
+    vim.opt.shellpipe = ">%s 2>&1"
+    vim.opt.shellquote = ""
+    vim.opt.shellxquote = "\""
+    vim.opt.ssl = false
+    vim.opt.csl = "slash"
+  elseif shell == "pwsh" or shell == "powershell" then
+    vim.opt.shell = shell
+    vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+    vim.opt.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    vim.opt.shellquote = ""
+    vim.opt.shellxquote = ""
+    vim.opt.ssl = false
+    vim.opt.csl = "slash"
+  end
 end
 
 -- Searching
