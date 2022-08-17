@@ -53,12 +53,13 @@ endfunction
 function! DocFormat() abort
   let cmntstr = &commentstring
   let cmntlen = &textwidth != 0 ? &textwidth : 80
-  let cmntlen = cmntlen - strlen(cmntstr)
+  let cmntlen = cmntlen - strlen(cmntstr) - 1
 
   let beauty = substitute(cmntstr, "%s", " " . repeat("-",cmntlen), "")
 
   let curline = getline('.')
-  let curline = " -- " . curline . " " . repeat("-", cmntlen - strlen(curline) - 5)
+  let prefix = &ft == "lua" ? " " : " -- "
+  let curline = prefix . curline . " " . repeat("-", cmntlen - strlen(curline) - len(prefix))
   let newline = substitute(cmntstr, "%s", curline, "")
   call setline(".", newline)
 endfunction
