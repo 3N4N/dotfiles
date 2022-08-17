@@ -6,13 +6,6 @@ setlocal formatoptions=tcqjroln
 setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,n:>
 " setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,n:>
 
-setlocal statusline=[%{winnr()}]
-            \\ %<%{expand('%:~:.')!=#''?expand('%:~:.'):'[No\ Name]'}
-			\\ %m%r
-			\%=
-			\\ %-14.(%l:%3(%v%)\ %)\ %{wordcount()['words']}W
-
-
 xnoremap <buffer> <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 
