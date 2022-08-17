@@ -57,6 +57,7 @@ Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
