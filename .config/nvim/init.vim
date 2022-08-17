@@ -305,6 +305,11 @@ command! -nargs=1 -complete=function Echopy
       \ let @* = output |
       \ unlet output
 
+command! -nargs=1 SetTabsize
+      \ set tabstop=<args> |
+      \ set softtabstop=<args> |
+      \ set shiftwidth=<args>
+
 " Use tabs for indentation and spaces for alignment
 function! SpecialTab() abort
   if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
