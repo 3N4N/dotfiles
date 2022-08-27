@@ -10,7 +10,7 @@ function! BetterGX() abort
   elseif executable('open')
     let cmd = "open"
   else
-    echohl Error | echom "[BetterGX] Can't find proper opener for an URL"
+    echohl Error | echom "[BetterGX] Can't find proper opener for an URL" | echohl None
     return
   endif
 
