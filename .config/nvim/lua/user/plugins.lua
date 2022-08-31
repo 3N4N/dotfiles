@@ -44,7 +44,7 @@ vim.g.rainbow_active = 1
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "python", "markdown" },
+  ensure_installed = { "c", "python", "markdown", "comment" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
