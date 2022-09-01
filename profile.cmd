@@ -13,10 +13,6 @@ doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
 doskey xclip = win32yank.exe $*
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 
-:: use directory stack
-doskey cd = pushd $*
-doskey pd = popd
-
 :: ffmpeg
 doskey ffmpeg = ffmpeg -hide_banner $*
 doskey ffplay = ffplay -hide_banner $*
