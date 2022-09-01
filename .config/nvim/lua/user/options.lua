@@ -128,7 +128,6 @@ vim.opt.diffopt = {}
 vim.opt.diffopt:append("internal")
 vim.opt.diffopt:append("filler")
 vim.opt.diffopt:append("closeoff")
-vim.opt.diffopt:append("iwhiteall")
 vim.opt.diffopt:append("algorithm:patience")
 vim.opt.diffopt:append("indent-heuristic")
 
