@@ -1,9 +1,9 @@
 @echo off
 
-PROMPT = $e]9;9;$p$e\$e[1;34m$p$e[1;0m$g$s
+PROMPT = $e]9;9;$p$e\$e[1;34m$p$e[1;0m$+$g$s
 
 :: aliases
-doskey o = start $*
+doskey o = start "" $*
 doskey ns = nslookup $*
 doskey ip = ipconfig $*
 doskey vi = nvim $*
