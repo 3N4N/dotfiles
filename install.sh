@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-DIR=$HOME/projects/dotFiles
+DIR=$HOME/projects/dotfiles
 
 if [ ! -d $HOME/.local/bin ]; then
   mkdir -p $HOME/.local/bin
