@@ -244,3 +244,83 @@ function! SetShell(shell) abort
 endfunction
 
 command! -nargs=1 SetShell call SetShell(<q-args>)
+
+
+function! GitOpenRemote(visual) abort
+  let available_domains = [ 'github', 'sr.ht' ]
+
+  function! System(cmd) abort
+    return substitute(system(a:cmd), '\n', '', 'g')
+  endfunction
+
+  function! ParseRemoteURL(url) abort
+    let url = a:url
+    if match(url, 'github') != -1
+      let domain = 'github'
+    elseif match(url, 'sr.ht') != -1
+      let domain = 'sr.ht'
+    else
+      let domain = ''
+    endif
+    let baseurl = substitute(url, ".*@\\(.*\\):", "\\1/", "")
+    if domain == "github"
+      let baseurl = substitute(baseurl, ".git$", "", "")
+    endif
+    return [baseurl, domain]
+  endfunction
+
+  function! GetFullRemoteURL(remote, branch, filename, lines) abort
+    let remote = a:remote
+    let branch = a:branch
+    let filename = a:filename
+    let [start, end] = a:lines
+
+    if start != 0 && end != 0
+      if remote.domain == "github"
+        let lines = "#L" . start . "-L" . end
+      elseif remote.domain == "sr.ht"
+        let lines = "#L" . start . "-" . end
+      endif
+    else
+      let lines = ""
+    endif
+
+    if remote.domain == "github"
+      let tree = "/tree/" . branch . "/" . filename . lines
+    elseif remote.domain == "sr.ht"
+      let tree = "/tree/" . branch . "/item/" . filename . lines
+    endif
+    let fullurl = remote.url . tree
+    return fullurl
+  endfunction
+
+  if a:visual == 1
+    let start = getpos("'<")[1]
+    let end = getpos("'>")[1]
+  else
+    let start = 0
+    let end = 0
+  endif
+
+  let gitroot = System("git rev-parse --show-toplevel")
+  let filename = substitute(expand('%:p'), gitroot.'\/', '', '')
+  let upbranch = System("git for-each-ref --format='%(upstream:short)' \"$(git symbolic-ref -q HEAD)\"")
+  let remote = {'name' : '', 'url': ''}
+  let remote.name = substitute(upbranch, "\\(.\\{-}\\)\\/.*", "\\1", "")
+  let upbranch = substitute(upbranch, remote.name . "\\/", "", "")
+  let [remote.url, remote.domain] = ParseRemoteURL(System("git config --get remote." . remote.name . ".url"))
+
+  if index(available_domains, remote.domain) == -1
+    echohl Error | echom "[GitOpenRemote] Remote not supported" | echohl None
+    return
+  endif
+
+  let fullurl = GetFullRemoteURL(remote, upbranch, filename, [start, end])
+  Echopy fullurl
+  delfunction System
+  delfunction ParseRemoteURL
+  delfunction GetFullRemoteURL
+endfunction
+
+nnoremap Z :<C-U>call GitOpenRemote(0)<CR>
+xnoremap Z :<C-U>call GitOpenRemote(1)<CR>
