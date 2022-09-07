@@ -220,7 +220,7 @@ augroup END
 function! SetShell(shell) abort
   let shells = ['cmd', 'pwsh', 'powershell']
   if index(shells, a:shell) == -1
-    echohl Error | echom "[SetShell] Shell not found"
+    echohl Error | echom "[SetShell] Shell not found" | echohl None
   endif
 
   if a:shell ==# "cmd"
