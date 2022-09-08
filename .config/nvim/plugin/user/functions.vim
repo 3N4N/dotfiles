@@ -245,6 +245,7 @@ endfunction
 
 command! -nargs=1 SetShell call SetShell(<q-args>)
 
+" -- Open file in remote git browser ---------------------------------------
 
 function! GitOpenRemote(visual) abort
   let available_domains = [ 'github', 'sr.ht' ]
@@ -303,20 +304,31 @@ function! GitOpenRemote(visual) abort
   endif
 
   let gitroot = System("git rev-parse --show-toplevel")
+  if v:shell_error != 0
+    echohl Error | echom "[GitOpenRemote] Not in a git repo" | echohl None
+    return
+  endif
   let filename = substitute(expand('%:p'), gitroot.'\/', '', '')
+
   let upbranch = System("git for-each-ref --format='%(upstream:short)' \"$(git symbolic-ref -q HEAD)\"")
+  if upbranch == ""
+    echohl Error | echom "[GitOpenRemote] Branch not tracked upstream" | echohl None
+    return
+  endif
+
   let remote = {'name' : '', 'url': ''}
   let remote.name = substitute(upbranch, "\\(.\\{-}\\)\\/.*", "\\1", "")
   let upbranch = substitute(upbranch, remote.name . "\\/", "", "")
   let [remote.url, remote.domain] = ParseRemoteURL(System("git config --get remote." . remote.name . ".url"))
 
   if index(available_domains, remote.domain) == -1
-    echohl Error | echom "[GitOpenRemote] Remote not supported" | echohl None
+    echohl Error | echom "[GitOpenRemote] " . remote.domain . " not supported" | echohl None
     return
   endif
 
   let fullurl = GetFullRemoteURL(remote, upbranch, filename, [start, end])
   Echopy fullurl
+
   delfunction System
   delfunction ParseRemoteURL
   delfunction GetFullRemoteURL
