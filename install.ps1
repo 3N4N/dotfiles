@@ -24,6 +24,9 @@ New-Item -Type Junction -Path "$MPVDIR" -Value $CURDIR/.config/mpv/
 Remove-Item -Recurse -Force $GDBDIR
 New-Item -Type Junction -Path "$GDBDIR" -Value $CURDIR/.config/gdb/
 
+Remove-Item -Recurse -Force "$HOME/.sig"
+New-Item -Type Junction -Path "$HOME/.sig" -Value $CURDIR/.sig/
+
 Remove-Item -Recurse -Force $HOME/.inputrc
 New-Item -Type SymbolicLink -Path "$HOME/.inputrc" -Value $CURDIR/.inputrc
 

@@ -20,6 +20,7 @@ DOTFILES=(
     ".tmux.conf"
     ".uncrustify.cfg"
     ".xinitrc"
+    ".sig"
     ".config/gdb"
     ".config/mpv"
     ".config/nvim"

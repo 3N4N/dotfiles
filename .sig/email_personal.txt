@@ -1,0 +1,13 @@
+3nan.ajmain@gmail.com
+https://www.github.com/3N4N
+https://git.sr.ht/~enan
+
+GPG Key ID: 448F8D0D0D6DB601566E396CA031EA10A3ECB75D
+Protect yourself from surveillance: https://emailselfdefense.fsf.org
+====================================================================
+
+Nothing beats good-old plain text. Why is HTML email a security
+nightmare? See https://useplaintext.email/
+
+Please avoid sending me MS-Office attachments.
+See http://www.gnu.org/philosophy/no-word-attachments.html
