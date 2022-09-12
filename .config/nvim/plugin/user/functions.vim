@@ -310,7 +310,8 @@ function! GitOpenRemote(visual) abort
   endif
   let filename = substitute(expand('%:p'), gitroot.'\/', '', '')
 
-  let upbranch = System("git for-each-ref --format='%(upstream:short)' \"$(git symbolic-ref -q HEAD)\"")
+  let headref = System("git symbolic-ref -q HEAD")
+  let upbranch = System("git for-each-ref --format=\"%(upstream:short)\" " . headref)
   if upbranch == ""
     echohl Error | echom "[GitOpenRemote] Branch not tracked upstream" | echohl None
     return
