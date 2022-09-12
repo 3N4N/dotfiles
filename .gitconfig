@@ -5,7 +5,7 @@
 [user]
   email = 3nan.ajmain@gmail.com
   name = Enan Ajmain
-  signingkey = 10D38A5DC03CCD408A24C1B67FBDF102C090B06C
+  signingkey = 448F8D0D0D6DB601566E396CA031EA10A3ECB75D
 [credential]
   helper = manager-core
 [core]
@@ -28,8 +28,8 @@
   smtpUser = 3nan.ajmain@gmail.com
   ; smtpPass = gmail app pass
 [alias]
-  ls = log --all --source --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)[%an]%C(red)%d'
-  ll = log --stat --source -p
+  ls = log --source --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)[%an]%C(red)%d'
+  ll = log --source --stat -p
   br = branch
   ba = branch -av
   bv = branch -v
