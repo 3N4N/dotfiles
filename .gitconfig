@@ -19,6 +19,8 @@
   date = short
 [push]
   default = current
+[pager]
+  show = less -+$LESS -N
 [alias]
   ls = log --all --source --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)[%an]%C(red)%d'
   ll = log --stat --source -p
