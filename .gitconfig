@@ -46,5 +46,5 @@
   ds = diff --staged
   dw = diff --word-diff
   la = config --get-regexp alias
-  cnt = rev-list --count HEAD
+  cnt = rev-list --count
   wt = worktree
