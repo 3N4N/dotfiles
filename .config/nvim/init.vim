@@ -62,6 +62,18 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 
+" -- Load Local Vimrc ----------------------------------------------------------
+
+function! LoadLocalVimrc() abort
+  let files = ['local.vim', '.local.vim']
+  for file in files
+    if filereadable(file)
+      execute "source " . file
+    endif
+  endfor
+endfunction
+call LoadLocalVimrc()
+
 
 " -- lua config ----------------------------------------------------------------
 
@@ -407,12 +419,4 @@ nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
 nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
 xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
 
-" -- Load Local Vimrc ----------------------------------------------------------
-
-if filereadable('local.vim')
-  source local.vim
-endif
-
-if filereadable('.local.vim')
-  source .local.vim
-endif
+call LoadLocalVimrc()
