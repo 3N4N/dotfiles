@@ -37,7 +37,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-if vim.g.disableLSP ~= 1 then
+if vim.g.enableLSP == 1 then
   require'lspconfig'.clangd.setup{
     on_attach = on_attach,
     flags = lsp_flags,
