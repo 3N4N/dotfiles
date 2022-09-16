@@ -3,7 +3,7 @@ setlocal nospell
 setlocal wrap
 
 setlocal formatoptions=tcqjroln
-setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,n:>
+setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,b:o,n:>
 " setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,n:>
 
 xnoremap <buffer> <Leader><Bslash> :EasyAlign*<Bar><Enter>
