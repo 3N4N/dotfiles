@@ -247,11 +247,15 @@ command! -nargs=1 SetShell call SetShell(<q-args>)
 
 " -- Open file in remote git browser ---------------------------------------
 
-function! GitOpenRemote(visual) abort
+function! GitOpenRemote(start, end) abort
   let available_domains = [ 'github', 'sr.ht' ]
 
   function! System(cmd) abort
-    return substitute(system(a:cmd), '\n', '', 'g')
+    return systemlist(a:cmd)->join('')
+  endfunction
+
+  function! UnixifyPath(path) abort
+    return substitute(a:path, '\\', '/', 'g')
   endfunction
 
   function! ParseRemoteURL(url) abort
@@ -276,14 +280,20 @@ function! GitOpenRemote(visual) abort
     let filename = a:filename
     let [start, end] = a:lines
 
-    if start != 0 && end != 0
-      if remote.domain == "github"
-        let lines = "#L" . start . "-L" . end
-      elseif remote.domain == "sr.ht"
-        let lines = "#L" . start . "-" . end
-      endif
-    else
+    if start == 0 && end == 0
       let lines = ""
+    else
+      if remote.domain == "github"
+        let lines = "#L" . start
+        if start != end
+          let lines .= "-L" . end
+        endif
+      elseif remote.domain == "sr.ht"
+        let lines = "#L" . start
+        if start != end
+          let lines .= "-" . end
+        endif
+      endif
     endif
 
     if remote.domain == "github"
@@ -295,21 +305,12 @@ function! GitOpenRemote(visual) abort
     return fullurl
   endfunction
 
-  if a:visual == 1
-    let start = getpos("'<")[1]
-    let end = getpos("'>")[1]
-  else
-    let start = 0
-    let end = 0
-  endif
-
-  let gitroot = System("git rev-parse --show-toplevel")
+  let gitroot = UnixifyPath(System("git rev-parse --show-toplevel"))
   if v:shell_error != 0
     echohl Error | echom "[GitOpenRemote] Not in a git repo" | echohl None
     return
   endif
-  let filename = substitute(expand('%:p'),'\\', '/', 'g')
-  let filename = substitute(filename, gitroot.'\/', '', '')
+  let filename = substitute(UnixifyPath(expand('%:p')), gitroot.'\/', '', '')
 
   let headref = System("git symbolic-ref -q HEAD")
   let upbranch = System("git for-each-ref --format=\"%(upstream:short)\" " . headref)
@@ -328,13 +329,14 @@ function! GitOpenRemote(visual) abort
     return
   endif
 
-  let fullurl = GetFullRemoteURL(remote, upbranch, filename, [start, end])
-  Echopy fullurl
+  let fullurl = GetFullRemoteURL(remote, upbranch, filename, [a:start, a:end])
+  echom fullurl
+  let @* = fullurl
 
   delfunction System
   delfunction ParseRemoteURL
   delfunction GetFullRemoteURL
 endfunction
 
-nnoremap Z :<C-U>call GitOpenRemote(0)<CR>
-xnoremap Z :<C-U>call GitOpenRemote(1)<CR>
+nnoremap Z :<C-U>call GitOpenRemote(0,0)<CR>
+xnoremap Z :<C-U>call GitOpenRemote(getpos("'<")[1], getpos("'>")[1])<CR>
