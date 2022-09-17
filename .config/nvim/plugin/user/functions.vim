@@ -308,7 +308,8 @@ function! GitOpenRemote(visual) abort
     echohl Error | echom "[GitOpenRemote] Not in a git repo" | echohl None
     return
   endif
-  let filename = substitute(expand('%:p'), gitroot.'\/', '', '')
+  let filename = substitute(expand('%:p'),'\\', '/', 'g')
+  let filename = substitute(filename, gitroot.'\/', '', '')
 
   let headref = System("git symbolic-ref -q HEAD")
   let upbranch = System("git for-each-ref --format=\"%(upstream:short)\" " . headref)
