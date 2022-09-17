@@ -136,7 +136,7 @@ cnoremap <C-t> <Nop>
 
 " Use `:tjump` instead of `:tag`
 nnoremap <C-]> g<C-]>
-nnoremap <C-w><C-]> <C-w>g]
+nnoremap <C-w><C-]> <C-w>g<C-]>
 
 " Useful leader mappings
 nnoremap <Leader>; :
