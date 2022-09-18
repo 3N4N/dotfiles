@@ -22,7 +22,7 @@ fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GEM_HOME=$HOME/gems
-export LESS="-iSMR"
+export LESS="-iSMRF"
 export PAGER="less"
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
