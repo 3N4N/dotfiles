@@ -76,6 +76,11 @@ endfunction
 call LoadLocalVimrc()
 
 
+" -- source user plugins ---------------------------------------------------
+
+runtime plugin/user/functions.vim
+
+
 " -- lua config ----------------------------------------------------------------
 
 lua require('plenary.reload').reload_module('user', true)
