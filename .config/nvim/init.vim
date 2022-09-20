@@ -79,14 +79,14 @@ call LoadLocalVimrc()
 " -- source user plugins ---------------------------------------------------
 
 runtime plugin/user/functions.vim
+runtime plugin/user/options.vim
+runtime plugin/user/clipboard.vim
 
 
 " -- lua config ----------------------------------------------------------------
 
 lua require('plenary.reload').reload_module('user', true)
 
-lua require('user.options')
-lua require('user.clipboard')
 lua require('user.plugins')
 lua require('user.lspconfig')
 
