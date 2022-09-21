@@ -16,8 +16,20 @@ set showmode
 set signcolumn =no
 set colorcolumn =0
 set fillchars =vert:│
-set guicursor =""
-set mouse =""
+set list
+set listchars =tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
+set guicursor =
+set mouse =
+
+" -- line wrapping ---------------------------------------------------------
+set nowrap
+set breakindent
+set linebreak
+let &showbreak = '↪ '
+
+" -- folding ---------------------------------------------------------------
+set foldcolumn =0
+set foldmethod =manual
 
 " -- new split position ----------------------------------------------------
 set nosplitbelow
@@ -45,7 +57,7 @@ noh
 " -- vimgrep ---------------------------------------------------------------
 if executable('rg')
   " use ripgrep
-  set grepprg =rg\ --hidden\ --smart-case\ --vimgrep\ -g\ \"!tags\"
+  set grepprg =rg\ --smart-case\ --vimgrep\ -g\ \"!tags\"
 else
   " use plain grep
   if g:env == 'WIN'
@@ -69,20 +81,6 @@ set wildignore +=*.mp3,*.mp4,*mkv
 set wildignore +=*.bmp,*.gif,*ico,*.jpg,*.png
 set wildignore +=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 set wildignore +=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
-
-" -- visual icons ----------------------------------------------------------
-set list
-set listchars=tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
-
-" -- line wrapping ---------------------------------------------------------
-set nowrap
-set breakindent
-set linebreak
-set showbreak =↪
-
-" -- folding ---------------------------------------------------------------
-set foldcolumn =0
-set foldmethod =manual
 
 " -- keymap timeout settings -----------------------------------------------
 set notimeout
