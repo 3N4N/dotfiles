@@ -275,33 +275,26 @@ function! GitOpenRemote(start, end) abort
   endfunction
 
   function! GetFullRemoteURL(remote, branch, filename, lines) abort
-    let remote = a:remote
-    let branch = a:branch
-    let filename = a:filename
     let [start, end] = a:lines
-
     if start == 0 && end == 0
       let lines = ""
     else
-      if remote.domain == "github"
-        let lines = "#L" . start
-        if start != end
+      let lines = "#L" . start
+      if start != end
+        if a:remote.domain == "github"
           let lines .= "-L" . end
-        endif
-      elseif remote.domain == "sr.ht"
-        let lines = "#L" . start
-        if start != end
+        elseif a:remote.domain == "sr.ht"
           let lines .= "-" . end
         endif
       endif
     endif
 
-    if remote.domain == "github"
-      let tree = "/tree/" . branch . "/" . filename . lines
-    elseif remote.domain == "sr.ht"
-      let tree = "/tree/" . branch . "/item/" . filename . lines
+    if a:remote.domain == "github"
+      let tree = "/tree/" . a:branch . "/" . a:filename . lines
+    elseif a:remote.domain == "sr.ht"
+      let tree = "/tree/" . a:branch . "/item/" . a:filename . lines
     endif
-    let fullurl = remote.url . tree
+    let fullurl = a:remote.url . tree
     return fullurl
   endfunction
 
