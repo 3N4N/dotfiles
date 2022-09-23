@@ -338,5 +338,31 @@ function! GitOpenRemote(start, end) abort
   delfunction GetFullRemoteURL
 endfunction
 
-nnoremap Z :<C-U>call GitOpenRemote(0,0)<CR>
-xnoremap Z :<C-U>call GitOpenRemote(getpos("'<")[1], getpos("'>")[1])<CR>
+nnoremap <Leader>fo :<C-U>call GitOpenRemote(0,0)<CR>
+xnoremap <Leader>fo :<C-U>call GitOpenRemote(getpos("'<")[1], getpos("'>")[1])<CR>
+
+
+" -- Better mksession ------------------------------------------------------
+
+function! MakeSession(filename, bang) abort
+  let filename = a:filename == '' ? 'Session.vim' : a:filename
+  let _w = winsaveview()
+
+  let _qflist = getqflist()
+  let _qfinfo = getqflist({'title' : 1})
+  let _qfopen = !empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") ==# "quickfix"'))
+
+  for entry in _qflist | call setbufvar(entry['bufnr'], '&buflisted', 1) | endfor
+  cclose
+  execute 'mksession' . (a:bang == 1 ? '! ' : ' ') . filename
+  if _qfopen | cwindow | wincmd p | endif
+
+  let _setqflist = 'call setqflist(' . string(_qflist) . ')'
+  let _setqfinfo = 'call setqflist(' . '[],"a",' . string(_qfinfo) . ')'
+  call writefile([_setqflist, _setqfinfo], filename, 'a')
+  if _qfopen | call writefile(['cwindow', 'wincmd p'], filename, 'a') | endif
+
+  call winrestview(_w)
+endfunction
+
+command! -nargs=? -bang MakeSession call MakeSession(<q-args>, <bang>0)
