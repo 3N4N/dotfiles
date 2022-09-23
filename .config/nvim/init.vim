@@ -106,8 +106,8 @@ cabbrev cmakefile CMakeLists.txt
 inoremap <C-u> <Esc>m0gUiw`0a
 
 " Consistent movement
-noremap gh g^
-noremap gl g$
+noremap gh ^
+noremap gl $
 noremap j gj
 noremap k gk
 noremap gj j
