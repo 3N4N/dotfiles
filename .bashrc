@@ -172,7 +172,7 @@ start() {
 #                                      fzf
 # ----------------------------------------------------------------------
 
-if [ ! -d "$HOME/.fzf" ]; then
+if [[ ! -d "$HOME/.fzf" && $(uname -o) != "Msys" ]]; then
     git clone https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
     ./install --all --no-completion
