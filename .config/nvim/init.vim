@@ -76,12 +76,6 @@ endfunction
 call LoadLocalVimrc()
 
 
-" -- source user plugins ---------------------------------------------------
-
-runtime plugin/user/functions.vim
-runtime plugin/user/options.vim
-runtime plugin/user/clipboard.vim
-
 
 " -- lua config ----------------------------------------------------------------
 
@@ -367,6 +361,13 @@ augroup END
 
 set title
 let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
+
+
+" -- source user plugins ---------------------------------------------------
+
+runtime plugin/user/functions.vim
+runtime plugin/user/options.vim
+runtime plugin/user/clipboard.vim
 
 
 " -- Ctags ---------------------------------------------------------------------

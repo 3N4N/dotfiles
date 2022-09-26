@@ -47,7 +47,7 @@ set spelllang =en_us
 
 " -- set default shell in win32 --------------------------------------------
 if g:env == "WIN"
-  let shell = "pwsh"
+  let shell = "cmd"
   call SetShell(shell)
   unlet shell
 end
