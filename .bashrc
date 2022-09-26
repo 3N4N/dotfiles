@@ -83,8 +83,8 @@ alias md='mkdir -pv'
 alias psgrep='ps aux | head -n 1 && ps aux | grep -v grep | grep --color -i'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
-alias vi='nvim'
-alias vimdiff='nvim -d'
+alias vi='vim'
+alias vimdiff='vim -d'
 alias o='xdg-open'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
@@ -293,4 +293,21 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$blue\]\u\[$reset\]@\[$blue\]\h\[$reset\]:\[$yellow\]\w\[$reset\]\$ '
+sps() {
+  current_path=${PWD/#$HOME/'~'}
+  if [[ "$current_path" == "~" || "$current_path" == /* ]]; then
+    echo $current_path
+  else
+    path_parent=$(dirname $(dirname "$current_path"))
+    path_parent_short=`echo $path_parent | sed -r 's|/(.)[^/]*|/\1|g'`
+    parentdir=$(basename $(dirname "$current_path"))
+    directory=${current_path##*\/}
+    if [[ "$path_parent" == "." ]]; then
+      echo "$parentdir/$directory"
+    else
+      echo "$path_parent_short/$parentdir/$directory"
+    fi
+  fi
+}
+
+PS1='\[$yellow\]$(eval "sps")\[$reset\]\$ '
