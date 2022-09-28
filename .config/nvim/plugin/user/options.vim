@@ -109,6 +109,7 @@ set virtualedit =block
 
 let g:R_assign = 2
 let g:tex_flavor = "latex"
+let html_my_rendering = 1
 
 " -- backup / swap / undo --------------------------------------------------
 
