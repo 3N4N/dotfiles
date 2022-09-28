@@ -20,7 +20,7 @@ else
 endif
 
 
-" -- Vim Plug ------------------------------------------------------------------
+" -- Vim Plug --------------------------------------------------------------
 
 if g:env ==# 'UNIX' || g:env ==# 'WSL'
   let plug_vim = expand('~/.config/nvim/autoload/plug.vim')
@@ -61,7 +61,7 @@ Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 
-" -- Load Local Vimrc ----------------------------------------------------------
+" -- Load Local Vimrc ------------------------------------------------------
 
 function! LoadLocalVimrc() abort
   let files = ['local.vim', '.local.vim']
@@ -74,7 +74,7 @@ endfunction
 call LoadLocalVimrc()
 
 
-" -- Key Mapping ---------------------------------------------------------------
+" -- Key Mapping -----------------------------------------------------------
 
 " Map leader
 let mapleader = "\<Space>"
@@ -260,7 +260,7 @@ endif
 tnoremap <Esc> <C-\><C-n>
 
 
-" -- Text Objects --------------------------------------------------------------
+" -- Text Objects ----------------------------------------------------------
 
 " Simple text-objects
 for s:char in [ '_', '.', ':', ',', ';', '<Bar>', '/', '<Bslash>', '*', '+', '%', '`' ]
@@ -281,14 +281,16 @@ xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
 
-" -- source user plugins ---------------------------------------------------
+" -- source user plugins --------------------------------------------------
 
 runtime plugin/user/functions.vim
 runtime plugin/user/options.vim
+runtime plugin/user/statusline.vim
 runtime plugin/user/clipboard.vim
+runtime plugin/user/plugins.vim
 
 
-" -- lua config ----------------------------------------------------------------
+" -- lua config ------------------------------------------------------------
 
 lua require('plenary.reload').reload_module('user', true)
 
@@ -296,7 +298,7 @@ lua require('user.plugins')
 lua require('user.lspconfig')
 
 
-" -- Functions and Commands ----------------------------------------------------
+" -- Functions and Commands ------------------------------------------------
 
 " Lua utilities
 command! -nargs=1 Inspect lua print(vim.inspect(<args>))
@@ -340,7 +342,7 @@ if !&et
 endif
 
 
-" -- Autocommands --------------------------------------------------------------
+" -- Autocommands ----------------------------------------------------------
 
 augroup custom_term
   autocmd!
@@ -361,18 +363,18 @@ augroup END
 " augroup END
 
 
-" -- Title ---------------------------------------------------------------------
+" -- Title -----------------------------------------------------------------
 
 set title
 let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
 
 
-" -- Ctags ---------------------------------------------------------------------
+" -- Ctags -----------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
 
 
-" -- Uncrustify ----------------------------------------------------------------
+" -- Uncrustify ------------------------------------------------------------
 
 let g:uncrustifyCfgFile = expand("$HOME/.uncrustify.cfg")
 
@@ -394,7 +396,7 @@ if !empty(findfile('src/uncrustify.cfg', ';'))
 endif
 
 
-" -- Telescope -----------------------------------------------------------------
+" -- Telescope -------------------------------------------------------------
 
 lua require('user.telescope')
 
@@ -408,7 +410,7 @@ nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
 nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
 
 
-" -- Easy Align ----------------------------------------------------------------
+" -- Easy Align ------------------------------------------------------------
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -417,7 +419,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 
-" -- Lua Modules ---------------------------------------------------------------
+" -- Lua Modules -----------------------------------------------------------
 
 nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
 nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
