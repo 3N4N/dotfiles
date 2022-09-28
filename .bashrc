@@ -83,8 +83,8 @@ alias md='mkdir -pv'
 alias psgrep='ps aux | head -n 1 && ps aux | grep -v grep | grep --color -i'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
-alias vi='vim'
-alias vimdiff='vim -d'
+alias vi='nvim'
+alias vimdiff='nvim -d'
 alias o='xdg-open'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
@@ -299,7 +299,7 @@ sps() {
     echo $current_path
   else
     path_parent=$(dirname $(dirname "$current_path"))
-    path_parent_short=`echo $path_parent | sed -r 's|/(.)[^/]*|/\1|g'`
+    path_parent_short=`echo $path_parent | sed -r 's|/(\.?.)[^/]*|/\1|g'`
     parentdir=$(basename $(dirname "$current_path"))
     directory=${current_path##*\/}
     if [[ "$path_parent" == "." ]]; then
