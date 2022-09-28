@@ -19,7 +19,6 @@ DOTFILES=(
     ".profile"
     ".tmux.conf"
     ".uncrustify.cfg"
-    ".vim"
     ".xinitrc"
     ".sig"
     ".config/gdb"

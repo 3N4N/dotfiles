@@ -1,7 +1,6 @@
 $CURDIR=(Get-Location | Foreach-Object { $_.Path })
 
 $PWSHDIR="$HOME/Documents/PowerShell"
-$VIMDIR="$HOME/vimfiles"
 $NVIMDIR="$HOME/AppData/Local/nvim"
 $MPVDIR="$HOME/AppData/Roaming/mpv"
 $GDBDIR="$HOME/.config/gdb"
@@ -15,9 +14,6 @@ New-Item -Type SymbolicLink -Path "C:/bin/extract.cmd" -Value $CURDIR/bin/extrac
 
 Remove-Item -Recurse -Force $PWSHDIR
 New-Item -Type SymbolicLink -Path $PWSHDIR -Value $CURDIR/PowerShell
-
-Remove-Item -Recurse -Force $VIMDIR
-New-Item -Type Junction -Path "$VIMDIR" -Value $CURDIR/.vim/
 
 Remove-Item -Recurse -Force $NVIMDIR
 New-Item -Type Junction -Path "$NVIMDIR" -Value $CURDIR/.config/nvim/
