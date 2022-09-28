@@ -14,7 +14,7 @@ if !exists('g:env')
 endif
 
 if g:env ==# 'WIN'
-  let s:vim_plug_dir = expand('~/AppData/Local/nvim-data/plugged')
+  let s:vim_plug_dir = expand('~/AppData/Local/nvim/plugged')
 else
   let s:vim_plug_dir = expand('~/.config/nvim/plugged')
 endif
@@ -23,17 +23,15 @@ endif
 " -- Vim Plug ------------------------------------------------------------------
 
 if g:env ==# 'UNIX' || g:env ==# 'WSL'
-  if empty(glob(expand('~/.local/share/nvim/site/autoload/plug.vim')))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
+  let plug_vim = expand('~/.config/nvim/autoload/plug.vim')
 elseif g:env ==# 'WIN'
-  if empty(glob(expand('~/AppData/Local/nvim-data/site/autoload/plug.vim')))
-    call system('curl -fLo '
-          \ . expand('~/AppData/Local/nvim-data/site/autoload/plug.vim')
-          \ . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-  endif
+  let plug_vim = expand('~/AppData/Local/nvim/autoload/plug.vim')
+endif
+
+if empty(glob(plug_vim))
+  call system('curl -fLo ' . plug_vim
+        \ . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 let g:plug_url_format = 'git@github.com:%s.git'
@@ -74,15 +72,6 @@ function! LoadLocalVimrc() abort
   endfor
 endfunction
 call LoadLocalVimrc()
-
-
-
-" -- lua config ----------------------------------------------------------------
-
-lua require('plenary.reload').reload_module('user', true)
-
-lua require('user.plugins')
-lua require('user.lspconfig')
 
 
 " -- Key Mapping ---------------------------------------------------------------
@@ -292,6 +281,21 @@ xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
 
+" -- source user plugins ---------------------------------------------------
+
+runtime plugin/user/functions.vim
+runtime plugin/user/options.vim
+runtime plugin/user/clipboard.vim
+
+
+" -- lua config ----------------------------------------------------------------
+
+lua require('plenary.reload').reload_module('user', true)
+
+lua require('user.plugins')
+lua require('user.lspconfig')
+
+
 " -- Functions and Commands ----------------------------------------------------
 
 " Lua utilities
@@ -361,13 +365,6 @@ augroup END
 
 set title
 let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
-
-
-" -- source user plugins ---------------------------------------------------
-
-runtime plugin/user/functions.vim
-runtime plugin/user/options.vim
-runtime plugin/user/clipboard.vim
 
 
 " -- Ctags ---------------------------------------------------------------------

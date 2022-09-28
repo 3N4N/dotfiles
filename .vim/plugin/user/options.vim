@@ -94,24 +94,42 @@ set ttimeout
 set ttimeoutlen =10
 
 " -- miscellaneous settings ------------------------------------------------
-set cpoptions -=aA
-set nojoinspaces
 " set inccommand =nosplit
 set backspace =indent,eol,start
 set cinoptions =g0,l1,i0,t0,(4,N-s
+set clipboard ^=unnamedplus
+set cpoptions -=aA
+set diffopt +=algorithm:patience
+set diffopt +=closeoff
+set diffopt +=filler
+set diffopt +=indent-heuristic
+set diffopt +=internal
+set diffopt =internal
+set formatoptions =tcqjro
+set nojoinspaces
 set shortmess =filmnxrtToO
 set synmaxcol =200
 set updatetime =250
-set virtualedit =block
 set viewoptions =folds,cursor
-set formatoptions =tcqjro
-set diffopt =internal
-set diffopt +=internal
-set diffopt +=filler
-set diffopt +=closeoff
-set diffopt +=algorithm:patience
-set diffopt +=indent-heuristic
-set clipboard ^=unnamedplus
+set virtualedit =block
+
+set autoread
+
+augroup autoread
+  au!
+  " Triger `autoread` when files changes on disk
+  " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+  " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+  au FocusGained,BufEnter,CursorHold,CursorHoldI *
+        \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+  " Notification after file change
+  " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+  au FileChangedShellPost *
+        \ echohl WarningMsg |
+        \ if &ar | echom "File changed on disk. Buffer reloaded." | endif |
+        \ echohl None
+augroup END
 
 let g:R_assign = 2
 let g:tex_flavor = "latex"

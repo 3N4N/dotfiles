@@ -88,23 +88,24 @@ set ttimeout
 set ttimeoutlen =10
 
 " -- miscellaneous settings ------------------------------------------------
-set cpoptions -=aA
-set nojoinspaces
-set inccommand =nosplit
+set autoread
 set backspace =indent,eol,start
 set cinoptions =g0,l1,i0,t0,(4,N-s
+set cpoptions -=aA
+set diffopt +=algorithm:patience
+set diffopt +=closeoff
+set diffopt +=filler
+set diffopt +=indent-heuristic
+set diffopt +=internal
+set diffopt =internal
+set formatoptions =tcqjro
+set inccommand =nosplit
+set nojoinspaces
 set shortmess =filmnxrtToO
 set synmaxcol =200
 set updatetime =250
-set virtualedit =block
 set viewoptions =folds,cursor
-set formatoptions =tcqjro
-set diffopt =internal
-set diffopt +=internal
-set diffopt +=filler
-set diffopt +=closeoff
-set diffopt +=algorithm:patience
-set diffopt +=indent-heuristic
+set virtualedit =block
 
 let g:R_assign = 2
 let g:tex_flavor = "latex"

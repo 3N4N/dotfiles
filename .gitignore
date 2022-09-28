@@ -5,6 +5,7 @@ tags*
 .config/nvim/pack/*
 .config/nvim/.netrwhist
 .config/nvim/plugged
+.config/nvim/autoload/plug.vim
 
 .vim/pack/*
 .vim/.netrwhist
