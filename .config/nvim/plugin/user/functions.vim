@@ -331,8 +331,8 @@ function! GitOpenRemote(start, end) abort
   delfunction GetFullRemoteURL
 endfunction
 
-nnoremap <Leader>fo :<C-U>call GitOpenRemote(0,0)<CR>
-xnoremap <Leader>fo :<C-U>call GitOpenRemote(getpos("'<")[1], getpos("'>")[1])<CR>
+nnoremap <Leader>go :<C-U>call GitOpenRemote(0,0)<CR>
+xnoremap <Leader>go :<C-U>call GitOpenRemote(getpos("'<")[1], getpos("'>")[1])<CR>
 
 
 " -- Better mksession ------------------------------------------------------
