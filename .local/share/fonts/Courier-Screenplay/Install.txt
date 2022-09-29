@@ -1,0 +1,18 @@
+This Courier Screenplay font is provided courtesy of Fade In Professional Screenwriting Software (http://www.fadeinpro.com).
+
+
+FONT INSTALLATION INSTRUCTIONS
+
+Windows:
+
+In Windows 7 or Vista, right-click each *.ttf file and select "Install".  Repeat for each *.ttf file in the font family.  (In Windows 7 you can also double-click the *.ttf file to open the Font Viewer, then click "Install".
+
+In Windows XP, open Control Panel > Fonts to display the Fonts folder.  Then either drag the *.ttf file into the Fonts folder, or select "Install New Font..." from the File Menu.  Repeat for each *.ttf file in the font family. 
+
+OS X:
+
+Double-click each *.ttf font file.  The Font Book application will open.  Click "Install Font".  Repeat this for each *.ttf file in the font family.  Fonts will be installed to ~/Library/Fonts/.
+
+Linux:
+
+Copy all *.ttf files to the appropriate directory, such as /usr/share/fonts/truetype or ~/.fonts.  Execute "fc-cache -fv" to refresh the font cache.
