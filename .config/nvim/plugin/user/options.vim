@@ -88,16 +88,16 @@ set ttimeout
 set ttimeoutlen =10
 
 " -- miscellaneous settings ------------------------------------------------
+
 set autoread
 set backspace =indent,eol,start
 set cinoptions =g0,l1,i0,t0,(4,N-s
 set cpoptions -=aA
-set diffopt +=algorithm:patience
-set diffopt +=closeoff
-set diffopt +=filler
-set diffopt +=indent-heuristic
-set diffopt +=internal
 set diffopt =internal
+set diffopt +=filler
+set diffopt +=closeoff
+set diffopt +=algorithm:patience
+set diffopt +=indent-heuristic
 set formatoptions =tcqjro
 set inccommand =nosplit
 set nojoinspaces
@@ -107,6 +107,7 @@ set updatetime =250
 set viewoptions =folds,cursor
 set virtualedit =block
 
+let mapleader = "\<Space>"
 let g:R_assign = 2
 let g:tex_flavor = "latex"
 let html_my_rendering = 1

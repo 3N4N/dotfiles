@@ -74,10 +74,24 @@ endfunction
 call LoadLocalVimrc()
 
 
-" -- Key Mapping -----------------------------------------------------------
+" -- source user plugins --------------------------------------------------
 
-" Map leader
-let mapleader = "\<Space>"
+runtime plugin/user/functions.vim
+runtime plugin/user/options.vim
+runtime plugin/user/statusline.vim
+runtime plugin/user/clipboard.vim
+runtime plugin/user/plugins.vim
+
+
+" -- lua config ------------------------------------------------------------
+
+lua require('plenary.reload').reload_module('user', true)
+
+lua require('user.plugins')
+lua require('user.lspconfig')
+
+
+" -- Key Mapping -----------------------------------------------------------
 
 " Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
@@ -282,23 +296,6 @@ xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
 
-" -- source user plugins --------------------------------------------------
-
-runtime plugin/user/functions.vim
-runtime plugin/user/options.vim
-runtime plugin/user/statusline.vim
-runtime plugin/user/clipboard.vim
-runtime plugin/user/plugins.vim
-
-
-" -- lua config ------------------------------------------------------------
-
-lua require('plenary.reload').reload_module('user', true)
-
-lua require('user.plugins')
-lua require('user.lspconfig')
-
-
 " -- Functions and Commands ------------------------------------------------
 
 " Lua utilities
@@ -400,8 +397,6 @@ endif
 " -- Telescope -------------------------------------------------------------
 
 lua require('user.telescope')
-
-" Using Lua functions
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
