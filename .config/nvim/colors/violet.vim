@@ -65,6 +65,7 @@ endif
 
 " call s:HL("Normal", s:base0, s:base03, "")
 hi clear Normal
+hi link NormalFloat Normal
 
 " Switching between dark & light variant through `set background`
 " https://github.com/NLKNguyen/papercolor-theme/pull/20
