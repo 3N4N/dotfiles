@@ -72,7 +72,6 @@ set wildmenu
 set wildignorecase
 set wildmode =full
 set wildoptions =pum
-set pumblend =0
 set complete -=t
 set wildignore +=*.o,*.obj,*~,*.class
 set wildignore +=*/.git
@@ -99,13 +98,15 @@ set diffopt +=closeoff
 set diffopt +=algorithm:patience
 set diffopt +=indent-heuristic
 set formatoptions =tcqjro
-set inccommand =nosplit
 set nojoinspaces
 set shortmess =filmnxrtToO
 set synmaxcol =200
 set updatetime =250
 set viewoptions =folds,cursor
 set virtualedit =block
+
+if exists('+pumblend') | set pumblend =0 | endif
+if exists('+inccommand') | set inccommand =nosplit | endif
 
 let mapleader = "\<Space>"
 let g:R_assign = 2
@@ -118,15 +119,9 @@ set nobackup
 set noswapfile
 set undofile
 
-if g:env == "WIN"
-  let &backupdir = expand("~/AppData/Local/nvim-data/backup/")
-  let &directory = expand("~/AppData/Local/nvim-data/swap/")
-  let &undodir = expand("~/AppData/Local/nvim-data/undo/")
-else
-  let &backupdir = expand("~/.local/share/nvim/backup//")
-  let &directory = expand("~/.local/share/nvim/swap//")
-  let &undodir = expand("~/.local/share/nvim/undo//")
-end
+let &backupdir = expand(g:vimdatadir . "/backup/")
+let &directory = expand(g:vimdatadir . "/swap/")
+let &undodir = expand(g:vimdatadir . "/undo/")
 
 
 " -- tabs vs spaces --------------------------------------------------------

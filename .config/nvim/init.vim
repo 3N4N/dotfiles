@@ -14,20 +14,22 @@ if !exists('g:env')
 endif
 
 if g:env ==# 'WIN'
-  let s:vim_plug_dir = expand('~/AppData/Local/nvim/plugged')
+  if has('nvim')
+    let g:vimconfdir = expand('~/AppData/Local/nvim')
+    let g:vimdatadir = expand('~/AppData/Local/nvim-data')
+  else
+    let g:vimconfdir = expand('~/vimfiles')
+    let g:vimdatadir = expand('~/AppData/Local/vim-data')
+  endif
 else
-  let s:vim_plug_dir = expand('~/.config/nvim/plugged')
 endif
+
+let s:vim_plug_dir = expand(g:vimconfdir . '/plugged')
 
 
 " -- Vim Plug --------------------------------------------------------------
 
-if g:env ==# 'UNIX' || g:env ==# 'WSL'
-  let plug_vim = expand('~/.config/nvim/autoload/plug.vim')
-elseif g:env ==# 'WIN'
-  let plug_vim = expand('~/AppData/Local/nvim/autoload/plug.vim')
-endif
-
+let plug_vim = expand(g:vimconfdir . '/autoload/plug.vim')
 if empty(glob(plug_vim))
   call system('curl -fLo ' . plug_vim
         \ . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
@@ -85,10 +87,11 @@ runtime plugin/user/plugins.vim
 
 " -- lua config ------------------------------------------------------------
 
-lua require('plenary.reload').reload_module('user', true)
-
-lua require('user.plugins')
-lua require('user.lspconfig')
+if has('nvim')
+  lua require('plenary.reload').reload_module('user', true)
+  lua require('user.plugins')
+  lua require('user.lspconfig')
+endif
 
 
 " -- Key Mapping -----------------------------------------------------------
@@ -156,6 +159,7 @@ nnoremap <Leader>do :windo diffoff<CR>
 
 " Opening files
 nnoremap <Leader>e :e **/*
+nnoremap <Leader>E :e .*/**/*<Left><Left><Left><Left><Left><Left>
 nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
       \<S-left><Left><Left><Left>
 
@@ -342,12 +346,14 @@ endif
 
 " -- Autocommands ----------------------------------------------------------
 
-augroup custom_term
-  autocmd!
-  autocmd TermOpen * setlocal nonumber norelativenumber
-  autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
-  " autocmd BufEnter term://* startinsert
-augroup END
+if exists('##TermOpen')
+  augroup custom_term
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermOpen * setlocal bufhidden=hide signcolumn=no
+    " autocmd BufEnter term://* startinsert
+  augroup END
+endif
 
 augroup quickfix
   autocmd!
@@ -396,14 +402,16 @@ endif
 
 " -- Telescope -------------------------------------------------------------
 
-lua require('user.telescope')
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
-nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
+if has('nvim')
+  lua require('user.telescope')
+  nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+  nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
+  nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+  nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+  nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
+  nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
+endif
 
 
 " -- Easy Align ------------------------------------------------------------

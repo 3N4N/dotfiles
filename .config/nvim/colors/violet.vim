@@ -89,9 +89,9 @@ call s:HL("Error", s:red, s:base03, "bold")
 call s:HL("Todo", s:magenta, s:base03, "bold")
 
 " Extended highlighting
-call s:HL("SpecialKey", s:base00, s:base02, "bold")
 call s:HL("NonText", s:base00, "", "")
-" call s:HL("Visual", s:base03, s:cyan, "")
+hi link SpecialKey NonText
+
 call s:HL("Visual", s:base0, s:base01, "")
 call s:HL("Directory", s:blue, "", "")
 call s:HL("IncSearch", s:orange, "", "")

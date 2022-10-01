@@ -7,6 +7,7 @@ doskey o = start "" $*
 doskey ns = nslookup $*
 doskey ip = ipconfig $*
 doskey vi = nvim $*
+doskey vim = vimd $*
 doskey grep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 doskey egrep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" -E $*
 doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
