@@ -274,7 +274,7 @@ function! GitOpenRemote(start, end) abort
     return [baseurl, domain]
   endfunction
 
-  function! GetFullRemoteURL(remote, branch, filename, lines) abort
+  function! GetFullRemoteURL(remote, hashref, filename, lines) abort
     let [start, end] = a:lines
     if start == 0 && end == 0
       let lines = ""
@@ -290,11 +290,11 @@ function! GitOpenRemote(start, end) abort
     endif
 
     if a:remote.domain == "github"
-      let tree = "/tree/" . a:branch . "/" . a:filename . lines
+      let tree = "/blob/" . a:hashref . "/" . a:filename . lines
     elseif a:remote.domain == "sr.ht"
-      let tree = "/tree/" . a:branch . "/item/" . a:filename . lines
+      let tree = "/tree/" . a:hashref . "/" . a:filename . lines
     endif
-    let fullurl = a:remote.url . tree
+    let fullurl = "https://" . a:remote.url . tree
     return fullurl
   endfunction
 
@@ -305,16 +305,15 @@ function! GitOpenRemote(start, end) abort
   endif
   let filename = substitute(UnixifyPath(expand('%:p')), gitroot.'\/', '', '')
 
-  let headref = System("git symbolic-ref -q HEAD")
-  let upbranch = System("git for-each-ref --format=\"%(upstream:short)\" " . headref)
-  if upbranch == ""
-    echohl Error | echom "[GitOpenRemote] Branch not tracked upstream" | echohl None
+  let hashref = System("git rev-parse --short HEAD")
+  let headref = System("git rev-parse --abbrev-ref --symbolic-full-name @{u}")
+  if headref[:28] ==# "fatal: no upstream configured"
+    echohl Error | echom headref | echohl None
     return
   endif
 
-  let remote = {'name' : '', 'url': ''}
-  let remote.name = substitute(upbranch, "\\(.\\{-}\\)\\/.*", "\\1", "")
-  let upbranch = substitute(upbranch, remote.name . "\\/", "", "")
+  let remote = {}
+  let remote.name = substitute(headref, "\\(.\\{-}\\)\\/.*", "\\1", "")
   let [remote.url, remote.domain] = ParseRemoteURL(System("git config --get remote." . remote.name . ".url"))
 
   if index(available_domains, remote.domain) == -1
@@ -322,7 +321,7 @@ function! GitOpenRemote(start, end) abort
     return
   endif
 
-  let fullurl = GetFullRemoteURL(remote, upbranch, filename, [a:start, a:end])
+  let fullurl = GetFullRemoteURL(remote, hashref, filename, [a:start, a:end])
   echom fullurl
   let @* = fullurl
 
