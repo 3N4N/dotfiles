@@ -22,6 +22,13 @@ if g:env ==# 'WIN'
     let g:vimdatadir = expand('~/AppData/Local/vim-data')
   endif
 else
+  if has('nvim')
+    let g:vimconfdir = expand('~/.local/share/nvim')
+    let g:vimdatadir = expand('~/.local/share/nvim-data')
+  else
+    let g:vimconfdir = expand('~/.vim')
+    let g:vimdatadir = expand('~/.local/share/vim-data')
+  endif
 endif
 
 let s:vim_plug_dir = expand(g:vimconfdir . '/plugged')
