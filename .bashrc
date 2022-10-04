@@ -124,7 +124,7 @@ fmk() {
   kill -9 `ps aux | grep -v grep | grep -i $1 | awk '{print $2}'`
 }
 
-# tmux starting script
+# tmux starter function
 t() {
     if [ -z "$1" ]; then
         session_name="enan"
@@ -153,6 +153,11 @@ t() {
     tmux attach-session -t "$session_name"
 }
 
+_t_completions() {
+  SUGGESTIONS=$(tmux ls -F '#{session_name}')
+  COMPREPLY=($(compgen -W "$SUGGESTIONS" -- "${COMP_WORDS[1]}"))
+}
+complete -F _t_completions t
 
 # Open a file and detach the process
 xopen() {
