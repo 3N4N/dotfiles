@@ -85,7 +85,6 @@ alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
 alias vimdiff='nvim -d'
-alias o='xdg-open'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 
@@ -160,7 +159,7 @@ _t_completions() {
 complete -F _t_completions t
 
 # Open a file and detach the process
-xopen() {
+o() {
     xdg-open "$1" & disown
 }
 
