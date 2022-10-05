@@ -24,3 +24,13 @@ match.wild = False
 # type: boolean
 terminal.adjust_cursor_style = False
 
+# name: Paths from which to load Lua scripts
+# type: list
+# note: multiple paths can be delimited by semicolons
+#       clone from https://github.com/vladimir-kotikov/clink-completions
+clink.path = ~\AppData\Local\clink\clink-completions
+
+# name: Whether to show logo at startup
+# type: enum
+# options: full,short,none
+clink.logo = none
