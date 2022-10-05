@@ -358,3 +358,11 @@ function! MakeSession(filename, bang) abort
 endfunction
 
 command! -nargs=? -bang MakeSession call MakeSession(<q-args>, <bang>0)
+
+
+" -- Keep cursor position while executing command --------------------------
+
+command! -nargs=1 KC
+      \ let _w=winsaveview() |
+      \ execute <q-args> |
+      \ call winrestview(_w)
