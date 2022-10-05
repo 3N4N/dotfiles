@@ -227,6 +227,7 @@ endfor
 " Toggle
 nnoremap <silent> <Leader>tc :let &colorcolumn=(&cc==0)?81:0<CR>
 nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
+nnoremap <silent> <Leader>tg :set termguicolors!<Bar>set termguicolors?<CR>
 nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>
 nnoremap <silent> <Leader>tl :set nu!<Cr>
 nnoremap <silent> <Leader>tp :set paste!<Bar>set paste?<CR>
@@ -382,7 +383,8 @@ let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
 
 " -- Ctags -----------------------------------------------------------------
 
-nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
+nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build
+      \ --exclude=release --exclude=venv .<CR>
 
 
 " -- Uncrustify ------------------------------------------------------------
