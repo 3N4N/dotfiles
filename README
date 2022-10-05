@@ -1,0 +1,30 @@
+Personal config files
+---------------------
+
+This repo contains the configuration files for the personal usage of
+Enan. The code is available for use without limitation but do so at
+your own risk because no sanity check against any possible catastrophe
+is guaranteed.
+
+
+Contains
+--------
+
+Configuration for:
+  o Neovim
+  o tmux
+  o bash
+  o gdb
+  o mpv
+  o cmd
+  o Clink
+  o PowerShell Core
+  o Windows Terminal
+
+Installation scripts for:
+  o Neovim
+  o SilverSearcher
+  o Emacs
+  o i3wm
+  o tmux
+  o xfce4-terminal
