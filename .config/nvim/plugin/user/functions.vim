@@ -270,6 +270,7 @@ function! GitOpenRemote(start, end) abort
     let baseurl = substitute(url, ".*@\\(.*\\):", "\\1/", "")
     if domain == "github"
       let baseurl = substitute(baseurl, ".git$", "", "")
+      let baseurl = substitute(baseurl, "https:\/\/", "", "")
     endif
     return [baseurl, domain]
   endfunction
