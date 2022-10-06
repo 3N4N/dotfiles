@@ -317,8 +317,8 @@ command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 " Send selected text to a pastebin
 command! -range=% Paste
       \ execute <line1> . "," . <line2>
-      \ . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | "
-      \ . (has('unix') ? "xclip -selection clipboard" : "win32yank.exe -i")
+      \ . "w !curl -F \"sprunge=<-\" http://sprunge.us | tr -d '\\n' | "
+      \ . (g:env=="UNIX" ? "xclip -selection clipboard" : "win32yank.exe -i")
 
 " Redirect the output of a Vim or external command into a scratch buffer
 command! -nargs=1 -complete=command Redir
