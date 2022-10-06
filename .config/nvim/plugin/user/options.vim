@@ -142,3 +142,5 @@ if isdirectory("build")
 else
   set makeprg =make
 end
+
+call LoadLocalVimrc()
