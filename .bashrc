@@ -123,6 +123,10 @@ fmk() {
   kill -9 `ps aux | grep -v grep | grep -i $1 | awk '{print $2}'`
 }
 
+myip() {
+  curl -s https://icanhazip.com
+}
+
 # tmux starter function
 t() {
     if [ -z "$1" ]; then

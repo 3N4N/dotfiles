@@ -13,6 +13,7 @@ doskey egrep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --
 doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
 doskey xclip = win32yank.exe $*
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
+doskey myip = curl -s https://icanhazip.com
 
 :: ffmpeg
 doskey ffmpeg = ffmpeg -hide_banner $*
