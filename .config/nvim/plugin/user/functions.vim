@@ -225,6 +225,7 @@ function! SetShell(shell) abort
 
   if a:shell ==# "cmd"
     let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
+    let &shellcmdflag = "/s /c"
     let &shellredir = ">%s 2>&1"
     let &shellpipe = ">%s 2>&1"
     let &shellquote = ""
