@@ -308,7 +308,7 @@ function! GitOpenRemote(start, end) abort
   let filename = substitute(UnixifyPath(expand('%:p')), gitroot.'\/', '', '')
 
   let hashref = System("git rev-parse --short HEAD")
-  let headref = System("git rev-parse --abbrev-ref --symbolic-full-name @{u}")
+  let headref = System('git rev-parse --abbrev-ref --symbolic-full-name "@{u}"')
   if headref[:28] ==# "fatal: no upstream configured"
     echohl Error | echom headref | echohl None
     return
