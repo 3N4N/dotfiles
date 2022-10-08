@@ -1,6 +1,6 @@
 @echo off
 
-PROMPT = $e]9;9;$p$e\$e[1;34m$p$e[1;0m$+$g$s
+PROMPT = $e]9;9;$p$e\$e[0;34m$p$e[1;0m$+$g$s
 
 :: aliases
 doskey o = start "" $*
@@ -13,10 +13,11 @@ doskey egrep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --
 doskey xclip = win32yank.exe $*
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 doskey myip = curl -s https://icanhazip.com
+doskey reload = E:\projects\dotfiles\profile.cmd
 
 :: tasks
 doskey ps = tasklist $*
-doskey psgrep = tasklist ^| head -n 3 $T tasklist ^| grep --color -i $1
+doskey psgrep = tasklist ^| grep --color -i $1
 doskey kill = taskkill $*
 
 :: ffmpeg
