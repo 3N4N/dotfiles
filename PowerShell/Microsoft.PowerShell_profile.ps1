@@ -50,7 +50,7 @@ Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
 }
 
 Set-PSReadLineOption -Colors @{
-  Command            = 'Yellow'
+  Command            = 'Magenta'
   Number             = 'Black'
   Member             = 'Black'
   Operator           = 'Black'
@@ -117,6 +117,11 @@ Function la { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ 
 Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
 Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
 Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
+
+Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys }
+Function m64 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64 }
+Function m32 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32 }
+Function vsdev { & C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 }
 
 Function Launch-VsDevShell
 {
