@@ -160,13 +160,6 @@ nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s:\v
 xnoremap <Leader>s :s:\%V\v
 
-nnoremap <Leader>s :%s:\v\c:<Left><Left><Left>
-xnoremap <Leader>s :s:\%V\v\c:<Left><Left><Left>
-nnoremap / /\v\c<Left><Left>
-nnoremap ? ?\v\c<Left><Left>
-xnoremap / /\v\c<Left><Left>
-xnoremap ? ?\v\c<Left><Left>
-
 " Go in and out of diffmode
 nnoremap <Leader>dt :windo diffthis<CR>
 nnoremap <Leader>do :windo diffoff<CR>

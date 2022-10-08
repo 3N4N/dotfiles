@@ -53,7 +53,7 @@ end
 
 " -- searching -------------------------------------------------------------
 set hlsearch
-set noignorecase
+set ignorecase
 set incsearch
 set smartcase
 set wrapscan
