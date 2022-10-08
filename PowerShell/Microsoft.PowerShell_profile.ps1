@@ -51,15 +51,15 @@ Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
 
 Set-PSReadLineOption -Colors @{
   Command            = 'Magenta'
-  Number             = 'Black'
-  Member             = 'Black'
-  Operator           = 'Black'
-  Type               = 'Black'
+  Number             = 'Gray'
+  Member             = 'Gray'
+  Operator           = 'Gray'
+  Type               = 'Gray'
   Variable           = 'Green'
   Parameter          = 'Green'
   InlinePrediction   = 'Gray'
-  ContinuationPrompt = 'Black'
-  Default            = 'Black'
+  ContinuationPrompt = 'Gray'
+  Default            = 'Gray'
 }
 
 
