@@ -252,7 +252,7 @@ function! GitOpenRemote(start, end) abort
   let available_domains = [ 'github', 'sr.ht' ]
 
   function! System(cmd) abort
-    return systemlist(a:cmd)->join('')
+    return trim(system(a:cmd))
   endfunction
 
   function! UnixifyPath(path) abort
