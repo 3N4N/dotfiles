@@ -62,7 +62,7 @@ noh
 " -- vimgrep ---------------------------------------------------------------
 if executable('rg')
   " use ripgrep
-  set grepprg =rg\ --smart-case\ --vimgrep\ -g\ \"!tags\"
+  set grepprg =rg\ --smart-case\ --vimgrep\ -g\ \"!tags\"\ -g\ \"!build\"\ -g\ \"!release\"\ -g\ \"!po\"
 else
   " use plain grep
   if g:env == 'WIN'
