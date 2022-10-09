@@ -1,4 +1,9 @@
-# ------- prompt ---------------------------------------------------------------
+# -- title -------------------------------------------------------------------
+
+$host.ui.RawUI.WindowTitle = 'PowerShell'
+
+
+# -- prompt ------------------------------------------------------------------
 
 $esc = [char]27
 
@@ -12,22 +17,20 @@ Function prompt
     Write-Host "($( Split-Path $env:VIRTUAL_ENV -Leaf )) " -ForegroundColor "green" -NoNewline
   }
 
-  # current working directory
-  $loc = Get-Location
-  Write-Host "$loc" -ForegroundColor "blue" -NoNewline
-  $out = "> "
-
-  # OSC9;9; code for opening WT split in current directory
-  if ($env:WT_SESSION) {
-    if ($loc.Provider.Name -eq "FileSystem") {
-      $out += "$([char]27)]9;9;`"$($loc.Path)`"$([char]7)"
-    }
+  $p = $executionContext.SessionState.Path.CurrentLocation
+  $osc7 = ""
+  if ($p.Provider.Name -eq "FileSystem") {
+    $ESC = [char]27
+    $provider_path = $p.ProviderPath -Replace "\\", "/"
+    $osc7 = "$ESC]7;file://${env:COMPUTERNAME}/${provider_path}${ESC}\"
   }
 
-  return $out
+  Write-Host "$p" -ForegroundColor "blue" -NoNewline
+  return "${osc7}$('>' * ($nestedPromptLevel + 1)) ";
 }
 
-# ------- PSReadLine -----------------------------------------------------------
+
+# -- PSReadLine --------------------------------------------------------------
 
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
@@ -50,20 +53,20 @@ Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
 }
 
 Set-PSReadLineOption -Colors @{
-  Command            = 'Magenta'
+  Command            = 'Gray'
   Number             = 'Gray'
   Member             = 'Gray'
   Operator           = 'Gray'
   Type               = 'Gray'
-  Variable           = 'Green'
-  Parameter          = 'Green'
+  Variable           = 'Gray'
+  Parameter          = 'Gray'
   InlinePrediction   = 'Gray'
   ContinuationPrompt = 'Gray'
   Default            = 'Gray'
 }
 
 
-# ------- fzf ------------------------------------------------------------------
+# -- fzf ---------------------------------------------------------------------
 
 # # --height 40% --multi
 # $env:FZF_DEFAULT_OPTS='
@@ -83,12 +86,12 @@ Set-PSReadLineOption -Colors @{
 # fi
 
 
-# ------- modules --------------------------------------------------------------
+# -- modules -----------------------------------------------------------------
 
 Import-Module posh-git
 
 
-# ------- aliases --------------------------------------------------------------
+# -- aliases -----------------------------------------------------------------
 
 if (Test-Path alias:ls) { Remove-Alias ls }
 if (Test-Path alias:rm) { Remove-Alias rm }
@@ -109,6 +112,7 @@ Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
 Set-Alias -Name find -Value 'C:/msys64/usr/bin/find.exe'
 Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
 Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
+Set-Alias -Name git -Value 'C:/Users/ACER/scoop/shims/git.exe'
 
 Set-Alias -Name ls -Value Get-ChildItem
 Function l { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
@@ -122,6 +126,11 @@ Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys }
 Function m64 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64 }
 Function m32 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32 }
 Function vsdev { & C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 }
+
+Set-Alias -Name cmake -Value 'C:/msys64/mingw64/bin/cmake.exe'
+function cmakec { & "C:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
+function cmaked { & "C:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug @args }
+
 
 Function Launch-VsDevShell
 {
