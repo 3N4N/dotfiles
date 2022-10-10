@@ -209,7 +209,7 @@ nnoremap <Leader>wt :tab split<CR>
 nnoremap <Leader>wa :b#<CR>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
-nnoremap <Leader>ww :vert res 85<CR>
+nnoremap <Leader>ww :vert res 100<CR>
 
 " Switch tabpages
 nnoremap ) gt
@@ -373,6 +373,13 @@ augroup END
 "     au!
 "     au VimResized * wincmd =
 " augroup END
+
+if exists('##TextYankPost')
+  augroup highlight_yank
+    au!
+    au TextYankPost * silent! lua vim.highlight.on_yank{on_visual=false}
+  augroup END
+endif
 
 
 " -- Title -----------------------------------------------------------------
