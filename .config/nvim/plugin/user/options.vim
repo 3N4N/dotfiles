@@ -9,7 +9,14 @@ set background =light
 colo violet
 
 " -- visual perks ----------------------------------------------------------
+set colorcolumn =0
 set conceallevel =0
+set fillchars =vert:│
+set guicursor =
+set hidden
+set list
+set listchars =tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
+set mouse =
 set nocursorcolumn
 set nocursorline
 set nolazyredraw
@@ -19,12 +26,6 @@ set norelativenumber
 set noruler
 set showmode
 set signcolumn =no
-set colorcolumn =0
-set fillchars =vert:│
-set list
-set listchars =tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
-set guicursor =
-set mouse =
 
 " -- line wrapping ---------------------------------------------------------
 set nowrap
