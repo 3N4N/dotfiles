@@ -186,16 +186,6 @@ command! -nargs=0 StripTrailingWhiteSpace
       \ unlet _w |
       \ noh
 
-" Don't jump to the next result when searching with * or #
-nnoremap <silent> * :let _w = winsaveview()<CR>
-      \:normal! *<CR>
-      \:call winrestview(_w)<CR>
-      \:unlet _w<CR>
-nnoremap <silent> # :let _w = winsaveview()<CR>
-      \:normal! #<CR>
-      \:call winrestview(_w)<CR>
-      \:unlet _w<CR>
-
 " direction-unaware search and jump
 nnoremap <expr> n (v:searchforward ? 'n' : 'N')
 nnoremap <expr> N (v:searchforward ? 'N' : 'n')

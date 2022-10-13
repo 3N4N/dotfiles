@@ -141,6 +141,38 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
 
 
+" -- Case-sensitive star/hash/gd with ignorecase ---------------------------
+" https://vi.stackexchange.com/a/34553/16280
+
+function! SearchCword(wholeword, direction) abort
+  let query = expand('<cword>')
+  " Doing * on a nonword character at end of line produces no word
+  " characters so wholeword is invalid.
+  if a:wholeword && query =~# '\w'
+    let query = '\<'.. query ..'\>'
+  endif
+  let @/ = query ..'\C'
+endfunction
+
+function! s:IsCursorAtStartOfWord(query) abort
+  let index_in_word = match(getline('.'), '\%' . col('.') ..'c'.. a:query)
+  return index_in_word > 0
+endfunction
+
+nnoremap  * :let v:hlsearch = 1 <Bar> call SearchCword(1, "n")<CR>
+nnoremap  # :let v:hlsearch = 1 <Bar> call SearchCword(1, "N")<CR>
+nnoremap g* :let v:hlsearch = 1 <Bar> call SearchCword(0, "n")<CR>
+nnoremap g# :let v:hlsearch = 1 <Bar> call SearchCword(0, "N")<CR>
+
+nnoremap <silent> gd
+      \ :let _is_ic = &ic<CR>
+      \:set noic<CR>
+      \:normal! gd<CR>
+      \:let @/ = @/ .. '\C'<CR>
+      \:let &ic = _is_ic<CR>
+      \:unlet _is_ic<CR>
+
+
 " -- Get filenames ignoring `wildignore` -----------------------------------
 
 function! MyCompleteFileName() abort
