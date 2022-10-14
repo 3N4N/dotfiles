@@ -88,7 +88,7 @@ Set-PSReadLineOption -Colors @{
 
 # -- modules -----------------------------------------------------------------
 
-Import-Module posh-git
+# Import-Module posh-git
 
 
 # -- aliases -----------------------------------------------------------------
@@ -103,6 +103,8 @@ if (Test-Path alias:r) { Remove-Alias r }
 if (Test-Path alias:echo) { Remove-Alias echo }
 if (Test-Path alias:where) { del alias:where -force }
 if (Test-Path alias:sort) { del alias:sort -force }
+
+Set-Alias -Name im -Value Import-Module
 
 Set-Alias -Name o -Value 'Start-Process'
 Set-Alias -Name vi -Value 'nvim'
@@ -121,6 +123,7 @@ Function la { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ 
 Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
 Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
 Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
+Function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursive
 
 Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys }
 Function m64 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64 }
