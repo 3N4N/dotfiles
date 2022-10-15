@@ -1,4 +1,4 @@
-setlocal textwidth=70
+setlocal textwidth=72
 setlocal nospell
 setlocal wrap
 

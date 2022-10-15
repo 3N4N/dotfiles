@@ -77,7 +77,7 @@ endif
 
 " Basic highlighting
 call s:HL("Comment", s:base00, "", "")
-call s:HL("Constant", s:cyan, "", "")
+call s:HL("Constant", s:blue, "", "")
 call s:HL("Identifier", s:blue, "", "")
 call s:HL("Statement", s:green, "", "")
 call s:HL("PreProc", s:orange, "", "")
@@ -98,7 +98,7 @@ call s:HL("IncSearch", s:orange, "", "")
 call s:HL("Search", s:base03, s:yellow, "")
 call s:HL("MoreMsg", s:blue, s:base03, "")
 call s:HL("ModeMsg", s:blue, s:base03, "")
-call s:HL("Question", s:cyan, "", "")
+call s:HL("Question", s:blue, "", "")
 call s:HL("VertSplit", s:base01, s:base01, "")
 call s:HL("Title", s:orange, "", "bold")
 call s:HL("VisualNOS", "", s:base02, "")
