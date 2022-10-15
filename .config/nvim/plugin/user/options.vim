@@ -12,7 +12,7 @@ colo violet
 set colorcolumn =0
 set conceallevel =0
 set fillchars =vert:│
-set guicursor =
+set guicursor =n-v-c-sm:block-blinkon0,i-ci-ve:ver25-blinkon0,r-cr-o:hor20-blinkon0
 set hidden
 set list
 set listchars =tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
