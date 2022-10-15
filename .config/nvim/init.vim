@@ -55,6 +55,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
 
@@ -417,6 +420,13 @@ if has('nvim')
   nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
   nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
   nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
+else
+  nnoremap <leader>ff <cmd>Files<cr>
+  nnoremap <leader>fg <cmd>GFiles<cr>
+  nnoremap <leader>fb <cmd>Buffers<cr>
+  nnoremap <leader>fh <cmd>Helptags<cr>
+  nnoremap <leader>fa <cmd>Rg<cr>
+  nnoremap <leader>ft <cmd>Tags<cr>
 endif
 
 
