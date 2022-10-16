@@ -266,7 +266,7 @@ function! SetShell(shell) abort
     let &csl = "slash"
   elseif a:shell ==# "pwsh" || a:shell ==# "powershell"
     let &shell = a:shell
-    let &shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+    let &shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
     let &shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     let &shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     let &shellquote = ""
