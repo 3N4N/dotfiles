@@ -26,4 +26,4 @@ elseif g:env == "WSL"
         \ }
 endif
 
-set clipboard +=unnamedplus
+set clipboard +=unnamed

@@ -31,7 +31,7 @@ set signcolumn =no
 set nowrap
 set breakindent
 set linebreak
-let &showbreak = '↪ '
+let &showbreak = '+++ '
 
 " -- folding ---------------------------------------------------------------
 set foldcolumn =0
