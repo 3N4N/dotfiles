@@ -400,3 +400,21 @@ command! -nargs=1 KC
       \ let _w=winsaveview() |
       \ execute <q-args> |
       \ call winrestview(_w)
+
+
+" -- Recursive :highlight --------------------------------------------------
+
+function! HiThere(group) abort
+  let out = trim(execute('hi ' .. a:group))
+  let splits = split(out, ' \+')
+  echon splits[0] .. ' '
+  execute 'echohl' splits[0]
+  echon splits[1] .. ' '
+  echohl None
+  echon join(splits[2:])
+  if out =~ 'links to'
+    echon "\n"
+    call HiThere(split(out, ' \+')[-1])
+  endif
+endfunction
+command! -nargs=1 -complete=highlight HiThere call HiThere(<q-args>)
