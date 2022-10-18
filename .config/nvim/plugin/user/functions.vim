@@ -300,7 +300,7 @@ function! GitOpenRemote(start, end) abort
     else
       let domain = ''
     endif
-    let baseurl = substitute(url, ".*@\\(.*\\):", "\\1/", "")
+    let baseurl = substitute(url, '\(ssh\:\/\/\)\?git@\(.*\)', '\2', '')
     if domain == "github"
       let baseurl = substitute(baseurl, ".git$", "", "")
       let baseurl = substitute(baseurl, "https:\/\/", "", "")
@@ -332,23 +332,41 @@ function! GitOpenRemote(start, end) abort
     return fullurl
   endfunction
 
-  let gitroot = UnixifyPath(System("git rev-parse --show-toplevel"))
-  if v:shell_error != 0
+  let gitroot = FugitiveWorkTree()
+  if gitroot == ''
     echohl Error | echom "[GitOpenRemote] Not in a git repo" | echohl None
     return
   endif
   let filename = substitute(UnixifyPath(expand('%:p')), gitroot.'\/', '', '')
 
-  let hashref = System("git rev-parse --short HEAD")
-  let headref = System('git rev-parse --abbrev-ref --symbolic-full-name "@{u}"')
-  if headref[:28] ==# "fatal: no upstream configured"
-    echohl Error | echom headref | echohl None
-    return
-  endif
+  function! GetHead(gitdir) abort
+    return split(readfile(a:gitdir .. '/HEAD')[0])
+  endfunction
+  function! GetBranch(gitdir, head) abort
+    if a:head[0] != 'ref:'
+      return ''
+    endif
+    if a:head[1] =~ 'refs/heads/'
+      echom substitute(a:head[1], 'refs\/heads\/', '', '')
+      return substitute(a:head[1], 'refs\/heads\/', '', '')
+    endif
+  endfunction
 
+  function! GetHash(gitdir, head) abort
+    if a:head[0] != 'ref:'
+      return a:head
+    endif
+    return readfile(a:gitdir .. '/' .. a:head[1])[0]
+  endfunction
+
+  let gitdir = FugitiveCommonDir()
+  let head = GetHead(FugitiveGitDir())
+  let branch = GetBranch(gitdir, head)
+  let hashref = GetHash(gitdir, head)
+
+  " echom [gitroot,gitdir,head,branch,hashref]
   let remote = {}
-  let remote.name = substitute(headref, "\\(.\\{-}\\)\\/.*", "\\1", "")
-  let [remote.url, remote.domain] = ParseRemoteURL(System("git config --get remote." . remote.name . ".url"))
+  let [remote.url, remote.domain] = ParseRemoteURL(FugitiveRemoteUrl())
 
   if index(available_domains, remote.domain) == -1
     echohl Error | echom "[GitOpenRemote] " . remote.domain . " not supported" | echohl None
