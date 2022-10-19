@@ -3,7 +3,7 @@ if !has('nvim') && exists('+termguicolors')
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
 
-syntax on
+syntax off
 set termguicolors
 set background =light
 colo violet
