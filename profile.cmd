@@ -10,6 +10,7 @@ doskey vi = nvim $*
 doskey vim = vimd $*
 doskey grep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 doskey egrep = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" -E $*
+doskey rg = rg --smart-case $*
 doskey xclip = win32yank.exe $*
 doskey wts = nvim "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
 doskey myip = curl -s https://icanhazip.com
