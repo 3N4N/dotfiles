@@ -300,11 +300,11 @@ function! GitOpenRemote(start, end) abort
     else
       let domain = ''
     endif
-    let baseurl = substitute(url, '\(ssh\:\/\/\)\?git@\(.*\)', '\2', '')
-    if domain == "github"
-      let baseurl = substitute(baseurl, ".git$", "", "")
-      let baseurl = substitute(baseurl, "https:\/\/", "", "")
-    endif
+    let baseurl = substitute(url, 'ssh\:\/\/', '', '')
+    let baseurl = substitute(baseurl, 'git@\(.*\)', '\1', '')
+    let baseurl = substitute(baseurl, "https:\/\/", "", "")
+    let baseurl = substitute(baseurl, ".git$", "", "")
+    let baseurl = substitute(baseurl, ":", "\/", "")
     return [baseurl, domain]
   endfunction
 
@@ -347,7 +347,6 @@ function! GitOpenRemote(start, end) abort
       return ''
     endif
     if a:head[1] =~ 'refs/heads/'
-      echom substitute(a:head[1], 'refs\/heads\/', '', '')
       return substitute(a:head[1], 'refs\/heads\/', '', '')
     endif
   endfunction
