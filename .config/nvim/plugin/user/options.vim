@@ -4,9 +4,9 @@ if !has('nvim') && exists('+termguicolors')
 endif
 
 syntax off
-set termguicolors
+set notermguicolors
 set background =light
-colo violet
+colo dim
 
 " -- visual perks ----------------------------------------------------------
 set colorcolumn =0
