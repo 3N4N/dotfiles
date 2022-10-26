@@ -3,10 +3,6 @@
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "actions": [
     {
-      "command": "find",
-      "keys": "ctrl+shift+f"
-    },
-    {
       "command": {
         "action": "splitPane",
         "split": "down",
@@ -15,11 +11,29 @@
       "keys": "ctrl+alt+minus"
     },
     {
+      "command": "find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "command": {
+        "action": "resizePane",
+        "direction": "left"
+      },
+      "keys": "alt+shift+h"
+    },
+    {
       "command": {
         "action": "moveFocus",
         "direction": "left"
       },
       "keys": "ctrl+alt+h"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "down"
+      },
+      "keys": "ctrl+alt+j"
     },
     {
       "command": {
@@ -31,23 +45,20 @@
     {
       "command": {
         "action": "moveTab",
-        "direction": "backward"
-      },
-      "keys": "alt+shift+p"
-    },
-    {
-      "command": {
-        "action": "moveTab",
         "direction": "forward"
       },
       "keys": "alt+shift+n"
     },
     {
+      "command": "closePane",
+      "keys": "ctrl+alt+w"
+    },
+    {
       "command": {
-        "action": "moveFocus",
-        "direction": "down"
+        "action": "moveTab",
+        "direction": "backward"
       },
-      "keys": "ctrl+alt+j"
+      "keys": "alt+shift+p"
     },
     {
       "command": "paste",
@@ -62,8 +73,11 @@
       "keys": "ctrl+alt+plus"
     },
     {
-      "command": "closePane",
-      "keys": "ctrl+alt+w"
+      "command": {
+        "action": "resizePane",
+        "direction": "right"
+      },
+      "keys": "alt+shift+l"
     },
     {
       "command": {
@@ -117,20 +131,6 @@
         "direction": "down"
       },
       "keys": "alt+shift+j"
-    },
-    {
-      "command": {
-        "action": "resizePane",
-        "direction": "left"
-      },
-      "keys": "alt+shift+h"
-    },
-    {
-      "command": {
-        "action": "resizePane",
-        "direction": "right"
-      },
-      "keys": "alt+shift+l"
     },
     {
       "command": {
@@ -317,7 +317,7 @@
       "name": "One Half Light",
       "purple": "#A626A4",
       "red": "#E45649",
-      "selectionBackground": "#FFFFFF",
+      "selectionBackground": "#61AFEF",
       "white": "#FAFAFA",
       "yellow": "#C18301"
     },
@@ -471,9 +471,9 @@
       "brightRed": "#BD3613",
       "brightWhite": "#C9C6BD",
       "brightYellow": "#A57705",
-      "cursorColor": "#536870",
+      "cursorColor": "#56595C",
       "cyan": "#32A198",
-      "foreground": "#536870",
+      "foreground": "#56595C",
       "green": "#85981C",
       "name": "Violet Light",
       "purple": "#D13A82",
