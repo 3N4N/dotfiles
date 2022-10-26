@@ -270,7 +270,7 @@ function! SetShell(shell) abort
     let &shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     let &shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
     let &shellquote = ""
-    let &shellxquote = ""
+    let &shellxquote = (has('nvim') ? "" : "\"")
     let &ssl = 0
     let &csl = "slash"
   end
