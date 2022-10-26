@@ -12,7 +12,6 @@ colo dim
 set colorcolumn =0
 set conceallevel =0
 set fillchars =vert:│
-set guicursor =n-v-c-sm:block-blinkon0,i-ci-ve:ver25-blinkon0,r-cr-o:hor20-blinkon0
 set hidden
 set list
 set listchars =tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
@@ -26,6 +25,12 @@ set norelativenumber
 set noruler
 set showmode
 set signcolumn =no
+
+if empty($WT_SESSION)
+  set guicursor =n-v-c-sm:block-blinkon0,i-ci-ve:ver25-blinkon0,r-cr-o:hor20-blinkon0
+else
+  set guicursor =
+endif
 
 " -- line wrapping ---------------------------------------------------------
 set nowrap
