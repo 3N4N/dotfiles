@@ -22,9 +22,9 @@ highlight SpellRare      ctermbg=13
 highlight SpellLocal     ctermbg=14
 highlight PmenuSbar      ctermbg=8
 highlight PmenuThumb     ctermbg=0
-highlight TabLine        cterm=underline ctermfg=0 ctermbg=7
-highlight TabLineSel     cterm=bold
-highlight TabLineFill    cterm=reverse
+highlight TabLine        ctermfg=7 ctermbg=0
+highlight TabLineSel     ctermbg=14
+highlight TabLineFill    ctermbg=7
 highlight CursorColumn   ctermbg=7
 highlight CursorLine     cterm=underline
 highlight MatchParen     ctermbg=14
@@ -43,10 +43,10 @@ let colors_name = "dim"
 
 " In diffs, added lines are green, changed lines are yellow, deleted lines are
 " red, and changed text (within a changed line) is bright yellow and bold.
-highlight DiffAdd        ctermfg=0    ctermbg=2
-highlight DiffChange     ctermfg=0    ctermbg=3
-highlight DiffDelete     ctermfg=0    ctermbg=1
-highlight DiffText       ctermfg=0    ctermbg=11   cterm=bold
+highlight DiffAdd        ctermfg=0    ctermbg=10
+highlight DiffChange     ctermfg=0    ctermbg=NONE
+highlight DiffDelete     ctermfg=0    ctermbg=9
+highlight DiffText       ctermfg=0    ctermbg=12
 
 " Invert selected lines in visual mode
 highlight Visual         ctermfg=NONE ctermbg=NONE cterm=inverse
@@ -75,18 +75,27 @@ else
   highlight CursorLineNr ctermfg=7
   highlight Comment      ctermfg=8
   highlight ColorColumn  ctermfg=7    ctermbg=8
-  highlight Folded       ctermfg=7    ctermbg=8
+  highlight Folded       ctermfg=NONE ctermbg=NONE
   highlight FoldColumn   ctermfg=7    ctermbg=8
-  highlight Pmenu        ctermfg=15   ctermbg=8
-  highlight PmenuSel     ctermfg=8    ctermbg=15
-  highlight SpellCap     ctermfg=7    ctermbg=8
-  highlight StatusLine   ctermfg=15   ctermbg=8    cterm=bold
+  highlight Pmenu        ctermfg=8    ctermbg=13
+  highlight PmenuSel     ctermfg=8    ctermbg=12
+  highlight PmenuSbar    ctermfg=8    ctermbg=13
+  highlight SpellCap     ctermfg=9    ctermbg=NONE
+  highlight SpellBad     ctermfg=9    ctermbg=NONE
+  highlight SpellRare    ctermfg=13   ctermbg=NONE
+  highlight SpellLocal   ctermfg=14   ctermbg=NONE
+  highlight StatusLine   ctermfg=15   ctermbg=8    cterm=NONE
   highlight StatusLineNC ctermfg=7    ctermbg=8    cterm=NONE
+  highlight TabLineSel   ctermfg=7    ctermbg=4    cterm=NONE
   highlight VertSplit    ctermfg=8    ctermbg=8    cterm=NONE
   highlight SignColumn                ctermbg=8
 endif
+hi! link TabLine StatusLine
+hi! link TabLineFill Tabline
 
 hi link NormalFloat Normal
+hi link PmenuSbar Pmenu
+hi link PmenuThumb PmenuSel
 
 highlight link DimFzfFg     Normal
 highlight link DimFzfBg     Normal
