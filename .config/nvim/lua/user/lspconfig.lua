@@ -24,12 +24,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>lk', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<leader>lC', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<leader>lF', vim.lsp.buf.formatting, bufopts)
-  vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>lwl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
 end
 
 local lsp_flags = {
@@ -43,3 +37,8 @@ if vim.g.enableLSP == 1 then
     flags = lsp_flags,
   }
 end
+
+require'lspconfig'.rust_analyzer.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
