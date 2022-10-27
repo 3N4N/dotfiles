@@ -435,3 +435,55 @@ function! HiThere(group) abort
   endif
 endfunction
 command! -nargs=1 -complete=highlight HiThere call HiThere(<q-args>)
+
+
+" -- Focus codeblock -------------------------------------------------------
+
+func! FocusCodeblock() abort
+  if &filetype != "markdown"
+    return
+  endif
+
+  let l:marker = "```"
+
+  let l:curline = getcurpos('.')[1]
+  let l:i = l:curline
+  while l:i > 0
+    let l:line = getline(l:i)
+    let l:index = match(l:line, l:marker)
+    if index >= 0
+      let l:filetype = l:line[l:index+strlen(l:marker):]
+      let l:start = l:i + 1
+      break
+    endif
+    let l:i -= 1
+  endwhile
+
+  let l:i = l:curline
+  while l:i <= line('$')
+    let l:line = getline(l:i)
+    let l:index = match(l:line, l:marker)
+    if index >= 0
+      let l:end = l:i - 1
+      break
+    endif
+    let l:i += 1
+  endwhile
+
+  if !exists("l:filetype") || !exists("l:start") || !exists("l:end")
+    return
+  endif
+
+  let l:lines = getline(l:start, l:end)
+
+  " echom l:filetype l:start l:end
+  " echom l:lines
+
+  tabnew
+  execute "set filetype=" . l:filetype
+  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+  call setline(1, l:lines)
+  return
+endfunc
+
+nnoremap <leader>ww :<C-u>call FocusCodeblock()<CR>
