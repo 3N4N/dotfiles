@@ -435,3 +435,17 @@ function! HiThere(group) abort
   endif
 endfunction
 command! -nargs=1 -complete=highlight HiThere call HiThere(<q-args>)
+
+
+" -- Toggle :Git window ----------------------------------------------------
+
+function! ToggleGstatus() abort
+  for l:winnr in range(1, winnr('$'))
+    if !empty(getwinvar(l:winnr, 'fugitive_status'))
+      exe l:winnr 'close'
+      return
+    endif
+  endfor
+  keepalt Git
+endfunction
+nnoremap <Leader>gs :call ToggleGstatus()<CR>
