@@ -5,7 +5,7 @@ $host.ui.RawUI.WindowTitle = 'PowerShell'
 
 # -- prompt ------------------------------------------------------------------
 
-$esc = [char]27
+$ESC = [char]27
 
 # disable python venv auto prompt
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 0
@@ -17,17 +17,29 @@ Function prompt
     Write-Host "($( Split-Path $env:VIRTUAL_ENV -Leaf )) " -ForegroundColor "green" -NoNewline
   }
 
-  $p = $executionContext.SessionState.Path.CurrentLocation
-  $osc7 = ""
-  if ($p.Provider.Name -eq "FileSystem") {
-    $ESC = [char]27
-    $provider_path = $p.ProviderPath -Replace "\\", "/"
-    $osc7 = "$ESC]7;file://${env:COMPUTERNAME}/${provider_path}${ESC}\"
+  $loc = $executionContext.SessionState.Path.CurrentLocation
+  $out = ""
+
+  # OSC codes for opening splits in current directory
+  if ($loc.Provider.Name -eq "FileSystem") {
+    if ($env:WT_SESSION) {
+      $out += "$ESC]9;9;`"$($loc.Path)`"${ESC}\"
+    }
+    elseif ($env:TERM_PROGRAM -eq 'WezTerm') {
+      if ($loc.Provider.Name -eq "FileSystem") {
+        $provider_path = $loc.ProviderPath -Replace "\\", "/"
+        $out = "$ESC]7;file://${env:COMPUTERNAME}/${provider_path}${ESC}\"
+      }
+    }
   }
 
-  Write-Host "$p" -ForegroundColor "blue" -NoNewline
-  return "${osc7}$('>' * ($nestedPromptLevel + 1)) ";
+  Write-Host "$loc" -ForegroundColor "blue" -NoNewline
+  return "${out}$('>' * ($nestedPromptLevel + 1)) ";
 }
+
+# -- modules -----------------------------------------------------------------
+
+# Import-Module posh-git
 
 
 # -- PSReadLine --------------------------------------------------------------
