@@ -65,16 +65,16 @@ Set-PSReadLineKeyHandler -chord ctrl+alt+u -ScriptBlock {
 }
 
 Set-PSReadLineOption -Colors @{
-  Command            = 'Gray'
-  Number             = 'Gray'
-  Member             = 'Gray'
-  Operator           = 'Gray'
-  Type               = 'Gray'
-  Variable           = 'Gray'
-  Parameter          = 'Gray'
-  InlinePrediction   = 'Gray'
-  ContinuationPrompt = 'Gray'
-  Default            = 'Gray'
+  Command            = [ConsoleColor]::Black
+  Number             = [ConsoleColor]::Black
+  Member             = [ConsoleColor]::Black
+  Operator           = [ConsoleColor]::Black
+  Type               = [ConsoleColor]::Black
+  Variable           = [ConsoleColor]::Black
+  Parameter          = [ConsoleColor]::Black
+  InlinePrediction   = [ConsoleColor]::Black
+  ContinuationPrompt = [ConsoleColor]::Black
+  Default            = [ConsoleColor]::Black
 }
 
 
@@ -97,10 +97,6 @@ Set-PSReadLineOption -Colors @{
 #     SET FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # fi
 
-
-# -- modules -----------------------------------------------------------------
-
-# Import-Module posh-git
 
 
 # -- aliases -----------------------------------------------------------------
