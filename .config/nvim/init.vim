@@ -64,7 +64,7 @@ Plug 'benknoble/gitignore-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'neovim/nvim-lspconfig'
