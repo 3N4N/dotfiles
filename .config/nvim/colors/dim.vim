@@ -77,9 +77,9 @@ else
   hi ColorColumn  ctermfg=7    ctermbg=8
   hi Folded       ctermfg=NONE ctermbg=NONE
   hi FoldColumn   ctermfg=7    ctermbg=8
-  hi Pmenu        ctermfg=8    ctermbg=15
-  hi PmenuSel     ctermfg=8    ctermbg=12
-  hi PmenuSbar    ctermfg=8    ctermbg=13
+  hi Pmenu        ctermfg=8    ctermbg=7
+  hi PmenuSel     ctermfg=7    ctermbg=4
+  hi PmenuSbar    ctermfg=7    ctermbg=5
   hi SpellCap     ctermfg=9    ctermbg=NONE
   hi SpellBad     ctermfg=9    ctermbg=NONE
   hi SpellRare    ctermfg=13   ctermbg=NONE

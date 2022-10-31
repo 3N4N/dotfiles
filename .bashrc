@@ -60,6 +60,7 @@ alias lh='la -d .[^.]* 2> /dev/null'
 
 # show colors in grep and ag
 alias ag='ag --color-match "31"'
+alias rg='rg --smart-case -g "!tags" -g "!build" -g "!release" -g "!po"'
 alias grep='grep --color=auto --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags"'
 
 # shorthand for python executables

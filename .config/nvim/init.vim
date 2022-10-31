@@ -70,6 +70,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 
