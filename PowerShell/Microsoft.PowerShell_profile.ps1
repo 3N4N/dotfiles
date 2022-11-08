@@ -83,10 +83,10 @@ Set-PSReadLineOption -Colors @{
 # # --height 40% --multi
 # $env:FZF_DEFAULT_OPTS='
 # --layout=reverse --border
-    # --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
-    # --color=light
-    # --color=fg:-1,bg:-1,hl:33,fg+:241,bg+:221,hl+:33
-    # --color=info:33,prompt:33,pointer:166,marker:166,spinner:33
+#     --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
+#     --color=light
+#     --color=fg:-1,bg:-1,hl:33,fg+:241,bg+:221,hl+:33
+#     --color=info:33,prompt:33,pointer:166,marker:166,spinner:33
 # '
 
 # if  hash ag 2>/dev/null ; then
@@ -146,15 +146,13 @@ function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > LICEN
 
 Function Launch-VsDevShell
 {
-  $env:Path = ($env:Path.Split(';') `
-      | Where-Object { $_ -ne 'c:\msys64\mingw64\bin' } `
-      | Where-Object { $_ -ne 'c:\msys64\usr\bin' } ) -join ';'
+  [Environment]::SetEnvironmentVariable(
+      "Path",
+      ($env:Path.Split(';') `
+       | Where-Object { $_ -ne 'c:\msys64\mingw64\bin' } `
+       | Where-Object { $_ -ne 'c:\msys64\usr\bin' } ) -join ';'
+  )
   & ${env:ProgramFiles(x86)}'/Microsoft Visual Studio/2019/Community/Common7/Tools/Launch-VsDevShell.ps1'
 }
 
-# Set-Alias -Name py -Value python
-# Set-Alias -Name py2 -Value python2
-# Set-Alias -Name py3 -Value python3
-
-
-$env:PATH = "c:\msys64\mingw64\bin;c:\msys64\usr\bin;" + $env:Path
+[Environment]::SetEnvironmentVariable("Path", "c:\msys64\mingw64\bin;c:\msys64\usr\bin;" + $env:Path)
