@@ -325,4 +325,4 @@ sps() {
   fi
 }
 
-PS1='\[$yellow\]$(eval "sps")\[$reset\]\$ '
+PS1='\[$green\]\u@\h:\[$yellow\]$(eval "sps")\[$reset\]\$ '
