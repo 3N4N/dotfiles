@@ -36,7 +36,7 @@ endif
 set nowrap
 set breakindent
 set linebreak
-let &showbreak = '+++ '
+let &showbreak = '+++'
 
 " -- folding ---------------------------------------------------------------
 set foldcolumn =0
@@ -153,5 +153,6 @@ if isdirectory("build")
 else
   set makeprg =make
 end
+let g:cargo_makeprg_params = 'build'
 
 call LoadLocalVimrc()
