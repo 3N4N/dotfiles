@@ -10,7 +10,7 @@ let g:netrw_list_hide = "^.git$"
 let g:netrw_liststyle = 1
 let g:netrw_sort_by = "name"
 let g:netrw_sort_direction = "normal"
-let g:netrw_winsize = 25
+" let g:netrw_winsize = 25
 
 
 " -- Closetag --------------------------------------------------------------
