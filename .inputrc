@@ -9,6 +9,9 @@
 "\eo": upcase-word
 "\eu": downcase-word
 
+"\t": menu-complete
+"\e[Z": menu-complete-backward
+
 "\e\C-l": clear-screen
 "\e\C-u": "\C-ucd ..\n"
 
