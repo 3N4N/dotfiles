@@ -142,7 +142,7 @@ Set-Alias -Name cmake -Value 'C:/msys64/mingw64/bin/cmake.exe'
 function cmakec { & "C:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
 function cmaked { & "C:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug @args }
 
-function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > LICENSE }
+function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 
 Function Launch-VsDevShell
 {

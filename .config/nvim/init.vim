@@ -323,7 +323,7 @@ command! -nargs=1 -complete=command Redir
 
 command! Date put =strftime('%Y-%m-%d')
 command! SetMarkdownComments
-      \ setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,fb:o,n:>
+      \ setlocal comments=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,fb:o,fb:•,n:>
 " setlocal comments=b:[],b:[\ ],b:[x],b:[X],b:*,b:-,b:+,b:o,n:>
 
 command! -nargs=1 -complete=function Echopy
