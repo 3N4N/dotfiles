@@ -337,6 +337,8 @@ command! -nargs=1 SetTabsize
       \ set softtabstop=<args> |
       \ set shiftwidth=<args>
 
+command! -nargs=1 -complete=help H tab help <args>
+
 " Use tabs for indentation and spaces for alignment
 function! SpecialTab() abort
   if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')

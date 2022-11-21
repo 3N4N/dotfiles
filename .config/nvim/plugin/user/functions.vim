@@ -408,7 +408,8 @@ function! MakeSession(filename, bang) abort
   call winrestview(_w)
 endfunction
 
-command! -nargs=? -bang MakeSession call MakeSession(<q-args>, <bang>0)
+command! -nargs=? -bang -complete=file MakeSession
+      \ call MakeSession(<q-args>, <bang>0)
 
 
 " -- Keep cursor position while executing command --------------------------
