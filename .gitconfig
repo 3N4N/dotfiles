@@ -27,6 +27,7 @@
   smtpEncryption = tls
   smtpUser = 3nan.ajmain@gmail.com
   ; smtpPass = gmail app pass
+  annotate = yes
 [alias]
   ls = log --source --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)[%an]%C(red)%d'
   ll = log --source --stat -p
