@@ -136,11 +136,10 @@ Function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursiv
 Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys }
 Function m64 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64 }
 Function m32 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32 }
-Function vsdev { & C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64 }
 
 Set-Alias -Name cmake -Value 'C:/msys64/mingw64/bin/cmake.exe'
-function cmakec { & "C:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
-function cmaked { & "C:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug @args }
+function cmakec { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
+function cmaked { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug @args }
 
 function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 
@@ -152,7 +151,7 @@ Function Launch-VsDevShell
        | Where-Object { $_ -ne 'c:\msys64\mingw64\bin' } `
        | Where-Object { $_ -ne 'c:\msys64\usr\bin' } ) -join ';'
   )
-  & ${env:ProgramFiles(x86)}'/Microsoft Visual Studio/2019/Community/Common7/Tools/Launch-VsDevShell.ps1'
+  & C:\PROGRA~1\MICROS~3\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 @args
 }
 
 [Environment]::SetEnvironmentVariable("Path", "c:\msys64\mingw64\bin;c:\msys64\usr\bin;" + $env:Path)
