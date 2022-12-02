@@ -1,4 +1,4 @@
-setlocal textwidth=72
+setlocal textwidth=80
 setlocal nospell
 setlocal wrap
 setlocal formatoptions=tcqjroln
