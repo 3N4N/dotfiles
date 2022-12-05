@@ -66,6 +66,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
+Plug 'dkarter/bullets.vim'
 
 Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
