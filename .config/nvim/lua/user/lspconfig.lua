@@ -47,6 +47,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>lk', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, bufopts)
+
+  -- Disable semantic highlighting
+  client.server_capabilities.semanticTokensProvider = nil
 end
 
 local lsp_flags = {
