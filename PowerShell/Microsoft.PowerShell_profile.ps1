@@ -143,6 +143,13 @@ function cmaked { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Deb
 
 function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 
+function Get-Process-Custom
+{
+  param ([string]$ProcName)
+  Get-Process $ProcName | Select Id, Name, Commandline
+}
+Set-Alias -Name ps -Value Get-Process-Custom
+
 Function Launch-VsDevShell
 {
   [Environment]::SetEnvironmentVariable(
