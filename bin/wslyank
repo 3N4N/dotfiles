@@ -1,0 +1,20 @@
+#!/bin/env bash
+
+# /mnt/c/Windows/System32/clip.exe
+# /mnt/c/Windows/System32/paste.exe | sed 's/\r//g'
+
+while getopts 'io' OPTION
+do
+  case $OPTION in
+    i)
+      /mnt/c/Windows/System32/clip.exe
+      ;;
+    o)
+      /mnt/c/Windows/System32/paste.exe | sed 's/\r//g'
+      ;;
+    ?)
+      printf "Internal error" $(basename $0) >&2
+      exit 2
+      ;;
+  esac
+done

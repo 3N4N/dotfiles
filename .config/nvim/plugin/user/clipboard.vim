@@ -13,16 +13,16 @@ if g:env == "UNIX"
         \ }
 elseif g:env == "WSL"
   let g:clipboard = {
-        \   'name': 'win32yank_nvim',
+        \   'name': 'wslyank_nvim',
         \   'copy': {
-        \      '+': 'win32yank.exe -i --crlf',
-        \      '*': 'win32yank.exe -i --crlf',
+        \      '+': 'wslyank -i',
+        \      '*': 'wslyank -i',
         \    },
         \   'paste': {
-        \      '+': 'win32yank.exe -o --lf',
-        \      '*': 'win32yank.exe -o --lf',
+        \      '+': 'wslyank -o',
+        \      '*': 'wslyank -o',
         \   },
-        \   'cache_enabled': 1,
+        \   'cache_enabled': 0,
         \ }
 endif
 
