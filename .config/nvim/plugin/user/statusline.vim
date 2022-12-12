@@ -13,7 +13,6 @@ let &statusline = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}"
 let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.')):'[No Name]'}"
 let &statusline .= "%="
 let &statusline .= " %l: %v "
-let &statusline .= "[%{winnr()},%{tabpagenr()}/%{tabpagenr('$')}]"
 
 
 " -- Tabline -------------------------------------------------------------------
@@ -34,5 +33,5 @@ function! MyTabLine() abort
   return s
 endfunction
 
-let &showtabline = 0
+let &showtabline = 1
 let &tabline = "%!MyTabLine()"
