@@ -152,13 +152,14 @@ Set-Alias -Name ps -Value Get-Process-Custom
 
 Function Launch-VsDevShell
 {
+  & C:\PROGRA~1\MICROS~3\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 `
+    -SkipAutomaticLocation @args
   [Environment]::SetEnvironmentVariable(
       "Path",
       ($env:Path.Split(';') `
        | Where-Object { $_ -ne 'c:\msys64\mingw64\bin' } `
        | Where-Object { $_ -ne 'c:\msys64\usr\bin' } ) -join ';'
   )
-  & C:\PROGRA~1\MICROS~3\2022\Community\Common7\Tools\Launch-VsDevShell.ps1 @args
 }
 
 [Environment]::SetEnvironmentVariable("Path", "c:\msys64\mingw64\bin;c:\msys64\usr\bin;" + $env:Path)
