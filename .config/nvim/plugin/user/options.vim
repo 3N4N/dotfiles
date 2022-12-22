@@ -153,6 +153,6 @@ if isdirectory("build")
 else
   set makeprg =make
 end
-let g:cargo_makeprg_params = 'build'
+let g:cargo_makeprg_params = ''
 
 call LoadLocalVimrc()
