@@ -121,7 +121,7 @@ set-title() {
 }
 
 fmk() {
-  kill -9 `ps aux | grep -v grep | grep -i $1 | awk '{print $2}'`
+  kill -9 `ps aux | grep -v grep | grep -i "$1" | awk '{print $2}'`
 }
 
 myip() {
