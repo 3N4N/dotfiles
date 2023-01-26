@@ -15,8 +15,8 @@ set print array off
 set print array-indexes on
 set python print-stack full
 
-# set output-radix 0x10
 # set input-radix 0x10
+set output-radix 0x10
 
 # # Display instructions in Intel format
 # set disassembly-flavor intel
