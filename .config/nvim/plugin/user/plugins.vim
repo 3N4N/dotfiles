@@ -22,11 +22,6 @@ let g:closetag_shortcut = ">"
 let g:closetag_close_shortcut = ""
 
 
-" -- Editor Config ---------------------------------------------------------
-
-let g:EditorConfig_disable_rules = ['end_of_line']
-
-
 " -- Rainbow Parentheses ---------------------------------------------------
 
 let g:lisp_rainbow = 0

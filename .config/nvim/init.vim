@@ -61,7 +61,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
 
-Plug 'editorconfig/editorconfig-vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 
 " Plug 'luochen1990/rainbow'

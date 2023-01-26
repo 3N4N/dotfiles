@@ -30,3 +30,7 @@
 --     additional_vim_regex_highlighting = false,
 --   },
 -- }
+
+--  editorconfig -------------------------------------------------------------
+
+require('editorconfig').properties.end_of_line = nil
