@@ -108,7 +108,7 @@ if (Test-Path alias:md) { Remove-Alias md }
 if (Test-Path alias:mv) { Remove-Alias mv }
 if (Test-Path alias:cp) { Remove-Alias cp }
 if (Test-Path alias:r) { Remove-Alias r }
-if (Test-Path alias:echo) { Remove-Alias echo }
+# if (Test-Path alias:echo) { Remove-Alias echo }
 if (Test-Path alias:where) { del alias:where -force }
 if (Test-Path alias:sort) { del alias:sort -force }
 
@@ -132,16 +132,16 @@ Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
 Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
 Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
 Function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursive
+function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 
 Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys }
 Function m64 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64 }
 Function m32 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32 }
+Function ucrt { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -ucrt64 }
 
-Set-Alias -Name cmake -Value 'C:/msys64/mingw64/bin/cmake.exe'
+Set-Alias -Name cmake -Value 'C:/msys64/ucrt64/bin/cmake.exe'
 function cmakec { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
 function cmaked { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug @args }
-
-function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 
 function Get-Process-Custom
 {
@@ -162,4 +162,7 @@ Function Launch-VsDevShell
   )
 }
 
-[Environment]::SetEnvironmentVariable("Path", "c:\msys64\mingw64\bin;c:\msys64\usr\bin;" + $env:Path)
+[Environment]::SetEnvironmentVariable("Path", "c:/msys64/ucrt64/bin;c:/msys64/usr/bin;" + $env:Path)
+
+$env:CC = 'clang'
+$env:CXX = 'clang++'
