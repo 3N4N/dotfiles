@@ -124,6 +124,18 @@ fmk() {
   kill -9 `ps aux | grep -v grep | grep -i "$1" | awk '{print $2}'`
 }
 
+mcd() {
+    if [ -z "$1" ]; then
+      echo '[ERROR] Directory name not provided'
+      return
+    else
+        DIRNAME=$1
+    fi
+
+    mkdir -p "$DIRNAME"
+    cd "$DIRNAME"
+}
+
 myip() {
   curl -s https://icanhazip.com
 }
@@ -256,7 +268,7 @@ esac
 # ----------------------------------------------------------------------
 
 ros_setup_script="/opt/ros/noetic/setup.bash"
-gazebo_model_path="/home/enan/.gazebo/models/:/home/enan/code/gazebo_models/"
+gazebo_model_path="/home/enan/.gazebo/models/:/home/enan/dsi/gazebo_models/"
 
 if [ -f "$ros_setup_script" ] ; then
   source "$ros_setup_script"
