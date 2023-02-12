@@ -57,14 +57,17 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
+local lspconfig = require'lspconfig'
+local util = require'lspconfig.util'
+
 if vim.g.enableLSP == 1 then
-  require'lspconfig'.clangd.setup{
+  lspconfig.clangd.setup{
     on_attach = on_attach,
     flags = lsp_flags,
   }
 end
 
-require'lspconfig'.pyright.setup{
+lspconfig.pyright.setup{
   on_attach = on_attach,
   flags = lsp_flags,
   settings = {
@@ -76,7 +79,7 @@ require'lspconfig'.pyright.setup{
   }
 }
 
-require'lspconfig'.rust_analyzer.setup{
+lspconfig.rust_analyzer.setup{
   on_attach = on_attach,
   flags = lsp_flags,
   settings = {
@@ -88,4 +91,4 @@ require'lspconfig'.rust_analyzer.setup{
   },
 }
 
-require'lspconfig'.tsserver.setup{}
+lspconfig.tsserver.setup{}
