@@ -116,20 +116,30 @@ Set-Alias -Name im -Value Import-Module
 
 Set-Alias -Name o -Value 'Start-Process'
 Set-Alias -Name vi -Value 'nvim'
-Set-Alias -Name md -Value 'C:/msys64/usr/bin/mkdir.exe'
-Set-Alias -Name fd -Value 'C:/msys64/usr/bin/find.exe'
-Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
-Set-Alias -Name find -Value 'C:/msys64/usr/bin/find.exe'
-Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
 Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
 Set-Alias -Name git -Value 'C:/Users/ACER/scoop/shims/git.exe'
+Set-Alias -Name xclip -Value 'win32yank'
+
+Set-Alias -Name cp -Value 'C:/msys64/usr/bin/cp.exe'
+Set-Alias -Name du -Value 'C:/msys64/usr/bin/du.exe'
+Set-Alias -Name fd -Value 'C:/msys64/usr/bin/find.exe'
+Set-Alias -Name file -Value 'C:/msys64/usr/bin/file.exe'
+Set-Alias -Name find -Value 'C:/msys64/usr/bin/find.exe'
+Set-Alias -Name grep -Value 'C:/msys64/usr/bin/grep.exe'
+Set-Alias -Name head -Value 'C:/msys64/usr/bin/head.exe'
+Set-Alias -Name less -Value 'C:/msys64/usr/bin/less.exe'
+Set-Alias -Name md -Value 'C:/msys64/usr/bin/mkdir.exe'
+Set-Alias -Name rm -Value 'C:/msys64/usr/bin/rm.exe'
+Set-Alias -Name tail -Value 'C:/msys64/usr/bin/tail.exe'
+Set-Alias -Name tar -Value 'C:/msys64/usr/bin/tar.exe'
+Set-Alias -Name tree -Value 'C:/msys64/usr/bin/tree.exe'
 
 Set-Alias -Name ls -Value Get-ChildItem
 Function l { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
 Function la { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
 
-Function gdb { & 'C:/msys64/mingw64/bin/gdb.exe' -q @args }
-Function tree { & 'C:/msys64/usr/bin/tree.exe' -F @args }
+Function gdb { & 'C:/msys64/ucrt64/bin/gdb.exe' -q @args }
+
 Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
 Function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursive
 function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
@@ -146,7 +156,7 @@ function cmaked { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Deb
 function Get-Process-Custom
 {
   param ([string]$ProcName)
-  Get-Process $ProcName | Select Id, Name, Commandline
+  Get-Process $ProcName | Select Id, Name, Commandline | Format-Table -Wrap
 }
 Set-Alias -Name ps -Value Get-Process-Custom
 
@@ -164,5 +174,6 @@ Function Launch-VsDevShell
 
 [Environment]::SetEnvironmentVariable("Path", "c:/msys64/ucrt64/bin;c:/msys64/usr/bin;" + $env:Path)
 
+$env:TERM = 'xterm-256color'
 $env:CC = 'clang'
 $env:CXX = 'clang++'
