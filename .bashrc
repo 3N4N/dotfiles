@@ -181,11 +181,15 @@ o() {
 }
 
 start() {
-    if [ -z "$1" ]; then
-        echo "FUCK!"
+  if [ -z "$1" ]; then
+    echo "FUCK!"
+  else
+    if [[ $(uname -o) == "Msys" ]] ; then
+      cmd.exe /C "open $(cygpath -aw $1)"
     else
-        cmd.exe /C "open $(wslpath -aw $1)"
+      cmd.exe /C "open $(wslpath -aw $1)"
     fi
+  fi
 }
 
 
@@ -246,6 +250,10 @@ if ! shopt -oq posix; then
     elif [ -f /etc/bash_completion ]; then
         . /etc/bash_completion
     fi
+fi
+
+if [ -f /etc/bash-completion.d/git-completion.bash ]; then
+  . /etc/bash-completion.d/git-completion.bash
 fi
 
 
