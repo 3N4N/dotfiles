@@ -259,7 +259,7 @@ function! SetShell(shell) abort
     let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
     let &shellcmdflag = "/s /c"
     let &shellredir = ">%s 2>&1"
-    let &shellpipe = ">%s 2>&1"
+    let &shellpipe = "2>&1 | tee %s"
     let &shellquote = ""
     let &shellxquote = "\""
     let &ssl = 0
@@ -267,8 +267,8 @@ function! SetShell(shell) abort
   elseif a:shell ==# "pwsh" || a:shell ==# "powershell"
     let &shell = a:shell
     let &shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-    let &shellredir = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-    let &shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+    let &shellredir = '2>&1 | %%{ "$_" } | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
     let &shellquote = ""
     let &shellxquote = (has('nvim') ? "" : "\"")
     let &ssl = 0
