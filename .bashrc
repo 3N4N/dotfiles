@@ -88,6 +88,7 @@ alias vi='nvim'
 alias vimdiff='nvim -d'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
+alias wd='~/projects/wordnik-bin/target/debug/wordnik-bin'
 
 # WSL aliases
 if [ $isWSL ]; then
@@ -304,6 +305,14 @@ if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
 
+#  -- riscv stuff ------------------------------------------------------------
+
+export RISCV=$HOME/.opt/riscv
+export RV=riscv64-unknown-elf
+
+if [ -d "$RISCV/bin" ]; then
+  export PATH="$PATH:$RISCV/bin"
+fi
 
 # ----------------------------------------------------------------------
 #                                    set path
@@ -351,3 +360,7 @@ sps() {
 }
 
 PS1='\[$green\]\u@\h:\[$yellow\]$(eval "sps")\[$reset\]\$ '
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
