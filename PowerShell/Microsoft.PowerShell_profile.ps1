@@ -1,6 +1,6 @@
 # -- title -------------------------------------------------------------------
 
-$host.ui.RawUI.WindowTitle = 'PowerShell'
+# $host.ui.RawUI.WindowTitle = 'PowerShell'
 
 
 # -- prompt ------------------------------------------------------------------
@@ -40,7 +40,6 @@ Function prompt
 # -- modules -----------------------------------------------------------------
 
 # Import-Module posh-git
-
 
 # -- PSReadLine --------------------------------------------------------------
 
@@ -153,9 +152,18 @@ Set-Alias -Name cmake -Value 'C:/msys64/ucrt64/bin/cmake.exe'
 function cmakec { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
 function cmaked { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug @args }
 
-function Get-Process-Custom
+function clang { C:/msys64/ucrt64/bin/clang.exe -fno-diagnostics-color @args }
+function clang++ { C:/msys64/ucrt64/bin/clang++.exe -fno-diagnostics-color @args }
+
+# -- Functions ---------------------------------------------------------------
+
+Function Get-Process-Custom
 {
   param ([string]$ProcName)
+  if ($ProcName.Length -eq 0) {
+    Get-Process | less
+    return
+  }
   Get-Process $ProcName | Select Id, Name, Commandline | Format-Table -Wrap
 }
 Set-Alias -Name ps -Value Get-Process-Custom
@@ -167,13 +175,16 @@ Function Launch-VsDevShell
   [Environment]::SetEnvironmentVariable(
       "Path",
       ($env:Path.Split(';') `
-       | Where-Object { $_ -ne 'c:\msys64\mingw64\bin' } `
+       | Where-Object { $_ -ne 'c:\msys64\ucrt64\bin' } `
        | Where-Object { $_ -ne 'c:\msys64\usr\bin' } ) -join ';'
   )
 }
 
+
+# -- ENV ---------------------------------------------------------------------
+
 [Environment]::SetEnvironmentVariable("Path", "c:/msys64/ucrt64/bin;c:/msys64/usr/bin;" + $env:Path)
 
-$env:TERM = 'xterm-256color'
-$env:CC = 'clang'
-$env:CXX = 'clang++'
+$env:TERM     = 'xterm-256color'
+$env:CC       = 'clang'
+$env:CXX      = 'clang++'

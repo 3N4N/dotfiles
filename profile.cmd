@@ -35,8 +35,9 @@ doskey docksh = docker exec -it $1 /bin/bash
 
 :: import aliaes
 doskey msys = C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys
-doskey m64 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
-doskey m32 = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
+doskey m64  = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64
+doskey m32  = C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32
+doskey ucrt = C:\msys64\msys2_shell.cmd -defterm -here -no-start -ucrt64
 doskey vsdev = C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64
 
 :: msys tools
@@ -45,7 +46,7 @@ doskey l = "C:/msys64/usr/bin/ls" -NvhFl --group-directories-first --time-style=
 doskey la = "C:/msys64/usr/bin/ls" -NvhFl --group-directories-first --time-style=+ -A $*
 doskey md = "C:/msys64/usr/bin/mkdir" -p $*
 doskey tar = "C:/msys64/usr/bin/tar" $*
-doskey gdb =  "C:/msys64/mingw64/bin/gdb" -q $*
+doskey gdb =  "C:/msys64/ucrt64/bin/gdb" -q $*
 doskey fd = "C:/msys64/usr/bin/find" $*
 doskey tree = "C:/msys64/usr/bin/tree" -F $*
 doskey echo = "C:/msys64/usr/bin/echo.exe" $*
@@ -54,9 +55,9 @@ doskey du = "C:/msys64/usr/bin/du.exe" $*
 doskey mpv = "C:/apps/mpv/mpv.exe" $*
 
 :: cmake
-doskey cmake = "c:/msys64/mingw64/bin/cmake.exe" $*
-doskey cmakec = "c:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
-doskey cmaked = "c:/msys64/mingw64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
+doskey cmake = "c:/msys64/ucrt64/bin/cmake.exe" $*
+doskey cmakec = "c:/msys64/ucrt64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
+doskey cmaked = "c:/msys64/ucrt64/bin/cmake.exe" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
 
 :: prepend to PATH
-set PATH=c:\msys64\mingw64\bin;c:\msys64\usr\bin;%PATH%
+:: set PATH=c:\msys64\ucrt64\bin;c:\msys64\usr\bin;%PATH%
