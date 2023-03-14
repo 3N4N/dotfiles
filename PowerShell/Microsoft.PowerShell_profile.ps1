@@ -143,10 +143,8 @@ Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview
 Function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursive
 function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 
-Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -msys }
-Function m64 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw64 }
-Function m32 { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -mingw32 }
-Function ucrt { & C:\msys64\msys2_shell.cmd -defterm -here -no-start -ucrt64 }
+Function msys { & C:\msys64\msys2_shell.cmd -defterm -here -no-start @args }
+Function ucrt { msys -ucrt64 }
 
 Set-Alias -Name cmake -Value 'C:/msys64/ucrt64/bin/cmake.exe'
 function cmakec { cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 @args }
@@ -183,8 +181,8 @@ Function Launch-VsDevShell
 
 # -- ENV ---------------------------------------------------------------------
 
-[Environment]::SetEnvironmentVariable("Path", "c:/msys64/ucrt64/bin;c:/msys64/usr/bin;" + $env:Path)
-
-$env:TERM     = 'xterm-256color'
-$env:CC       = 'clang'
-$env:CXX      = 'clang++'
+[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new()
+[Environment]::SetEnvironmentVariable("Path",   "c:/msys64/ucrt64/bin;c:/msys64/usr/bin;" + $env:Path)
+[Environment]::SetEnvironmentVariable("TERM",   "xterm-256color")
+[Environment]::SetEnvironmentVariable("CC",     "clang")
+[Environment]::SetEnvironmentVariable("CXX",    "clang++")
