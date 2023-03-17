@@ -58,17 +58,17 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'mcchrish/fountain.vim'
-Plug 'benknoble/gitignore-vim'
-
 Plug 'Vimjas/vim-python-pep8-indent'
 
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
+Plug 'ojroques/nvim-osc52'
 
 Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+Plug 'mcchrish/fountain.vim'
+Plug 'benknoble/gitignore-vim'
 Plug 'rust-lang/rust.vim'
 
 call plug#end()
@@ -92,7 +92,6 @@ call LoadLocalVimrc()
 runtime plugin/user/functions.vim
 runtime plugin/user/options.vim
 runtime plugin/user/statusline.vim
-runtime plugin/user/clipboard.vim
 runtime plugin/user/plugins.vim
 
 
@@ -101,6 +100,7 @@ runtime plugin/user/plugins.vim
 if has('nvim')
   lua require('plenary.reload').reload_module('user', true)
   lua require('user.plugins')
+  lua require('user.clipboard')
   lua require('user.lspconfig')
 endif
 
