@@ -255,24 +255,26 @@ function! SetShell(shell) abort
     echohl Error | echom "[SetShell] Shell not found" | echohl None
   endif
 
-  if a:shell ==# "cmd"
-    let &shell = "C:\\\\Windows\\\\System32\\\\cmd.exe"
-    let &shellcmdflag = "/s /c"
-    let &shellredir = ">%s 2>&1"
-    let &shellpipe = "2>&1 | tee %s"
-    let &shellquote = ""
-    let &shellxquote = "\""
-    let &ssl = 0
-    let &csl = "slash"
-  elseif a:shell ==# "pwsh" || a:shell ==# "powershell"
+  if a:shell ==# 'cmd'
+    let &shell = 'C:\\\\Windows\\\\System32\\\\cmd.exe'
+    let &shellcmdflag = '/s /c'
+    let &shellredir = '>%s 2>&1'
+    let &shellpipe = '2>&1| tee'
+    let &shellquote = ''
+    let &shellxquote = '"'
+    let &ssl = 1
+    let &csl = 'slash'
+  elseif a:shell ==# 'pwsh' || a:shell ==# 'powershell'
     let &shell = a:shell
-    let &shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-    let &shellredir = '2>&1 | %%{ "$_" } | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
+    let &shellcmdflag .= '[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();'
+    let &shellcmdflag .= '$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';'
+    let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
     let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
-    let &shellquote = ""
-    let &shellxquote = (has('nvim') ? "" : "\"")
-    let &ssl = 0
-    let &csl = "slash"
+    let &shellquote = ''
+    let &shellxquote = (has('nvim') ? '' : '"')
+    let &ssl = 1
+    let &csl = 'slash'
   end
 endfunction
 
