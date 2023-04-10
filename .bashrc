@@ -14,9 +14,12 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-isWSL=0
+isWSL=false
+isMSYS=false
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-    isWSL=1
+  isWSL=true
+elif grep -qEi "(MINGW64_NT|MSYS_NT)" /proc/version &> /dev/null ; then
+  isMSYS=true
 fi
 
 export VISUAL=nvim
@@ -34,7 +37,7 @@ HISTTIMEFORMAT='%F %T '
 shopt -s histappend             # don't overwrite previous history
 shopt -s cmdhist                # store one command per line in history
 PROMPT_COMMAND='history -a'     # append history file after each command
-PROMPT_DIRTRIM=2                # truncate long paths to ".../foo/bar/baz"
+PROMPT_DIRTRIM=4                # truncate long paths to ".../foo/bar/baz"
 
 shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
@@ -178,17 +181,15 @@ complete -F _t_completions t
 
 # Open a file and detach the process
 o() {
-    xdg-open "$1" & disown
-}
-
-start() {
   if [ -z "$1" ]; then
     echo "FUCK!"
   else
-    if [[ $(uname -o) == "Msys" ]] ; then
-      cmd.exe /C "open $(cygpath -aw $1)"
+    if [ $isMSYS == 'true' ]; then
+      cmd.exe /C "start "" $(cygpath -aw $1)"
+    elif [ $isWSL == 'true' ]; then
+      cmd.exe /C "start "" $(wslpath -aw $1)"
     else
-      cmd.exe /C "open $(wslpath -aw $1)"
+      xdg-open "$1" & disown
     fi
   fi
 }
@@ -198,12 +199,17 @@ licensify() {
   curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING
 }
 
+if [ $isMSYS == 'true' ]; then
+  wts() {
+    nvim $LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json
+  }
+fi
 
 # ----------------------------------------------------------------------
 #                                      fzf
 # ----------------------------------------------------------------------
 
-if [[ ! -d "$HOME/.fzf" && $(uname -o) != "Msys" ]]; then
+if [[ $isWSL=='true' && ! -d "$HOME/.fzf" ]]; then
     git clone https://github.com/junegunn/fzf.git ~/.fzf
     cd ~/.fzf
     ./install --all --no-completion
@@ -329,6 +335,9 @@ append_to_path() {
   fi
 }
 
+if [ $isMSYS == 'true' ]; then
+  PATH=/c/msys64/ucrt64/bin:$PATH
+fi
 
 # ----------------------------------------------------------------------
 #                                  bash prompt
@@ -342,24 +351,28 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-sps() {
-  current_path=${PWD/#$HOME/'~'}
-  if [[ "$current_path" == "~" || "$current_path" == /* ]]; then
-    echo $current_path
-  else
-    path_parent=$(dirname $(dirname "$current_path"))
-    path_parent_short=`echo $path_parent | sed -r 's|/(\.?.)[^/]*|/\1|g'`
-    parentdir=$(basename $(dirname "$current_path"))
-    directory=${current_path##*\/}
-    if [[ "$path_parent" == "." ]]; then
-      echo "$parentdir/$directory"
+if [[ "$isMSYS" == 'true' ]]; then
+  PS1='\[$green\]\u@\h:\[$yellow\]\w\[$reset\]\n\$ '
+  PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
+else
+  sps() {
+    current_path=${PWD/#$HOME/'~'}
+    if [[ "$current_path" == "~" || "$current_path" == /* ]]; then
+      echo $current_path
     else
-      echo "$path_parent_short/$parentdir/$directory"
+      path_parent=$(dirname $(dirname "$current_path"))
+      path_parent_short=`echo $path_parent | sed -r 's|/(\.?.)[^/]*|/\1|g'`
+      parentdir=$(basename $(dirname "$current_path"))
+      directory=${current_path##*\/}
+      if [[ "$path_parent" == "." ]]; then
+        echo "$parentdir/$directory"
+      else
+        echo "$path_parent_short/$parentdir/$directory"
+      fi
     fi
-  fi
-}
-
+  }
 PS1='\[$green\]\u@\h:\[$yellow\]$(eval "sps")\[$reset\]\$ '
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
