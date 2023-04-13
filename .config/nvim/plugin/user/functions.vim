@@ -269,8 +269,9 @@ function! SetShell(shell) abort
     let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
     let &shellcmdflag .= '[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();'
     let &shellcmdflag .= '$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';'
+    let &shellcmdflag .= 'Remove-Alias -Force -ErrorAction SilentlyContinue cat,echo,sleep,sort,tee;'
     let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-    let &shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+    let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     let &shellquote = ''
     let &shellxquote = (has('nvim') ? '' : '"')
     let &ssl = 1

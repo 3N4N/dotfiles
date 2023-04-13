@@ -100,16 +100,8 @@ Set-PSReadLineOption -Colors @{
 
 # -- aliases -----------------------------------------------------------------
 
-if (Test-Path alias:ls) { Remove-Alias ls }
-if (Test-Path alias:rm) { Remove-Alias rm }
-if (Test-Path alias:rmdir) { Remove-Alias rmdir }
-if (Test-Path alias:md) { Remove-Alias md }
-if (Test-Path alias:mv) { Remove-Alias mv }
-if (Test-Path alias:cp) { Remove-Alias cp }
-if (Test-Path alias:r) { Remove-Alias r }
-# if (Test-Path alias:echo) { Remove-Alias echo }
-if (Test-Path alias:where) { del alias:where -force }
-if (Test-Path alias:sort) { del alias:sort -force }
+Remove-Alias -Force -ErrorAction SilentlyContinue `
+    ls,rm,rmdir,md,mv,cp,r,where,sort,man,tee
 
 Set-Alias -Name im -Value Import-Module
 

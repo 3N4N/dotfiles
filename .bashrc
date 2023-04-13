@@ -91,7 +91,6 @@ alias vi='nvim'
 alias vimdiff='nvim -d'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
-alias wd='~/projects/wordnik-bin/target/debug/wordnik-bin'
 
 # WSL aliases
 if [ $isWSL ]; then
