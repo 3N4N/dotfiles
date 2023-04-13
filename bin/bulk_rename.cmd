@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 
 
 
-set TMPFILE=%TEMP%\bulk_rename.txt
+set TMPFILE=%TMP%\bulk_rename.txt
 
 if exist %TMPFILE% del %TMPFILE%
 
