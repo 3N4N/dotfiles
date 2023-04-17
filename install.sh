@@ -17,6 +17,7 @@ DOTFILES=(
     ".gitconfig"
     ".inputrc"
     ".profile"
+    ".ripgreprc"
     ".tmux.conf"
     ".uncrustify.cfg"
     ".xinitrc"

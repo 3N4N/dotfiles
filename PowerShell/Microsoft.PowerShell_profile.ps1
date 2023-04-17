@@ -178,3 +178,4 @@ Function Launch-VsDevShell
 [Environment]::SetEnvironmentVariable("TERM",   "xterm-256color")
 [Environment]::SetEnvironmentVariable("CC",     "clang")
 [Environment]::SetEnvironmentVariable("CXX",    "clang++")
+[Environment]::SetEnvironmentVariable("RIPGREP_CONFIG_PATH", "$HOME/.ripgreprc")

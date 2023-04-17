@@ -42,6 +42,9 @@ New-Item -Type SymbolicLink -Path "$HOME/.profile" -Value $CURDIR/.profile
 Remove-Item -Recurse -Force $HOME/.gitconfig
 New-Item -Type SymbolicLink -Path "$HOME/.gitconfig" -Value $CURDIR/.gitconfig
 
+Remove-Item -Recurse -Force $HOME/.ripgreprc
+New-Item -Type SymbolicLink -Path "$HOME/.ripgreprc" -Value $CURDIR/.ripgreprc
+
 Remove-Item -Recurse -Force $HOME/.tmux.conf
 New-Item -Type SymbolicLink -Path "$HOME/.tmux.conf" -Value $CURDIR/.tmux.conf
 

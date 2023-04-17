@@ -1,0 +1,4 @@
+-g=!tags
+-g=!build
+-g=!release
+-g=!po

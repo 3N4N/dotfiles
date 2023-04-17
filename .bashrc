@@ -27,6 +27,7 @@ export EDITOR="$VISUAL"
 export GEM_HOME=$HOME/gems
 export LESS="-iSMRF"
 export PAGER="less"
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
