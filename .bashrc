@@ -98,6 +98,10 @@ if [ $isWSL ]; then
     alias e='explorer.exe'
 fi
 
+# clang's colored warnings/errors can't be seen in white background
+alias clang='clang -fno-diagnostics-color'
+alias clang++='clang++ -fno-diagnostics-color'
+
 alias cmakec='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias cmaked='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug'
 
