@@ -25,7 +25,6 @@ DOTFILES=(
     ".config/gdb"
     ".config/mpv"
     ".config/nvim"
-    ".config/ranger"
     ".local/share/fonts"
 )
 
