@@ -45,7 +45,7 @@ Function prompt
 
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
-Set-PSReadlineOption -WordDelimiters ";:,.[]{}()/\|^&*-=+'`"-—―_"
+Set-PSReadlineOption -WordDelimiters "?;:,.[]{}()/\|^&*-=+'`"-—―_"
 
 Set-PSReadLineOption -PredictionSource None
 
