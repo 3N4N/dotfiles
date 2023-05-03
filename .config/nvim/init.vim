@@ -51,10 +51,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
 Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -98,7 +94,6 @@ runtime plugin/user/plugins.vim
 " -- lua config ------------------------------------------------------------
 
 if has('nvim')
-  lua require('plenary.reload').reload_module('user', true)
   lua require('user.plugins')
   lua require('user.clipboard')
   lua require('user.lspconfig')
@@ -306,7 +301,6 @@ onoremap aa :normal vaa<CR>
 
 " Lua utilities
 command! -nargs=1 Inspect lua print(vim.inspect(<args>))
-command! ReloadLua lua require('plenary.reload').reload_module('user', true)
 
 " Send selected text to a pastebin
 command! -range=% Paste
@@ -412,27 +406,6 @@ xnoremap <Leader>u :UncrustifyRange<CR>
 
 if !empty(findfile('src/uncrustify.cfg', ';'))
   let &formatprg = 'uncrustify -q -l C -c src/uncrustify.cfg --no-backup'
-endif
-
-
-" -- Telescope -------------------------------------------------------------
-
-if has('nvim')
-  lua require('user.telescope')
-  nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-  nnoremap <leader>fg <cmd>lua require('telescope.builtin').git_files({show_untracked = false})<cr>
-  nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-  nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-  nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
-  nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
-  nnoremap <leader><C-]> <cmd>execute "Telescope tags default_text='" . expand("<cword>")<cr>
-else
-  nnoremap <leader>ff <cmd>Files<cr>
-  nnoremap <leader>fg <cmd>GFiles<cr>
-  nnoremap <leader>fb <cmd>Buffers<cr>
-  nnoremap <leader>fh <cmd>Helptags<cr>
-  nnoremap <leader>fa <cmd>Rg<cr>
-  nnoremap <leader>ft <cmd>Tags<cr>
 endif
 
 
