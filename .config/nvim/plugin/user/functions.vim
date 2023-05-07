@@ -453,3 +453,17 @@ function! ToggleGstatus() abort
   keepalt Git
 endfunction
 nnoremap <Leader>gs :call ToggleGstatus()<CR>
+
+
+" -- List files to then gf on it -------------------------------------------
+
+function! ListFiles(arg) abort
+  new
+  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+  call append(0, systemlist(a:arg))
+  call cursor(1,0)
+endfunction
+nnoremap <silent> <Leader>ff
+      \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', "'%P\n" ])<CR>
+nnoremap <silent> <Leader>fg
+      \ :call ListFiles(['git', 'ls-files'])<CR>

@@ -166,8 +166,8 @@ nnoremap <Leader>do :windo diffoff<CR>
 " Opening files
 nnoremap <Leader>e :e **/*
 nnoremap <Leader>E :e .*/**/*<Left><Left><Left><Left><Left><Left>
-nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**'`
-      \<Left><Left><Left>
+nnoremap <Leader>o :e `find . -path '**/.git' -prune -o -type f -iname '**' -print`
+      \<S-left><Left><Left><Left>
 
 " Show name of syntax element below cursor
 command! SynName  echo synIDattr(synID(line("."), col("."), 1), "name")
