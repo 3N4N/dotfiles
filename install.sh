@@ -22,14 +22,9 @@ DOTFILES=(
     ".uncrustify.cfg"
     ".xinitrc"
     ".sig"
-    ".config/cmus/cmus.theme"
-    ".config/picom.conf"
-    ".config/dunst"
     ".config/gdb"
     ".config/mpv"
     ".config/nvim"
-    ".config/Thunar"
-    ".config/xfce4/terminal"
     ".local/share/fonts"
 )
 
@@ -45,7 +40,6 @@ if [ "$1" == "-a" ]; then
         acpi \
         curl \
         deluge \
-        dunst \
         ffmpeg \
         git \
         htop \
@@ -55,6 +49,7 @@ if [ "$1" == "-a" ]; then
         pavucontrol \
         rar \
         ripgrep \
+        silversearcher-ag \
         tree \
         uncrustify \
         universal-ctags \
