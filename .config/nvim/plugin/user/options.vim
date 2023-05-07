@@ -26,12 +26,6 @@ set noruler
 set showmode
 set signcolumn =no
 
-if empty($WT_SESSION)
-  set guicursor =n-v-c-sm:block-blinkon0,i-ci-ve:ver25-blinkon0,r-cr-o:hor20-blinkon0
-else
-  set guicursor =
-endif
-
 " -- line wrapping ---------------------------------------------------------
 set nowrap
 set breakindent
