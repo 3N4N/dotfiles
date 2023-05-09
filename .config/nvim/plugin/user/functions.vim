@@ -250,7 +250,7 @@ augroup END
 " -- Utility function for setting shell ------------------------------------
 
 function! SetShell(shell) abort
-  let shells = ['cmd', 'pwsh', 'powershell']
+  let shells = ['cmd', 'pwsh', 'powershell', 'bash']
   if index(shells, a:shell) == -1
     echohl Error | echom "[SetShell] Shell not found" | echohl None
   endif
@@ -274,6 +274,15 @@ function! SetShell(shell) abort
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     let &shellquote = ''
     let &shellxquote = (has('nvim') ? '' : '"')
+    let &ssl = 1
+    let &csl = 'slash'
+  elseif a:shell ==# 'bash'
+    let &shell = 'bash'
+    let &shellcmdflag = '-c'
+    let &shellredir = '>%s 2>&1'
+    let &shellpipe = '2>&1| tee'
+    let &shellquote = ''
+    let &shellxquote = '('
     let &ssl = 1
     let &csl = 'slash'
   end
@@ -458,12 +467,12 @@ nnoremap <Leader>gs :call ToggleGstatus()<CR>
 " -- List files to then gf on it -------------------------------------------
 
 function! ListFiles(arg) abort
-  new
+  new | wincmd p | wincmd q
   setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
   call append(0, systemlist(a:arg))
   call cursor(1,0)
 endfunction
-nnoremap <silent> <Leader>ff
+nnoremap <silent> <Space>ff
       \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', "'%P\n" ])<CR>
-nnoremap <silent> <Leader>fg
+nnoremap <silent> <Space>fg
       \ :call ListFiles(['git', 'ls-files'])<CR>

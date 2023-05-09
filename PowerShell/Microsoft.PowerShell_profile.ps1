@@ -128,6 +128,7 @@ Set-Alias -Name tree -Value 'C:/msys64/usr/bin/tree.exe'
 Set-Alias -Name ls -Value Get-ChildItem
 Function l { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFl @args }
 Function la { & 'C:/msys64/usr/bin/ls' --group-directories-first --time-style=+ -NvhFlA @args }
+Function mcd { mkdir @args; cd @args }
 
 Function gdb { & 'C:/msys64/ucrt64/bin/gdb.exe' -q @args }
 

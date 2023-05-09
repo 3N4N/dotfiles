@@ -141,9 +141,8 @@ endfor
 
 
 " -- make ------------------------------------------------------------------
-if isdirectory("build")
-  set makeprg =make\ -C\ build
-  set makeprg =ninja\ -C\ build
+if g:env ==# 'WIN'
+  set makeprg =mingw32-make
 else
   set makeprg =make
 end
