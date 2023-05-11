@@ -355,27 +355,9 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
+PS1='\[$green\]\u@\h:\[$yellow\]\w\[$reset\]\n\$ '
 if [[ "$isMSYS" == 'true' ]]; then
-  PS1='\[$green\]\u@\h:\[$yellow\]\w\[$reset\]\n\$ '
   PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
-else
-  sps() {
-    current_path=${PWD/#$HOME/'~'}
-    if [[ "$current_path" == "~" || "$current_path" == /* ]]; then
-      echo $current_path
-    else
-      path_parent=$(dirname $(dirname "$current_path"))
-      path_parent_short=`echo $path_parent | sed -r 's|/(\.?.)[^/]*|/\1|g'`
-      parentdir=$(basename $(dirname "$current_path"))
-      directory=${current_path##*\/}
-      if [[ "$path_parent" == "." ]]; then
-        echo "$parentdir/$directory"
-      else
-        echo "$path_parent_short/$parentdir/$directory"
-      fi
-    fi
-  }
-PS1='\[$green\]\u@\h:\[$yellow\]$(eval "sps")\[$reset\]\$ '
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
