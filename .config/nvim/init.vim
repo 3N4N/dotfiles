@@ -50,22 +50,19 @@ call plug#begin(s:vim_plug_dir)
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
 
-Plug 'junegunn/fzf' ", { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'ojroques/nvim-osc52'
 
-Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
 Plug 'rust-lang/rust.vim'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
