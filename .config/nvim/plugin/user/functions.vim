@@ -473,6 +473,6 @@ function! ListFiles(arg) abort
   call cursor(1,0)
 endfunction
 nnoremap <silent> <Space>ff
-      \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', "'%P\n" ])<CR>
+      \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', '%P\n' ])<CR>
 nnoremap <silent> <Space>fg
       \ :call ListFiles(['git', 'ls-files'])<CR>
