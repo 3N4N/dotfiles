@@ -58,6 +58,7 @@ Plug 'neovim/nvim-lspconfig'
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'ojroques/nvim-osc52'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
@@ -413,6 +414,18 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+
+" -- OSCYank ---------------------------------------------------------------
+
+nnoremap <leader>y <Plug>OSCYankOperator
+nnoremap <leader>yy <Plug>OSCYankOperator_
+xnoremap <C-c> <Plug>OSCYankVisual
+
+autocmd TextYankPost *
+      \ if v:event.operator is 'y' && v:event.regname is '+' |
+      \ execute 'OSCYankRegister +' |
+      \ endif
 
 
 " -- Lua Modules -----------------------------------------------------------
