@@ -282,7 +282,7 @@ function! SetShell(shell) abort
     let &shellredir = '>%s 2>&1'
     let &shellpipe = '2>&1| tee'
     let &shellquote = ''
-    let &shellxquote = '('
+    let &shellxquote = (has('nvim') ? '(' : '"')
     let &ssl = 1
     let &csl = 'slash'
   end

@@ -1,20 +1,25 @@
+" -- color scheme ----------------------------------------------------------
+
+" Required by Bram's VIM to support 24-bit colors
 if !has('nvim') && exists('+termguicolors')
   let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
 
+syntax off
+set notermguicolors
+set background =light
+colo dim
+
+" -- cursor ----------------------------------------------------------------
+
+" Required by Bram's VIM to change cursor shape according to the mode
+" Needs to be defined /after/ termguicolors, bc that resets t_SI
 if !has('nvim') && exists('+guicursor')
   let &t_SI = "\<Esc>[5 q"
   let &t_SR = "\<Esc>[3 q"
   let &t_EI = "\<Esc>[1 q"
 endif
-
-
-" -- color scheme ----------------------------------------------------------
-syntax off
-set notermguicolors
-set background =light
-colo dim
 
 " -- visual perks ----------------------------------------------------------
 set colorcolumn =0
@@ -54,7 +59,7 @@ set spelllang =en_us
 
 " -- set default shell in win32 --------------------------------------------
 if g:env == "WIN"
-  let shell = "pwsh"
+  let shell = "bash"
   call SetShell(shell)
   unlet shell
 end
