@@ -3,6 +3,14 @@ if !has('nvim') && exists('+termguicolors')
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 endif
 
+if !has('nvim') && exists('+guicursor')
+  let &t_SI = "\<Esc>[5 q"
+  let &t_SR = "\<Esc>[3 q"
+  let &t_EI = "\<Esc>[1 q"
+endif
+
+
+" -- color scheme ----------------------------------------------------------
 syntax off
 set notermguicolors
 set background =light
