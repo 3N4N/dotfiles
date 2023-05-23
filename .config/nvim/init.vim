@@ -418,9 +418,14 @@ nmap ga <Plug>(EasyAlign)
 
 " -- OSCYank ---------------------------------------------------------------
 
-nnoremap <leader>y <Plug>OSCYankOperator
-nnoremap <leader>yy <Plug>OSCYankOperator_
-xnoremap <C-c> <Plug>OSCYankVisual
+let g:oscyank_max_length = 0  " maximum length of a selection
+let g:oscyank_silent     = 1  " disable message on successful copy
+let g:oscyank_trim       = 0  " trim surrounding whitespaces before copy
+let g:oscyank_osc52      = "\x1b]52;c;%s\x07"  " the OSC52 format string to use
+
+nnoremap <silent> <leader>y <Plug>OSCYankOperator
+nnoremap <silent> <leader>yy <Plug>OSCYankOperator_
+xnoremap <silent> <C-c> <Plug>OSCYankVisual
 
 autocmd TextYankPost *
       \ if v:event.operator is 'y' && v:event.regname is '+' |

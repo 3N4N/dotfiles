@@ -36,6 +36,7 @@ set nomodeline
 set nonumber
 set norelativenumber
 set noruler
+set scrolloff =0
 set showmode
 set signcolumn =no
 
