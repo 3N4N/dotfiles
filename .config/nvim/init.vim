@@ -57,7 +57,6 @@ Plug 'neovim/nvim-lspconfig'
 
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
-Plug 'ojroques/nvim-osc52'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 Plug 'mcchrish/fountain.vim'
@@ -423,15 +422,17 @@ let g:oscyank_silent     = 1  " disable message on successful copy
 let g:oscyank_trim       = 0  " trim surrounding whitespaces before copy
 let g:oscyank_osc52      = "\x1b]52;c;%s\x07"  " the OSC52 format string to use
 
-nnoremap <silent> <leader>y <Plug>OSCYankOperator
-nnoremap <silent> <leader>yy <Plug>OSCYankOperator_
-xnoremap <silent> <C-c> <Plug>OSCYankVisual
-
-autocmd TextYankPost *
-      \ if v:event.operator is 'y' && v:event.regname is '+' |
-      \ execute 'OSCYankRegister +' |
-      \ endif
-
+if g:env ==# 'WIN'
+  " vim-oscyank plugin doesn't work in Windows
+  " Fall back on win32 clipboard
+  nnoremap <silent>   <leader>y     "+y
+  nnoremap <silent>   <leader>yy    "+yy
+  xnoremap <silent>   <C-c>         "+y
+else
+  nnoremap <silent>   <leader>y     <Plug>OSCYankOperator
+  nnoremap <silent>   <leader>yy    <Plug>OSCYankOperator_
+  xnoremap <silent>   <C-c>         <Plug>OSCYankVisual
+endif
 
 " -- Lua Modules -----------------------------------------------------------
 
