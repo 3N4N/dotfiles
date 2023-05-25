@@ -375,7 +375,7 @@ endif
 " -- Title -----------------------------------------------------------------
 
 set title
-let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %t"
+let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %{getcwd()->fnamemodify(':~')}"
 
 
 " -- Ctags -----------------------------------------------------------------
