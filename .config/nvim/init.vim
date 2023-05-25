@@ -422,7 +422,7 @@ let g:oscyank_silent     = 1  " disable message on successful copy
 let g:oscyank_trim       = 0  " trim surrounding whitespaces before copy
 let g:oscyank_osc52      = "\x1b]52;c;%s\x07"  " the OSC52 format string to use
 
-if g:env ==# 'WIN'
+if !has('nvim') && g:env ==# 'WIN'
   " vim-oscyank plugin doesn't work in Windows
   " Fall back on win32 clipboard
   nnoremap <silent>   <leader>y     "+y

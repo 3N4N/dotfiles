@@ -472,7 +472,15 @@ function! ListFiles(arg) abort
   call append(0, systemlist(a:arg))
   call cursor(1,0)
 endfunction
-nnoremap <silent> <Space>ff
-      \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', '%P\n' ])<CR>
-nnoremap <silent> <Space>fg
-      \ :call ListFiles(['git', 'ls-files'])<CR>
+
+if has('nvim')
+  nnoremap <silent> <Space>ff
+        \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', '%P\n' ])<CR>
+  nnoremap <silent> <Space>fg
+        \ :call ListFiles(['git', 'ls-files'])<CR>
+else
+  nnoremap <silent> <Space>ff
+        \ :call ListFiles('find -maxdepth 3 -type f -printf %P\n')<CR>
+  nnoremap <silent> <Space>fg
+        \ :call ListFiles('git ls-files')<CR>
+endif
