@@ -209,41 +209,6 @@ if [ $isMSYS == 'true' ]; then
   }
 fi
 
-# ----------------------------------------------------------------------
-#                                      fzf
-# ----------------------------------------------------------------------
-
-if [[ $isWSL=='true' && ! -d "$HOME/.fzf" ]]; then
-    git clone https://github.com/junegunn/fzf.git ~/.fzf
-    cd ~/.fzf
-    ./install --all --no-completion
-    cd -
-fi
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export FZF_DEFAULT_OPTS='
-    --height 40% --multi --layout=reverse --border
-    --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
-'
-
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=light
-    --color=fg:-1,bg:-1,hl:33,fg+:241,bg+:221,hl+:33
-    --color=info:33,prompt:33,pointer:166,marker:166,spinner:33
-'
-
-if  hash ag 2>/dev/null ; then
-    export FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-else
-    export FZF_DEFAULT_COMMAND='find -type f'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-fi
-
-# use fzf to open files
-bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
-
 
 # ----------------------------------------------------------------------
 #                              bash autocompletion
@@ -256,15 +221,14 @@ bind -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-o
 # this will make fzf leave bash completion alone
 
 if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
-fi
-
-if [ -f /etc/bash-completion.d/git-completion.bash ]; then
-  . /etc/bash-completion.d/git-completion.bash
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+  if [ -f /etc/bash-completion.d/git-completion.bash ]; then
+    . /etc/bash-completion.d/git-completion.bash
+  fi
 fi
 
 

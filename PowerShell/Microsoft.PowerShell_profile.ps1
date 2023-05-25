@@ -77,27 +77,6 @@ Set-PSReadLineOption -Colors @{
 }
 
 
-# -- fzf ---------------------------------------------------------------------
-
-# # --height 40% --multi
-# $env:FZF_DEFAULT_OPTS='
-# --layout=reverse --border
-#     --bind ctrl-f:page-down,ctrl-b:page-up,?:toggle-preview
-#     --color=light
-#     --color=fg:-1,bg:-1,hl:33,fg+:241,bg+:221,hl+:33
-#     --color=info:33,prompt:33,pointer:166,marker:166,spinner:33
-# '
-
-# if  hash ag 2>/dev/null ; then
-#     SET FZF_DEFAULT_COMMAND='ag --nocolor -g "" 2> /dev/null'
-#     SET FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# else
-#     SET FZF_DEFAULT_COMMAND='find -type f'
-#     SET FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# fi
-
-
-
 # -- aliases -----------------------------------------------------------------
 
 Remove-Alias -Force -ErrorAction SilentlyContinue `
