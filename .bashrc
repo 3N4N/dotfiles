@@ -65,7 +65,7 @@ alias lh='la -d .[^.]* 2> /dev/null'
 # show colors in grep and ag
 alias ag='ag --color-match "31"'
 alias rg='rg --smart-case -g "!tags" -g "!build" -g "!release" -g "!po"'
-alias grep='grep --color=auto --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags"'
+alias grep='grep -IHn --color=always --exclude-dir={".git","node_modules",".cache"} --exclude="tags"'
 
 # shorthand for python executables
 alias py2='python2'
@@ -89,9 +89,9 @@ alias psgrep='ps aux | head -n 1 && ps aux | grep -v grep | grep --color -i'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
 alias vi='nvim'
-alias vimdiff='nvim -d'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
+alias xargs='xargs '    # to expand aliases in "cmd | xargs alias"
 
 # WSL aliases
 if [ $isWSL ]; then
@@ -237,10 +237,7 @@ fi
 # ----------------------------------------------------------------------
 
 case "$TERM" in
-    st*)
-        PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}"'
-        ;;
-    xterm*)
+    xterm*|st*|tmux*)
         PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
         ;;
 esac
