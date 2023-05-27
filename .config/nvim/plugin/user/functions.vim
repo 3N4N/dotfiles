@@ -1,10 +1,9 @@
 " -- A better gx functionality ---------------------------------------------
 
 function! BetterGX() abort
-  if g:env == "WSL"
-    let cmd = 'cmd.exe /C start ""'
-  elseif g:env == "WIN"
-    let cmd = 'cmd.exe /C start ""'   " start's first arg is title
+  if g:env == "WIN" || g:env == "WSL"
+    " command prompt's 'start' first arg is title
+    let cmd = 'cmd.exe /C ' . (&sh=='bash'?"'":"") . 'start ""'
   elseif executable('xdg-open')
     let cmd = "xdg-open"
   elseif executable('open')
@@ -15,7 +14,7 @@ function! BetterGX() abort
   endif
 
   let path = expand('<cfile>')
-  let fullcmd = cmd . ' ' . '"' . path . '"'
+  let fullcmd = cmd . ' ' . '"' . path . '"' . (&sh=='bash'?"'":"")
   echo fullcmd
   call jobstart(fullcmd)
 endfunction
