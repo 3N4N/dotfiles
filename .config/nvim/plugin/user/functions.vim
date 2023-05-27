@@ -461,7 +461,7 @@ nnoremap <Leader>gs :call ToggleGstatus()<CR>
 " -- List files to then gf on it -------------------------------------------
 
 function! ListFiles(arg) abort
-  new | wincmd p | wincmd q
+  enew
   setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
   call append(0, systemlist(a:arg))
   call cursor(1,0)
