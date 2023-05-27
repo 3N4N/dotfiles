@@ -159,3 +159,8 @@ Function Launch-VsDevShell
 [Environment]::SetEnvironmentVariable("CC",     "clang")
 [Environment]::SetEnvironmentVariable("CXX",    "clang++")
 [Environment]::SetEnvironmentVariable("RIPGREP_CONFIG_PATH", "$HOME/.ripgreprc")
+
+
+# -- Misc --------------------------------------------------------------------
+
+printf '\033[2 q'               # for xterm-like terms: unblinking block cursor

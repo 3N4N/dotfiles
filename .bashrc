@@ -22,12 +22,14 @@ elif grep -qEi "(MINGW64_NT|MSYS_NT)" /proc/version &> /dev/null ; then
   isMSYS=true
 fi
 
+# ENV variables
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GEM_HOME=$HOME/gems
 export LESS="-iSMRF"
 export PAGER="less"
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+export GCC_COLORS=""            # suppress gcc colors: gcc fg=white on bg=white
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
@@ -35,17 +37,17 @@ HISTSIZE=20000
 HISTFILESIZE=20000
 HISTIGNORE='exit:cd:ls:l:la:lh:bg:fg:history:f:fd:clear'
 HISTTIMEFORMAT='%F %T '
+
+# Misc
+PROMPT_DIRTRIM=4                # truncate long paths to ".../foo/bar/baz"
+PROMPT_COMMAND='history -a'     # append history file after each command
 shopt -s histappend             # don't overwrite previous history
 shopt -s cmdhist                # store one command per line in history
-PROMPT_COMMAND='history -a'     # append history file after each command
-PROMPT_DIRTRIM=4                # truncate long paths to ".../foo/bar/baz"
-
 shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
 shopt -s extglob                # enable extended globbing
-
-# remove XON/XOFF
-stty -ixon
+stty -ixon                      # remove XON/XOFF
+printf '\033[2 q'               # for xterm-like terms: unblinking block cursor
 
 
 # ----------------------------------------------------------------------
