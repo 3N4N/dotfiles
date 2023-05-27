@@ -294,10 +294,6 @@ command! -nargs=1 SetShell call SetShell(<q-args>)
 function! GitOpenRemote(start, end) abort
   let available_domains = [ 'github', 'sr.ht' ]
 
-  function! System(cmd) abort
-    return trim(system(a:cmd))
-  endfunction
-
   function! UnixifyPath(path) abort
     return substitute(a:path, '\\', '/', 'g')
   endfunction
@@ -387,7 +383,6 @@ function! GitOpenRemote(start, end) abort
   echom fullurl
   let @* = fullurl
 
-  delfunction System
   delfunction ParseRemoteURL
   delfunction GetFullRemoteURL
 endfunction
@@ -472,14 +467,10 @@ function! ListFiles(arg) abort
   call cursor(1,0)
 endfunction
 
-if has('nvim')
-  nnoremap <silent> <Space>ff
-        \ :call ListFiles([ 'find', '-maxdepth', '3', '-type', 'f', '-printf', '%P\n' ])<CR>
-  nnoremap <silent> <Space>fg
-        \ :call ListFiles(['git', 'ls-files'])<CR>
-else
-  nnoremap <silent> <Space>ff
-        \ :call ListFiles('find -maxdepth 3 -type f -printf %P\n')<CR>
-  nnoremap <silent> <Space>fg
-        \ :call ListFiles('git ls-files')<CR>
-endif
+function! SplitIfNvim(arg) abort
+  if has('nvim') | return a:arg->split() | else | return a:arg | endif
+endfunction
+nnoremap <silent> <Space>ff
+      \ :call ListFiles('find -maxdepth 3 -type f -printf %P\n'->SplitIfNvim())<CR>/
+nnoremap <silent> <Space>fg
+      \ :call ListFiles('git ls-files'->SplitIfNvim())<CR>/
