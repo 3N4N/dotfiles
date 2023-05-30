@@ -93,7 +93,7 @@ runtime plugin/user/plugins.vim
 if has('nvim')
   lua require('user.plugins')
   lua require('user.clipboard')
-  lua require('user.lspconfig')
+  " lua require('user.lspconfig')
 endif
 
 
@@ -107,6 +107,11 @@ cabbrev cmakefile CMakeLists.txt
 
 " Uppercase word in Insert-mode
 inoremap <C-u> <Esc>m0gUiw`0a
+
+if !has('nvim') && g:env ==# 'WIN'
+  " in Conhost, <C-x> in visual mode deletes text (documented behaviour)
+  xnoremap <C-x> <C-x>
+endif
 
 " Consistent movement
 noremap gh ^
@@ -375,13 +380,13 @@ endif
 " -- Title -----------------------------------------------------------------
 
 set title
-let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':':'} %{getcwd()->fnamemodify(':~')}"
+let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':'-'}
+      \ %{getcwd()->fnamemodify(':~')}"
 
 
 " -- Ctags -----------------------------------------------------------------
 
-nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build
-      \ --exclude=release --exclude=venv .<CR>
+nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
 
 
 " -- Uncrustify ------------------------------------------------------------
