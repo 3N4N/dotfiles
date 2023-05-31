@@ -53,14 +53,13 @@ function! DocFormat() abort
   let cmntstr = &commentstring
   let cmntlen = &textwidth != 0 ? &textwidth : 80
   let cmntlen = cmntlen - strlen(cmntstr) - 1
-
-  let beauty = substitute(cmntstr, "%s", " " . repeat("-",cmntlen), "")
-
-  let curline = getline('.')
-  let prefix = &ft == "lua" ? " " : " -- "
+  let beauty  = substitute(cmntstr, "%s", " " . repeat("-",cmntlen), "")
+  let curline = getline('.')->substitute('^\s\+', "", "")
+  let prefix  = &ft == "lua" ? " " : " -- "
   let curline = prefix . curline . " " . repeat("-", cmntlen - strlen(curline) - len(prefix))
   let newline = substitute(cmntstr, "%s", curline, "")
   call setline(".", newline)
+  norm! ==
 endfunction
 
 function! DocBanner() abort
@@ -68,14 +67,14 @@ function! DocBanner() abort
   let cmntlen = &textwidth != 0 ? &textwidth : 80
   let cmntlen = cmntlen - strlen(cmntstr)
 
-  let beauty = substitute(cmntstr, "%s", " " . repeat("-", cmntlen), "")
+  let beauty  = substitute(cmntstr, "%s", " " . repeat("-", cmntlen), "")
 
   center
   let curline = getline('.')
   let newline = substitute(cmntstr, "%s", curline, "")
   call setline(".", newline)
 
-  let curpos = getcurpos(0)
+  let curpos  = getcurpos(0)
   call append(curpos[1]-1, beauty)
   call append(curpos[1]+1, beauty)
 endfunction
