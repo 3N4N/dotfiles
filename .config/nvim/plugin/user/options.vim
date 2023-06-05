@@ -154,12 +154,18 @@ for tabstuff in ['tabstop', 'softtabstop', 'shiftwidth']
 endfor
 
 
-" -- make ------------------------------------------------------------------
+" -- Build -----------------------------------------------------------------
+
 if g:env ==# 'WIN'
   set makeprg =mingw32-make
 else
   set makeprg =make
 end
+
 let g:cargo_makeprg_params = ''
+
+" '%f:%l:%m' causes `make: *** [Makefile:23: a.out] Error 1' to be treated as error
+" Remove it from 'errorformat'
+let &efm = '%f(%l) \=: %t%*\D%n: %m,%*[^"]"%f"%*\D%l: %m,%f(%l) \=: %m,%*[^ ] %f %l: %m,%f:%l:%c:%m,%f(%l):%m,%f|%l| %m'
 
 call LoadLocalVimrc()
