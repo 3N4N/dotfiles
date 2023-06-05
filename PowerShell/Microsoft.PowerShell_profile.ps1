@@ -163,4 +163,4 @@ Function Launch-VsDevShell
 
 # -- Misc --------------------------------------------------------------------
 
-printf '\033[2 q'               # for xterm-like terms: unblinking block cursor
+Write-Output "$ESC[2 q"               # for xterm-like terms: unblinking block cursor
