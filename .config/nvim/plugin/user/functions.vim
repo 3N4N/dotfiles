@@ -380,7 +380,12 @@ function! GitOpenRemote(start, end) abort
 
   let fullurl = GetFullRemoteURL(remote, hashref, filename, [a:start, a:end])
   echom fullurl
-  let @* = fullurl
+
+  if exists('g:loaded_oscyank')
+    call OSCYank(fullurl)
+  elseif has('clipboard')
+    let @* = fullurl
+  endif
 
   delfunction ParseRemoteURL
   delfunction GetFullRemoteURL
