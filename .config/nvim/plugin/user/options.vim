@@ -156,12 +156,6 @@ endfor
 
 " -- Build -----------------------------------------------------------------
 
-if g:env ==# 'WIN'
-  set makeprg =mingw32-make
-else
-  set makeprg =make
-end
-
 let g:cargo_makeprg_params = ''
 
 " '%f:%l:%m' causes `make: *** [Makefile:23: a.out] Error 1' to be treated as error
