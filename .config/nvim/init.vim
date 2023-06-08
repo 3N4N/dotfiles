@@ -155,7 +155,7 @@ nnoremap <C-w><C-]> <C-w>g<C-]>
 nnoremap <Leader>; :
 xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
-nnoremap <Bslash>f :grep<Space>
+nnoremap <Bslash>f :Grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>s :%s:\v

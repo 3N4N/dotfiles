@@ -478,3 +478,21 @@ nnoremap <silent> <Space>ff
       \ :call ListFiles('find -maxdepth 3 -type f -printf %P\n'->SplitIfNvim())<CR>/
 nnoremap <silent> <Space>fg
       \ :call ListFiles('git ls-files'->SplitIfNvim())<CR>/
+
+
+" -- Better GREP -----------------------------------------------------------
+
+" Ref: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+
+function! Grep(...) abort
+  let l:saved_errorformat = &errorformat
+  let &errorformat = &grepformat
+
+  let l:grepcmd = join([&grepprg] + a:000, ' ')
+  cgetexpr system(l:grepcmd)
+  call setqflist([], 'a', {'title' : l:grepcmd})
+
+  let &errorformat = l:saved_errorformat
+endfunction
+
+command! -nargs=+ -complete=file_in_path -bar Grep  call Grep(<f-args>)
