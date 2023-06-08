@@ -291,7 +291,7 @@ command! -nargs=1 SetShell call SetShell(<q-args>)
 " -- Open file in remote git browser ---------------------------------------
 
 function! GitOpenRemote(start, end) abort
-  let available_domains = [ 'github', 'sr.ht' ]
+  let available_domains = [ 'github', 'sr.ht' , 'gitlab']
 
   function! UnixifyPath(path) abort
     return substitute(a:path, '\\', '/', 'g')
@@ -303,8 +303,10 @@ function! GitOpenRemote(start, end) abort
       let domain = 'github'
     elseif match(url, 'sr.ht') != -1
       let domain = 'sr.ht'
+    elseif match(url, 'gitlab') != -1
+      let domain = 'gitlab'
     else
-      let domain = ''
+      let domain = url
     endif
     let baseurl = substitute(url, 'ssh\:\/\/', '', '')
     let baseurl = substitute(baseurl, 'git@\(.*\)', '\1', '')
@@ -323,7 +325,7 @@ function! GitOpenRemote(start, end) abort
       if start != end
         if a:remote.domain == "github"
           let lines .= "-L" . end
-        elseif a:remote.domain == "sr.ht"
+        elseif a:remote.domain == "sr.ht" || a:remote.domain == "gitlab"
           let lines .= "-" . end
         endif
       endif
@@ -333,8 +335,10 @@ function! GitOpenRemote(start, end) abort
       let tree = "/blob/" . a:hashref . "/" . a:filename . lines
     elseif a:remote.domain == "sr.ht"
       let tree = "/tree/" . a:hashref . "/" . a:filename . lines
+    elseif a:remote.domain == "gitlab"
+      let tree = "/-/blob/" . a:hashref . "/" . a:filename . lines
     endif
-    let fullurl = "https://" . a:remote.url . tree
+    let fullurl = "http://" . a:remote.url . tree
     return fullurl
   endfunction
 
