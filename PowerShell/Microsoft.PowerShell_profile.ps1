@@ -111,7 +111,7 @@ Function mcd { mkdir @args; cd @args }
 
 Function gdb { & 'C:/msys64/ucrt64/bin/gdb.exe' -q @args }
 
-Function wts { nvim "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
+Function wts { vi "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
 Function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursive
 function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
 

@@ -90,7 +90,7 @@ alias md='mkdir -pv'
 alias psgrep='ps aux | head -n 1 && ps aux | grep -v grep | grep --color -i'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
-alias vi='nvim'
+alias vi="$VISUAL"
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 alias xargs='xargs '    # to expand aliases in "cmd | xargs alias"
@@ -169,7 +169,6 @@ t() {
         if [ $session_name = "enan" ]; then
             tmux rename-window -t "$session_name" dots
             tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
-            # tmux send-keys -t "$session_name" 'nvim' C-m
         fi
 
 
@@ -207,7 +206,7 @@ licensify() {
 
 if [ $isMSYS == 'true' ]; then
   wts() {
-    nvim $LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json
+    $VISUAL $LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json
   }
 fi
 
