@@ -92,7 +92,6 @@ runtime plugin/user/plugins.vim
 
 if has('nvim')
   lua require('user.plugins')
-  lua require('user.clipboard')
   " lua require('user.lspconfig')
 endif
 
