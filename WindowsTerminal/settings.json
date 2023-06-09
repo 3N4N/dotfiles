@@ -1,18 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "left"
-            },
-            "keys": "ctrl+alt+h"
-        },
-        {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "down",
@@ -21,7 +13,7 @@
             "keys": "ctrl+alt+minus"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveTab",
                 "direction": "backward"
@@ -29,11 +21,15 @@
             "keys": "alt+shift+p"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command":
+            {
+                "action": "moveFocus",
+                "direction": "left"
+            },
+            "keys": "ctrl+alt+h"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "resizePane",
                 "direction": "left"
@@ -41,15 +37,11 @@
             "keys": "alt+shift+h"
         },
         {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+shift+c"
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "down"
@@ -57,7 +49,15 @@
             "keys": "ctrl+alt+j"
         },
         {
-            "command": 
+            "command":
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "command":
             {
                 "action": "moveTab",
                 "direction": "forward"
@@ -73,7 +73,7 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "right",
@@ -82,7 +82,7 @@
             "keys": "ctrl+alt+plus"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "resizePane",
                 "direction": "right"
@@ -90,7 +90,7 @@
             "keys": "alt+shift+l"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "prevTab"
             },
@@ -105,7 +105,7 @@
             "keys": "ctrl+shift+w"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -114,7 +114,7 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "right"
@@ -122,7 +122,7 @@
             "keys": "ctrl+alt+l"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "moveFocus",
                 "direction": "up"
@@ -134,14 +134,14 @@
             "keys": "ctrl+alt+d"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "nextTab"
             },
             "keys": "ctrl+alt+n"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "resizePane",
                 "direction": "down"
@@ -149,7 +149,7 @@
             "keys": "alt+shift+j"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "resizePane",
                 "direction": "up"
@@ -157,37 +157,37 @@
             "keys": "alt+shift+k"
         }
     ],
-    "alwaysShowTabs": true,
+    "alwaysShowTabs": false,
     "centerOnLaunch": true,
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{d449c3a3-b76e-41b0-9dcc-71f99f0be628}",
+    "defaultProfile": "{ae9969c0-1c77-403a-adfc-fa0a23f2d210}",
     "disableAnimations": true,
     "experimental.rendering.forceFullRepaint": false,
-    "initialCols": 170,
-    "initialRows": 48,
+    "initialCols": 100,
+    "initialRows": 42,
     "launchMode": "default",
     "multiLinePasteWarning": false,
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
     "newTabPosition": "afterCurrentTab",
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "bellStyle": "none",
             "closeOnExit": "always",
-            "colorScheme": "White Pop",
+            "colorScheme": "Yellowish",
             "cursorHeight": 15,
             "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
-            "font": 
+            "font":
             {
-                "face": "Cascadia Mono",
+                "face": "Jetbrains Mono NL",
                 "size": 10.0
             },
             "opacity": 100,
@@ -196,7 +196,7 @@
             "useAcrylic": false,
             "useAtlasEngine": true
         },
-        "list": 
+        "list":
         [
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
@@ -216,18 +216,20 @@
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "C:/msys64/msys2_shell.cmd -full-path -defterm -no-start -msys",
+                "commandline": "C:/msys64/msys2_shell.cmd -full-path -defterm -no-start -here -msys",
                 "guid": "{71160544-14d8-4194-af25-d05feeac7233}",
                 "hidden": false,
                 "icon": "C:/msys64/msys2.ico",
-                "name": "MSYS2/MSYS"
+                "name": "MSYS2/MSYS",
+                "startingDirectory": "E:/projects/"
             },
             {
-                "commandline": "C:/msys64/msys2_shell.cmd -full-path -defterm -no-start -ucrt64",
+                "commandline": "C:/msys64/msys2_shell.cmd -full-path -defterm -no-start -here -ucrt64",
                 "guid": "{ae9969c0-1c77-403a-adfc-fa0a23f2d210}",
                 "hidden": false,
                 "icon": "C:/msys64/ucrt64.ico",
-                "name": "MSYS2/UCRT64"
+                "name": "MSYS2/UCRT64",
+                "startingDirectory": "E:/projects/"
             },
             {
                 "commandline": "C:/Users/ACER/scoop/apps/git/current/usr/bin/bash.exe --login -i",
@@ -235,10 +237,10 @@
                 "hidden": false,
                 "icon": "C:/Users/ACER/scoop/apps/git/current/usr/share/git/git-for-windows.ico",
                 "name": "Git Bash",
-                "startingDirectory": "%USERPROFILE%"
+                "startingDirectory": "E:/projects/"
             },
             {
-                "commandline": "c:/msys64/usr/bin/ssh.exe -L 5933:localhost:5933 -L 8888:172.31.24.60:80 x -t 'compute -c 4'",
+                "commandline": "c:/msys64/usr/bin/ssh.exe -L 5933:localhost:5933 -L 8888:172.31.24.60:80 x -t 'compute -c 2'",
                 "guid": "{806243bd-c733-4e6e-bb78-cd1c22b5ca34}",
                 "hidden": false,
                 "name": "Xcelerium"
@@ -257,7 +259,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
@@ -467,6 +469,29 @@
             "yellow": "#A2734C"
         },
         {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#000080",
+            "brightBlack": "#808080",
+            "brightBlue": "#0000FF",
+            "brightCyan": "#00FFFF",
+            "brightGreen": "#00FF00",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFF00",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#008080",
+            "foreground": "#C0C0C0",
+            "green": "#008000",
+            "name": "Vintage",
+            "purple": "#800080",
+            "red": "#800000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#C0C0C0",
+            "yellow": "#808000"
+        },
+        {
             "background": "#FAFAFA",
             "black": "#383A42",
             "blue": "#0184BC",
@@ -482,7 +507,7 @@
             "cyan": "#0997B3",
             "foreground": "#383A42",
             "green": "#50A14F",
-            "name": "White Pop",
+            "name": "Yellowish",
             "purple": "#A626A4",
             "red": "#E45649",
             "selectionBackground": "#61AFEF",
@@ -490,7 +515,7 @@
             "yellow": "#C18301"
         }
     ],
-    "showTabsInTitlebar": true,
+    "showTabsInTitlebar": false,
     "tabSwitcherMode": "disabled",
     "tabWidthMode": "equal",
     "theme": "system",
