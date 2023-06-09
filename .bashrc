@@ -95,9 +95,10 @@ alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 alias xargs='xargs '    # to expand aliases in "cmd | xargs alias"
 
-# WSL aliases
-if [ $isWSL ]; then
-    alias e='explorer.exe'
+# WSL and MSYS aliases
+if [[ $isWSL == 'true' || $isMSYS == 'true' ]]; then
+  alias e='explorer.exe'
+  alias xclip='win32yank'
 fi
 
 # clang's colored warnings/errors can't be seen in white background
