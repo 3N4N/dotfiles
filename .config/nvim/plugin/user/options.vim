@@ -74,16 +74,16 @@ set wrapscan
 noh
 
 " -- vimgrep ---------------------------------------------------------------
-if executable('rg')
-  " use ripgrep
-  set grepprg =rg\ --smart-case\ --no-heading\ -Hn
+
+if 0 && executable('rg')
+  " Use ripgrep
+  " Must have $* in &gp for custom :Grep
+  " Even if it's unnecessary at the end for :grep
+  set grepprg =rg\ --smart-case\ --no-heading\ -Hn\ $*
 else
-  " use plain grep
-  if g:env == 'WIN'
-    set grepprg =grep\ -IHnri\ --exclude-dir=.git\ --exclude-dir=node_modules\ --exclude=\"tags\"
-  else
-    set grepprg =grep\ -IHnri\ --exclude-dir={.git,node_modules}\ --exclude=\"tags\"
-  end
+  " Use plain grep
+  " Substitute args at $* before --exclude bc --exclude overrides --include
+  set grepprg =grep\ -IHnri\ $*\ --exclude-dir=.git\ --exclude-dir=node_modules\ --exclude=\"tags\"
 end
 
 " -- wildmenu settings -----------------------------------------------------

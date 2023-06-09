@@ -487,13 +487,13 @@ nnoremap <silent> <Space>fg
 " -- Better GREP -----------------------------------------------------------
 
 " Ref: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
-
 function! Grep(...) abort
   let l:saved_errorformat = &errorformat
   let &errorformat = &grepformat
 
-  let l:grepcmd = join([&grepprg] + a:000, ' ')
-  cgetexpr system(l:grepcmd)
+  let l:grepcmd = &grepprg->substitute('\$\*', join(a:000, ' '), '')
+  let l:grepout = systemlist(l:grepcmd)->sort()
+  cgetexpr l:grepout
   call setqflist([], 'a', {'title' : l:grepcmd})
 
   let &errorformat = l:saved_errorformat
