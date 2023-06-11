@@ -90,10 +90,10 @@ alias md='mkdir -pv'
 alias psgrep='ps aux | head -n 1 && ps aux | grep -v grep | grep --color -i'
 alias reload='source ~/.bashrc'
 alias tree='tree -nF --dirsfirst'
-alias vi="$VISUAL"
+alias vi='$VISUAL'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
-alias xargs='xargs '    # to expand aliases in "cmd | xargs alias"
+alias xargs='xargs '    # to expand aliases in "<cmd> | xargs <alias>"
 
 # WSL and MSYS aliases
 if [[ $isWSL == 'true' || $isMSYS == 'true' ]]; then
@@ -302,10 +302,6 @@ append_to_path() {
   fi
 }
 
-if [ $isMSYS == 'true' ]; then
-  PATH=/c/msys64/ucrt64/bin:$PATH
-fi
-
 # ----------------------------------------------------------------------
 #                                  bash prompt
 # ----------------------------------------------------------------------
@@ -318,7 +314,7 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$green\]\u@\h:\[$yellow\]\w\[$reset\]\n\$ '
+PS1='\[$green\]\u@\h \[$yellow\]\w\[$reset\]\n\$ '
 if [[ "$isMSYS" == 'true' ]]; then
   PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
 fi
