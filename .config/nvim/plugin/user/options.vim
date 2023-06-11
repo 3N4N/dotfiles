@@ -127,7 +127,6 @@ set virtualedit =block
 if exists('+pumblend') | set pumblend =0 | endif
 if exists('+inccommand') | set inccommand =nosplit | endif
 
-let mapleader = "\<Space>"
 let g:R_assign = 2
 let g:tex_flavor = "latex"
 let html_my_rendering = 1

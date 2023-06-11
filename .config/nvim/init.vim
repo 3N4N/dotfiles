@@ -82,10 +82,14 @@ call LoadLocalVimrc()
 
 " -- source user plugins --------------------------------------------------
 
-runtime plugin/user/functions.vim
-runtime plugin/user/options.vim
-runtime plugin/user/statusline.vim
-runtime plugin/user/plugins.vim
+" Shouldn't need to source plugins manually.  If it _is_ required, that means
+" one of these is dependent on another.  Instead of a hack to fix that, try to
+" make them truly modular (dependence on init.vim is fine).
+
+" runtime plugin/user/functions.vim
+" runtime plugin/user/options.vim
+" runtime plugin/user/statusline.vim
+" runtime plugin/user/plugins.vim
 
 
 " -- lua config ------------------------------------------------------------
@@ -97,6 +101,9 @@ endif
 
 
 " -- Key Mapping -----------------------------------------------------------
+
+" Map Space as Leader key
+let mapleader = "\<Space>"
 
 " Reload vimrc
 nnoremap <silent> <Leader>r :so $MYVIMRC<CR>
@@ -238,7 +245,6 @@ nnoremap <Leader>gc :keepalt Git commit<CR>
 nnoremap <Leader>gw :keepalt Gwrite<CR>
 nnoremap <Leader>gr :keepalt Gread<CR>
 nnoremap <Leader>gb :keepalt Git blame<CR>
-nnoremap <Leader>gg :keepalt Git grep ''<Left>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
