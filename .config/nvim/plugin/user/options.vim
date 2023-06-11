@@ -75,15 +75,15 @@ noh
 
 " -- vimgrep ---------------------------------------------------------------
 
-if 0 && executable('rg')
+if executable('rg')
   " Use ripgrep
-  " Must have $* in &gp for custom :Grep
+  " Must have $* in &gp for custom :Grep (see in plugin/user/functions.vim)
   " Even if it's unnecessary at the end for :grep
-  set grepprg =rg\ --smart-case\ --no-heading\ -Hn\ $*
+  let &grepprg = 'rg --smart-case --no-heading -Hn $*'
 else
   " Use plain grep
   " Substitute args at $* before --exclude bc --exclude overrides --include
-  set grepprg =grep\ -IHnri\ $*\ --exclude-dir=.git\ --exclude-dir=node_modules\ --exclude=\"tags\"
+  let &grepprg = 'grep -IHnr $* --exclude-dir=.git --exclude-dir=node_modules --exclude=tags'
 end
 
 " -- wildmenu settings -----------------------------------------------------

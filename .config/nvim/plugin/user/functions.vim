@@ -487,16 +487,23 @@ nnoremap <silent> <Space>fg
 " -- Better GREP -----------------------------------------------------------
 
 " Ref: https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
-function! Grep(...) abort
+function! Grep(grepprg, ...) abort
   let l:saved_errorformat = &errorformat
   let &errorformat = &grepformat
 
-  let l:grepcmd = &grepprg->substitute('\$\*', join(a:000, ' '), '')
-  let l:grepout = systemlist(l:grepcmd)->sort()
+  let l:grepcmd = a:grepprg->substitute('\$\*', join(a:000, ' '), '')
+  let l:grepout = system(l:grepcmd)->split('\n')
   cgetexpr l:grepout
   call setqflist([], 'a', {'title' : l:grepcmd})
 
   let &errorformat = l:saved_errorformat
 endfunction
 
-command! -nargs=+ -complete=file_in_path -bar Grep  call Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar   Grep
+      \ call Grep(&gp,<f-args>)
+command! -nargs=+ -complete=file_in_path -bar   GitGrep
+      \ call Grep("git grep --recurse-submodules -In $*
+      \ ':!tags' ':!node_modules'", <f-args>)
+
+nnoremap <Leader>gg   :GitGrep<Space>
+nnoremap <Bslash>f    :GitGrep --no-index<Space>
