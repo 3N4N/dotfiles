@@ -270,7 +270,7 @@ function! SetShell(shell) abort
     let &shellredir = '>%s 2>&1'
     let &shellpipe = '2>&1| tee'
     let &shellquote = ''
-    let &shellxquote = (has('nvim') ? '(' : '"')
+    let &shellxquote = (has('nvim') ? '(' : g:env=='CYGWIN' ? '' : '"')
     let &ssl = 1
     let &csl = 'slash'
   end

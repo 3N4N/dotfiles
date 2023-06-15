@@ -1,3 +1,15 @@
+" -- Windows Stuff ---------------------------------------------------------
+
+if g:env == "WIN"
+  call SetShell("bash")
+end
+
+if g:env == "CYGWIN"
+  call SetShell("bash")
+  se ffs =dos,unix
+  se enc =utf-8
+end
+
 " -- color scheme ----------------------------------------------------------
 
 " Required by Bram's VIM to support 24-bit colors
@@ -63,14 +75,6 @@ set nosplitright
 
 set dictionary =/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english
 set spelllang =en_us
-
-" -- set default shell in win32 --------------------------------------------
-
-if g:env == "WIN"
-  let shell = "bash"
-  call SetShell(shell)
-  unlet shell
-end
 
 " -- searching -------------------------------------------------------------
 

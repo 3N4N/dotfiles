@@ -17,20 +17,23 @@ Remove-Item -Recurse -Force $PWSHDIR
 New-Item -Type SymbolicLink -Path $PWSHDIR -Value $CURDIR/PowerShell
 
 Remove-Item -Recurse -Force $VIMDIR
-New-Item -Type Junction -Path "$VIMDIR" -Value $CURDIR/.config/nvim/
+New-Item -Type Junction -Path "$VIMDIR" -Value $CURDIR/.config/nvim
 New-Item -Type SymbolicLink -Path "$VIMDIR/vimrc" -Value $CURDIR/.config/nvim/init.vim
 
+Remove-Item -Recurse -Force "$HOME/.vim"
+New-Item -Type Junction -Path "$HOME/.vim" -Value "$VIMDIR"
+
 Remove-Item -Recurse -Force $NVIMDIR
-New-Item -Type Junction -Path "$NVIMDIR" -Value $CURDIR/.config/nvim/
+New-Item -Type Junction -Path "$NVIMDIR" -Value $CURDIR/.config/nvim
 
 Remove-Item -Recurse -Force $MPVDIR
-New-Item -Type Junction -Path "$MPVDIR" -Value $CURDIR/.config/mpv/
+New-Item -Type Junction -Path "$MPVDIR" -Value $CURDIR/.config/mpv
 
 Remove-Item -Recurse -Force $GDBDIR
-New-Item -Type Junction -Path "$GDBDIR" -Value $CURDIR/.config/gdb/
+New-Item -Type Junction -Path "$GDBDIR" -Value $CURDIR/.config/gdb
 
 Remove-Item -Recurse -Force "$HOME/.sig"
-New-Item -Type Junction -Path "$HOME/.sig" -Value $CURDIR/.sig/
+New-Item -Type Junction -Path "$HOME/.sig" -Value $CURDIR/.sig
 
 Remove-Item -Recurse -Force $HOME/.inputrc
 New-Item -Type SymbolicLink -Path "$HOME/.inputrc" -Value $CURDIR/.inputrc

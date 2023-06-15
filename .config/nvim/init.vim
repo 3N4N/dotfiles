@@ -7,6 +7,8 @@ if !exists('g:env')
     let g:env = 'WSL'
   elseif has('win32')
     let g:env = 'WIN'
+  elseif has('win32unix')
+    let g:env = 'CYGWIN'
   else
     let g:env = 'UNIX'
   endif
