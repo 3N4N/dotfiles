@@ -28,6 +28,7 @@ set fillchars =vert:│
 set hidden
 set list
 set listchars =tab:┆\ ,trail:▫,nbsp:_,extends:»,precedes:«
+" set listchars+=leadmultispace:┆\ ,
 set mouse =
 set nocursorcolumn
 set nocursorline

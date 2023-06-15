@@ -304,7 +304,7 @@ xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
 
 
-" -- Functions and Commands ------------------------------------------------
+" -- Custom Commands -------------------------------------------------------
 
 " Lua utilities
 command! -nargs=1 Inspect lua print(vim.inspect(<args>))
@@ -338,19 +338,6 @@ command! -nargs=1 SetTabsize
       \ set shiftwidth=<args>
 
 command! -nargs=1 -complete=help H tab help <args>
-
-" Use tabs for indentation and spaces for alignment
-function! SpecialTab() abort
-  if (col('.') == 1) || (matchstr(getline('.'), '\%'.(col('.') - 1).'c.') =~ '\t')
-    return "\<Tab>"
-  else
-    return repeat("\<Space>", (&tabstop - (virtcol('.') % &tabstop)) + 1)
-  endif
-endfunction
-if !&et
-  inoremap <Tab> <C-R>=SpecialTab()<CR>
-endif
-
 
 " -- Autocommands ----------------------------------------------------------
 
