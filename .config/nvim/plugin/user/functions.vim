@@ -21,7 +21,6 @@ endfunction
 
 nnoremap <silent>gx :call BetterGX()<CR>
 
-
 " -- Repeatable window resize ----------------------------------------------
 
 function! RepeatResize(first) abort
@@ -37,7 +36,6 @@ nnoremap <Leader>w- :call RepeatResize('-')<CR>
 nnoremap <Leader>w+ :call RepeatResize('+')<CR>
 nnoremap <Leader>w< :call RepeatResize('<')<CR>
 nnoremap <Leader>w> :call RepeatResize('>')<CR>
-
 
 " -- Commenting utitlities -------------------------------------------------
 
@@ -83,7 +81,6 @@ nnoremap <silent><Bslash>ci :call DocInfo()<CR>
 nnoremap <silent><Bslash>cc :call DocFormat()<CR>
 nnoremap <silent><Bslash>cb :call DocBanner()<CR>
 
-
 " -- Switch windows effortlessly -------------------------------------------
 
 function! SwitchWindow(count) abort
@@ -95,7 +92,6 @@ function! SwitchWindow(count) abort
 endfunction
 
 nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
-
 
 " -- Copy yanked text to tmux pane -----------------------------------------
 
@@ -121,7 +117,6 @@ endfunction
 nnoremap <Leader>p :<C-u>call SendToTmux(0, v:count1)<CR>
 xnoremap <Leader>p :<C-u>call SendToTmux(1, v:count1)<CR>
 
-
 " -- Use * and # over visual selection -------------------------------------
 
 function! s:VSetSearch(cmdtype) abort
@@ -137,7 +132,6 @@ endfunction
 
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>
-
 
 " -- Case-sensitive star/hash/gd with ignorecase ---------------------------
 " https://vi.stackexchange.com/a/34553/16280
@@ -170,7 +164,6 @@ nnoremap <silent> gd
       \:let &ic = _is_ic<CR>
       \:unlet _is_ic<CR>
 
-
 " -- Get filenames ignoring `wildignore` -----------------------------------
 
 function! MyCompleteFileName() abort
@@ -186,7 +179,6 @@ function! MyCompleteFileName() abort
 endfunction
 
 inoremap <C-F> <C-R>=MyCompleteFileName()<CR>
-
 
 " -- Center next and prev textblocks ---------------------------------------
 
@@ -225,7 +217,6 @@ endfunction
 nnoremap - :<C-u>call CenterNextBlock()<CR>
 nnoremap _ :<C-u>call CenterPrevBlock()<CR>
 
-
 " -- Add to syntax keyword Todo --------------------------------------------
 
 function! UpdateTodoKeywords(...) abort
@@ -243,7 +234,6 @@ augroup todo
   " autocmd Syntax * call UpdateTodoKeywords("NOTE", "NOTES")
   autocmd Syntax * call UpdateTodoKeywords("NOTE")
 augroup END
-
 
 " -- Utility function for setting shell ------------------------------------
 
@@ -398,7 +388,6 @@ endfunction
 nnoremap <Leader>go :<C-U>call GitOpenRemote(0,0)<CR>
 xnoremap <Leader>go :<C-U>call GitOpenRemote(getpos("'<")[1], getpos("'>")[1])<CR>
 
-
 " -- Better mksession ------------------------------------------------------
 
 function! MakeSession(filename, bang) abort
@@ -425,14 +414,12 @@ endfunction
 command! -nargs=? -bang -complete=file MakeSession
       \ call MakeSession(<q-args>, <bang>0)
 
-
 " -- Keep cursor position while executing command --------------------------
 
 command! -nargs=1 KC
       \ let _w=winsaveview() |
       \ execute <q-args> |
       \ call winrestview(_w)
-
 
 " -- Recursive :highlight --------------------------------------------------
 
@@ -451,7 +438,6 @@ function! HiThere(group) abort
 endfunction
 command! -nargs=1 -complete=highlight HiThere call HiThere(<q-args>)
 
-
 " -- Toggle :Git window ----------------------------------------------------
 
 function! ToggleGstatus() abort
@@ -464,7 +450,6 @@ function! ToggleGstatus() abort
   keepalt Git
 endfunction
 nnoremap <Leader>gs :call ToggleGstatus()<CR>
-
 
 " -- List files to then gf on it -------------------------------------------
 
@@ -482,7 +467,6 @@ nnoremap <silent> <Space>ff
       \ :call ListFiles('find -maxdepth 3 -type f -printf %P\n'->SplitIfNvim())<CR>/
 nnoremap <silent> <Space>fg
       \ :call ListFiles('git ls-files'->SplitIfNvim())<CR>/
-
 
 " -- Better GREP -----------------------------------------------------------
 

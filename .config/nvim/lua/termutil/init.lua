@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.sendToTerm = function(visual)
   assert(vim.g.termutilchan, "g:termutilchan not set")
 

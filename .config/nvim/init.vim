@@ -2,7 +2,6 @@
 " Email  : 3nan.ajmain@gmail.com
 " Github : https://github.com/3N4N
 
-
 if !exists('g:env')
   if has('wsl')
     let g:env = 'WSL'
@@ -32,7 +31,6 @@ else
 endif
 
 let s:vim_plug_dir = expand(g:vimconfdir . '/plugged')
-
 
 " -- Vim Plug --------------------------------------------------------------
 
@@ -66,7 +64,6 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
-
 " -- Load Local Vimrc ------------------------------------------------------
 
 function! LoadLocalVimrc() abort
@@ -79,7 +76,6 @@ function! LoadLocalVimrc() abort
 endfunction
 call LoadLocalVimrc()
 
-
 " -- source user plugins --------------------------------------------------
 
 " Shouldn't need to source plugins manually.  If it _is_ required, that means
@@ -91,14 +87,12 @@ call LoadLocalVimrc()
 " runtime plugin/user/statusline.vim
 " runtime plugin/user/plugins.vim
 
-
 " -- lua config ------------------------------------------------------------
 
 if has('nvim')
   lua require('user.plugins')
   " lua require('user.lspconfig')
 endif
-
 
 " -- Key Mapping -----------------------------------------------------------
 
@@ -282,7 +276,6 @@ else
 endif
 tnoremap <Esc> <C-\><C-n>
 
-
 " -- Text Objects ----------------------------------------------------------
 
 " Simple text-objects
@@ -302,7 +295,6 @@ onoremap al :normal val<CR>
 " Buffer text-objects
 xnoremap aa GoggV
 onoremap aa :normal vaa<CR>
-
 
 " -- Custom Commands -------------------------------------------------------
 
@@ -368,18 +360,15 @@ if exists('##TextYankPost')
   augroup END
 endif
 
-
 " -- Title -----------------------------------------------------------------
 
 set title
 let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':'-'}
       \ %{getcwd()->fnamemodify(':~')}"
 
-
 " -- Ctags -----------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
-
 
 " -- Uncrustify ------------------------------------------------------------
 
@@ -402,7 +391,6 @@ if !empty(findfile('src/uncrustify.cfg', ';'))
   let &formatprg = 'uncrustify -q -l C -c src/uncrustify.cfg --no-backup'
 endif
 
-
 " -- Easy Align ------------------------------------------------------------
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -410,7 +398,6 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
 
 " -- OSCYank ---------------------------------------------------------------
 

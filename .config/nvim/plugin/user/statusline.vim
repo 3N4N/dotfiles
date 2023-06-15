@@ -14,7 +14,6 @@ let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.'))
 let &statusline .= "%="
 let &statusline .= " %l: %v "
 
-
 " -- Tabline -------------------------------------------------------------------
 
 function! MyTabLine() abort

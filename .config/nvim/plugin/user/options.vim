@@ -22,6 +22,7 @@ if !has('nvim') && exists('+guicursor')
 endif
 
 " -- visual perks ----------------------------------------------------------
+
 set colorcolumn =0
 set conceallevel =0
 set fillchars =vert:│
@@ -42,24 +43,29 @@ set showmode
 set signcolumn =no
 
 " -- line wrapping ---------------------------------------------------------
+
 set nowrap
 set breakindent
 set linebreak
 let &showbreak = '+++'
 
 " -- folding ---------------------------------------------------------------
+
 set foldcolumn =0
 set foldmethod =manual
 
 " -- new split position ----------------------------------------------------
+
 set nosplitbelow
 set nosplitright
 
 " -- dictionary / spelling -------------------------------------------------
+
 set dictionary =/usr/share/dict/words,~/AppData/Local/nvim/spell/american-english
 set spelllang =en_us
 
 " -- set default shell in win32 --------------------------------------------
+
 if g:env == "WIN"
   let shell = "bash"
   call SetShell(shell)
@@ -67,6 +73,7 @@ if g:env == "WIN"
 end
 
 " -- searching -------------------------------------------------------------
+
 set hlsearch
 set ignorecase
 set incsearch
@@ -88,6 +95,7 @@ else
 end
 
 " -- wildmenu settings -----------------------------------------------------
+
 set wildmenu
 set wildignorecase
 set wildmode =full
@@ -102,6 +110,7 @@ set wildignore +=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 set wildignore +=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
 
 " -- keymap timeout settings -----------------------------------------------
+
 set notimeout
 set ttimeout
 set ttimeoutlen =10
@@ -142,7 +151,6 @@ let &backupdir = expand(g:vimdatadir . "/backup/")
 let &directory = expand(g:vimdatadir . "/swap/")
 let &undodir = expand(g:vimdatadir . "/undo/")
 
-
 " -- tabs vs spaces --------------------------------------------------------
 
 set smarttab
@@ -152,7 +160,6 @@ set expandtab
 for tabstuff in ['tabstop', 'softtabstop', 'shiftwidth']
   execute "set " . tabstuff . "=2"
 endfor
-
 
 " -- Build -----------------------------------------------------------------
 

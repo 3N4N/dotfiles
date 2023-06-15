@@ -4,14 +4,12 @@
 " Email  : 3nan.ajmain@gmail.com
 " Github : https://github.com/3N4N
 
-
 hi clear
 set background=dark
 if exists("syntax_on")
 	syntax reset
 endif
 let g:colors_name = "fault"
-
 
 " +------------------------+  +------------------------+  +------------------------+
 " |  Color Name  |   Hex   |  |  Color Name  |   Hex   |  |  Color Name  |   Hex   |
@@ -26,7 +24,6 @@ let g:colors_name = "fault"
 " |--------------+---------|  |--------------+---------|  |--------------+---------|
 " | Light White  | #f0f0f0 |  | Gutter Grey  | #5c6d70 |  | Light Yellow | #e5c07b |
 " +--------------+---------+  +--------------+---------+  +------------------------+
-
 
 " -- Editor settings -----------------------------------------------------------
 

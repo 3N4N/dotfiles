@@ -12,7 +12,6 @@ let g:netrw_sort_by = "name"
 let g:netrw_sort_direction = "normal"
 " let g:netrw_winsize = 25
 
-
 " -- Closetag --------------------------------------------------------------
 
 let g:closetag_filetypes = "html,xhtml,phtml,javascript"
@@ -20,7 +19,6 @@ let g:closetag_xhtml_filetypes = "xhtml,jsx,javascript"
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = ">"
 let g:closetag_close_shortcut = ""
-
 
 " -- Rainbow Parentheses ---------------------------------------------------
 
