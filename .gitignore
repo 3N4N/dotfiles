@@ -2,15 +2,19 @@ Session.vim
 
 tags*
 
+.vim/pack/*
+.vim/.netrwhist
+.vim/plugged
+.vim/autoload/plug.vim
+
 .config/nvim/pack/*
 .config/nvim/.netrwhist
 .config/nvim/plugged
 .config/nvim/autoload/plug.vim
 
-.vim/pack/*
-.vim/.netrwhist
-.vim/plugged
-.vim/autoload/plug.vim
+# symlinks
+.vim/init.vim
+.config/nvim/vimrc
 
 .config/ranger/bookmarks
 .config/ranger/history

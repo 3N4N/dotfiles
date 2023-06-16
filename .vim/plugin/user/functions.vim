@@ -1,9 +1,13 @@
 " -- A better gx functionality ---------------------------------------------
 
+" https://youtube.com
+
 function! BetterGX() abort
-  if g:env == "WIN" || g:env == "WSL"
+  if executable('start')
+    let cmd = "start"
+  elseif g:env == "WIN" || g:env == "WSL"
     " command prompt's 'start' first arg is title
-    let cmd = 'cmd.exe /C ' . (&sh=='bash'?"'":"") . 'start ""'
+    let cmd = 'cmd.exe /C ' . 'start ""'
   elseif executable('xdg-open')
     let cmd = "xdg-open"
   elseif executable('open')
@@ -14,9 +18,13 @@ function! BetterGX() abort
   endif
 
   let path = expand('<cfile>')
-  let fullcmd = cmd . ' ' . '"' . path . '"' . (&sh=='bash'?"'":"")
+  let fullcmd = cmd . ' ' . '"' . path . '"'
   echo fullcmd
-  call jobstart(fullcmd)
+  if exists('*jobstart')
+    call jobstart(fullcmd)
+  else
+    call system(fullcmd)
+  endif
 endfunction
 
 nnoremap <silent>gx :call BetterGX()<CR>

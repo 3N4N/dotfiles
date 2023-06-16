@@ -14,6 +14,7 @@ fi
 # Create symlinks to config
 DOTFILES=(
     "bin"
+    ".vim"
     ".bashrc"
     ".bash_profile"
     ".gitconfig"
@@ -26,7 +27,6 @@ DOTFILES=(
     ".sig"
     ".config/gdb"
     ".config/mpv"
-    ".config/nvim"
     ".local/share/fonts"
 )
 
@@ -43,9 +43,9 @@ done
 echo 'source $HOME/.config/gdb/gdbinit' > ~/.gdbinit
 
 
-# Create symlinks for bram's vim to use neovim config
-ln -sf "${DIR}/.config/nvim/" "${HOME}/.vim"
-ln -sf "${DIR}/.config/nvim/init.vim" "${HOME}/.vim/vimrc"
+# Create symlinks for Neovim to use Vim config
+ln -sf "${DIR}/.vim"          "${HOME}/.config/nvim"
+ln -sf "${DIR}/.vim/vimrc"    "${HOME}/.config/nvim/init.vim"
 
 
 # Install oft-used software

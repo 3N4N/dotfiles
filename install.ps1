@@ -17,14 +17,14 @@ Remove-Item -Recurse -Force $PWSHDIR
 New-Item -Type SymbolicLink -Path $PWSHDIR -Value $CURDIR/PowerShell
 
 Remove-Item -Recurse -Force $VIMDIR
-New-Item -Type Junction -Path "$VIMDIR" -Value $CURDIR/.config/nvim
-New-Item -Type SymbolicLink -Path "$VIMDIR/vimrc" -Value $CURDIR/.config/nvim/init.vim
+New-Item -Type Junction -Path "$VIMDIR" -Value $CURDIR/.vim
+New-Item -Type SymbolicLink -Path "$VIMDIR/init.vim" -Value $CURDIR/.vim/vimrc
 
 Remove-Item -Recurse -Force "$HOME/.vim"
 New-Item -Type Junction -Path "$HOME/.vim" -Value "$VIMDIR"
 
 Remove-Item -Recurse -Force $NVIMDIR
-New-Item -Type Junction -Path "$NVIMDIR" -Value $CURDIR/.config/nvim
+New-Item -Type Junction -Path "$NVIMDIR" -Value $CURDIR/.vim
 
 Remove-Item -Recurse -Force $MPVDIR
 New-Item -Type Junction -Path "$MPVDIR" -Value $CURDIR/.config/mpv

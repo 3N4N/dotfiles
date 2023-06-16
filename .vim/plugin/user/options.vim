@@ -1,14 +1,14 @@
 " -- Windows Stuff ---------------------------------------------------------
 
-if g:env == "WIN"
-  call SetShell("bash")
-end
-
 if g:env == "CYGWIN"
-  call SetShell("bash")
   se ffs =dos,unix
   se enc =utf-8
-end
+  nnoremap <silent>  <C-S-l>  :!start wt -d .<CR><CR>
+endif
+
+if g:env == "CYGWIN" || g:env == "WIN"
+  call SetShell("bash")
+endif
 
 " -- color scheme ----------------------------------------------------------
 
