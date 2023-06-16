@@ -1,4 +1,10 @@
-" -- Stautsline ----------------------------------------------------------------
+" -- Title -----------------------------------------------------------------
+
+set title
+let &titlestring = (has('nvim') ? 'Nvim' : 'Vim')
+      \ . " %{&modified?'•':':'} %{getcwd()->fnamemodify(':~')}"
+
+" -- Stautsline ------------------------------------------------------------
 
 function! PathShortenIfLong(path)
   if strlen(a:path) > winwidth(0) - 10
@@ -14,7 +20,7 @@ let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.'))
 let &statusline .= "%="
 let &statusline .= " %l: %v "
 
-" -- Tabline -------------------------------------------------------------------
+" -- Tabline ---------------------------------------------------------------
 
 function! MyTabLine() abort
   let s = ''

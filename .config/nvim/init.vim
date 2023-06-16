@@ -362,12 +362,6 @@ if exists('##TextYankPost')
   augroup END
 endif
 
-" -- Title -----------------------------------------------------------------
-
-set title
-let &titlestring = (has('nvim') ? "NVIM" : "VIM") . " %{&modified?'•':'-'}
-      \ %{getcwd()->fnamemodify(':~')}"
-
 " -- Ctags -----------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
