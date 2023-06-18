@@ -362,6 +362,16 @@ if exists('##TextYankPost')
   augroup END
 endif
 
+" Use insert-mode cursor shape in command line
+if !has('nvim') && exists('*echoraw')
+  augroup cmdlinecursor
+    au!
+    au CmdlineEnter * call echoraw(&t_SI)
+    au CmdlineLeave * call echoraw(&t_EI)
+    au CmdwinEnter  * call echoraw(&t_EI)
+  augroup END
+endif
+
 " -- Ctags -----------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
