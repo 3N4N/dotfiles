@@ -33,6 +33,30 @@ if !has('nvim') && exists('+guicursor')
   let &t_EI = "\<Esc>[2 q"
 endif
 
+if exists('+autoread')
+  " 'autoread' depends on FocusGained autocmd event
+  " Vim sets it only when &term=xterm
+  " Gotta manually enable it for "st" and "tmux"
+  " see ":h xterm-focus-event"
+  if &term =~ '^st' || &term =~ '\v^(screen|tmux)'
+    let &t_fe = "\<Esc>[?1004h"
+    let &t_fd = "\<Esc>[?1004l"
+    " execute "set <FocusGained>=\<Esc>[I"
+    " execute "set <FocusLost>=\<Esc>[O"
+  endif
+
+  " Vim in Tmux prints code "^[[O" on FocusLost
+  " Removing "set <FocusLost>=\<Esc>[O" doesn't fix
+  " It must be internally handled with t_fe/t_fd
+  " The fix is to execute ":mode"
+  if &term =~ '\v^(screen|tmux)'
+    augroup autoread
+      au!
+      au FocusLost * :mode
+    augroup END
+  endif
+endif
+
 " -- visual perks ----------------------------------------------------------
 
 set colorcolumn =0
