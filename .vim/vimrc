@@ -258,14 +258,14 @@ if exists('$TMUX')
   let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
   let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
-  tnoremap <silent> <C-h> <C-\><C-n>:call TmuxOrSplitSwitch('h', 'L')<CR>
-  tnoremap <silent> <C-j> <C-\><C-n>:call TmuxOrSplitSwitch('j', 'D')<CR>
-  tnoremap <silent> <C-k> <C-\><C-n>:call TmuxOrSplitSwitch('k', 'U')<CR>
-  tnoremap <silent> <C-l> <C-\><C-n>:call TmuxOrSplitSwitch('l', 'R')<CR>
+  nnoremap <silent> <C-h> :silent call TmuxOrSplitSwitch('h', 'L')<CR>
+  nnoremap <silent> <C-j> :silent call TmuxOrSplitSwitch('j', 'D')<CR>
+  nnoremap <silent> <C-k> :silent call TmuxOrSplitSwitch('k', 'U')<CR>
+  nnoremap <silent> <C-l> :silent call TmuxOrSplitSwitch('l', 'R')<CR>
+  tnoremap <silent> <C-h> <C-\><C-n>:silent call TmuxOrSplitSwitch('h', 'L')<CR>
+  tnoremap <silent> <C-j> <C-\><C-n>:silent call TmuxOrSplitSwitch('j', 'D')<CR>
+  tnoremap <silent> <C-k> <C-\><C-n>:silent call TmuxOrSplitSwitch('k', 'U')<CR>
+  tnoremap <silent> <C-l> <C-\><C-n>:silent call TmuxOrSplitSwitch('l', 'R')<CR>
 else
   nnoremap <C-h> <C-w>h
   nnoremap <C-j> <C-w>j

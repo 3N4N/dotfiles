@@ -41,19 +41,6 @@ if exists('+autoread')
   if &term =~ '^st' || &term =~ '\v^(screen|tmux)'
     let &t_fe = "\<Esc>[?1004h"
     let &t_fd = "\<Esc>[?1004l"
-    " execute "set <FocusGained>=\<Esc>[I"
-    " execute "set <FocusLost>=\<Esc>[O"
-  endif
-
-  " Vim in Tmux prints code "^[[O" on FocusLost
-  " Removing "set <FocusLost>=\<Esc>[O" doesn't fix
-  " It must be internally handled with t_fe/t_fd
-  " The fix is to execute ":mode"
-  if &term =~ '\v^(screen|tmux)'
-    augroup autoread
-      au!
-      au FocusLost * :mode
-    augroup END
   endif
 endif
 
