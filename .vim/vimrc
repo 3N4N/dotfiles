@@ -244,7 +244,7 @@ nnoremap <Leader>gb :keepalt Git blame<CR>
 
 " Navigate seamlessly between vim and tmux
 if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir) abort
+  function! TmuxMoveToSplit(wincmd, tmuxdir) abort
     let previous_winnr = winnr()
     silent! execute "wincmd " . a:wincmd
     if previous_winnr == winnr()
@@ -258,14 +258,14 @@ if exists('$TMUX')
   let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
   let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
-  nnoremap <silent> <C-h> :silent call TmuxOrSplitSwitch('h', 'L')<CR>
-  nnoremap <silent> <C-j> :silent call TmuxOrSplitSwitch('j', 'D')<CR>
-  nnoremap <silent> <C-k> :silent call TmuxOrSplitSwitch('k', 'U')<CR>
-  nnoremap <silent> <C-l> :silent call TmuxOrSplitSwitch('l', 'R')<CR>
-  tnoremap <silent> <C-h> <C-\><C-n>:silent call TmuxOrSplitSwitch('h', 'L')<CR>
-  tnoremap <silent> <C-j> <C-\><C-n>:silent call TmuxOrSplitSwitch('j', 'D')<CR>
-  tnoremap <silent> <C-k> <C-\><C-n>:silent call TmuxOrSplitSwitch('k', 'U')<CR>
-  tnoremap <silent> <C-l> <C-\><C-n>:silent call TmuxOrSplitSwitch('l', 'R')<CR>
+  nnoremap <silent> <C-h> :silent call TmuxMoveToSplit('h', 'L')<CR>
+  nnoremap <silent> <C-j> :silent call TmuxMoveToSplit('j', 'D')<CR>
+  nnoremap <silent> <C-k> :silent call TmuxMoveToSplit('k', 'U')<CR>
+  nnoremap <silent> <C-l> :silent call TmuxMoveToSplit('l', 'R')<CR>
+  tnoremap <silent> <C-h> <C-\><C-n>:silent call TmuxMoveToSplit('h', 'L')<CR>
+  tnoremap <silent> <C-j> <C-\><C-n>:silent call TmuxMoveToSplit('j', 'D')<CR>
+  tnoremap <silent> <C-k> <C-\><C-n>:silent call TmuxMoveToSplit('k', 'U')<CR>
+  tnoremap <silent> <C-l> <C-\><C-n>:silent call TmuxMoveToSplit('l', 'R')<CR>
 else
   nnoremap <C-h> <C-w>h
   nnoremap <C-j> <C-w>j

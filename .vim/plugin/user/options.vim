@@ -12,7 +12,7 @@ endif
 
 " -- color scheme ----------------------------------------------------------
 
-" Required by Bram's VIM to support 24-bit colors
+" Required by Vim to support 24-bit colors
 if !has('nvim') && exists('+termguicolors')
   let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
   let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
@@ -25,7 +25,7 @@ colo dim
 
 " -- cursor ----------------------------------------------------------------
 
-" Required by Bram's VIM to change cursor shape according to the mode
+" Required by Vim to change cursor shape according to the mode
 " Needs to be defined /after/ termguicolors, bc that resets t_SI
 if !has('nvim') && exists('+guicursor')
   let &t_SI = "\<Esc>[6 q"
