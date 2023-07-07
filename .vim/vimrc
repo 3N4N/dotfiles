@@ -63,6 +63,7 @@ Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'neovimhaskell/haskell-vim'
 
 call plug#end()
 
