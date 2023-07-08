@@ -101,6 +101,23 @@ if [[ $isWSL == 'true' || $isMSYS == 'true' ]]; then
   alias xclip='win32yank'
 fi
 
+if [ $isMSYS == 'true' ]; then
+  # SSH shipped with msys is prissy about .ssh/ permissions
+  # which is hard to change in windows (no chmod)
+  # And OpenSSH shipped with Windows has a bug:
+  # It doesn't catch C-Space, which is my tmux prefix
+  # So gotta use uptodate OpenSSH from Scoop
+  alias ssh='$HOME/scoop/shims/ssh'
+  alias scp='$HOME/scoop/shims/scp'
+
+  if [ ! -z ${TMUX} ]; then
+    # git-for-windows in tmux causes less to behave weird
+    # It sends warning: terminal is not fully functional
+    # And paging back causes the screen to refresh very slowly
+    alias git='TERM=xterm git'
+  fi
+fi
+
 # clang's colored warnings/errors can't be seen in white background
 alias clang='clang -fno-diagnostics-color'
 alias clang++='clang++ -fno-diagnostics-color'
@@ -153,30 +170,32 @@ myip() {
 
 # tmux starter function
 t() {
-    if [ -z "$1" ]; then
-        session_name="enan"
-    else
-        session_name=$1
+  if [ -z "$1" ]; then
+    session_name="enan"
+  else
+    session_name=$1
+  fi
+
+  tmux has-session -t="$session_name"
+
+  if [ $? != 0 ]; then
+    tmux new-session -s "$session_name" -d
+    tmux rename-window -t "$session_name" shell
+    tmux new-window -t "$session_name"
+
+    if [[ $session_name == "enan" && $isMSYS == 'false' ]]; then
+      tmux rename-window -t "$session_name" dots
+      tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
     fi
 
-    cd ~
-    tmux has-session -t="$session_name"
+    tmux select-window -t 2
+  fi
 
-    if [ $? != 0 ]; then
-        tmux new-session -s "$session_name" -d
-        tmux rename-window -t "$session_name" shell
-        tmux new-window -t "$session_name"
-
-        if [ $session_name = "enan" ]; then
-            tmux rename-window -t "$session_name" dots
-            tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
-        fi
-
-
-        tmux select-window -t 2
-    fi
-
+  if [ -n $WT_SESSION ] && [ $isMSYS == 'true' ]; then
+    script -q -c 'tmux attach-session -t "$session_name"'
+  else
     tmux attach-session -t "$session_name"
+  fi
 }
 
 _t_completions() {
@@ -191,7 +210,7 @@ o() {
     echo "FUCK!"
   else
     if [ $isMSYS == 'true' ]; then
-      cmd.exe /C "start "" $(cygpath -aw $1)"
+      start "$@"
     elif [ $isWSL == 'true' ]; then
       cmd.exe /C "start "" $(wslpath -aw $1)"
     else
@@ -314,7 +333,7 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$green\]\u@\h \[$yellow\]\w\[$reset\]\n\$ '
+PS1='\[$green\]\u@\h \[$magenta\]$MSYSTEM \[$yellow\]\w\[$reset\]\n\$ '
 if [[ "$isMSYS" == 'true' ]]; then
   PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
 fi
