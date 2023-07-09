@@ -269,7 +269,7 @@ esac
 # ----------------------------------------------------------------------
 
 ros_setup_script="/opt/ros/noetic/setup.bash"
-gazebo_model_path="/home/enan/.gazebo/models/:/home/enan/dsi/gazebo_models/"
+gazebo_model_path="~/.gazebo/models/:~/projects/gazebo_models/"
 
 if [ -f "$ros_setup_script" ] ; then
   source "$ros_setup_script"
