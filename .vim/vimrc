@@ -16,11 +16,11 @@ endif
 
 if g:env ==# 'WIN'
   if has('nvim')
-    let g:vimconfdir = expand('~/AppData/Local/nvim')
-    let g:vimdatadir = expand('~/AppData/Local/nvim-data')
+    let g:vimconfdir = expand('$LOCALAPPDATA/nvim')
+    let g:vimdatadir = expand('$LOCALAPPDATA/nvim-data')
   else
     let g:vimconfdir = expand('~/vimfiles')
-    let g:vimdatadir = expand('~/AppData/Local/vim-data')
+    let g:vimdatadir = expand('$LOCALAPPDATA/vim')
   endif
 else
   if has('nvim')
@@ -28,7 +28,7 @@ else
     let g:vimdatadir = expand('~/.local/share/nvim-data')
   else
     let g:vimconfdir = expand('~/.vim')
-    let g:vimdatadir = expand('~/.local/share/vim-data')
+    let g:vimdatadir = expand('~/.local/share/vim')
   endif
 endif
 
@@ -160,7 +160,7 @@ xnoremap <Leader>; :
 nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <Bslash>f :Grep<Space>
 nnoremap <Leader>h :nohlsearch<CR>
-nnoremap <Leader>m :make<CR>
+nnoremap <Leader>m :make<Space>
 nnoremap <Leader>s :%s:\v
 xnoremap <Leader>s :s:\%V\v
 
@@ -244,20 +244,15 @@ nnoremap <Leader>gr :keepalt Gread<CR>
 nnoremap <Leader>gb :keepalt Git blame<CR>
 
 " Navigate seamlessly between vim and tmux
-if g:env !=# 'WIN' && exists('$TMUX')
+if g:env ==# 'UNIX' || g:env ==# 'WSL' && exists('$TMUX')
   function! TmuxMoveToSplit(wincmd, tmuxdir) abort
     let previous_winnr = winnr()
     silent! execute "wincmd " . a:wincmd
     if previous_winnr == winnr()
       call system("tmux list-panes -F '#F' | grep -q Z
-            \|| tmux select-pane -" . a:tmuxdir)
+            \ || tmux select-pane -" . a:tmuxdir)
     endif
   endfunction
-
-  let previous_title = substitute(system("tmux display-message -p
-        \ '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
 
   nnoremap <silent> <C-h> :silent call TmuxMoveToSplit('h', 'L')<CR>
   nnoremap <silent> <C-j> :silent call TmuxMoveToSplit('j', 'D')<CR>

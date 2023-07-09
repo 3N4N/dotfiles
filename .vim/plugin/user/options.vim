@@ -3,11 +3,11 @@
 if g:env == "CYGWIN"
   se ffs =dos,unix
   se enc =utf-8
-  nnoremap <silent>  <C-S-l>  :!start wt -d .<CR><CR>
 endif
 
 if g:env == "CYGWIN" || g:env == "WIN"
-  call SetShell("bash")
+  nnoremap <silent>  <C-n>  :!start wt -d .<CR><CR>
+  call SetShell("pwsh")
 endif
 
 " -- color scheme ----------------------------------------------------------
@@ -114,7 +114,6 @@ end
 set wildmenu
 set wildignorecase
 set wildmode =full
-set wildoptions =pum
 set complete -=t
 set wildignore +=*.o,*.obj,*~,*.class
 set wildignore +=*/.git
@@ -123,6 +122,9 @@ set wildignore +=*.mp3,*.mp4,*mkv
 set wildignore +=*.bmp,*.gif,*ico,*.jpg,*.png
 set wildignore +=*.pdf,*.doc,*.docx,*.ppt,*.pptx
 set wildignore +=*.rar,*.zip,*.tar,*.tar.gz,*.tar.xz
+
+" Relatively new features
+silent! set wildoptions=pum
 
 " -- keymap timeout settings -----------------------------------------------
 
