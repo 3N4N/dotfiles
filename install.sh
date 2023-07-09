@@ -40,7 +40,7 @@ done
 # Sometimes it's $XDG_CONFIG_HOME/gdb/gdbinit
 # Sometimes it's $HOME/.gdbinit
 # So use sourcing on all possible gdb init files
-echo 'source $HOME/.config/gdb/gdbinit' > ~/.gdbinit
+echo 'source ~/.config/gdb/gdbinit' > ~/.gdbinit
 
 
 # Create symlinks for Neovim to use Vim config
