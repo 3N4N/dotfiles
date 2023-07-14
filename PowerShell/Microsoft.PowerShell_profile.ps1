@@ -85,7 +85,7 @@ Remove-Alias -Force -ErrorAction SilentlyContinue `
 Set-Alias -Name im -Value Import-Module
 
 Set-Alias -Name o -Value 'Start-Process'
-Set-Alias -Name vi -Value 'nvim'
+Set-Alias -Name vi -Value 'vim'
 Set-Alias -Name mpv -Value 'C:/apps/mpv/mpv.exe'
 Set-Alias -Name git -Value 'C:/Users/ACER/scoop/shims/git.exe'
 Set-Alias -Name xclip -Value 'win32yank'

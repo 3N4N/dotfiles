@@ -23,7 +23,7 @@ elif grep -qEi "(MINGW64_NT|MSYS_NT)" /proc/version &> /dev/null ; then
 fi
 
 # ENV variables
-export VISUAL=nvim
+export VISUAL=vim
 export EDITOR="$VISUAL"
 export GEM_HOME=$HOME/gems
 export LESS="-iSMRF"
@@ -70,6 +70,7 @@ alias rg='rg --smart-case -g "!tags" -g "!build" -g "!release" -g "!po"'
 alias grep='grep --color=auto --exclude-dir={".git","node_modules",".cache"} --exclude="tags"'
 
 # shorthand for python executables
+alias py='python'
 alias py2='python2'
 alias py3='python3'
 

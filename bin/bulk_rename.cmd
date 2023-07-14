@@ -33,9 +33,9 @@ for %%i in (*) do (
 
 @rem    Need to make it universal
 @rem    Should use the command `open`
-@rem    But I haven't set up nvim as the default editor
+@rem    But I haven't set up vim as the default editor
 @rem    Don't know how
-nvim %TMPFILE%
+vim %TMPFILE%
 
 @rem    Get the renamed filenames
 set /a NEWCNT=0
