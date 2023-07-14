@@ -1,0 +1,40 @@
+o      = start "" $*
+cd     = cd /d $*
+pwd    = cd
+ns     = nslookup $*
+ip     = ipconfig $*
+vi     = %VISUAL% $*
+grep   = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
+rg     = rg --smart-case $*
+xclip  = win32yank.exe $*
+wts    = %VISUAL% "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
+myip   = curl -s https://icanhazip.com
+reload = E:\projects\dotfiles\cmd\profile.cmd
+dots   = cd /d E:\projects\dotfiles
+mpv  = mpv.exe $*
+
+ps     = tasklist $*
+psgrep = tasklist | grep --color -i $1
+kill   = taskkill $*
+
+ffmpeg  = ffmpeg -hide_banner $*
+ffplay  = ffplay -hide_banner $*
+ffprobe = ffprobe -hide_banner $*
+
+dcbuild = docker-compose build
+dcup    = docker-compose up
+dcdown  = docker-compose down
+dockps  = docker ps --format "{{.ID}}  {{.Names}}"
+docksh  = docker exec -it $1 /bin/bash
+
+msys  = C:\msys64\msys2_shell.cmd -defterm -here -no-start $*
+vsdev = C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64
+
+ls   = ls -NvhF --group-directories-first $*
+l    = ls -NvhFl --group-directories-first --time-style=+ $*
+la   = ls -NvhFl --group-directories-first --time-style=+ -A $*
+gdb  = gdb -q $*
+find = %GIT_INSTALL_ROOT%\usr\bin\find $*
+
+cmakec = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
+cmaked = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
