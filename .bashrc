@@ -300,11 +300,12 @@ fi
 
 #  -- riscv stuff ------------------------------------------------------------
 
-export RISCV=$HOME/.opt/riscv
-export RV=riscv64-unknown-elf
-
-if [ -d "$RISCV/bin" ]; then
-  export PATH="$PATH:$RISCV/bin"
+if [ -d "$HOME/.opt/riscv" ]; then
+  export RISCV=$HOME/.opt/riscv
+  export RV=riscv64-unknown-elf
+  if [ -d "$RISCV/bin" ]; then
+    export PATH="$PATH:$RISCV/bin"
+  fi
 fi
 
 # ----------------------------------------------------------------------

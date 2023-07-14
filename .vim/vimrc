@@ -321,7 +321,11 @@ command! SetMarkdownComments
 command! -nargs=1 -complete=function Echopy
       \ let output = expand(<args>) |
       \ echo output |
-      \ let @* = output |
+      \ if has('clipboard') |
+      \   let @* = output |
+      \ else |
+      \   call OSCYank(output) |
+      \ endif |
       \ unlet output
 
 command! -nargs=1 SetTabsize

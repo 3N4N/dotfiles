@@ -54,3 +54,4 @@
   sm = submodule
   cnt = rev-list --count HEAD
   count = rev-list --count
+  wtrc = config --local --add remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
