@@ -118,12 +118,12 @@ function! SendToTmux(visual, count) range abort
   let text = substitute(text, '%', '\\%', 'g')
   let text = substitute(text, '#', '\\#', 'g')
 
-  silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
-  silent execute "!tmux send-keys -t " . a:count . "Enter"
+  call system("tmux send-keys -t " . a:count . " -- \"" . text . "\"")
+  call system("tmux send-keys -t " . a:count . "Enter")
 endfunction
 
-nnoremap <Leader>p :<C-u>call SendToTmux(0, v:count1)<CR>
-xnoremap <Leader>p :<C-u>call SendToTmux(1, v:count1)<CR>
+nnoremap <Leader>p :<C-u>silent call SendToTmux(0, v:count1)<CR>
+xnoremap <Leader>p :<C-u>silent call SendToTmux(1, v:count1)<CR>
 
 " -- Use * and # over visual selection -------------------------------------
 
