@@ -29,7 +29,7 @@ export GEM_HOME=$HOME/gems
 export LESS="-iSMRF"
 export PAGER="less"
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
-export GCC_COLORS=""            # suppress gcc colors: gcc fg=white on bg=white
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:range1=32:range2=34:locus=35:quote=33:path=01;36:fixit-insert=32:fixit-delete=31:diff-filename=35:diff-hunk=32:diff-delete=31:diff-insert=32:type-diff=01;32:fnname=35;32:targs=35"
 
 # HIST* are bash-only variables, not environmental variables, so do not 'export'
 HISTCONTROL=erasedups:ignoreboth
@@ -47,7 +47,7 @@ shopt -s checkwinsize           # update $LINES and $COLUMNS after each command
 shopt -s globstar &> /dev/null  # (bash 4+) enable recursive glob
 shopt -s extglob                # enable extended globbing
 stty -ixon                      # remove XON/XOFF
-printf '\033[2 q'               # for xterm-like terms: unblinking block cursor
+printf '\033[?12l'              # for xterm-like terms: unblinking block cursor
 
 
 # ----------------------------------------------------------------------

@@ -137,6 +137,7 @@ $env:TERM = "xterm-256color"
 $env:VISUAL = "vim"
 $env:LESS = "-iSMRF"
 $env:RIPGREP_CONFIG_PATH = "$HOME\.ripgreprc"
+$env:GCC_COLORS = "error=01;31:warning=01;35:note=01;36:range1=32:range2=34:locus=35:quote=30:path=01;36:fixit-insert=32:fixit-delete=31:diff-filename=35:diff-hunk=32:diff-delete=31:diff-insert=32:type-diff=01;32:fnname=35;32:targs=35"
 
 $env:Path = (
     @(
@@ -151,4 +152,4 @@ $env:Path = (
 
 # -- Misc --------------------------------------------------------------------
 
-Write-Output "$ESC[2 q"               # for xterm-like terms: unblinking block cursor
+Write-Output "$ESC[?12l"               # for xterm-like terms: stop blinking
