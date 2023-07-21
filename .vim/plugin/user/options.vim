@@ -7,6 +7,7 @@ endif
 
 if g:env == "CYGWIN" || g:env == "WIN"
   nnoremap <silent>  <C-n>  :!start wt -d .<CR><CR>
+  nnoremap <C-BS> <C-w>h
   call SetShell("pwsh")
 endif
 
@@ -30,7 +31,7 @@ colo dim
 if !has('nvim') && exists('+guicursor')
   let &t_SI = "\<Esc>[6 q"
   let &t_SR = "\<Esc>[4 q"
-  let &t_EI = "\<Esc>[2 q"
+  let &t_EI = "\<Esc>[0 q"
 endif
 
 if exists('+autoread')
@@ -179,6 +180,12 @@ for tabstuff in ['tabstop', 'softtabstop', 'shiftwidth']
 endfor
 
 " -- Build -----------------------------------------------------------------
+
+if g:env == 'WIN' || g:env == 'CYGWIN'
+  if exists('$MSYSTEM') && stridx($MSYSTEM, 'MINGW') >= 0 || stridx($MSYSTEM,'UCRT') >= 0
+    let &mp = 'mingw32-make'
+  endif
+endif
 
 let g:cargo_makeprg_params = ''
 

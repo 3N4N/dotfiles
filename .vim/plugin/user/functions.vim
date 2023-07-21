@@ -258,8 +258,6 @@ function! SetShell(shell) abort
     let &shellpipe = '2>&1| tee'
     let &shellquote = ''
     let &shellxquote = '"'
-    let &ssl = 1
-    let &csl = 'slash'
   elseif a:shell ==# 'pwsh' || a:shell ==# 'powershell'
     let &shell = a:shell
     let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
@@ -270,8 +268,6 @@ function! SetShell(shell) abort
     let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     let &shellquote = ''
     let &shellxquote = (has('nvim') ? '' : '"')
-    let &ssl = 1
-    let &csl = 'slash'
   elseif a:shell ==# 'bash'
     let &shell = 'bash'
     let &shellcmdflag = '-c'
@@ -279,9 +275,9 @@ function! SetShell(shell) abort
     let &shellpipe = '2>&1| tee'
     let &shellquote = ''
     let &shellxquote = (has('nvim') ? '(' : g:env=='CYGWIN' ? '' : '"')
-    let &ssl = 1
-    let &csl = 'slash'
   end
+  " let &ssl = 1
+  let &csl = 'slash'
 endfunction
 
 command! -nargs=1 SetShell call SetShell(<q-args>)
@@ -483,7 +479,10 @@ function! Grep(grepprg, ...) abort
   let l:saved_errorformat = &errorformat
   let &errorformat = &grepformat
 
-  let l:grepcmd = a:grepprg->substitute('\$\*', join(a:000, ' '), '')
+  " backslash in f-args are confusing; see ':h <f-args>'
+  let l:args = join(a:000, ' ')->substitute('\\', '\\\\', '')
+
+  let l:grepcmd = a:grepprg->substitute('\$\*', l:args, ' ')
   let l:grepout = system(l:grepcmd)->split('\n')
   cgetexpr l:grepout
   call setqflist([], 'a', {'title' : l:grepcmd})
@@ -498,4 +497,4 @@ command! -nargs=+ -complete=file_in_path -bar   GitGrep
       \ ':!tags' ':!node_modules'", <f-args>)
 
 nnoremap <Leader>gg   :GitGrep<Space>
-nnoremap <Bslash>f    :GitGrep --no-index<Space>
+nnoremap <Bslash>f    :Grep<Space>
