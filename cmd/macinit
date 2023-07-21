@@ -7,11 +7,11 @@ vi     = %VISUAL% $*
 grep   = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
 rg     = rg --smart-case $*
 xclip  = win32yank.exe $*
-wts    = %VISUAL% "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json"
+wts    = %VISUAL% "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 myip   = curl -s https://icanhazip.com
 reload = E:\projects\dotfiles\cmd\profile.cmd
 dots   = cd /d E:\projects\dotfiles
-mpv  = mpv.exe $*
+mpv    = mpv.exe $*
 
 ps     = tasklist $*
 psgrep = tasklist | grep --color -i $1

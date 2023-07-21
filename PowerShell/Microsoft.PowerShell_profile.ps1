@@ -95,7 +95,7 @@ Function la { ls --group-directories-first -vhFlA @args }
 Function mcd { New-Item -Type Directory @args; Set-Location @args }
 Function dots { Set-Location E:/projects/dotfiles/ }
 
-function wts { vi "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json" }
+function wts { vi "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json" }
 function rg { rg.exe --smart-case @args } # w/o .exe, it'll hang, cause recursive
 Function msys { & C:/msys64/msys2_shell.cmd -defterm -here -no-start -full-path @args }
 function Licensify { curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING }
