@@ -480,7 +480,7 @@ function! Grep(grepprg, ...) abort
   let &errorformat = &grepformat
 
   " backslash in f-args are confusing; see ':h <f-args>'
-  let l:args = join(a:000, ' ')->substitute('\\', '\\\\', '')
+  let l:args = join(a:000, ' ')->substitute('\\', '\\\\', 'g')
 
   let l:grepcmd = a:grepprg->substitute('\$\*', l:args, ' ')
   let l:grepout = system(l:grepcmd)->split('\n')
@@ -494,7 +494,7 @@ command! -nargs=+ -complete=file_in_path -bar   Grep
       \ call Grep(&gp,<f-args>)
 command! -nargs=+ -complete=file_in_path -bar   GitGrep
       \ call Grep("git grep --recurse-submodules -In $*
-      \ ':!tags' ':!node_modules'", <f-args>)
+      \ :!tags :!node_modules", <f-args>)
 
 nnoremap <Leader>gg   :GitGrep<Space>
 nnoremap <Bslash>f    :Grep<Space>
