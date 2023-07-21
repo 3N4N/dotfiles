@@ -265,14 +265,12 @@ if g:env ==# 'UNIX' || g:env ==# 'WSL' && exists('$TMUX')
   tnoremap <silent> <C-k> <C-\><C-n>:silent call TmuxMoveToSplit('k', 'U')<CR>
   tnoremap <silent> <C-l> <C-\><C-n>:silent call TmuxMoveToSplit('l', 'R')<CR>
 else
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  " tnoremap <C-l> <C-\><C-n><C-w>l
+  for x in ['nnoremap', 'tnoremap']
+    exe x "<C-h>" "<C-w>h"
+    exe x "<C-j>" "<C-w>j"
+    exe x "<C-k>" "<C-w>k"
+    exe x "<C-l>" "<C-w>l"
+  endfor
 endif
 tnoremap <Esc> <C-\><C-n>
 
