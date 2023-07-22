@@ -247,7 +247,7 @@ nnoremap <Leader>gb :keepalt Git blame<CR>
 
 " Navigate seamlessly between vim and tmux
 if g:env ==# 'UNIX' || g:env ==# 'WSL' && exists('$TMUX')
-  function! TmuxMoveToSplit(wincmd, tmuxdir) abort
+  function! MoveToSplit(wincmd, tmuxdir) abort
     let previous_winnr = winnr()
     silent! execute "wincmd " . a:wincmd
     if previous_winnr == winnr()
@@ -256,20 +256,19 @@ if g:env ==# 'UNIX' || g:env ==# 'WSL' && exists('$TMUX')
     endif
   endfunction
 
-  nnoremap <silent> <C-h> :silent call TmuxMoveToSplit('h', 'L')<CR>
-  nnoremap <silent> <C-j> :silent call TmuxMoveToSplit('j', 'D')<CR>
-  nnoremap <silent> <C-k> :silent call TmuxMoveToSplit('k', 'U')<CR>
-  nnoremap <silent> <C-l> :silent call TmuxMoveToSplit('l', 'R')<CR>
-  tnoremap <silent> <C-h> <C-\><C-n>:silent call TmuxMoveToSplit('h', 'L')<CR>
-  tnoremap <silent> <C-j> <C-\><C-n>:silent call TmuxMoveToSplit('j', 'D')<CR>
-  tnoremap <silent> <C-k> <C-\><C-n>:silent call TmuxMoveToSplit('k', 'U')<CR>
-  tnoremap <silent> <C-l> <C-\><C-n>:silent call TmuxMoveToSplit('l', 'R')<CR>
+  for [s:k, s:d] in items({ 'h' : 'L', 'j' : 'D', 'k' : 'U', 'l' : 'R' })
+    exe 'nnoremap' '<silent>' '<C-' . s:k . '>'
+          \ ':silent call MoveToSplit("' . s:k . '","' . s:d . '")<CR>'
+    if has('nvim')
+      " In Vim, use SendToTmux (see plugin/user/function.vim)
+      exe 'tnoremap' '<silent>' '<C-' . s:k . '>'
+            \ '<C-\><C-n>:silent call MoveToSplit("' . s:k . '","' . s:d . '")<CR>'
+    endif
+  endfor
 else
-  for x in ['nnoremap', 'tnoremap']
-    exe x "<C-h>" "<C-w>h"
-    exe x "<C-j>" "<C-w>j"
-    exe x "<C-k>" "<C-w>k"
-    exe x "<C-l>" "<C-w>l"
+  for s:x in ['h','j','k','l']
+    exe 'nnoremap' '<C-' . s:x . '>' '<C-w>' . s:x
+    exe 'tnoremap' '<C-' . s:x . '>' (has('nvim')?'<C-\><C-n>' : '') . '<C-w>' . s:x
   endfor
 endif
 tnoremap <Esc> <C-\><C-n>
