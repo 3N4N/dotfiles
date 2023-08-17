@@ -63,6 +63,7 @@ set nonumber
 set norelativenumber
 set noruler
 set scrolloff =0
+set showcmd
 set showmode
 set signcolumn =no
 

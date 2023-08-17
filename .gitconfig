@@ -13,7 +13,7 @@
   preloadindex = true
   fscache = true
   ; pager = less -+$LESS
-  editor = $VISUAL
+  ; editor = $VISUAL  ; git automatically uses $VISUAL if defined
   filemode = false
 [log]
   date = short

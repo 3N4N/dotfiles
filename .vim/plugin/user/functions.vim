@@ -468,7 +468,7 @@ function! SplitIfNvim(arg) abort
   if has('nvim') | return a:arg->split() | else | return a:arg | endif
 endfunction
 nnoremap <silent> <Space>ff
-      \ :call ListFiles('find -maxdepth 3 -type f -printf %P\n'->SplitIfNvim())<CR>/
+      \ :call ListFiles('find -maxdepth 3 -type f -printf %P\\n'->SplitIfNvim())<CR>/
 nnoremap <silent> <Space>fg
       \ :call ListFiles('git ls-files'->SplitIfNvim())<CR>/
 

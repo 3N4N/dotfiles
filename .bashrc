@@ -80,9 +80,9 @@ alias sprev="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/
 alias snext="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # Commands for for docker
-alias dcbuild='docker-compose build'
-alias dcup='docker-compose up'
-alias dcdown='docker-compose down'
+alias dcbuild='docker compose build'
+alias dcup='docker compose up'
+alias dcdown='docker compose down'
 alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
 docksh() { docker exec -it $1 /bin/bash; }
 
@@ -335,7 +335,7 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$green\]\u@\h \[$magenta\]$MSYSTEM \[$yellow\]\w\[$reset\]\n\$ '
+PS1='\[$green\]\u@\h \[$red\]\A \[$yellow\]\w\[$reset\]\n\s-\v\$ '
 if [[ "$isMSYS" == 'true' ]]; then
   PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
 fi
