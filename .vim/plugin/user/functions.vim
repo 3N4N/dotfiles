@@ -359,7 +359,16 @@ function! GitOpenRemote(start, end) abort
     if a:head[0] != 'ref:'
       return a:head
     endif
-    return readfile(a:gitdir .. '/' .. a:head[1])[0]
+    let reffile = a:gitdir .. '/' .. a:head[1]
+    if filereadable(reffile)
+      return readfile(reffile)[0]
+    endif
+    let packed_refs = readfile(a:gitdir .. '/packed-refs')
+    for line in packed_refs
+      if stridx(line, a:head[1]) != -1
+        return split(line)[0]
+      endif
+    endfor
   endfunction
 
   let gitdir = FugitiveCommonDir()
