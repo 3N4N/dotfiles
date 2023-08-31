@@ -15,10 +15,10 @@ endfunction
 
 let &laststatus = 2
 
-let &statusline = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}"
+let &statusline = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}|%{winnr()}"
 let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.')):'[No Name]'}"
 let &statusline .= "%="
-let &statusline .= " %l: %v "
+let &statusline .= " %l,%v "
 
 " -- Tabline ---------------------------------------------------------------
 
