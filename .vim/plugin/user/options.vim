@@ -34,6 +34,8 @@ if !has('nvim') && exists('+guicursor')
   let &t_EI = "\<Esc>[0 q"
 endif
 
+" -- register focus event --------------------------------------------------
+
 if exists('+autoread')
   " 'autoread' depends on FocusGained autocmd event
   " Vim sets it only when &term=xterm
@@ -43,6 +45,15 @@ if exists('+autoread')
     let &t_fe = "\<Esc>[?1004h"
     let &t_fd = "\<Esc>[?1004l"
   endif
+endif
+
+" -- bracketed paste  ------------------------------------------------------
+
+if &term =~ '^st' || &term =~ '\v^(screen|tmux)'
+  let &t_BE = "\e[?2004h"
+  let &t_BD = "\e[?2004l"
+  exec "set t_PS=\e[200~"
+  exec "set t_PE=\e[201~"
 endif
 
 " -- visual perks ----------------------------------------------------------
