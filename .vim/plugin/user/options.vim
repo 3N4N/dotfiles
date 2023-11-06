@@ -130,6 +130,7 @@ set wildmode =full
 set complete -=t
 set wildignore +=*.o,*.obj,*~,*.class
 set wildignore +=*/.git
+set wildignore +=*/.env*,*/venv*,*/.venv*,*/*.egg-info,*/__pycache__/*
 set wildignore +=*.swp,*.tmp
 set wildignore +=*.mp3,*.mp4,*mkv
 set wildignore +=*.bmp,*.gif,*ico,*.jpg,*.png
