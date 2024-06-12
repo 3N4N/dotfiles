@@ -60,6 +60,7 @@ endif
 " Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+Plug 'bullets-vim/bullets.vim'
 
 Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
