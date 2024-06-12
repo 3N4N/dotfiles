@@ -79,6 +79,11 @@ alias spp="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mp
 alias sprev="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 alias snext="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
+# ffmpeg hide banner
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffplay='ffplay -hide_banner -noborder'
+alias ffprobe='ffprobe -hide_banner'
+
 # Commands for for docker
 alias dcbuild='docker compose build'
 alias dcup='docker compose up'
