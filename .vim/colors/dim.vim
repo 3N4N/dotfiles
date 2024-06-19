@@ -4,6 +4,14 @@ if exists("syntax_on")
   syntax reset
 endif
 
+if &t_Co < 256
+  let &t_Co = 256
+endif
+
+if !has('nvim') && has('win32')
+  hi Normal       ctermfg=0    ctermbg=15
+endif
+
 hi SpecialKey     ctermfg=4
 hi TermCursor     cterm=reverse
 hi NonText        ctermfg=12

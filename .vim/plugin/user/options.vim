@@ -8,7 +8,7 @@ endif
 if g:env == "CYGWIN" || g:env == "WIN"
   nnoremap <silent>  <C-n>  :!start wt -d .<CR><CR>
   nnoremap <C-BS> <C-w>h
-  call SetShell("pwsh")
+  call SetShell("cmd")
 endif
 
 " -- color scheme ----------------------------------------------------------
@@ -108,6 +108,10 @@ set incsearch
 set smartcase
 set wrapscan
 noh
+
+" -- indenting -------------------------------------------------------------
+
+set autoindent
 
 " -- vimgrep ---------------------------------------------------------------
 
