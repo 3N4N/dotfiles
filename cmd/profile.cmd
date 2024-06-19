@@ -11,4 +11,4 @@ set LESS=-iSMRF
 set VISUAL=vim
 
 REM prepend to PATH
-set PATH=%PATH%;%USERPROFILE%\scoop\apps\git\current\usr\bin;C:\mingw64\bin
+set PATH=%PATH%;%PROGRAMFILES%\Git\usr\bin;C:\mingw64\bin

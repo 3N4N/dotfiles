@@ -189,10 +189,10 @@ t() {
     tmux rename-window -t "$session_name" shell
     tmux new-window -t "$session_name"
 
-    if [[ $session_name == "enan" && $isMSYS == 'false' ]]; then
-      tmux rename-window -t "$session_name" dots
-      tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
-    fi
+    # if [[ $session_name == "enan" && $isMSYS == 'false' ]]; then
+    #   tmux rename-window -t "$session_name" dots
+    #   tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
+    # fi
 
     tmux select-window -t 2
   fi
@@ -265,7 +265,7 @@ fi
 
 case "$TERM" in
     xterm*|st*|tmux*)
-        PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${HOSTNAME%%.*}"'
+        PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\033]0;%s@%s %s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD}"'
         ;;
 esac
 

@@ -1,5 +1,6 @@
 o      = start "" $*
 cd     = cd /d $*
+dir    = dir /og $*
 pwd    = cd
 ns     = nslookup $*
 ip     = ipconfig $*
