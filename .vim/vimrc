@@ -420,9 +420,9 @@ if !has('nvim') && g:env ==# 'WIN'
   nnoremap <silent>   <leader>yy    "+yy
   xnoremap <silent>   <C-c>         "+y
 else
-  nnoremap <silent>   <leader>y     <Plug>OSCYankOperator
-  nnoremap <silent>   <leader>yy    <Plug>OSCYankOperator_
-  xnoremap <silent>   <C-c>         <Plug>OSCYankVisual
+  nmap <silent>   <leader>y     <Plug>OSCYankOperator
+  nmap <silent>   <leader>yy    <Plug>OSCYankOperator_
+  xmap <silent>   <C-c>         <Plug>OSCYankVisual
 endif
 
 " -- Lua Modules -----------------------------------------------------------
