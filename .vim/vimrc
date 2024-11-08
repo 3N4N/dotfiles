@@ -224,6 +224,7 @@ endfor
 
 " Toggle
 nnoremap <silent> <Leader>tc :let &colorcolumn=(&cc==0)?81:0<CR>
+nnoremap <silent> <Leader>tb :windo se scb!<CR>
 nnoremap <silent> <Leader>te :set expandtab!<Bar>set expandtab?<CR>
 nnoremap <silent> <Leader>tg :set termguicolors!<Bar>set termguicolors?<CR>
 nnoremap <silent> <Leader>th :set hlsearch!<Bar>set hlsearch?<CR>

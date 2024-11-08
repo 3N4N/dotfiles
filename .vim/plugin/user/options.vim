@@ -123,7 +123,11 @@ if executable('rg')
 else
   " Use plain grep
   " Substitute args at $* before --exclude bc --exclude overrides --include
-  let &grepprg = 'grep -IHnr $* --exclude-dir=.git --exclude-dir=node_modules --exclude=tags'
+  let &grepprg = 'grep -IHnr $*
+        \ --exclude-dir=.git
+        \ --exclude-dir=node_modules
+        \ --exclude-dir=.venv
+        \ --exclude=tags'
 end
 
 " -- wildmenu settings -----------------------------------------------------
@@ -135,6 +139,7 @@ set complete -=t
 set wildignore +=*.o,*.obj,*~,*.class
 set wildignore +=*/.git
 set wildignore +=*/.env*,*/venv*,*/.venv*,*/*.egg-info,*/__pycache__/*
+set wildignore +=*/node_modules/*
 set wildignore +=*.swp,*.tmp
 set wildignore +=*.mp3,*.mp4,*mkv
 set wildignore +=*.bmp,*.gif,*ico,*.jpg,*.png
@@ -154,6 +159,7 @@ set ttimeoutlen =10
 
 set autoread
 set backspace =indent,eol,start
+set belloff =all
 set cinoptions =g0,l1,i0,t0,(4,N-s
 set cpoptions -=aA
 set diffopt =internal
