@@ -1,5 +1,4 @@
 o      = start "" $*
-cd     = cd /d $*
 dir    = dir /og $*
 pwd    = cd
 ns     = nslookup $*
@@ -10,9 +9,9 @@ rg     = rg --smart-case $*
 xclip  = win32yank.exe $*
 wts    = %VISUAL% "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 myip   = curl -s https://icanhazip.com
-reload = E:\projects\dotfiles\cmd\profile.cmd
+reload = %HOMEDRIVE%\%HOMEPATH%\projects\dotfiles\cmd\profile.cmd
 dots   = cd /d E:\projects\dotfiles
-mpv    = mpv.exe $*
+mpv    = C:\apps\mpv\mpv.exe $*
 
 ps     = tasklist $*
 psgrep = tasklist | grep --color -i $1
@@ -35,7 +34,7 @@ ls   = ls -NvhF --group-directories-first $*
 l    = ls -NvhFl --group-directories-first --time-style=+ $*
 la   = ls -NvhFl --group-directories-first --time-style=+ -A $*
 gdb  = gdb -q $*
-find = %GIT_INSTALL_ROOT%\usr\bin\find $*
+find = "%PROGRAMFILES%\Git\usr\bin\find" $*
 
 cmakec = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 $*
 cmaked = cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug $*
