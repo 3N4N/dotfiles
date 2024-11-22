@@ -27,48 +27,48 @@ let g:colors_name = "fault"
 
 " -- Editor settings -----------------------------------------------------------
 
-hi  ColorColumn   cterm=none  ctermbg=8     ctermfg=0  gui=none  guibg=#2c323c  guifg=none
-hi  CursorColumn  cterm=none  ctermbg=8     ctermfg=0  gui=none  guibg=none     guifg=none
-hi  CursorLineNr  cterm=none  ctermbg=none  ctermfg=1  gui=none  guibg=none     guifg=#e06c75
-hi  Directory     cterm=none  ctermbg=none  ctermfg=4  GUI=none  guibg=none     guifg=#61afef
-hi  Error         cterm=none  ctermbg=1     ctermfg=0  gui=none  guibg=#abb2bf  guifg=#282c34
-hi  ErrorMsg      cterm=none  ctermbg=1     ctermfg=0  gui=none  guibg=none     guifg=#e06c75
-hi  FoldColumn    cterm=none  ctermbg=none  ctermfg=7  gui=none  guibg=none     guifg=#61afef
-hi  Folded        cterm=none  ctermbg=8     ctermfg=7  gui=none  guibg=#3e4452  guifg=none
-hi  IncSearch     cterm=none  ctermbg=4     ctermfg=0  gui=none  guibg=#61afef  guifg=#282c34
-hi  LineNr        cterm=none  ctermbg=none  ctermfg=8  gui=none  guibg=none     guifg=#d19a66
-hi  ModeMsg       cterm=none  ctermbg=2     ctermfg=0  gui=none  guibg=none     guifg=#98c379
-hi  MoreMsg       cterm=none  ctermbg=2     ctermfg=0  gui=none  guibg=none     guifg=#98c379
-hi  NonText       cterm=none  ctermbg=none  ctermfg=8  gui=none  guibg=none     guifg=#5c6370
-hi  Question      cterm=none  ctermbg=none  ctermfg=2  gui=none  guibg=none     guifg=#98c379
-hi  Search        cterm=none  ctermbg=3     ctermfg=0  gui=none  guibg=#d19a66  guifg=#282c34
-hi  SpecialKey    cterm=none  ctermbg=none  ctermfg=0  gui=none  guibg=none     guifg=#5c6370
-hi  Title         cterm=none  ctermbg=none  ctermfg=5  gui=none  guibg=none     guifg=#c678dd
-hi  Todo          cterm=none  ctermbg=3     ctermfg=0  gui=none  guibg=none     guifg=#e5c07b
-hi  VertSplit     cterm=none  ctermbg=none  ctermfg=7  gui=none  guibg=none     guifg=#abb2bf
-hi  Visual        cterm=none  ctermbg=7     ctermfg=0  gui=none  guibg=#abb2bf  guifg=#282c34
-hi  WarningMsg    cterm=none  ctermbg=none  ctermfg=3  gui=none  guibg=none     guifg=#e5c07b
-hi  WildMenu      cterm=none  ctermbg=2     ctermfg=0  gui=none  guibg=#98c379  guifg=#282c34
+hi  ColorColumn   cterm=NONE  ctermbg=8     ctermfg=0  gui=NONE  guibg=#2c323c  guifg=NONE
+hi  CursorColumn  cterm=NONE  ctermbg=8     ctermfg=0  gui=NONE  guibg=NONE     guifg=NONE
+hi  CursorLineNr  cterm=NONE  ctermbg=NONE  ctermfg=1  gui=NONE  guibg=NONE     guifg=#e06c75
+hi  Directory     cterm=NONE  ctermbg=NONE  ctermfg=4  GUI=NONE  guibg=NONE     guifg=#61afef
+hi  Error         cterm=NONE  ctermbg=1     ctermfg=0  gui=NONE  guibg=#abb2bf  guifg=#282c34
+hi  ErrorMsg      cterm=NONE  ctermbg=1     ctermfg=0  gui=NONE  guibg=NONE     guifg=#e06c75
+hi  FoldColumn    cterm=NONE  ctermbg=NONE  ctermfg=7  gui=NONE  guibg=NONE     guifg=#61afef
+hi  Folded        cterm=NONE  ctermbg=8     ctermfg=7  gui=NONE  guibg=#3e4452  guifg=NONE
+hi  IncSearch     cterm=NONE  ctermbg=4     ctermfg=0  gui=NONE  guibg=#61afef  guifg=#282c34
+hi  LineNr        cterm=NONE  ctermbg=NONE  ctermfg=8  gui=NONE  guibg=NONE     guifg=#d19a66
+hi  ModeMsg       cterm=NONE  ctermbg=2     ctermfg=0  gui=NONE  guibg=NONE     guifg=#98c379
+hi  MoreMsg       cterm=NONE  ctermbg=2     ctermfg=0  gui=NONE  guibg=NONE     guifg=#98c379
+hi  NonText       cterm=NONE  ctermbg=NONE  ctermfg=8  gui=NONE  guibg=NONE     guifg=#5c6370
+hi  Question      cterm=NONE  ctermbg=NONE  ctermfg=2  gui=NONE  guibg=NONE     guifg=#98c379
+hi  Search        cterm=NONE  ctermbg=3     ctermfg=0  gui=NONE  guibg=#d19a66  guifg=#282c34
+hi  SpecialKey    cterm=NONE  ctermbg=NONE  ctermfg=0  gui=NONE  guibg=NONE     guifg=#5c6370
+hi  Title         cterm=NONE  ctermbg=NONE  ctermfg=5  gui=NONE  guibg=NONE     guifg=#c678dd
+hi  Todo          cterm=NONE  ctermbg=3     ctermfg=0  gui=NONE  guibg=NONE     guifg=#e5c07b
+hi  VertSplit     cterm=NONE  ctermbg=NONE  ctermfg=7  gui=NONE  guibg=NONE     guifg=#abb2bf
+hi  Visual        cterm=NONE  ctermbg=7     ctermfg=0  gui=NONE  guibg=#abb2bf  guifg=#282c34
+hi  WarningMsg    cterm=NONE  ctermbg=NONE  ctermfg=3  gui=NONE  guibg=NONE     guifg=#e5c07b
+hi  WildMenu      cterm=NONE  ctermbg=2     ctermfg=0  gui=NONE  guibg=#98c379  guifg=#282c34
 
-hi  CursorLine    cterm=underline  ctermbg=none  ctermfg=none  gui=none       guibg=none  guifg=none
-hi  MatchParen    cterm=underline  ctermbg=6     ctermfg=0     gui=underline  guibg=none  guifg=#61afef
-hi  QuickFixLine  cterm=underline  ctermbg=none  ctermfg=none  gui=underline  guibg=none  guifg=none
+hi  CursorLine    cterm=underline  ctermbg=NONE  ctermfg=NONE  gui=NONE       guibg=NONE  guifg=NONE
+hi  MatchParen    cterm=underline  ctermbg=6     ctermfg=0     gui=underline  guibg=NONE  guifg=#61afef
+hi  QuickFixLine  cterm=underline  ctermbg=NONE  ctermfg=NONE  gui=underline  guibg=NONE  guifg=NONE
 
 hi  clear  Normal
 hi  clear  SignColumn
 
 " -- Statusline and Tabline ----------------------------------------------------
 
-hi  StatusLine    cterm=none  ctermbg=8     ctermfg=15  gui=none  guibg=#5c6370  guifg=#f0f0f0
-hi  StatusLineNC  cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
-hi  TabLine       cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
-hi  TabLineFill   cterm=none  ctermbg=8     ctermfg=7   gui=none  guibg=#3e4452  guifg=#abb2bf
-hi  TabLineSel    cterm=none  ctermbg=8     ctermfg=15  gui=none  guibg=#98c379  guifg=#282c34
+hi  StatusLine    cterm=NONE  ctermbg=8     ctermfg=15  gui=NONE  guibg=#5c6370  guifg=#f0f0f0
+hi  StatusLineNC  cterm=NONE  ctermbg=8     ctermfg=7   gui=NONE  guibg=#3e4452  guifg=#abb2bf
+hi  TabLine       cterm=NONE  ctermbg=8     ctermfg=7   gui=NONE  guibg=#3e4452  guifg=#abb2bf
+hi  TabLineFill   cterm=NONE  ctermbg=8     ctermfg=7   gui=NONE  guibg=#3e4452  guifg=#abb2bf
+hi  TabLineSel    cterm=NONE  ctermbg=8     ctermfg=15  gui=NONE  guibg=#98c379  guifg=#282c34
 
 " -- Language constructs -------------------------------------------------------
 
-hi  Comment     cterm=none       ctermbg=none  ctermfg=8     gui=none       guibg=none  guifg=#56b6c2
-hi  Underlined  cterm=underline  ctermbg=none  ctermfg=none  gui=underline  guibg=none  guifg=none
+hi  Comment     cterm=NONE       ctermbg=NONE  ctermfg=8     gui=NONE       guibg=NONE  guifg=#56b6c2
+hi  Underlined  cterm=underline  ctermbg=NONE  ctermfg=NONE  gui=underline  guibg=NONE  guifg=NONE
 
 hi  clear  Constant
 hi  clear  Function
@@ -80,30 +80,30 @@ hi  clear  Type
 
 " -- Completion menu -----------------------------------------------------------
 
-hi  Pmenu       cterm=none  ctermbg=4  ctermfg=0  gui=none  guibg=#3e4452  guifg=none
-hi  PmenuSbar   cterm=none  ctermbg=4  ctermfg=0  gui=none  guibg=#5c6d70  guifg=none
-hi  PmenuSel    cterm=none  ctermbg=3  ctermfg=0  gui=none  guibg=#61afef  guifg=#282c34
-hi  PmenuThumb  cterm=none  ctermbg=8  ctermfg=0  gui=none  guibg=#abb2bf  guifg=none
+hi  Pmenu       cterm=NONE  ctermbg=4  ctermfg=0  gui=NONE  guibg=#3e4452  guifg=NONE
+hi  PmenuSbar   cterm=NONE  ctermbg=4  ctermfg=0  gui=NONE  guibg=#5c6d70  guifg=NONE
+hi  PmenuSel    cterm=NONE  ctermbg=3  ctermfg=0  gui=NONE  guibg=#61afef  guifg=#282c34
+hi  PmenuThumb  cterm=NONE  ctermbg=8  ctermfg=0  gui=NONE  guibg=#abb2bf  guifg=NONE
 
 " -- Spelling ------------------------------------------------------------------
 
-hi  SpellBad    cterm=underline  ctermbg=none  ctermfg=1  gui=underline  guibg=none  guifg=#e06c75
-hi  SpellCap    cterm=underline  ctermbg=none  ctermfg=3  gui=underline  guibg=none  guifg=#e5c07b
-hi  SpellLocal  cterm=underline  ctermbg=none  ctermfg=7  gui=underline  guibg=none  guifg=none
-hi  SpellRare   cterm=underline  ctermbg=none  ctermfg=4  gui=underline  guibg=none  guifg=#61afef
+hi  SpellBad    cterm=underline  ctermbg=NONE  ctermfg=1  gui=underline  guibg=NONE  guifg=#e06c75
+hi  SpellCap    cterm=underline  ctermbg=NONE  ctermfg=3  gui=underline  guibg=NONE  guifg=#e5c07b
+hi  SpellLocal  cterm=underline  ctermbg=NONE  ctermfg=7  gui=underline  guibg=NONE  guifg=NONE
+hi  SpellRare   cterm=underline  ctermbg=NONE  ctermfg=4  gui=underline  guibg=NONE  guifg=#61afef
 
 " -- Diff ----------------------------------------------------------------------
 
-hi  DiffAdd     cterm=none  ctermbg=none  ctermfg=2  gui=none  guibg=#282c34  guifg=#98c379
-hi  DiffChange  cterm=none  ctermbg=none  ctermfg=3  gui=none  guibg=#282c34  guifg=#e5c07b
-hi  DiffDelete  cterm=none  ctermbg=none  ctermfg=1  gui=none  guibg=#282c34  guifg=#e06c75
-hi  DiffText    cterm=none  ctermbg=none  ctermfg=6  gui=none  guibg=#282c34  guifg=#61afef
+hi  DiffAdd     cterm=NONE  ctermbg=NONE  ctermfg=2  gui=NONE  guibg=#282c34  guifg=#98c379
+hi  DiffChange  cterm=NONE  ctermbg=NONE  ctermfg=3  gui=NONE  guibg=#282c34  guifg=#e5c07b
+hi  DiffDelete  cterm=NONE  ctermbg=NONE  ctermfg=1  gui=NONE  guibg=#282c34  guifg=#e06c75
+hi  DiffText    cterm=NONE  ctermbg=NONE  ctermfg=6  gui=NONE  guibg=#282c34  guifg=#61afef
 
 " -- Gitgutter signs -----------------------------------------------------------
 
-hi  GitGutterAdd     cterm=none  ctermbg=none  ctermfg=2  gui=none  guibg=none  guifg=#98c379
-hi  GitGutterChange  cterm=none  ctermbg=none  ctermfg=3  gui=none  guibg=none  guifg=#e5c07b
-hi  GitGutterDelete  cterm=none  ctermbg=none  ctermfg=1  gui=none  guibg=none  guifg=#e06c75
+hi  GitGutterAdd     cterm=NONE  ctermbg=NONE  ctermfg=2  gui=NONE  guibg=NONE  guifg=#98c379
+hi  GitGutterChange  cterm=NONE  ctermbg=NONE  ctermfg=3  gui=NONE  guibg=NONE  guifg=#e5c07b
+hi  GitGutterDelete  cterm=NONE  ctermbg=NONE  ctermfg=1  gui=NONE  guibg=NONE  guifg=#e06c75
 
 hi link GitGutterChangeDelete GitGutterChange
 
