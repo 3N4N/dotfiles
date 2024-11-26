@@ -4,12 +4,19 @@ if exists("syntax_on")
   syntax reset
 endif
 
-if &t_Co < 256
+hi! clear
+
+if &t_Co < 256 && !has("gui_running")
   let &t_Co = 256
 endif
 
 if !has('nvim') && has('win32')
-  hi Normal       ctermfg=0    ctermbg=15
+  if &bg == 'light'
+    hi Normal       ctermfg=0    ctermbg=7
+    hi Normal       ctermfg=0    ctermbg=15
+  else
+    hi Normal       ctermfg=15    ctermbg=0
+  endif
 endif
 
 hi SpecialKey     ctermfg=4
@@ -106,3 +113,41 @@ hi! link TabLineFill Tabline
 hi! link PmenuSbar Pmenu
 hi! link PmenuThumb PmenuSel
 hi! clear DiagnosticHint
+
+let g:terminal_ansi_colors = [
+      \ "#383A42", "#E45649", "#50A14F", "#C18301",
+      \ "#0184BC", "#A626A4", "#0997B3", "#fff0d2",
+      \ "#4F525D", "#DF6C75", "#98C379", "#E4C07A",
+      \ "#61AFEF", "#C577DD", "#56B5C1", "#FAFAFA",
+      \ ]
+
+
+" -- GVim ------------------------------------------------------------------
+
+let tc = g:terminal_ansi_colors
+
+exec 'hi Cursor guibg=' . tc[1] . ' guifg=' . tc[7]
+hi! link Terminal Normal
+
+let hlgroups = ["Normal","SpecialKey","TermCursor","NonText","Directory","ErrorMsg","IncSearch","MoreMsg","ModeMsg","Question","Title","WarningMsg","WildMenu","Conceal","SpellBad","SpellRare","SpellLocal","PmenuSbar","PmenuThumb","TabLine","TabLineSel","TabLineFill","CursorColumn","CursorLine","MatchParen","Constant","Special","Identifier","Statement","PreProc","Type","Underlined","Ignore","Error","Todo","Search", "Visual", "LineNr","CursorLineNr","Comment","ColorColumn","Folded","FoldColumn","Pmenu","PmenuSel","PmenuSbar","SpellCap","SpellBad","SpellRare","SpellLocal","StatusLine","StatusLineNC","TabLineSel","VertSplit","SignColumn","FloatBorder","DiffAdd","DiffChange","DiffDelete","DiffText"]
+" let hlgroups = ["SpecialKey"]
+let attrs = ['bg', 'fg']
+
+for hlg in hlgroups
+  for attr in attrs
+    let c = synIDattr(hlID(hlg), attr, 'cterm')
+    if c ==# ''
+      let c = synIDattr(hlID('Normal'), attr, 'cterm')
+    endif
+    " echom c
+    if c !=# ''
+      exec 'hi' hlg 'gui'.attr.'='.tc[c]
+      exec 'hi' hlg 'cterm'.attr.'='.c
+    endif
+  endfor
+  exec 'hi ' . hlg . ' gui=NONE'
+  if synIDattr(hlID(hlg), 'reverse', 'cterm')
+    exec 'hi ' . hlg . ' gui=reverse'
+  endif
+  " exec 'hi' hlg
+endfor
