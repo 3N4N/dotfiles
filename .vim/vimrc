@@ -32,6 +32,12 @@ else
   endif
 endif
 
+let g:ignoredirs = [
+      \ '.git',
+      \ '.venv', 'venv', '.egg-info', '__pycache__',
+      \ 'node_modules'
+      \ ]
+
 let s:vim_plug_dir = expand(g:vimconfdir . '/plugged')
 
 " -- Vim Plug --------------------------------------------------------------
@@ -274,7 +280,14 @@ else
     exe 'tnoremap' '<C-' . s:x . '>' (has('nvim')?'<C-\><C-n>' : '') . '<C-w>' . s:x
   endfor
 endif
+
 tnoremap <Esc> <C-\><C-n>
+for i in range(65,90) + range(97,122)
+  let c = nr2char(i)
+  exec "tnoremap <A-".c."> <Esc>".c
+  exec "tnoremap <A-C-".c."> <Esc><C-".c.">"
+endfor
+
 
 " -- Text Objects ----------------------------------------------------------
 
@@ -373,10 +386,6 @@ if !has('nvim') && exists('*echoraw')
     au CmdwinEnter  * call echoraw(&t_EI)
   augroup END
 endif
-
-" -- Ctags -----------------------------------------------------------------
-
-nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
 
 " -- Uncrustify ------------------------------------------------------------
 

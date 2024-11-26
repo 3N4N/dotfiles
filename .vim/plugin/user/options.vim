@@ -10,6 +10,7 @@ if g:env == "CYGWIN" || g:env == "WIN"
   nnoremap <C-BS> <C-w>h
   call SetShell("cmd")
 endif
+nnoremap <Leader>\ :term ++curwin ++close cmd /K C:/apps/clink/clink_x64.exe inject && C:/Users/enan/projects/dotfiles/cmd/profile.cmd<CR>
 
 " -- color scheme ----------------------------------------------------------
 
@@ -20,7 +21,7 @@ if !has('nvim') && exists('+termguicolors')
 endif
 
 syntax off
-set notermguicolors
+set termguicolors
 set background =light
 colo dim
 
@@ -191,6 +192,12 @@ set undofile
 let &backupdir = expand(g:vimdatadir . "/backup/")
 let &directory = expand(g:vimdatadir . "/swap/")
 let &undodir = expand(g:vimdatadir . "/undo/")
+
+for d in [&backupdir, &directory, &undodir]
+  if !isdirectory(d)
+    call mkdir(&backupdir, 'p')
+  endif
+endfor
 
 " -- tabs vs spaces --------------------------------------------------------
 
