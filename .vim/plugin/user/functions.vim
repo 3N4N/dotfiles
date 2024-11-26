@@ -1,3 +1,7 @@
+fu! StartsWith(longer, shorter) abort
+  return a:longer[0:len(a:shorter)-1] ==# a:shorter
+endfunction
+
 " -- A better gx functionality ---------------------------------------------
 
 " https://youtube.com
@@ -507,3 +511,56 @@ command! -nargs=+ -complete=file_in_path -bar   GitGrep
 
 nnoremap <Leader>gg   :GitGrep<Space>
 nnoremap <Bslash>f    :Grep<Space>
+
+cab <expr> ii (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--include':'ii'
+cab <expr> xx (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude':'xx'
+cab <expr> xd (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude-dir':'xd'
+
+" -- Ctags -----------------------------------------------------------------
+
+nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
+
+function! Ctags() abort
+  let l:cmd_find = 'find'
+  if g:env == 'WIN'
+    let l:cmd_find = '"'
+          \ . fnamemodify(system('where git'), ':h:h')
+          \ . '\usr\bin\find.exe"'
+    " echom l:cmd_find
+  endif
+  let l:ignores = ''
+  for l:dir in g:ignoredirs
+    let l:ignores .= ' -not -path "./' . l:dir . '/*"'
+  endfor
+  " echom l:ignores
+
+  let l:ext = expand('%:e')
+  let l:cppexts = ['cpp', 'h', 'hpp', 'c', 'cc']
+  if index(l:cppexts, l:ext)
+    for l:e in l:cppexts
+      let l:exts = ' -name "*."' . l:e
+    endfor
+  endif
+
+  echom system(l:cmd_find . ' -name "*."' . expand('%:e')
+        \ . l:ignores . ' -exec ctags {} +')
+endfunction
+
+command! RunCtags call Ctags()
+nnoremap <Leader>c :RunCtags<CR>:redraw<CR>
+
+" -- cycle colorscheme  ----------------------------------------------------
+
+let g:colorschemes = getcompletion('', 'color')
+
+function! CycleColorschemes(dir) abort
+  let cur = execute('colo')->trim()
+  let idx = index(g:colorschemes, cur)
+  let idx = a:dir < 0 ? idx - 1 : idx + 1
+  if idx >= 0 && idx < len(g:colorschemes)
+    execute 'colo' g:colorschemes[idx]
+  endif
+endfunction
+
+command! ColoNext call CycleColorschemes(1)
+command! ColoPrev call CycleColorschemes(-1)
