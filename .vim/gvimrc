@@ -1,0 +1,25 @@
+let $PATH = $PATH . ';' . expand('$ProgramFiles').'\Git\usr\bin;'
+
+set winaltkeys =no
+set guioptions -=m
+set guioptions -=r
+set guioptions -=L
+set guioptions -=e
+set guioptions -=T
+set guioptions +=!
+
+" set guifont =Consolas:h12:cANSI
+set guifont =Jetbrains_Mono:h10:cANSI
+" set guifont =Fixedsys:h12:cANSI
+" set guifont =Cascadia_Code:h12:cANSI
+set lines=50 columns=100
+" set renderoptions =type:directx
+" __|__ -->
+
+" syn on
+" colo retrobox
+
+" selectionBackground: "#61AFEF",
+" cursorColor: "#383A42",
+" foreground: "#383A42",
+" background: "#FAFAFA",

@@ -59,6 +59,7 @@ endif
 
 " -- visual perks ----------------------------------------------------------
 
+set enc=utf-8
 set colorcolumn =0
 set conceallevel =0
 set fillchars =vert:│

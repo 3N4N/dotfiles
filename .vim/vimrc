@@ -68,7 +68,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'bullets-vim/bullets.vim'
 
-Plug 'mcchrish/fountain.vim'
+" Plug 'mcchrish/fountain.vim'
 Plug 'benknoble/gitignore-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'Vimjas/vim-python-pep8-indent'

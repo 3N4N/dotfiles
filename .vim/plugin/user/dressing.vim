@@ -2,7 +2,8 @@
 
 set title
 let &titlestring = (has('nvim') ? 'Nvim' : 'Vim')
-      \ . " %{&modified?'•':':'} %{getcwd()->fnamemodify(':~')}"
+      \ . "@%{hostname()}"
+      \ . " %{&modified?'•':'-'} %{getcwd()->fnamemodify(':~')}"
 
 " -- Stautsline ------------------------------------------------------------
 
@@ -15,8 +16,9 @@ endfunction
 
 let &laststatus = 2
 
-let &statusline = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}|%{winnr()}"
-let &statusline .= " %<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.')):'[No Name]'}"
+let &statusline = " %{&modified?'Δ':&readonly||!&modifiable?'ø':'✓'}"
+let &statusline .= "|%{winnr()}|%{tabpagenr()}/%{tabpagenr('$')} "
+let &statusline .= "%<%{expand('%:~:.')!=#''?PathShortenIfLong(expand('%:~:.')):'[No Name]'}"
 let &statusline .= "%="
 let &statusline .= " %l,%v "
 
@@ -38,5 +40,5 @@ function! MyTabLine() abort
   return s
 endfunction
 
-let &showtabline = 1
+let &showtabline = 0
 let &tabline = "%!MyTabLine()"
