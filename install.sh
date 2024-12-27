@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-DIR=$HOME/projects/dotfiles
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 if [ ! -d $HOME/.local/bin ]; then
   mkdir -p $HOME/.local/bin
