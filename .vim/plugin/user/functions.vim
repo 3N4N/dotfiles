@@ -564,3 +564,81 @@ endfunction
 
 command! ColoNext call CycleColorschemes(1)
 command! ColoPrev call CycleColorschemes(-1)
+
+" -- Indentation guides ----------------------------------------------------
+
+" Copyright 2022 Igor Burago. Distributed under the ISC License terms.
+
+" Simple emulation of indentation guides.
+"
+" For tab-based indentation, using the 'listchars' option works fine.
+" For space-based indentation, one can either:
+" • use the match highlighting feature (see ':help match-highlight'),
+"   as shown in ToggleMatchHighlightIndentGuides(); or
+" • use the 'leadmultispace' setting of the 'listchars' option (added
+"   in Vim 9.0), as shown in ToggleListCharsIndentGuides().
+"
+" The mapping for toggling indentation guides will look like
+"   nnoremap <silent> <leader><bar> :call ToggleMatchHighlightIndentGuides()<cr>
+" or
+"   nnoremap <silent> <leader><bar> :call ToggleListCharsIndentGuides()<cr>
+" respectively.
+
+func! ToggleMatchHighlightIndentGuides()
+  if !exists('b:indent_guides_enabled')
+    if !&expandtab && &tabstop == &shiftwidth
+      let b:indent_guides_enabled = 'tabs'
+      let b:indent_guides_list_opt = &l:list
+      let b:indent_guides_listchars_opt = &l:listchars
+      exe 'setl listchars'..'+'[!&l:list]..'=tab:˙\  list'
+    else
+      let b:indent_guides_enabled = 'spaces'
+      let pos = range(1, &textwidth > 0 ? &textwidth : 80, &shiftwidth)
+      call map(pos, '"\\%"..v:val.."v"')
+      let pat = '\%(\_^ *\)\@<=\%('..join(pos, '\|')..'\) '
+      let b:indent_guides_match = matchadd('ColorColumn', pat)
+    endif
+  else
+    if b:indent_guides_enabled == 'tabs'
+      let &l:list = b:indent_guides_list_opt
+      let &l:listchars = b:indent_guides_listchars_opt
+      unlet b:indent_guides_list_opt
+      unlet b:indent_guides_listchars_opt
+    else
+      call matchdelete(b:indent_guides_match)
+      unlet b:indent_guides_match
+    endif
+    unlet b:indent_guides_enabled
+  endif
+endfunc
+
+func! ToggleListCharsIndentGuides()
+  if !exists('b:indent_guides_enabled')
+    let b:indent_guides_enabled = 1
+    let b:indent_guides_list_opt = &l:list
+    let b:indent_guides_listchars_opt = &l:listchars
+    let lcs = &l:list ? [&listchars] : []
+    if !&expandtab
+      let lcs += ['tab:┆ ']
+    endif
+    if &shiftwidth != 0 " && &tabstop != &shiftwidth
+      let lcs += ['multispace:⋮'..repeat(' ', &shiftwidth-1)]
+    endif
+    let &l:listchars = join(lcs, ',')
+    setl list
+  else
+    let &l:list = b:indent_guides_list_opt
+    let &l:listchars = b:indent_guides_listchars_opt
+    unlet b:indent_guides_list_opt
+    unlet b:indent_guides_listchars_opt
+    unlet b:indent_guides_enabled
+  endif
+endfunc
+
+if has("patch-8.2.3424")
+  command! -nargs=0 ToggleIndentGuides call ToggleListCharsIndentGuides()
+else
+  command! -nargs=0 ToggleIndentGuides call ToggleMatchHighlightIndentGuides()
+endif
+
+nnoremap <silent> <leader><bar> :ToggleIndentGuides<CR>
