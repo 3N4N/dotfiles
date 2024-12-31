@@ -210,7 +210,7 @@ nnoremap <expr> , getcharsearch().forward ? ',':';'
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>wq ZZ
 nnoremap <Leader>wt :tab split<CR>
-nnoremap <Leader>wa :b#<CR>
+nnoremap <Leader>wa <C-^>
 nnoremap <Leader>wb <C-w>s
 nnoremap <Leader>ws <Nop>
 nnoremap <Leader>ww :vert res 100<CR>

@@ -619,10 +619,14 @@ func! ToggleListCharsIndentGuides()
     let b:indent_guides_listchars_opt = &l:listchars
     let lcs = &l:list ? [&listchars] : []
     if !&expandtab
-      let lcs += ['tab:┆ ']
+      let lcs += ['tab:> ']
     endif
-    if &shiftwidth != 0 " && &tabstop != &shiftwidth
-      let lcs += ['multispace:⋮'..repeat(' ', &shiftwidth-1)]
+    if &ts!= 0 " && &tabstop != &shiftwidth
+      if has("patch-8.2.5066")
+        let lcs += ['leadmultispace:┆'..repeat(' ', &ts-1)]
+      else
+        let lcs += ['multispace:┆'..repeat(' ', &ts-1)]
+      endif
     endif
     let &l:listchars = join(lcs, ',')
     setl list
