@@ -315,7 +315,7 @@ function! SetShell(shell) abort
     let &shellxquote = (has('nvim') ? '(' : g:env=='CYGWIN' ? '' : '"')
   end
   " let &ssl = 1
-  let &csl = 'slash'
+  " let &csl = 'slash'
 endfunction
 
 command! -nargs=1 SetShell call SetShell(<q-args>)
@@ -555,29 +555,30 @@ cab <expr> xd (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdl
 nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
 
 function! Ctags() abort
-  let l:cmd_find = 'find'
-  if g:env == 'WIN'
-    let l:cmd_find = '"'
-          \ . fnamemodify(system('where git'), ':h:h')
-          \ . '\usr\bin\find.exe"'
-    " echom l:cmd_find
-  endif
   let l:ignores = ''
   for l:dir in g:ignoredirs
-    let l:ignores .= ' -not -path "./' . l:dir . '/*"'
+    let l:ignores .= ' --exclude=' . l:dir
   endfor
-  " echom l:ignores
 
-  let l:ext = expand('%:e')
-  let l:cppexts = ['cpp', 'h', 'hpp', 'c', 'cc']
-  if index(l:cppexts, l:ext)
-    for l:e in l:cppexts
-      let l:exts = ' -name "*."' . l:e
-    endfor
+  if &ft == 'python'
+    let l:ignores .= ' --exclude=venv*'
   endif
 
-  echom system(l:cmd_find . ' -name "*."' . expand('%:e')
-        \ . l:ignores . ' -exec ctags {} +')
+  let l:ext = expand('%:e')
+  let l:extmap = {
+        \ 'C,C++': ['c', 'C', 'h', 'cpp','c++','cxx','cc','hh','hxx','h++'],
+        \ 'Python': ['py'],
+        \ }
+
+  let l:languages = '--languages='
+  for key in keys(l:extmap)
+    if index(l:extmap[key], l:ext) != -1
+      let l:languages .= l:languages[strlen(l:languages)-1]!=#'='?',':'' . key
+    endif
+  endfor
+  let l:languages = l:languages[strlen(l:languages)-1]!=#'=' ? l:languages : ''
+
+  echom system('ctags -R ' . l:ignores . ' ' . l:languages)
 endfunction
 
 command! RunCtags call Ctags()
