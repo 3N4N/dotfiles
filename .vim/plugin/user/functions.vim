@@ -107,14 +107,46 @@ nnoremap <Leader>wx :<C-u>call SwitchWindow(v:count1)<CR>
 
 " -- Copy yanked text to tmux pane -----------------------------------------
 
-function! SendToTmux(visual, count) range abort
-  if (a:visual)
-    execute "normal! gv\"zy"
+function! GetLinesForREPL(visual) abort
+  if a:visual
+    " https://stackoverflow.com/a/6271254/11135136
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    let text = join(lines, "\n")
   else
-    execute "normal! \"zyip"
+    let text = getline('.')
+    return text
+  endif
+endfunction
+
+if has('terminal')
+
+function! SendToTerm(visual) range abort
+  let text = GetLinesForREPL(a:visual)
+
+  call term_sendkeys(g:termbufnr, text . "\<CR>")
+
+  if &ft == 'python'
+    " Requires sleep, otherwise enters a newline instead of executing the codeblock
+    sleep 10m
+    call term_sendkeys(g:termbufnr, "\<CR>")
   endif
 
-  let text = @z
+endfunction
+
+nnoremap <Leader>p :<C-u>silent call SendToTerm(0)<CR>
+xnoremap <Leader>p :<C-u>silent call SendToTerm(1)<CR>
+nnoremap <Leader>P :let g:termbufnr=winbufnr('.')<CR>
+
+endif
+
+if g:env !=# 'WIN' && $TERM ==# 'tmux-256color'
+
+function! SendToTmux(visual, count) range abort
+  let text = GetLinesForREPL(a:visual)
   let text = substitute(text, ';', '\\;', 'g')
   let text = substitute(text, '"', '\\"', 'g')
   let text = substitute(text, '\n', '" Enter "', 'g')
@@ -128,6 +160,8 @@ endfunction
 
 nnoremap <Leader>p :<C-u>silent call SendToTmux(0, v:count1)<CR>
 xnoremap <Leader>p :<C-u>silent call SendToTmux(1, v:count1)<CR>
+
+endif
 
 " -- Use * and # over visual selection -------------------------------------
 
