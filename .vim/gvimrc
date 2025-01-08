@@ -1,5 +1,6 @@
 let $PATH = $PATH . ';' . expand('$ProgramFiles').'\Git\usr\bin;'
 
+set lines=50 columns=100
 set winaltkeys =no
 set guioptions -=m
 set guioptions -=r
@@ -12,14 +13,15 @@ set guioptions +=!
 set guifont =Jetbrains_Mono:h10:cANSI
 " set guifont =Fixedsys:h12:cANSI
 " set guifont =Cascadia_Code:h12:cANSI
-set lines=50 columns=100
 " set renderoptions =type:directx
-" __|__ -->
-
-" syn on
-" colo retrobox
 
 " selectionBackground: "#61AFEF",
 " cursorColor: "#383A42",
 " foreground: "#383A42",
 " background: "#FAFAFA",
+
+" -- GVIM window resize ----------------------------------------------------
+nnoremap <A-=> :set columns+=20<CR>
+nnoremap <A--> :set columns-=20<CR>
+nnoremap <A-0> :set columns=200<CR>
+nnoremap <A-9> :set columns=100<CR>
