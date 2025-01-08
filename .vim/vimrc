@@ -326,6 +326,10 @@ command! -nargs=1 -complete=command Redir
       \ setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile |
       \ call setline(1, split(execute(<q-args>), "\n"))
 
+command! -nargs=1 -complete=file Glimpse
+      \ edit <args> |
+      \ setlocal nobuflisted bufhidden=wipe noswapfile
+
 command! Date put =strftime('%Y-%m-%d')
 command! SetMarkdownComments
       \ setlocal comments ^=fb:[],fb:[\ ],fb:[x],fb:[X],fb:*,fb:-,fb:+,fb:o,fb:•,n:>
@@ -437,8 +441,10 @@ endif
 
 " -- Lua Modules -----------------------------------------------------------
 
-nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
-nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
-xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
+if has('nvim')
+  nnoremap <Bslash>P :let g:termutilchan=eval(b:terminal_job_id)<CR>
+  nnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(0)<CR>
+  xnoremap <silent><Bslash>p :lua require("termutil").sendToTerm(1)<CR>
+endif
 
 call LoadLocalVimrc()
