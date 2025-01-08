@@ -4,14 +4,15 @@ pwd    = cd
 ns     = nslookup $*
 ip     = ipconfig $*
 vi     = %VISUAL% $*
-grep   = grep --color --exclude-dir=".git" --exclude-dir="node_modules" --exclude="tags" $*
+grep   = grep --color $* --exclude-dir=".git" --exclude-dir=".venv" --exclude-dir="node_modules" --exclude="tags"
 rg     = rg --smart-case $*
 xclip  = win32yank.exe $*
 wts    = %VISUAL% "%LOCALAPPDATA%/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 myip   = curl -s https://icanhazip.com
-reload = %HOMEDRIVE%\%HOMEPATH%\projects\dotfiles\cmd\profile.cmd
-dots   = cd /d E:\projects\dotfiles
+reload = %USERPROFILE%\projects\dotfiles\cmd\profile.cmd
+dots   = pushd %USERPROFILE%\projects\dotfiles
 mpv    = C:\apps\mpv\mpv.exe $*
+mpc    = C:\apps\mpv\mpv.com $*
 
 ps     = tasklist $*
 psgrep = tasklist | grep --color -i $1
@@ -28,7 +29,7 @@ dockps  = docker ps --format "{{.ID}}  {{.Names}}"
 docksh  = docker exec -it $1 /bin/bash
 
 msys  = C:\msys64\msys2_shell.cmd -defterm -here -no-start $*
-vsdev = C:\PROGRA~2\MICROS~2\2019\Community\Common7\Tools\VsDevCmd.bat -arch=x64 -host_arch=x64
+vsdev = "%VS_PATH%\Community\VC\Auxiliary\Build\vcvarsall.bat" $*
 
 ls   = ls -NvhF --group-directories-first $*
 l    = ls -NvhFl --group-directories-first --time-style=+ $*
