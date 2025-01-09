@@ -577,12 +577,14 @@ function! Ctags() abort
     endif
   endfor
   let l:languages = l:languages[strlen(l:languages)-1]!=#'=' ? l:languages : ''
+  let l:extraopts = '--python-kinds=-i'
 
-  echom system('ctags -R ' . l:ignores . ' ' . l:languages)
+  let l:execmd = input("", 'ctags -R ' . l:ignores . ' ' . l:languages . ' ' . l:extraopts)
+  echom system(l:execmd)
 endfunction
 
 command! RunCtags call Ctags()
-nnoremap <Leader>c :RunCtags<CR>:redraw<CR>
+nnoremap <Leader>c :RunCtags<CR>
 
 " -- cycle colorscheme  ----------------------------------------------------
 
