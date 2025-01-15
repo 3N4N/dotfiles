@@ -115,19 +115,20 @@ function! GetLinesForREPL(visual) abort
     let lines = getline(line_start, line_end)
     let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
     let lines[0] = lines[0][column_start - 1:]
-    let text = join(lines, "\n")
   else
-    let text = getline('.')
-    return text
+    let lines = [getline('.')]
   endif
+  return lines
 endfunction
 
 if has('terminal')
 
 function! SendToTerm(visual) range abort
-  let text = GetLinesForREPL(a:visual)
+  let lines = GetLinesForREPL(a:visual)
 
-  call term_sendkeys(g:termbufnr, text . "\<CR>")
+  for line in lines
+    call term_sendkeys(g:termbufnr, line . "\<CR>")
+  endfor
 
   if &ft == 'python'
     " Requires sleep, otherwise enters a newline instead of executing the codeblock
@@ -474,10 +475,18 @@ command! -nargs=1 KC
 
 " -- Recursive :highlight --------------------------------------------------
 
+function! SynGroup()
+  let l:s = synID(line('.'), col('.'), 1)
+  let l:attr = synIDattr(l:s, 'name')
+  let l:transattr = synIDattr(synIDtrans(l:s), 'name')
+  echom l:attr '->' l:transattr
+  return l:attr
+endfun
+
 function! HiThere(group) abort
   let out = trim(execute('hi ' .. a:group))
   let splits = split(out, ' \+')
-  echon splits[0] .. ' '
+  echo splits[0] .. ' '
   execute 'echohl' splits[0]
   echon splits[1] .. ' '
   echohl None
@@ -487,7 +496,9 @@ function! HiThere(group) abort
     call HiThere(split(out, ' \+')[-1])
   endif
 endfunction
-command! -nargs=1 -complete=highlight HiThere call HiThere(<q-args>)
+
+command! -nargs=1 -complete=highlight HiThere call HiThere(<args>)
+nnoremap <F12> :<C-u>HiThere SynGroup()<CR>
 
 " -- Toggle :Git window ----------------------------------------------------
 
