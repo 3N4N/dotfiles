@@ -143,7 +143,7 @@ nnoremap <Leader>P :let g:termbufnr=winbufnr('.')<CR>
 
 endif
 
-if g:env !=# 'WIN' && $TERM ==# 'tmux-256color'
+if !exists('g:termbufnr') && $TERM ==# 'tmux-256color'
 
 function! SendToTmux(visual, count) range abort
   let text = GetLinesForREPL(a:visual)

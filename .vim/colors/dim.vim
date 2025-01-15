@@ -58,10 +58,10 @@ let colors_name = "dim"
 
 " In diffs, added lines are green, changed lines are yellow, deleted lines are
 " red, and changed text (within a changed line) is bright yellow and bold.
-hi DiffAdd        ctermfg=0    ctermbg=10
-hi DiffChange     ctermfg=0    ctermbg=NONE
-hi DiffDelete     ctermfg=0    ctermbg=9
-hi DiffText       ctermfg=0    ctermbg=12
+hi DiffAdd        cterm=NONE    ctermfg=0    ctermbg=10
+hi DiffChange     cterm=NONE    ctermfg=0    ctermbg=NONE
+hi DiffDelete     cterm=NONE    ctermfg=0    ctermbg=9
+hi DiffText       cterm=NONE    ctermfg=0    ctermbg=12
 
 " Invert selected lines in visual mode
 hi Visual         ctermfg=NONE ctermbg=NONE cterm=inverse

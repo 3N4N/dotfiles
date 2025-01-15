@@ -1,7 +1,7 @@
 " -- Title -----------------------------------------------------------------
 
 set title
-let &titlestring = (has('nvim') ? 'Nvim' : 'Vim')
+let &titlestring = (has('nvim') ? 'NVIM' : 'VIM')
       \ . "@%{hostname()}"
       \ . " %{&modified?'•':'-'} %{getcwd()->fnamemodify(':~')}"
 

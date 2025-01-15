@@ -10,7 +10,12 @@ if g:env == "CYGWIN" || g:env == "WIN"
   nnoremap <C-BS> <C-w>h
   call SetShell("cmd")
 endif
-nnoremap <Leader>\ :term ++curwin ++close cmd /K C:/apps/clink/clink_x64.exe inject && C:/Users/enan/projects/dotfiles/cmd/profile.cmd<CR>
+
+if stridx(&shell,'cmd') > 0
+  nnoremap <Leader>\ :term ++curwin ++close cmd /K C:/apps/clink/clink_x64.exe inject && C:/Users/enan/projects/dotfiles/cmd/profile.cmd<CR>
+else
+  nnoremap <Leader>\ :term ++curwin ++close<CR>
+endif
 
 " -- color scheme ----------------------------------------------------------
 
