@@ -16,10 +16,13 @@
 
 isWSL=false
 isMSYS=false
+isMacOS=false
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
   isWSL=true
 elif grep -qEi "(MINGW64_NT|MSYS_NT)" /proc/version &> /dev/null ; then
   isMSYS=true
+elif [ "$(uname -s)" == "Darwin" ] ; then
+  isMacOS=true
 fi
 
 # ENV variables
@@ -60,7 +63,11 @@ alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
 # useful ls aliases
-alias l='ls -NvhFl --group-directories-first --time-style=+'
+if [[ $isMacOS == 'true' ]]; then
+  alias l='ls -vhFl'
+else
+  alias l='ls -NvhFl --group-directories-first --time-style=+'
+fi
 alias la='l -A'
 alias lh='la -d .[^.]* 2> /dev/null'
 
@@ -213,14 +220,20 @@ complete -F _t_completions t
 # Open a file and detach the process
 o() {
   if [ -z "$1" ]; then
-    echo "FUCK!"
+    echo "[ERROR] File not provided"
   else
     if [ $isMSYS == 'true' ]; then
       start "$@"
     elif [ $isWSL == 'true' ]; then
       cmd.exe /C "start "" $(wslpath -aw $1)"
     else
-      xdg-open "$1" & disown
+      if [ -x "$(command -v xdg-open)" ]; then
+        xdg-open "$1" & disown
+      elif [ -x "$(command -v open)" ]; then
+        open "$1" & disown
+      else
+        echo "[ERROR] Dunno how to open this file:" "$1"
+      fi
     fi
   fi
 }
@@ -340,7 +353,7 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
-PS1='\[$green\]\u@\h \[$red\]\A \[$yellow\]\w\[$reset\]\n\s-\v\$ '
+PS1='\[$green\]\u\[$reset\]@\[$red\]\h \[$magenta\]\A \[$yellow\]\w\[$reset\]\n\s-\v\$ '
 if [[ "$isMSYS" == 'true' ]]; then
   PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
 fi

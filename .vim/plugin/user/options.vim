@@ -162,6 +162,15 @@ set notimeout
 set ttimeout
 set ttimeoutlen =10
 
+" -- diff options ----------------------------------------------------------
+
+if has('mac') && $VIM == '/usr/share/vim'
+  set diffopt-=internal
+elseif has('patch-8.1.0360')
+  set diffopt+=algorithm:patience
+  set diffopt +=indent-heuristic
+endif
+
 " -- miscellaneous settings ------------------------------------------------
 
 set autoread
@@ -169,11 +178,6 @@ set backspace =indent,eol,start
 set belloff =all
 set cinoptions =g0,l1,i0,t0,(4,N-s
 set cpoptions -=aA
-set diffopt =internal
-set diffopt +=filler
-set diffopt +=closeoff
-set diffopt +=algorithm:patience
-set diffopt +=indent-heuristic
 set formatoptions =tcqjro
 set nojoinspaces
 set shortmess =filmnxrtToO

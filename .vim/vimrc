@@ -49,7 +49,7 @@ if empty(glob(plug_vim))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let g:plug_url_format = 'git@github.com:%s.git'
+let g:plug_url_format = 'https://github.com/%s'
 
 call plug#begin(s:vim_plug_dir)
 
