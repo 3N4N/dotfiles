@@ -67,6 +67,7 @@ endif
 set enc=utf-8
 set colorcolumn =0
 set conceallevel =0
+set equalalways
 set fillchars =vert:│
 set hidden
 set list

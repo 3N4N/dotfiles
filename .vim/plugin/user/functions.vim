@@ -147,16 +147,19 @@ endif
 if !exists('g:termbufnr') && $TERM ==# 'tmux-256color'
 
 function! SendToTmux(visual, count) range abort
-  let text = GetLinesForREPL(a:visual)
-  let text = substitute(text, ';', '\\;', 'g')
-  let text = substitute(text, '"', '\\"', 'g')
-  let text = substitute(text, '\n', '" Enter "', 'g')
-  let text = substitute(text, '!', '\\!', 'g')
-  let text = substitute(text, '%', '\\%', 'g')
-  let text = substitute(text, '#', '\\#', 'g')
+  let lines = GetLinesForREPL(a:visual)
+  for line in lines
+    let line = trim(line)
+    " let line = substitute(line, ';', '\\;', 'g')
+    " let line = substitute(line, '"', '\\"', 'g')
+    " let line = substitute(line, '\n', '" Enter "', 'g')
+    " " let line = substitute(line, '!', '\\!', 'g')
+    " let line = substitute(line, '%', '\\%', 'g')
+    " let line = substitute(line, '#', '\\#', 'g')
 
-  call system("tmux send-keys -t " . a:count . " -- \"" . text . "\"")
-  call system("tmux send-keys -t " . a:count . "Enter")
+    call system("tmux send-keys -t " . a:count . " -- \"" . line . "\"")
+    call system("tmux send-keys -t " . a:count . " -- \"Enter\"")
+  endfor
 endfunction
 
 nnoremap <Leader>p :<C-u>silent call SendToTmux(0, v:count1)<CR>

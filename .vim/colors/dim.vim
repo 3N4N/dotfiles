@@ -59,7 +59,7 @@ let colors_name = "dim"
 " In diffs, added lines are green, changed lines are yellow, deleted lines are
 " red, and changed text (within a changed line) is bright yellow and bold.
 hi DiffAdd        cterm=NONE    ctermfg=0    ctermbg=10
-hi DiffChange     cterm=NONE    ctermfg=0    ctermbg=NONE
+hi DiffChange     cterm=NONE    ctermfg=0    ctermbg=15
 hi DiffDelete     cterm=NONE    ctermfg=0    ctermbg=9
 hi DiffText       cterm=NONE    ctermfg=0    ctermbg=12
 

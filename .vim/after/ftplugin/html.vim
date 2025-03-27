@@ -4,6 +4,6 @@ setl shiftwidth=2
 setl et
 if executable('tidy')
   setl fp=tidy\ -q\ -i\ --tidy-mark\ no
-else
-  echohl Error | echom "[html] tidy executable not found" | echohl None
+" else
+"   echohl Error | echom "[html] tidy executable not found" | echohl None
 endif

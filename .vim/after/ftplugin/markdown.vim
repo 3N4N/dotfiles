@@ -1,6 +1,6 @@
 setlocal textwidth=80
 setlocal nospell
-setlocal wrap
+setlocal nowrap
 setlocal formatoptions=tcqjroln
 
 " Using ':h comments' for lists is unidiomatic
