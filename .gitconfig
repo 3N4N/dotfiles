@@ -6,8 +6,8 @@
   email = 3nan.ajmain@gmail.com
   name = Enan Ajmain
   signingkey = 448F8D0D0D6DB601566E396CA031EA10A3ECB75D
-[credential]
-  helper = manager-core
+; [credential]
+;   helper = manager-core
 [core]
   abbrev = 12
   preloadindex = true
@@ -15,6 +15,7 @@
   ; pager = less -+$LESS
   ; editor = $VISUAL  ; git automatically uses $VISUAL if defined
   filemode = false
+	excludesfile = ~/.gitignore
 [log]
   date = short
 [push]
