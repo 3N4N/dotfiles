@@ -57,10 +57,12 @@ printf '\033[?12l'              # for xterm-like terms: unblinking block cursor
 #                                    aliases
 # ----------------------------------------------------------------------
 
-# safety features
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
+if [[ $isMacOS == 'true' ]]; then
+  # safety features
+  alias chown='chown --preserve-root'
+  alias chmod='chmod --preserve-root'
+  alias chgrp='chgrp --preserve-root'
+fi
 
 # useful ls aliases
 if [[ $isMacOS == 'true' ]]; then
