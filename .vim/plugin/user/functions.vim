@@ -564,6 +564,25 @@ cab <expr> ii (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdl
 cab <expr> xx (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude':'xx'
 cab <expr> xd (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude-dir':'xd'
 
+" -- Better :ls ------------------------------------------------------------
+
+function! ShowBuffersInCwd()
+  let cwd = getcwd()
+  echo 'Buffers in current directory:'
+  for buf in getbufinfo({'bufloaded': 1})
+    if has_key(buf, 'name') && !empty(buf.name)
+      let bufname = fnamemodify(buf.name,':.')
+      if bufname[0] != '/'
+        echo bufname
+      endif
+    endif
+  endfor
+endfunction
+
+command! -nargs=0 ShowBuffersInCwd call ShowBuffersInCwd()
+nnoremap <Leader>b :ShowBuffersInCwd<CR>:b<Space>
+
+
 " -- Ctags -----------------------------------------------------------------
 
 nnoremap <Leader>c :!ctags -R --exclude=.git --exclude=build --exclude=venv .<CR>
