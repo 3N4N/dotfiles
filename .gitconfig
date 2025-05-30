@@ -20,6 +20,7 @@
   date = short
 [push]
   default = current
+  followTags = true
 [pager]
   show = less -+$LESS -N
   grep = false
@@ -39,7 +40,9 @@
   process = git-lfs filter-process
 [alias]
   ls = log --source --graph --pretty=format:'%C(yellow)%h %Creset[%ad] %s %C(green)[%an]%C(red)%d'
+  lsa= ls --all
   ll = log --source --stat -p
+  lla= ll --all
   br = branch
   ba = branch -av
   bv = branch -v

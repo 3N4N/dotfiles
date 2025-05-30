@@ -109,6 +109,7 @@ alias vi='$VISUAL'
 alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 alias xargs='xargs '    # to expand aliases in "<cmd> | xargs <alias>"
+alias nvidia-procs='ps -up `nvidia-smi -q -x | grep pid | sed -e "s/<pid>//g" -e "s/<\/pid>//g" -e "s/^[[:space:]]*//"`'
 
 # WSL and MSYS aliases
 if [[ $isWSL == 'true' || $isMSYS == 'true' ]]; then
