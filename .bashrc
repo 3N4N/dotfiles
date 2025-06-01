@@ -31,6 +31,7 @@ export EDITOR="$VISUAL"
 export GEM_HOME=$HOME/gems
 export LESS="-iSMRF"
 export PAGER="less"
+export MANPAGER='less -R --use-color -Dd+r -Du+b'
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:range1=32:range2=34:locus=35:quote=33:path=01;36:fixit-insert=32:fixit-delete=31:diff-filename=35:diff-hunk=32:diff-delete=31:diff-insert=32:type-diff=01;32:fnname=35;32:targs=35"
 
@@ -57,11 +58,13 @@ printf '\033[?12l'              # for xterm-like terms: unblinking block cursor
 #                                    aliases
 # ----------------------------------------------------------------------
 
-if [[ $isMacOS == 'true' ]]; then
+if [[ $isMacOS == 'false' ]]; then
   # safety features
   alias chown='chown --preserve-root'
   alias chmod='chmod --preserve-root'
   alias chgrp='chgrp --preserve-root'
+else
+  alias boldbrave='open -n /Applications/Brave\ Browser.app --args --proxy-server="socks5://localhost:1080" --user-data-dir=/Users/enan/.config/mytunneldchrome/'
 fi
 
 # useful ls aliases
@@ -197,12 +200,15 @@ t() {
   if [ $? != 0 ]; then
     tmux new-session -s "$session_name" -d
     tmux rename-window -t "$session_name" shell
-    tmux new-window -t "$session_name"
 
-    # if [[ $session_name == "enan" && $isMSYS == 'false' ]]; then
-    #   tmux rename-window -t "$session_name" dots
-    #   tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
-    # fi
+    if [[ $session_name == "enan" && $isMSYS == 'false' ]]; then
+      tmux new-window -t "$session_name" -c ~/projects/dotfiles
+      tmux rename-window -t "$session_name" dots
+      # tmux send-keys -t "$session_name" 'cd ~/projects/dotfiles' C-m
+      tmux split-window -hb -c ~/projects/dotfiles 'vim'
+    else
+      tmux new-window -t "$session_name"
+    fi
 
     tmux select-window -t 2
   fi
