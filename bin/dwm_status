@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 print_volume() {
 	info="$(amixer get Master | tail -n1)"

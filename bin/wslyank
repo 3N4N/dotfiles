@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # /mnt/c/Windows/System32/clip.exe
 # /mnt/c/Windows/System32/paste.exe | sed 's/\r//g'
