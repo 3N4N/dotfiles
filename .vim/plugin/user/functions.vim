@@ -560,8 +560,8 @@ command! -nargs=+ -complete=file_in_path -bar   GitGrep
 nnoremap <Leader>gg   :GitGrep<Space>
 nnoremap <Bslash>f    :Grep<Space>
 
-cab <expr> ii (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--include':'ii'
-cab <expr> xx (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude':'xx'
+cab <expr> ii (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--include \*.' . expand('%:e'):'ii'
+cab <expr> xx (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude \*.' . expand('%:e'):'xx'
 cab <expr> xd (StartsWith(&gp,'grep') && getcmdtype()==':' && StartsWith(getcmdline()->trim(), 'Grep')) ? '--exclude-dir':'xd'
 
 " -- Better :ls ------------------------------------------------------------
