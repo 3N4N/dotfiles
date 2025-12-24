@@ -65,8 +65,6 @@ if [[ $isMacOS == 'false' ]]; then
   alias chgrp='chgrp --preserve-root'
 else
   alias boldbrave='open -n /Applications/Brave\ Browser.app --args --proxy-server="socks5://localhost:1080" --user-data-dir=/Users/enan/.config/mytunneldchrome/'
-fi
-
 # useful ls aliases
 if [[ $isMacOS == 'true' ]]; then
   alias l='ls -vhFl'
@@ -277,6 +275,12 @@ if ! shopt -oq posix; then
   fi
   if [ -f /etc/bash-completion.d/git-completion.bash ]; then
     . /etc/bash-completion.d/git-completion.bash
+  fi
+  if [[ $isMacOS == 'true' ]]; then
+    cli_tools='/Library/Developer/CommandLineTools'
+    git_core="$cli_tools/usr/share/git-core"
+    git_completion="$git_core/git-completion.bash"
+    [ -x "$(which git)" ] && [ -f "$git_completion" ] && source "$git_completion"
   fi
 fi
 
