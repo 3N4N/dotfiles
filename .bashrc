@@ -63,8 +63,8 @@ if [[ $isMacOS == 'false' ]]; then
   alias chown='chown --preserve-root'
   alias chmod='chmod --preserve-root'
   alias chgrp='chgrp --preserve-root'
-else
-  alias boldbrave='open -n /Applications/Brave\ Browser.app --args --proxy-server="socks5://localhost:1080" --user-data-dir=/Users/enan/.config/mytunneldchrome/'
+fi
+
 # useful ls aliases
 if [[ $isMacOS == 'true' ]]; then
   alias l='ls -vhFl'
@@ -370,6 +370,12 @@ PS1='\[$green\]\u\[$reset\]@\[$red\]\h \[$magenta\]\A \[$yellow\]\w\[$reset\]\n\
 if [[ "$isMSYS" == 'true' ]]; then
   PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "`cygpath -w "$PWD"`"'
 fi
+
+import_nvm() {
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

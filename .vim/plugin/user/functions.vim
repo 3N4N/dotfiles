@@ -149,9 +149,12 @@ if !exists('g:termbufnr') && $TERM ==# 'tmux-256color'
 function! SendToTmux(visual, count) range abort
   let lines = GetLinesForREPL(a:visual)
   for line in lines
-    let line = trim(line)
-    " let line = substitute(line, ';', '\\;', 'g')
-    " let line = substitute(line, '"', '\\"', 'g')
+    if line == ''
+      continue
+    endif
+    " let line = trim(line)
+    let line = substitute(line, ';', '\\;', 'g')
+    let line = substitute(line, '"', '\\"', 'g')
     " let line = substitute(line, '\n', '" Enter "', 'g')
     " " let line = substitute(line, '!', '\\!', 'g')
     " let line = substitute(line, '%', '\\%', 'g')
