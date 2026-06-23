@@ -253,6 +253,8 @@ nnoremap <Leader>gc :keepalt Git commit<CR>
 nnoremap <Leader>gw :keepalt Gwrite<CR>
 nnoremap <Leader>gr :keepalt Gread<CR>
 nnoremap <Leader>gb :keepalt Git blame<CR>
+nnoremap <Leader>gp :keepalt Git push<CR>
+nnoremap <Leader>gC :keepalt Git commit -m "Update"<CR>
 
 " Navigate seamlessly between vim and tmux
 if g:env ==# 'UNIX' || g:env ==# 'WSL' && exists('$TMUX')
