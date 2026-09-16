@@ -5,3 +5,5 @@
 # and executes _only_ the first one it finds
 [[ -s "${HOME}/.profile" ]] && source "${HOME}/.profile"
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
