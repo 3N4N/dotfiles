@@ -30,6 +30,7 @@ DOTFILES=(
     ".local/share/fonts"
 )
 
+mkdir -p $HOME/.local/share/fonts
 for dotfile in "${DOTFILES[@]}";do
     rm -rf "${HOME}/${dotfile}"
     ln -sf "${DIR}/${dotfile}" "${HOME}/${dotfile}"
