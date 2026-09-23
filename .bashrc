@@ -219,8 +219,17 @@ t() {
 }
 
 _t_completions() {
-  SUGGESTIONS=$(tmux ls -F '#{session_name}')
-  COMPREPLY=($(compgen -W "$SUGGESTIONS" -- "${COMP_WORDS[1]}"))
+  local suggestion prefix
+  local -a suggestions
+
+  prefix="${COMP_WORDS[1],,}"
+
+  while IFS= read -r suggestion; do
+    [[ "${suggestion,,}" == "$prefix"* ]] &&
+      suggestions+=("$suggestion")
+  done < <(tmux ls -F '#{session_name}' 2>/dev/null)
+
+  COMPREPLY=("${suggestions[@]}")
 }
 complete -F _t_completions t
 
