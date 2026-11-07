@@ -70,6 +70,7 @@ if [[ $isMacOS == 'true' ]]; then
   alias l='ls -vhFl'
 else
   alias l='ls -NvhFl --group-directories-first --time-style=+'
+  alias ghpass='grep GitHub Documents/seckeys.txt | awk '{print $2}' | '
 fi
 alias la='l -A'
 alias lh='la -d .[^.]* 2> /dev/null'

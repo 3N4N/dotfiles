@@ -134,7 +134,7 @@ else
   let &grepprg = 'grep -IHnr $*
         \ --exclude-dir=.git
         \ --exclude-dir=node_modules
-        \ --exclude-dir=.venv
+        \ --exclude-dir=.venv*
         \ --exclude=tags'
 end
 

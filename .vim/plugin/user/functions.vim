@@ -719,3 +719,5 @@ else
 endif
 
 nnoremap <silent> <leader><bar> :ToggleIndentGuides<CR>
+
+command! -nargs=0 URLDecode %s/%\(\x\x\)/\=nr2char('0x' . submatch(1))/ge

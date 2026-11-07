@@ -57,7 +57,7 @@ i=0
 # open editor
 $VISUAL "$TMPFILE"
 
-sed -i 's/\///' "$TMPFILE"
+perl -pi -e 's/\///' "$TMPFILE"   # Use perl i/o sed b/c sed's different in Linux vs Mac
 
 # get the file names from the edited files
 while read -r line; do
