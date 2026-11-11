@@ -70,7 +70,6 @@ if [[ $isMacOS == 'true' ]]; then
   alias l='ls -vhFl'
 else
   alias l='ls -NvhFl --group-directories-first --time-style=+'
-  alias ghpass='grep GitHub Documents/seckeys.txt | awk '\''{print $2}'\'' | '
 fi
 alias la='l -A'
 alias lh='la -d .[^.]* 2> /dev/null'
@@ -92,7 +91,7 @@ alias snext="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/
 
 # ffmpeg hide banner
 alias ffmpeg='ffmpeg -hide_banner'
-alias ffplay='ffplay -hide_banner -noborder'
+alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 
 # Commands for for docker
@@ -112,6 +111,7 @@ alias xclip='xclip -selection clipboard'
 alias gdb='gdb --silent'
 alias xargs='xargs '    # to expand aliases in "<cmd> | xargs <alias>"
 alias nvidia-procs='ps -up `nvidia-smi -q -x | grep pid | sed -e "s/<pid>//g" -e "s/<\/pid>//g" -e "s/^[[:space:]]*//"`'
+alias ghpass='grep GitHub ~/Documents/seckeys.txt | awk '\''{print $2}'\'''
 
 # WSL and MSYS aliases
 if [[ $isWSL == 'true' || $isMSYS == 'true' ]]; then
