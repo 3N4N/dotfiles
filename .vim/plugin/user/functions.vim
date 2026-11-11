@@ -54,7 +54,7 @@ nnoremap <Leader>w> :call RepeatResize('>')<CR>
 function! DocInfo() abort
   let cmntstr = &commentstring
   let curpos = getcurpos(0)
-  call append(curpos[1]-1, substitute(cmntstr, "%s", " Author: Enan Ajmain", ""))
+  call append(curpos[1]-1, substitute(cmntstr, "%s", " Author: Nafid Enan", ""))
   call append(curpos[1]+0, substitute(cmntstr, "%s", " Email : 3nan.ajmain@gmail.com", ""))
   call append(curpos[1]+1, substitute(cmntstr, "%s", " Github: 3N4N", ""))
 endfunction

@@ -1,6 +1,6 @@
 " Vim color file
 " Name   : Fault
-" Author : Enan Ajmain
+" Author : Nafid Enan
 " Email  : 3nan.ajmain@gmail.com
 " Github : https://github.com/3N4N
 

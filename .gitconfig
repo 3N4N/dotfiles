@@ -1,10 +1,10 @@
-; Author : Enan Ajmain
+; Author : Nafid Enan
 ; Email  : 3nan.ajmain@gmail.com
 ; Github : https://github.com/3N4N
 
 [user]
-  email = 3nan.ajmain@gmail.com
-  name = Enan Ajmain
+  email = nafid.enan@aol.com
+  name = Nafid Enan
   signingkey = 448F8D0D0D6DB601566E396CA031EA10A3ECB75D
 [credential]
   helper = cache --timeout 21600
