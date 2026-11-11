@@ -70,7 +70,7 @@ if [[ $isMacOS == 'true' ]]; then
   alias l='ls -vhFl'
 else
   alias l='ls -NvhFl --group-directories-first --time-style=+'
-  alias ghpass='grep GitHub Documents/seckeys.txt | awk '{print $2}' | '
+  alias ghpass='grep GitHub Documents/seckeys.txt | awk '\''{print $2}'\'' | '
 fi
 alias la='l -A'
 alias lh='la -d .[^.]* 2> /dev/null'
@@ -255,6 +255,20 @@ o() {
   fi
 }
 
+# Clipboard over SSH using OSC52
+sclip() {
+  local input
+
+  if [[ -p /dev/stdin ]]; then
+    input=$(cat)
+  elif [[ -n "$1" ]]; then
+    input="$*"
+  else
+    return 1
+  fi
+
+  printf "\033]52;c;%s\007" "$(printf "%s" "$input" | base64 | tr -d '\n')"
+}
 
 licensify() {
   curl -s -S https://www.gnu.org/licenses/gpl-3.0.txt > COPYING
@@ -348,6 +362,17 @@ if [ -d "$HOME/.opt/riscv" ]; then
     export PATH="$PATH:$RISCV/bin"
   fi
 fi
+
+# ----------------------------------------------------------------------
+#                                   Python STUFF
+# ----------------------------------------------------------------------
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Set breakpoint() in Python to call pudb
+export PYTHONBREAKPOINT="pudb.set_trace"
 
 # ----------------------------------------------------------------------
 #                                    set path
